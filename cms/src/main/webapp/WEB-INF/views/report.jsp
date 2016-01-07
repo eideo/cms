@@ -87,7 +87,7 @@
 											<img src="${resPath}/resources/commons/images/${reportMain.imageIndex}">
 										</a>
 										<div class="description">
-											<h5><a class="cutTitle" href="${appPath}/reportdetail/${reportMain.id}" id="info_${reportMain.id}" onclick="javascript:custBehavior(2, 11506, ${reportMain.id}, 1);" title="${reportMain.reportTitle}" target="_blank">${reportMain.reportTitle}</a></h5>
+											<h5><a class="cutTitle" href="${appPath}/reportdetail/${reportMain.id}" id="info_${reportMain.id}" onclick="javascript:custBehavior(2, 11506, ${reportMain.id}, 1);" title="${reportMain.reportTitle}" >${reportMain.reportTitle}</a></h5>
 											<p>
 												<a class="trade">${reportMain.induxtryName}</a>
 												<i class="line"></i>
@@ -140,7 +140,7 @@
 			<h4>热门报告<i></i></h4>
 			<ul class="hot">
 				<c:forEach var="reportMainTop" items="${reportMainListTop10}">
-					<li class="cutTitle"><a href="${appPath}/reportdetail/${reportMainTop.id}" title="${reportMainTop.reportTitle}" onclick="javascript:custBehavior(2, 11506, ${reportMainTop.id}, 1);" target="_blank">${reportMainTop.reportTitle}</a></li>
+					<li class="cutTitle"><a href="${appPath}/reportdetail/${reportMainTop.id}" title="${reportMainTop.reportTitle}" onclick="javascript:custBehavior(2, 11506, ${reportMainTop.id}, 1);" >${reportMainTop.reportTitle}</a></li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -153,7 +153,7 @@
 					<img src="${resPath}/resources/commons/images/{reportMain.imageIndex}">
 				</a>
 				<div class="description">
-					<h5><a class="cutTitle" href="${appPath}/reportdetail/{reportMain.id}" id="info_{reportMain.id}" onclick="javascript:custBehavior(2, 11506, {reportMain.id}, 1);" target="_blank">{reportMain.reportTitle}</a></h5>
+					<h5><a class="cutTitle" href="${appPath}/reportdetail/{reportMain.id}" id="info_{reportMain.id}" onclick="javascript:custBehavior(2, 11506, {reportMain.id}, 1);" >{reportMain.reportTitle}</a></h5>
 					<p>
 						<a class="trade">{reportMain.induxtryName}</a>
 						<i class="line"></i>

@@ -1,8 +1,8 @@
 /* 
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
- * @Last Modified by:   Administrator
- * @Last Modified time: 2015-12-31 10:58:46
+ * @Last Modified by:   zhanganchun
+ * @Last Modified time: 2016-01-07 14:46:18
  */
 
 'use strict';
@@ -316,7 +316,7 @@ define(function(require, exports, module) {
 			.attr('x', (width * 0.65))
 			.attr('y', function(d, i) {
 
-				return i * 23 + (0.3 * height) + 10
+				return i * 23 + (0.4 * height) + 10
 			})
 			.attr('width', 11)
 			.attr('height', 10)
@@ -328,7 +328,7 @@ define(function(require, exports, module) {
 			.attr('dy', '0.75em')
 			.attr('x', (width * 0.65) + 16)
 			.attr('y', function(d, i) {
-				return i * 23 + (0.3 * height) + 10
+				return i * 23 + (0.4 * height) + 10
 			})
 			.text(function(d, i) {
 

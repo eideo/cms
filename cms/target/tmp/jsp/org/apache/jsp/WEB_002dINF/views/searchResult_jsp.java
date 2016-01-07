@@ -1233,7 +1233,7 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\r\n");
       out.write("<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/lib/seajs/sea.js?v=1.0.1\"></script>\r\n");
+      out.write("/resources/commons/js/lib/seajs/sea.js?v=1.0.1-20151229\"></script>\r\n");
       out.write("<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/lib/seajs/config.js?v=1.0.1-20151229\"></script>\r\n");

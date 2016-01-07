@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 09:06:37
+ * @Last Modified time: 2016-01-07 14:44:00
  */
 
 'use strict';
@@ -559,7 +559,7 @@ define(function(require, exports, module) {
 			.attr('cx', (width * 0.65))
 			.attr('cy', function(d, i) {
 
-				return i * 26 + (0.25 * height)
+				return i * 26 + (0.45 * height)
 			})
 			.attr('r', 0)
 			.transition()
@@ -576,7 +576,7 @@ define(function(require, exports, module) {
 			.attr('x', (width * 0.63))
 			.attr('y', function(d, i) {
 
-				return i * 26 + (0.25 * height)
+				return i * 26 + (0.45 * height)
 			})
 			.transition()
 			.duration(2000)
@@ -590,10 +590,6 @@ define(function(require, exports, module) {
 						.text(d['name'] +'      '+ (t*trueNumber).toFixed(2)+ "%")
 				}
 			})
-			/*.text(function(d, i) {
-
-				return d['name'] +'      '+Math.round(((d['value'] / total)* 10000).toFixed(2)) / 100 + "%"
-			})*/
 			.style('fill',function(d,i) {
 
 				var name = d['name']

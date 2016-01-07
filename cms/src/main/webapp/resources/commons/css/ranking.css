@@ -311,8 +311,8 @@ input{box-sizing: content-box;}
 
 	.f2 .chart .key-words {
 		float: right;
-		width: 260px;
-		margin-right: 100px;
+		width: 250px;
+		margin-right: 130px;
 		margin-top: 260px;
 	}
 	h4{
@@ -329,7 +329,7 @@ input{box-sizing: content-box;}
 	}
 
 	#words {
-		width: 260px;
+		width: 250px;
 		height: 230px;
 		position: relative;
 		background: #fff;

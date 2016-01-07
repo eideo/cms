@@ -47,7 +47,7 @@ public class RelationService {
 	
 	public List<ProjectContacts> selectProjectContacts(String companyName, String personRole){
 		Map<String,Object> map = new HashMap<>();
-		map.put("companyId", companyName);
+		map.put("companyName", companyName);
 		map.put("personRole", StringUtil.isBlank(personRole)?null:personRole.replaceAll(",", "|"));
 		return relationDao.selectProjectContacts(map);
 	}

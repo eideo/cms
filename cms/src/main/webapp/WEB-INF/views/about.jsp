@@ -13,7 +13,7 @@
 	<!-- 顶部banner -->
 	<div class="banner">
 		<div>
-			<a href="http://101.200.0.81" target="_blank">首页</a>
+			<a href="${appPath }/homepage" target="_blank">首页</a>
 		</div>
 	</div>
 	<!-- 主要内容 -->
@@ -66,28 +66,28 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><a href="http://101.200.0.81/relation">关系网</a></td>
-							<td><a href="http://101.200.0.81/search">搜索结果</a></td>
+							<td><a href="${appPath }/relation">关系网</a></td>
+							<td><a href="${appPath }/search">搜索结果</a></td>
 							<td><a>数据概况</a></td>
 							<td><a>行业指数</a></td>
 							<td><a>用户细分</a></td>
 						</tr>
 						<tr>
-							<td><a href="http://101.200.0.81/industry">行业指数</a></td>
+							<td><a href="${appPath }/industry">行业指数</a></td>
 							<td><a>统计指数</a></td>
 							<td><a>行业指数</a></td>
 							<td><a>热门关系网</a></td>
 							<td><a>版权所有</a></td>
 						</tr>
 						<tr>
-							<td><a href="http://101.200.0.81/ranking">排行榜</a></td>
+							<td><a href="${appPath }/ranking">排行榜</a></td>
 							<td><a>项目详情</a></td>
 							<td><a>用户细分</a></td>
 							<td><a>热门单位</a></td>
 							<td><a>友情链接</a></td>
 						</tr>
 						<tr>
-							<td><a href="http://101.200.0.81/report">行业报告</a></td>
+							<td><a href="${appPath }/report">行业报告</a></td>
 							<td></td>
 							<td></td>
 							<td><a>热门信息</a></td>

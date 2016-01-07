@@ -719,11 +719,17 @@
 		background: url(../images/r_web1.png) no-repeat;
 		margin-top:2px;
 	}
+	.resultList li a.rno{
+		background: url(../images/r_web3.png) no-repeat;
+	}
 	h4 a.negative{
 		background: url(../images/r_web3.png) no-repeat;
 	}
 	.resultList .rpage:hover{
 		background: url(../images/r_web2.png) no-repeat;
+	}
+	.resultList .rno:hover{
+		background: url(../images/r_web3.png) no-repeat;
 	}
 	.resultList li.active{
 		background: #ccc;
