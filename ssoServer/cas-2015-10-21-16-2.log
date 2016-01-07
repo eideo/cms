@@ -1,0 +1,26 @@
+2015-10-21 16:28:43,703 INFO [org.jasig.cas.CasEnvironmentContextListener] - 
+******************** Welcome to CAS ********************
+CAS Version: null
+Java Home: C:\Program Files\Java\jdk1.8.0_60\jre
+Java Vendor: Oracle Corporation
+Java Version: 1.8.0_60
+OS Architecture: amd64
+OS Name: Windows 7
+OS Version: 6.1
+*******************************************************
+
+2015-10-21 16:28:51,211 WARN [org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler] - setRequireSecure() is deprecated and will be removed. Callback url validation is controlled by the proxy policy
+2015-10-21 16:28:52,048 WARN [org.jasig.cas.services.InMemoryServiceRegistryDaoImpl] - Runtime memory is used as the persistence storage for retrieving and persisting service definitions. Changes that are made to service definitions during runtime will be LOST upon container restarts.
+2015-10-21 16:28:52,108 WARN [org.jasig.cas.services.RegisteredServiceImpl] - [RegisteredServiceImpl] is deprecated and will be removed in future CAS releases. Consider using [RegexRegisteredService] instead.
+2015-10-21 16:28:52,203 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 16:28:53,812 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2015-10-21 16:28:53,816 INFO [org.jasig.cas.CasEnvironmentContextListener] - [jetty/8.1.7.v20120910] has loaded the CAS application context
+2015-10-21 16:29:08,906 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 16:29:08,906 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 16:29:12,640 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2015-10-21 16:29:12,678 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 expired tickets found to be removed.
+2015-10-21 16:29:12,679 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2015-10-21 16:30:52,576 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 16:30:52,577 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 16:32:52,575 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 16:32:52,578 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.

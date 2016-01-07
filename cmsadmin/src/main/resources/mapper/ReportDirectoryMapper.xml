@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ReportDirectoryMapper" >
+  <resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.ReportDirectory" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REPORT_ID" property="reportId" jdbcType="BIGINT" />
+    <result column="DIR_INDEX" property="dirIndex" jdbcType="INTEGER" />
+    <result column="DIR_HIERACHY" property="dirHierachy" jdbcType="INTEGER" />
+    <result column="DIR_PARENT_ID" property="dirParentId" jdbcType="BIGINT" />
+    <result column="DIR_CONEXT" property="dirConext" jdbcType="VARCHAR" />
+    <result column="DIR_PAGE" property="dirPage" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, REPORT_ID, DIR_INDEX, DIR_HIERACHY, DIR_PARENT_ID, DIR_CONEXT, DIR_PAGE
+  </sql>
+
+  <resultMap id="NodeResultMap" type="com.sbiao360.cmsadmin.model.ZTreeNode" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="DIR_PARENT_ID" property="pId" jdbcType="BIGINT" />
+    <result column="DIR_CONEXT" property="name" jdbcType="VARCHAR" />
+    <result column="OPEN" property="open" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Node_Column_List" >
+    ID, DIR_PARENT_ID, DIR_CONEXT, 
+    case when DIR_HIERACHY = 1 then 'true' else 'false' end as OPEN 
+  </sql>
+
+  <select id="getByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from CMS_REPORT_DIRECTORY
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+ 
+   <select id="getByReportId" resultMap="NodeResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Node_Column_List" />
+    from CMS_REPORT_DIRECTORY
+    where REPORT_ID = #{reportId,jdbcType=BIGINT} 
+    order by ID
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from CMS_REPORT_DIRECTORY
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="deleteByReportId" parameterType="java.lang.Long" >
+    delete from CMS_REPORT_DIRECTORY
+    where REPORT_ID = #{reportId,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.sbiao360.cmsadmin.model.ReportDirectory" 
+  	useGeneratedKeys="true" keyProperty="id" >
+    insert into CMS_REPORT_DIRECTORY (REPORT_ID, DIR_INDEX, 
+      DIR_HIERACHY, DIR_PARENT_ID, DIR_CONEXT, 
+      DIR_PAGE)
+    values (#{reportId,jdbcType=BIGINT}, #{dirIndex,jdbcType=INTEGER}, 
+      #{dirHierachy,jdbcType=INTEGER}, #{dirParentId,jdbcType=BIGINT}, #{dirConext,jdbcType=VARCHAR}, 
+      #{dirPage,jdbcType=INTEGER})
+  </insert>
+
+  <update id="update" parameterType="com.sbiao360.cmsadmin.model.ReportDirectory" >
+    update CMS_REPORT_DIRECTORY
+    set REPORT_ID = #{reportId,jdbcType=BIGINT},
+      DIR_INDEX = #{dirIndex,jdbcType=INTEGER},
+      DIR_HIERACHY = #{dirHierachy,jdbcType=INTEGER},
+      DIR_PARENT_ID = #{dirParentId,jdbcType=BIGINT},
+      DIR_CONEXT = #{dirConext,jdbcType=VARCHAR},
+      DIR_PAGE = #{dirPage,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+	<update id="updateByProperties" parameterType="java.util.Map">
+		update 
+		CMS_REPORT_DIRECTORY 
+		<set>
+			<if test="dirConext != null and dirConext != '' ">
+				DIR_CONEXT = #{dirConext,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

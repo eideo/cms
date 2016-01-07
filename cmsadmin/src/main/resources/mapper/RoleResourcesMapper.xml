@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="RoleResourcesMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.RoleResources">
+		<result column="ROLE_KEY" property="roleKey" jdbcType="VARCHAR" />
+		<result column="RESOURCE_CODE" property="resourceCode"
+			jdbcType="VARCHAR" />
+		<result column="PERMISSIONS" property="permissions" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ROLE_KEY, RESOURCE_CODE, PERMISSIONS
+	</sql>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE_RESOURCES
+		where ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+		and RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getByRoleKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE_RESOURCES
+		where ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_RESOURCES
+		where ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+		and
+		RESOURCE_CODE = #{resourceCode,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteByRoleKey" parameterType="java.lang.String">
+		delete from
+		CMS_ROLE_RESOURCES
+		where ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+	</delete>
+
+	<delete id="deleteByRoleId" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_RESOURCES
+		where ROLE_KEY = (
+		select ROLE_KEY from CMS_ROLE where ID = #{id,jdbcType=BIGINT})
+	</delete>
+
+	<delete id="deleteByResourceId" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_RESOURCES
+		where RESOURCE_CODE = (
+		select RESOURCE_CODE from CMS_RESOURCES where ID = #{id,jdbcType=BIGINT})
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.RoleResources">
+		insert into CMS_ROLE_RESOURCES
+		(ROLE_KEY, RESOURCE_CODE,
+		PERMISSIONS)
+		values
+		(#{roleKey,jdbcType=VARCHAR},
+		#{resourceCode,jdbcType=VARCHAR},
+		#{permissions,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.RoleResources">
+		update
+		CMS_ROLE_RESOURCES
+		set
+		PERMISSIONS =
+		#{permissions,jdbcType=VARCHAR}
+		where ROLE_KEY =
+		#{roleKey,jdbcType=VARCHAR}
+		and RESOURCE_CODE =
+		#{resourceCode,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getListByRoleKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE_RESOURCES
+		where
+		ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+	</select>
+</mapper>

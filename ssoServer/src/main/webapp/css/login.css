@@ -1,0 +1,244 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*头部*/
+.header{
+	height: 80px;
+	line-height: 80px; 
+	margin: 0 auto;
+}
+.header .logo{
+	width: 170px;
+	height: 45px;
+	background: url(../images/logo.png);
+	float: left;
+	text-indent: -9999em;
+	margin: 20px 18px 0 0;
+}
+.header h2{
+	width: 100px;
+	height: 24px;
+	line-height: 24px;
+	padding-left: 12px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #5e5e5e;
+	border-left: 1px solid #ebebeb;
+	margin-top: 30px;
+	float: left;
+}
+.header .nav {
+    float: right;
+}
+.header .nav li{
+	color: #5e5e5e;
+	margin-right:0;
+	margin-left:14px;
+}
+.header .nav li a:hover{
+    color:#0a8dff;
+}
+.nav li {
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+    position: relative;
+    margin-right: 10px;
+}
+.header .nav li a{
+	font-size:14px;
+	color: #5e5e5e;
+	padding: 0;
+	display:inline;
+}
+
+.header .nav li a.hr{
+	font-size:12px;
+	color:#c9c9c9;
+}
+
+/*内容部分*/
+.content-box{
+	background: #00bbff;
+}
+.content-box .content{
+	height: 600px;
+	margin: 0 auto;
+	background: url(../images/content-bg.png) no-repeat 0 134px;
+}
+.content .login-box{
+	width: 375px;
+	height: 450px;
+	background: #fff;
+	float: right;
+	margin-top: 50px;
+	padding-left: 35px;
+}
+.login-box strong{
+	font-size: 24px;
+	color: #47aaff;
+	float: left;
+	padding-left: 16px;
+}
+
+.login-box h3 a{
+	font-size: 12px;
+	color: #ff5a5a;
+	margin-left: 194px;
+	float: left;
+	position: relative;
+	top: 10px;
+}
+.login-box h3{
+	width: 340px;
+	margin-top: 40px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #e2e2e2;
+}
+.login-box a i{
+	width: 9px;
+	height: 11px;
+	background: url(../images/n.png);
+	position: absolute;
+	right: -10px;
+	top: -10px;
+}
+.user-box{
+	position: relative;
+}
+.user-box .icon{	
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	background: url(../images/user.png);
+	top: 45px;
+	left: 14px;
+}
+
+.username{
+	width: 293px;
+	height: 40px;
+	padding-left: 45px;
+	border: 1px solid #d7d7d7;
+	margin-top: 34px;
+	font-size: 14px;
+}
+.password-box{
+	position: relative;
+}
+.password-box .icon{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	background: url(../images/password.png);
+	top: 35px;
+	left: 12px;
+}
+.password{
+	width: 293px;
+	height: 40px;
+	padding-left: 45px;
+	border: 1px solid #d7d7d7;
+	margin-top: 24px;
+	font-size: 14px;
+}
+.code-box{
+	position: relative;
+}
+.code-box .icon{
+	width: 21px;
+	height: 21px;
+	position: absolute;
+	background: url(../images/code.png);
+	top: 38px;
+	left: 12px;
+}
+.code-box span {
+	position: absolute;
+	left: 10px;
+	top: 70px;
+	font-size: 12px;
+	color: red;
+	display: none; 
+}
+.v-code{
+	width: 173px;
+	height: 40px;
+	padding-left: 45px;
+	border: 1px solid #d7d7d7;
+	margin-top: 27px;
+	float: left;
+	font-size: 14px;
+}
+.code-box img{
+	float: left;
+	margin-top: 27px;
+	margin-left: 18px;
+}
+.r-password{width:340px;margin-top: 18px;}
+.r-password input{
+	float: left;
+	width: 13px;
+	height: 13px;
+	border-radius: 0;
+	border: 1px solid #8e8f8f;
+	margin-left: 10px;
+	margin-top: 2px;
+}
+.r-password label{
+	float: left;
+	color: #5e5e5e;
+	font-size: 12px;
+	margin-left: 8px;
+	font-size: 14px;
+}
+.r-password .f-password{
+	float: left;
+	color: #5e5e5e;
+	font-size: 14px;
+	margin-left:120px;
+}
+.r-password .register{
+	float: right;
+	color: #47aaff;
+	font-size: 14px;
+}
+.login{
+	width: 340px;
+	height: 42px;
+	background: #47aaff;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 42px;
+	border: 0;
+	border-radius: 3px;
+	margin-top: 30px;
+	cursor: pointer;
+}
+
+@media screen and (min-width: 1200px){
+	.header{
+		width: 1200px;
+	}
+	.content-box{
+		min-width: 1200px;
+	}
+	.content-box .content{
+		width: 1200px;
+	}
+}
+
+@media screen and (max-width: 1200px){
+	.header{
+		width: 1000px;
+	}
+	.content-box{
+		min-width: 1000px;
+	}
+	.content-box .content{
+		width: 1000px;
+	}
+}

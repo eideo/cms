@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="relationMapper">
+	<resultMap type="project" id="ProjectResult">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="project_name" property="projectName" jdbcType="VARCHAR"/>
+		<result column="project_alias" property="projectAlias" jdbcType="VARCHAR"/>
+		<result column="abroad" property="abroad" jdbcType="VARCHAR"/>
+		<result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+		<result column="industry2_id" property="industryId" jdbcType="VARCHAR"/>
+		<result column="phaze2_id" property="phazeId" jdbcType="VARCHAR"/>
+		<result column="facility" property="facility" jdbcType="VARCHAR"/>
+		<result column="project_theme" property="projectTheme" jdbcType="VARCHAR"/>
+		<result column="introduction" property="introduction" jdbcType="VARCHAR"/>
+		<result column="total_Invest" property="totalInvest" jdbcType="DOUBLE"/>
+		<result column="project_Source_id" property="projectSourceId" jdbcType="VARCHAR"/>
+		<result column="resourceDescription" property="resourceDescription" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	<resultMap type="projectContacts" id="projectContactsResult">
+		<result column="record_id" property="recordId" jdbcType="VARCHAR"/>
+		<result column="contacts_id" property="contactsId" jdbcType="VARCHAR"/>
+		<result column="contacts_Name" property="contactsName" jdbcType="VARCHAR"/>
+		<result column="project_Id" property="projectId" jdbcType="VARCHAR"/>
+		<result column="project_Name" property="projectName" jdbcType="VARCHAR"/>
+		<result column="project_Dept" property="projectDept" jdbcType="VARCHAR"/>
+		<result column="project_Post" property="projectPost" jdbcType="VARCHAR"/>
+		<result column="company_Id" property="companyId" jdbcType="VARCHAR"/>
+		<result column="phone" property="phone" jdbcType="VARCHAR"/>
+		<result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
+		<result column="fax" property="fax" jdbcType="VARCHAR"/>
+		<result column="email" property="email" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="zipcode" property="zipcode" jdbcType="VARCHAR"/>
+		<result column="company_Type" property="companyType" jdbcType="VARCHAR"/>
+		<result column="sex" property="sex" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	<resultMap type="projectCompany" id="projectCompanyResult">
+		<result column="record_id" property="recordId" jdbcType="VARCHAR"/>
+		<result column="company_id" property="companyId" jdbcType="VARCHAR"/>
+		<result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+		<result column="project_id" property="projectId" jdbcType="VARCHAR"/>
+		<result column="project_name" property="projectName" jdbcType="VARCHAR"/>
+		<result column="company_type" property="companyType" jdbcType="VARCHAR"/>
+		<result column="company_alias" property="companyAlias" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="zipcode" property="zipcode" jdbcType="VARCHAR"/>
+		<result column="fax" property="fax" jdbcType="VARCHAR"/>
+		<result column="phone" property="phone" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap type="company" id="companyResult">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="company_Name" property="companyName" jdbcType="VARCHAR"/>
+		<result column="company_Alias" property="companyAlias" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="zipcode" property="zipcode" jdbcType="VARCHAR"/>
+		<result column="phone" property="phone" jdbcType="VARCHAR"/>
+		<result column="fax" property="fax" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="projectColumns">
+		t.id,t.project_name,t.project_alias,t.abroad,t.area_id,t.industry2_id,t.phaze2_id,t.facility,t.total_Invest,t.project_theme,t.introduction,t.project_Source_id
+	</sql>
+	
+	<sql id="companyColumns">
+		t.record_id,t.company_id,t.company_name,t.project_id,t.project_name,t.company_type,t.company_alias,t.address,t.zipcode,t.fax,t.phone
+	</sql>
+	<sql id="contactsColumns">
+		t.record_id,t.contacts_id,t.contacts_Name,t.project_id,t.project_name,t.project_Dept,t.project_Post,t.company_Id,t.phone,t.cellphone,t.fax,t.email,t.address,t.zipcode,t.company_Type,t.sex
+	</sql>
+	
+	<select id="getProjectByResourceId" parameterType="String" resultMap="ProjectResult">
+		select <include refid="projectColumns"></include>,(select a.description from CMS_V_PUBLISH_CONTENT a where a.id=t.project_Source_id ) as resourceDescription 
+		from CMS_PROJECT t where t.project_Source_id=#{id}
+	</select>
+	
+	<select id="getProjectById" parameterType="String" resultMap="ProjectResult">
+		select <include refid="projectColumns"></include>,(select a.description from CMS_V_PUBLISH_CONTENT a where a.id=t.project_Source_id ) as resourceDescription
+		from CMS_PROJECT t where t.id=#{id}
+	</select>
+	<select id="selectCompanyByContact" parameterType="Map" resultMap="projectCompanyResult">
+		select <include refid="companyColumns"></include> from CMS_COMPANY_PROJECT t,CMS_CONTACTS a where a.id=#{contactId} and a.company_id=t.company_id
+		<if test="companyRole!=null">
+			and t.COMPANY_TYPE in 
+			<foreach item="item" collection="companyRole" separator="," open="(" close=")" index=""> 
+			 	#{item}
+		    </foreach>
+		</if>
+	</select>
+	
+	<!-- 通过项目找公司 -->
+	<select id="selectProjectCompany" parameterType="Map" resultMap="projectCompanyResult">
+		select <include refid="companyColumns"></include> from CMS_COMPANY_PROJECT t where t.project_id=#{projectId} 
+		<if test="companyRole!=null">
+			and t.company_type in 
+			<foreach item="item" collection="companyRole" separator="," open="(" close=")" index=""> 
+			 	#{item}
+		    </foreach>
+		</if>
+	</select>
+	
+	<!-- 通过公司找人 -->
+	<select id="selectProjectContacts" parameterType="Map" resultMap="projectContactsResult">
+		select <include refid="contactsColumns"></include> from CMS_CONTACTS_PROJECT t where t.company_id in (select a.id from CMS_COMPANY a where a.company_name=#{companyName})
+		<if test="personRole!=null">
+			and t.project_post REGEXP #{personRole}
+		</if>
+	</select>
+	<!-- 通过公司找项目 -->
+	<select id="selectProjectFromCompany" parameterType="Map" resultMap="ProjectResult">
+		select <include refid="projectColumns"></include> from  CMS_PROJECT t where t.id in (select a.project_id from CMS_COMPANY_PROJECT a where a.company_name=#{companyName} 
+		<if test="companyRole!=null">
+			and a.company_type in 
+			<foreach item="item" collection="companyRole" separator="," open="(" close=")" index=""> 
+			 	#{item}
+		    </foreach>
+		</if>) 
+		<if test="startDate!=null">
+		 and t.CONFIRM_DATE &gt;=${startDate}
+		</if>
+		<if test="endDate!=null">
+		 and t.CONFIRM_DATE &lt;${endDate}
+		 </if>
+	</select>
+	
+	<select id="selectProjectIndustry1Group" parameterType="Map" resultType="Map">
+		select
+		 left(substring_index(substring_index(t.Industry1_id,',',c.help_topic_id+2),',',-1),4) industry1,count(t.id) countInfo
+		 from CMS_PROJECT t join 
+		mysql.help_topic c
+		on c.help_topic_id &lt;(length(t.Industry1_id) - length(replace(t.Industry1_id,',',''))-1)
+		group by industry1
+		ORDER BY countInfo desc
+	</select>
+	<select id="selectProjectIndustry2Group" parameterType="Map" resultType="Map">
+		select
+		 substring_index(substring_index(t.Industry1_id,',',c.help_topic_id+2),',',-1) industry1,count(t.id) countInfo
+		 from CMS_PROJECT t join 
+		mysql.help_topic c
+		on c.help_topic_id &lt;(length(t.Industry1_id) - length(replace(t.Industry1_id,',',''))-1)
+		<where>
+			<if test="industryId!=null">
+				and t.Industry1_id like CONCAT("%,",#{industryId},"%") and  t.Industry1_id not like CONCAT("%,",#{industryId},",%") 
+			</if>
+		</where>
+		group by industry1
+		ORDER BY countInfo desc
+	</select>
+	<select id="selectProjectArea1Group" parameterType="Map" resultType="Map">
+		select left(substring_index(substring_index(t.area_tail_id,',',c.help_topic_id+2),',',-1),6) area,count(t.id) countInfo
+		 from CMS_PROJECT t join 
+		mysql.help_topic c
+		on c.help_topic_id &lt;(length(t.area_tail_id) - length(replace(t.area_tail_id,',',''))-1) 
+		group by area
+		ORDER BY countInfo desc
+	</select>
+	<select id="selectProjectArea2Group" parameterType="Map" resultType="Map">
+		select substring_index(substring_index(t.area_tail_id,',',c.help_topic_id+2),',',-1) area,count(t.id) countInfo
+		 from CMS_PROJECT t join 
+		mysql.help_topic c
+		on c.help_topic_id &lt;(length(t.area_tail_id) - length(replace(t.area_tail_id,',',''))-1) 
+		group by area
+		ORDER BY countInfo desc
+	</select>
+	<select id="selectProjectCompanyTypeGroup" parameterType="Map" resultType="Map">
+		select a.COMPANY_TYPE,count(t.id) countinfo from 
+		CMS_PROJECT t,CMS_COMPANY_PROJECT a 
+		<where>
+			<if test="industryId!=null">
+				and t.Industry1_id like CONCAT("%,",#{industryId},"%") and  t.Industry1_id not like CONCAT("%,",#{industryId},",%") 
+			</if>
+			and t.ID=a.PROJECT_ID and a.COMPANY_TYPE is not null 
+		</where>
+		GROUP BY a.COMPANY_TYPE
+		order by countinfo
+	</select>
+	<select id="selectInitProjects" resultMap="ProjectResult" >
+		select <include refid="projectColumns"></include>,(select a.description from CMS_V_PUBLISH_CONTENT a where a.id=t.project_Source_id ) as resourceDescription from CMS_PROJECT t 
+	</select>
+	<select id="getProjectByName" parameterType="String" resultMap="ProjectResult">
+		select <include refid="projectColumns"></include> from CMS_PROJECT t where t.project_name=#{name}
+		<if test="startDate!=null">
+		 and t.CONFIRM_DATE &gt;=${startDate}
+		</if>
+		<if test="endDate!=null">
+		 and t.CONFIRM_DATE &lt;${endDate}
+		 </if> limit 0,1
+	</select>
+	<select id="getCompanyByName" parameterType="String" resultMap = "companyResult">
+		select id,company_Name,company_Alias,address,zipcode,phone,fax from CMS_COMPANY t where t.company_Name = #{name} limit 0,1
+	</select>
+	<select id="getContactsById" parameterType="String" resultType = "Map">
+		select contacts_name name,sex,phone,cellphone,fax,email,address,zipcode,company_name companyName from CMS_CONTACTS t WHERE t.id = #{id}
+	</select>
+	<select id="getCompanyById" parameterType="String" resultMap = "companyResult">
+		select id,company_Name,company_Alias,address,zipcode,phone,fax from CMS_COMPANY t where t.id = #{id}
+	</select>
+	<select id="relationSuggestCompany" parameterType="Map" resultType = "Map">	
+		select a.COMPANY_NAME name from CMS_COMPANY a where a.COMPANY_NAME like CONCAT('%',#{name},'%') LIMIT 0,5
+	</select>
+	<select id="relationSuggestProject" parameterType="Map" resultType = "Map">	
+		select b.PROJECT_NAME name from CMS_PROJECT b where b.PROJECT_NAME like  CONCAT('%',#{name},'%')
+		<if test="startDate!=null">
+		 and b.CONFIRM_DATE &gt;=${startDate}
+		</if>
+		<if test="endDate!=null">
+		 and b.CONFIRM_DATE &lt;${endDate}
+		 </if> LIMIT 0,5
+	</select>
+	
+	<select id="projectCompanyTypes" parameterType="String" resultType="Map">
+		select a.COMPANY_TYPE as role from CMS_COMPANY_PROJECT a where a.PROJECT_ID in
+		(select t.id from CMS_PROJECT t where t.PROJECT_NAME =#{name})
+		group by a.COMPANY_TYPE;
+	</select>
+	<select id="projectPersonRoles" parameterType="String" resultType="Map">
+		select a.PROJECT_POST as role from CMS_CONTACTS_PROJECT a where a.PROJECT_ID in
+		(select t.id from CMS_PROJECT t where t.PROJECT_NAME =#{name})
+		group by a.COMPANY_TYPE;
+	</select>
+	<select id="companyProjectType" parameterType="String" resultType="Map">
+		select t.COMPANY_TYPE as role from CMS_COMPANY_PROJECT t where t.COMPANY_NAME=#{name} GROUP BY t.COMPANY_TYPE
+	</select>
+	<select id="companyPersonRoles" parameterType="String" resultType="Map">
+		select t.PROJECT_POST as role from CMS_CONTACTS_PROJECT t 
+		where t.COMPANY_ID in (select a.id from CMS_COMPANY a where a.company_name=#{name})
+		GROUP BY t.PROJECT_POST
+	</select>
+</mapper>

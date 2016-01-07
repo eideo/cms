@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userMapper">
+	 <resultMap id="BaseResultUser" type="User" >
+	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="username" property="username" jdbcType="VARCHAR" />
+	    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+	    <result column="email" property="email" jdbcType="VARCHAR" />
+	    <result column="password" property="password" jdbcType="VARCHAR" />
+	    <result column="sex" property="sex" jdbcType="VARCHAR" />
+	    <result column="lastVisit" property="lastvisit" jdbcType="TIMESTAMP" />
+	    <result column="lastIp" property="lastip" jdbcType="VARCHAR" />
+	    <result column="loginnum" property="loginNum" jdbcType="INTEGER" />
+	    <result column="enabled" property="enabled" jdbcType="INTEGER" />	    
+	    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+	     
+	  </resultMap>
+  
+		<sql id="base_column">
+			id,username,mobile,email,password,sex,lastvisit,lastip,loginNum,enabled,createdate
+		</sql>
+	
+		<select id="countAll" resultType="int">
+			select count(*) c from t_user;
+		</select>
+	
+		<select id="selectByPrimaryKey" parameterType="int" resultType="user">
+			select
+			<include refid="base_column" />
+			from t_user where id = #{id}
+		</select>
+		
+		<select id="selectList" resultType="user">
+			select
+			<include refid="base_column" />
+			from t_user
+		</select>
+		
+		<select id="selectByStr" parameterType="String" resultType="user">    
+	          select    
+	            <include refid="base_column" />    
+	           from t_user where ((username = #{loginStr}) or (mobile = #{loginStr}) or (email = #{loginStr})) LIMIT 1
+	    </select>    
+		
+		
+	  	<insert id="insert" parameterType="user">
+			insert into t_user (username,mobile,email,sex,password) 
+			values (#{username,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+			#{sex,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+		</insert>
+		
+		<delete id="delete" parameterType="int" >
+		      delete from t_user
+		      where id = #{id,jdbcType=INTEGER}
+		</delete>
+		
+		<update id="update" parameterType="user" >
+		    update t_user
+		    <set >
+			      <if test="username != null" >
+			        username = #{username,jdbcType=VARCHAR},
+			      </if>
+			      <if test="mobile != null" >
+			        mobile = #{mobile,jdbcType=VARCHAR},
+			      </if>
+			      <if test="email != null" >
+			        email = #{email,jdbcType=VARCHAR},
+			      </if>
+			      <if test="sex != null" >
+			        sex = #{sex,jdbcType=VARCHAR},
+			      </if>   
+			      	<if test="enabled != null" >
+			        enabled = #{enabled,jdbcType=INTEGER},
+			      </if>
+			      <if test="lastvisit != null" >
+			        lastVisit = #{lastvisit,jdbcType=TIMESTAMP},
+			      </if>	
+			       <if test="lastip != null" >
+			        lastIp = #{lastip,jdbcType=VARCHAR},
+			      </if>	
+			       <if test="loginNum != null" >
+			        loginnum = #{loginNum,jdbcType=INTEGER},
+			      </if>	
+               </set>
+		    where id = #{id,jdbcType=INTEGER}
+		</update>
+			
+</mapper>

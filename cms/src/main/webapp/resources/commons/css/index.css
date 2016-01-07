@@ -1,0 +1,266 @@
+@charset "utf-8";
+input{
+   box-sizing: border-box;
+}
+/* 2015-12-8 */
+/* 轮播图 */
+#index{
+	color:#fff;
+	background:rgba(0,0, 0, 0.3);
+}
+
+.nav .buttonHover::before {
+		background: rgba(0,0, 0, 0.3);
+	}
+body{
+	background: #000;
+}
+.header_bg .nav li a:hover{
+	color:#fff;
+}
+.imgBox ul li{
+	min-width: 100%;
+	display: none;
+}
+.imgBox ol{
+	position: fixed;
+	bottom: 50px;
+	left: 50%;
+	margin-left: -66px;
+	z-index:20;
+}
+.imgBox ol li{
+	float: left;
+	width: 14px;
+	height: 14px;
+	background: #fff;
+	margin-left: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.imgBox ol li.on{
+	background: #f90;
+}
+.imgArr a{
+	display: block;
+	width: 100%;
+	height:100%;
+	position:fixed;
+}
+.imgArr .imgRelation{
+	background: url(../images/imgRelation28.png) no-repeat center;
+	background-size:100% 100%;
+}
+.imgArr .imgRanking{
+	background: url(../images/imgRanking28.png) no-repeat center;
+	background-size:100% 100%;
+}
+.imgArr .imgIndustry{
+	background: url(../images/imgIndustry28.png) no-repeat center;
+	background-size:100% 100%;
+}
+.imgArr .imgReport{
+	background: url(../images/imgReport28.png) no-repeat center;
+	background-size:100% 100%;
+}
+.imgArr .imgInfo{
+	width: 850px;
+	height:270px;
+	position: absolute;
+	left: 50%;
+	bottom:35%;
+	margin-left: -425px;
+	text-align:center;
+	color:#a8a4a1;
+/* 	display: none; */
+}
+.imgInfo h3{
+	font-size: 56px;
+	margin-bottom: 30px;
+	color:#fff;
+}
+.imgInfo h4{
+	margin-bottom: 20px;
+	font-size: 50px;
+}
+.imgInfo p{
+	font-size: 18px;
+}
+
+
+/*back*/
+
+.search-box {
+	width: 616px;
+	position: fixed;
+	left: 50%;
+	margin-left:-292px;
+	bottom:20%;
+}
+.prompt{
+	position: absolute;
+	width:614px;
+	background:#fff;
+	border:1px solid #ebebeb;
+	top:43px;
+	left:0px;
+	z-index:40;
+	display:none;
+}
+.prompt li{
+	height:36px;
+	line-height:36px;
+	padding-left:23px;
+	cursor:pointer;
+	color:#5e5e5e;
+	font-size:14px;
+}
+.prompt li:hover{
+	background:#ebebeb;
+}
+
+.search {
+	position: relative;
+}
+
+.search input {
+	width: 616px;
+	height: 45px;
+	border: 2px solid #fff;
+	padding-left: 23px;
+	border-radius: 3px;
+	font-size: 14px;
+	font-family: 'Microsoft YaHei';
+	background:transparent;
+	opacity: 0.5;
+}
+.search input:hover{
+	background: #fff;
+	background-size: contain;
+	opacity: 1;
+}
+.search input{
+	transition: .5s;
+	-ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+}
+.search button {
+	width: 30px;
+	height: 30px;
+	border: none;
+	background: url(../images/icon1229.png) no-repeat -127px -535px;
+	top:10px;
+	right:10px;
+	position: absolute;
+	cursor:pointer;
+}
+
+.search-words {
+	margin-top: 25px;
+}
+
+.search-words .hotword {
+	margin-right: 0;
+	float:left;
+	color: #dde4eb;
+}
+
+.search-words a {
+	float: left;
+	margin-right: 20px;
+	color: #dde4eb;
+}
+.search-words a:hover{
+	color:#ff9829;
+}
+
+.shadow_bg{
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	line-height: 80px;
+	top:0;
+	z-index:20;
+}
+.shadow_top{
+	width: 100%;
+	height: 80px;
+	background:rgba(51,51, 51, 0.5);
+	position: absolute;
+	top:0;
+}
+.header_bg h2{
+	float:left;
+	width:170px;
+	height:45px;
+	background:url(../images/logoIndex.png) no-repeat;
+	margin-top:16px;
+}
+@media (min-width:1200px) {
+	.header_bg{
+		width:1200px;
+		margin: 0 auto;
+		position:relative;
+		z-index:20;
+	}
+	.header_bg .nav li{
+		float: left;
+		margin-left: 0;
+	}
+}
+@media (max-width:1200px){
+	.header_bg{
+		width:960px;
+		margin: 0 auto;
+		position:relative;
+		z-index:20;
+	}
+	.header_bg .nav li{
+		float: left;
+		margin-left: 0;
+	}
+}
+
+.header_bg .nav li a{
+	color:#fff;
+}
+
+.header_bg  .nav{
+	float: left;
+	margin:20px 0 0 20px;
+}
+.option{
+	float: right;
+}
+.option a{
+	display: inline-block;
+	width:50px;
+	height:26px;
+	border:1px solid #afafaf;
+	margin-top:20px;
+	line-height:26px;
+	text-align:center;
+	color:#afafaf;
+	font-size: 14px;
+	margin-left:10px;
+	border-radius: 2px;
+}
+.option a.active{
+	background: #47aaff;
+	border:1px solid #47aaff;
+	opacity: 1;
+	color:#fff;
+}
+.option a:hover{
+	background: #47aaff;
+	border:1px solid #47aaff;
+	opacity: 1;
+	color:#fff;
+}
+#canvas{
+	position: absolute;
+	top:0;
+	left: 0;
+}

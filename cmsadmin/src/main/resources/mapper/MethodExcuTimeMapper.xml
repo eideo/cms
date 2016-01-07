@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MethodExcuTimeMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.MethodExcuTime">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="EXEC_METHOD" property="execMethod" jdbcType="VARCHAR" />
+		<result column="EXEC_TIME" property="execTime" jdbcType="BIGINT" />
+		<result column="INSERT_DATE" property="insertDate" jdbcType="TIMESTAMP" />
+		<result column="INSERT_DATE_CN" property="insertDateCn" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, EXEC_METHOD, EXEC_TIME, INSERT_DATE, 
+		date_format(INSERT_DATE, '%Y-%m-%d %H:%i:%s') as INSERT_DATE_CN
+	</sql>
+
+	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					1 = 1 
+					<if test="geExecTime != null and geExecTime != ''">
+						<![CDATA[
+							and EXEC_TIME >= #{geExecTime} 
+						]]>
+					</if>
+					<if test="likeExecMethod != null and likeExecMethod != ''">
+						and EXEC_METHOD like CONCAT('%', #{likeExecMethod}, '%') 
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					1 = 1 
+					<if
+						test="geExecTime != null and geExecTime != '' and likeExecMethod != null and likeExecMethod != ''">
+						and (
+						<![CDATA[
+							(EXEC_TIME >= #{geExecTime}) 
+						]]>
+						or EXEC_METHOD like CONCAT('%', #{likeExecMethod}, '%'))
+						and (
+						<![CDATA[
+							(EXEC_TIME >= #{geExecTime}) 
+						]]>
+						or EXEC_METHOD like CONCAT('%', #{likeExecMethod}, '%'))
+					</if>
+					<if
+						test="geExecTime != null and geExecTime != '' and likeExecMethod != null and likeExecMethod == ''">
+						<![CDATA[
+							and (EXEC_TIME >= #{geExecTime}) 
+						]]>
+					</if>
+					<if
+						test="geExecTime != null and geExecTime == '' and likeExecMethod != null and likeExecMethod != ''">
+						and (EXEC_METHOD like CONCAT('%', #{likeExecMethod}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						where 1 = 1 order by ${sortedObject} ${sortedValue}
+					</when>
+					<otherwise>
+						where 1 = 1 order by ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.MethodExcuTime">
+		select count(*) as num
+		from CMS_SYS_METHOD_TIME_LOG 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.MethodExcuTime">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_SYS_METHOD_TIME_LOG 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_SYS_METHOD_TIME_LOG
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from CMS_SYS_METHOD_TIME_LOG
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.MethodExcuTime">
+		insert into CMS_SYS_METHOD_TIME_LOG (ID, EXEC_METHOD, EXEC_TIME,
+		INSERT_DATE)
+		values (#{id,jdbcType=BIGINT}, #{execMethod,jdbcType=VARCHAR},
+		#{execTime,jdbcType=BIGINT},
+		#{insertDate,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.MethodExcuTime">
+		update CMS_SYS_METHOD_TIME_LOG
+		set EXEC_METHOD = #{execMethod,jdbcType=VARCHAR},
+		EXEC_TIME = #{execTime,jdbcType=BIGINT},
+		INSERT_DATE = #{insertDate,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

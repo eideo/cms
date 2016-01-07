@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ReportMainMapper" >
+  <resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.ReportMain" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REPORT_NAME" property="reportName" jdbcType="VARCHAR" />
+    <result column="REPORT_URL" property="reportUrl" jdbcType="VARCHAR" />
+    <result column="REPORT_IMAGE" property="reportImage" jdbcType="VARCHAR" />
+    <result column="REPORT_PRICE" property="reportPrice" jdbcType="DECIMAL" />
+    <result column="REPORT_TPRICE" property="reportTprice" jdbcType="DECIMAL" />
+    <result column="REPORT_DISCOUNT" property="reportDiscount" jdbcType="DECIMAL" />
+    <result column="REPORT_INDUXTRY" property="reportInduxtry" jdbcType="VARCHAR" />
+    <result column="REPORT_PAGES" property="reportPages" jdbcType="INTEGER" />
+    <result column="REPORT_WORDS" property="reportWords" jdbcType="INTEGER" />
+    <result column="REPORT_ATTENTIONS" property="reportAttentions" jdbcType="INTEGER" />
+    <result column="REPORT_HITS" property="reportHits" jdbcType="INTEGER" />
+    <result column="REPORT_SALES" property="reportSales" jdbcType="INTEGER" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="BIGINT" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REPORT_HIS_FLAG" property="reportHisFlag" jdbcType="TINYINT" />
+    <result column="REPORT_ONLINE_FLAG" property="reportOnlineFlag" jdbcType="TINYINT" />
+    <result column="REPORT_TAG" property="reportTag" jdbcType="VARCHAR" />
+    <result column="REPORT_TITLE" property="reportTitle" jdbcType="VARCHAR" />
+    <result column="REPORT_ABSTRACT" property="reportAbstract" jdbcType="VARCHAR" />
+    <result column="REPORT_HIS_FLAG_CN" property="reportHisFlagCn" jdbcType="VARCHAR" />
+    <result column="REPORT_ONLINE_FLAG_CN" property="reportOnlineFlagCn" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME_CN" property="createTimeCn" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME_CN" property="updateTimeCn" jdbcType="VARCHAR" />
+    <result column="REPORT_INDUXTRY_CN" property="reportInduxtryCn" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, REPORT_NAME, REPORT_URL, REPORT_IMAGE, REPORT_PRICE, REPORT_TPRICE, REPORT_DISCOUNT, 
+    REPORT_INDUXTRY, REPORT_PAGES, REPORT_WORDS, REPORT_ATTENTIONS, REPORT_HITS, REPORT_SALES, 
+    CREATE_USER_ID, CREATE_TIME, UPDATE_USER_ID, UPDATE_TIME, REPORT_HIS_FLAG, REPORT_ONLINE_FLAG, 
+    REPORT_TAG, REPORT_TITLE, REPORT_ABSTRACT,
+    case 
+    when  REPORT_HIS_FLAG = 0 then '否' 
+    when  REPORT_HIS_FLAG = 1 then '是' 
+    else '' end as REPORT_HIS_FLAG_CN,
+    case 
+    when  REPORT_ONLINE_FLAG = 0 then '否' 
+    when  REPORT_ONLINE_FLAG = 1 then '是' 
+    else '' end  as REPORT_ONLINE_FLAG_CN,
+    date_format(CREATE_TIME, '%Y-%m-%d %H:%i:%s') as CREATE_TIME_CN,
+    date_format(UPDATE_TIME, '%Y-%m-%d %H:%i:%s') as UPDATE_TIME_CN,
+    case 
+    when  REPORT_INDUXTRY = '2101' then '冶金矿产原材料' 
+    when  REPORT_INDUXTRY = '2102' then '能源' 
+    when  REPORT_INDUXTRY = '2103' then '农林水利' 
+    when  REPORT_INDUXTRY = '2104' then '环保' 
+    when  REPORT_INDUXTRY = '2105' then '交通运输' 
+    when  REPORT_INDUXTRY = '2107' then '医疗卫生' 
+    when  REPORT_INDUXTRY = '2108' then '房地产建筑' 
+    when  REPORT_INDUXTRY = '2111' then '轻工' 
+    when  REPORT_INDUXTRY = '2112' then '化工' 
+    when  REPORT_INDUXTRY = '2113' then '机械电子' 
+    else '' end as REPORT_INDUXTRY_CN 
+  </sql>
+  
+  <select id="getByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from CMS_REPORT_MAIN
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from CMS_REPORT_MAIN
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.sbiao360.cmsadmin.model.ReportMain" 
+  	useGeneratedKeys="true" keyProperty="id" >
+    insert into CMS_REPORT_MAIN (REPORT_NAME, REPORT_URL, 
+      REPORT_IMAGE, REPORT_PRICE, REPORT_TPRICE, REPORT_DISCOUNT, 
+      REPORT_INDUXTRY, REPORT_PAGES, REPORT_WORDS, 
+      REPORT_ATTENTIONS, REPORT_HITS, REPORT_SALES, 
+      CREATE_USER_ID, CREATE_TIME, UPDATE_USER_ID, 
+      UPDATE_TIME, REPORT_HIS_FLAG, REPORT_ONLINE_FLAG, 
+      REPORT_TAG, REPORT_TITLE, REPORT_ABSTRACT)
+    values (#{reportName,jdbcType=VARCHAR}, #{reportUrl,jdbcType=VARCHAR}, 
+      #{reportImage,jdbcType=VARCHAR}, #{reportPrice,jdbcType=DECIMAL}, #{reportTprice,jdbcType=DECIMAL}, #{reportDiscount,jdbcType=DECIMAL}, 
+      #{reportInduxtry,jdbcType=VARCHAR}, #{reportPages,jdbcType=INTEGER}, #{reportWords,jdbcType=INTEGER}, 
+      #{reportAttentions,jdbcType=INTEGER}, #{reportHits,jdbcType=INTEGER}, #{reportSales,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{reportHisFlag,jdbcType=TINYINT}, #{reportOnlineFlag,jdbcType=TINYINT}, 
+      #{reportTag,jdbcType=VARCHAR}, #{reportTitle,jdbcType=VARCHAR}, #{reportAbstract,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.sbiao360.cmsadmin.model.ReportMain" >
+    update CMS_REPORT_MAIN
+    set REPORT_NAME = #{reportName,jdbcType=VARCHAR},
+      REPORT_URL = #{reportUrl,jdbcType=VARCHAR},
+      REPORT_IMAGE = #{reportImage,jdbcType=VARCHAR},
+      REPORT_PRICE = #{reportPrice,jdbcType=DECIMAL},
+      REPORT_TPRICE = #{reportTprice,jdbcType=DECIMAL},
+      REPORT_DISCOUNT = #{reportDiscount,jdbcType=DECIMAL}, 
+      REPORT_INDUXTRY = #{reportInduxtry,jdbcType=VARCHAR},
+      REPORT_PAGES = #{reportPages,jdbcType=INTEGER},
+      REPORT_WORDS = #{reportWords,jdbcType=INTEGER},
+      REPORT_ATTENTIONS = #{reportAttentions,jdbcType=INTEGER},
+      REPORT_HITS = #{reportHits,jdbcType=INTEGER},
+      REPORT_SALES = #{reportSales,jdbcType=INTEGER},
+      CREATE_USER_ID = #{createUserId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=BIGINT},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REPORT_HIS_FLAG = #{reportHisFlag,jdbcType=TINYINT},
+      REPORT_ONLINE_FLAG = #{reportOnlineFlag,jdbcType=TINYINT},
+      REPORT_TAG = #{reportTag,jdbcType=VARCHAR},
+      REPORT_TITLE = #{reportTitle,jdbcType=VARCHAR},
+      REPORT_ABSTRACT = #{reportAbstract,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateEdit" parameterType="com.sbiao360.cmsadmin.model.ReportMain" >
+    update CMS_REPORT_MAIN
+	<set>
+		REPORT_DISCOUNT = #{reportDiscount,jdbcType=DECIMAL}, 
+		<if test="reportImage != null and reportImage != '' ">
+			REPORT_IMAGE = #{reportImage,jdbcType=VARCHAR},
+		</if>
+		<if test="reportPrice != null ">
+			REPORT_PRICE = #{reportPrice,jdbcType=DECIMAL},
+		</if>
+		<if test="reportTprice != null ">
+			REPORT_TPRICE = #{reportTprice,jdbcType=DECIMAL},
+		</if>	
+		<if test="reportInduxtry != null and reportInduxtry != '' ">
+			REPORT_INDUXTRY = #{reportInduxtry,jdbcType=VARCHAR},
+		</if>
+		<if test="updateUserId != null ">
+			UPDATE_USER_ID = #{updateUserId,jdbcType=BIGINT},
+		</if>
+		<if test="updateTime != null ">
+			UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="reportOnlineFlag != null ">
+			REPORT_ONLINE_FLAG = #{reportOnlineFlag,jdbcType=TINYINT},
+		</if>
+		<if test="reportTag != null and reportTag != '' ">
+			REPORT_TAG = #{reportTag,jdbcType=VARCHAR},
+		</if>
+		<if test="reportAbstract != null and reportAbstract != '' ">
+			REPORT_ABSTRACT = #{reportAbstract,jdbcType=VARCHAR}
+		</if>
+	</set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+ 	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					1 = 1 
+					<if test="likeReportName != null and likeReportName != ''">
+						and REPORT_NAME like CONCAT('%', #{likeReportName}, '%')
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					1 = 1 
+					<if
+						test="likeReportName != null and likeReportName != ''">
+						and (REPORT_NAME like CONCAT('%', #{likeReportName}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						where 1 = 1 order by ${sortedObject} ${sortedValue}
+					</when>
+					<otherwise>
+						where 1 = 1 order by ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.ReportMain">
+		select count(*) as num
+		from CMS_REPORT_MAIN 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.ReportMain">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_REPORT_MAIN 
+		<include refid="dynamicWhere" />
+	</select>
+	
+	<resultMap id="ReportInduxtryMap" type="com.sbiao360.cmsadmin.model.ReportInduxtry" >
+		<result column="CODE" property="code" jdbcType="BIGINT" />
+    	<result column="VALUE" property="value" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getReportInduxtryList" resultMap="ReportInduxtryMap">
+		select 
+		ID as CODE,
+		CODE_NAME as VALUE 
+		from CMS_CODE 
+		where CODE_TYPE = '行业_一级' 
+	</select>
+</mapper>

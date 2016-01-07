@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd    
+                        http://www.springframework.org/schema/context    
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd    
+                        http://www.springframework.org/schema/mvc    
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<description>Spring-Dao配置</description>
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!-- 引入定义JDBC连接的属性文件 -->
+				<value>classpath:jdbc.properties</value>
+				<!-- 引入定义Redis连接的属性文件 -->
+				<value>classpath:redis.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定义JDBC数据源，使用dbcp数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${datasource.driver}" />
+		<property name="url" value="${datasource.url}" />
+		<property name="username" value="${datasource.username}"></property>
+		<property name="password" value="${datasource.password}"></property>
+
+		<property name="defaultAutoCommit" value="false" />
+		<!-- 初始化连接 -->
+		<property name="initialSize" value="${dbcp.initialSize}" />
+		<!-- 最小空闲连接 -->
+		<property name="minIdle" value="${dbcp.minIdle}" />
+		<!-- 最大空闲连接 -->
+		<property name="maxIdle" value="${dbcp.maxIdle}" />
+		<!-- 最大连接数量 -->
+		<property name="maxActive" value="${dbcp.maxActive}" />
+		<!-- 超时等待时间。以毫秒为单位例如: 60000毫秒/1000等于60秒。这里使用10秒 -->
+		<property name="maxWait" value="${dbcp.maxWait}" />
+		<!-- 池中取出连接前检查连接是否能用 -->
+		<property name="testOnBorrow" value="${dbcp.testOnBorrow}" />
+		<!-- 空闲时是否验证 -->
+		<property name="testWhileIdle" value="${dbcp.testWhileIdle}" />
+		<!-- 空闲连接收回器线程运行的周期。单位：毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${dbcp.timeBetweenEvictionRunsMillis}" />
+		<!-- 是否在归还到池中前进行检验。默认值false -->
+		<property name="testOnReturn" value="${dbcp.testOnReturn}" />
+		<!-- 空闲连接回收器由运行间隔。单位：毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${dbcp.minEvictableIdleTimeMillis}" />
+		<!-- 自动回收超时连接时打印连接的超时错误 -->
+		<property name="logAbandoned" value="${dbcp.logAbandoned}" />
+		<!-- 是否自动回收超时连接 -->
+		<property name="removeAbandoned" value="${dbcp.removeAbandoned}" />
+		<!-- 超时时间(以秒数为单位) -->
+		<property name="removeAbandonedTimeout" value="${dbcp.removeAbandonedTimeout}" />
+	</bean>
+
+	<!-- 配置SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--dataSource属性指定要用到的连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!--configLocation属性指定mybatis的核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!-- 指定*Mapper.xml文件的路径,在mybatis-config.xml中就不需要写<mappers>...</mappers> -->
+		<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml" />
+	</bean>
+
+	<!-- Spring事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 配置sqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置Dao，该类继承了SqlSessionDaoSupport(抽象类里有sqlSessionFactory属性) -->
+	<bean id="baseDao" class="com.sbiao360.core.dao.BaseDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- Jedis 连接池配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <property name="maxTotal" value="${redis.maxTotal}" />
+	</bean>
+
+	<!-- Jedis 数据库连接配置 -->
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="usePool" value="true" />
+		<property name="hostName" value="${redis.host}" />
+		<property name="port" value="${redis.port}" />
+		<property name="password" value="${redis.password}" />
+		<property name="timeout" value="${redis.timeout}" />
+		<property name="database" value="${redis.database}" />
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+	</bean>
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+	</bean>
+</beans>

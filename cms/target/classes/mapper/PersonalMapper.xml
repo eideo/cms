@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PersonalMapper">
+	<resultMap id="BehaviorResultMap" type="PersonalCustBehavior">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="ACTION_TYPE" property="actionType" jdbcType="TINYINT" />
+		<result column="INFO_TYPE" property="infoType" jdbcType="VARCHAR" />
+		<result column="INFO_ID" property="infoId" jdbcType="BIGINT" />
+		<result column="INFO_NAME" property="infoName" jdbcType="VARCHAR" />
+		<result column="INFO_VALID" property="infoValid" jdbcType="TINYINT" />
+		<result column="ACTION_DATE_CN" property="actionDateCn" jdbcType="VARCHAR" />
+		<result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+		<result column="SUB_INFO_NAME" property="subInfoName" jdbcType="VARCHAR" />
+		<result column="INFO_TYPE_CN" property="infoTypeCn" jdbcType="VARCHAR" />
+		<result column="SUB_INTRODUCTION" property="subIntroduction" jdbcType="VARCHAR" />
+		<result column="ENABLED_FLAG" property="enabledFlag" jdbcType="TINYINT" />
+		<result column="STYLE_CLASS_LI" property="styleClassLi" jdbcType="VARCHAR" />
+		<result column="STYLE_CLASS_BORDER" property="styleClassBorder" jdbcType="VARCHAR" />
+		<result column="STYLE_CLASS_CHECK" property="styleClassCheck" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Behavior_Column_List">
+		<![CDATA[
+			a.ID, a.USER_ID, a.ACTION_TYPE, a.INFO_TYPE, 
+			a.INFO_ID, a.INFO_NAME, a.INFO_VALID, 
+			date_format(a.ACTION_DATE, '%Y-%m-%d') as ACTION_DATE_CN, 
+			b.INTRODUCTION as INTRODUCTION, 
+			case 
+			when CHAR_LENGTH(a.INFO_NAME) > 37 then CONCAT(SUBSTR(a.INFO_NAME, 1, 37), '...') 
+			else a.INFO_NAME end as SUB_INFO_NAME, 
+			case 
+			when a.INFO_TYPE = '11501' then '项目'
+			when a.INFO_TYPE = '11502' then '招标'
+			when a.INFO_TYPE = '11503' then '中标'
+			when a.INFO_TYPE = '11504' then '采购'
+			when a.INFO_TYPE = '11505' then '新闻'
+			when a.INFO_TYPE = '11506' then '行业报告'
+			when a.INFO_TYPE = '1' then '关系网' 
+			else '' end as INFO_TYPE_CN, 
+			case 
+			when CHAR_LENGTH(b.INTRODUCTION) > 47 then CONCAT(SUBSTR(b.INTRODUCTION, 1, 47), '...') 
+			else b.INTRODUCTION end as SUB_INTRODUCTION, 
+			case 
+			when a.INFO_TYPE = '11501' then b.ENABLED_FLAG 
+			else 1 end as ENABLED_FLAG, 
+			case 
+			when a.INFO_TYPE = '11501' and b.ENABLED_FLAG = 0 then 'clearfix failure_info zhaobiao' 
+			else 'clearfix optional zhaobiao' end as STYLE_CLASS_LI, 
+			case 
+			when a.INFO_TYPE = '11501' and b.ENABLED_FLAG = 0 then '' 
+			else '<i class="border"></i>' end as STYLE_CLASS_BORDER, 
+			case 
+			when a.INFO_TYPE = '11501' and b.ENABLED_FLAG = 0 then '<em>失效</em>' 
+			else CONCAT('<i class="check" info_id="', a.ID, '"></i>') end as STYLE_CLASS_CHECK 
+		]]>
+	</sql>
+
+ 	<sql id="dynamicWhereBehavior">
+ 		<where>
+ 			a.INFO_VALID = 1 and a.USER_ID = #{userId}  and a.ACTION_TYPE =  #{actionType} 
+			<choose>
+				<when test="infoType != null and infoType != ''">
+					and a.INFO_TYPE = #{infoType} 
+				</when>
+				<otherwise>
+					and a.INFO_TYPE in ('11501', '11502', '11503') 
+				</otherwise>
+			</choose>
+		</where>
+	</sql>
+	
+	<select id="getCountBehavior" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) as num
+		from CMS_CUST_BEHAVIOR a 
+		<include refid="dynamicWhereBehavior" />
+	</select>
+	
+	<select id="getListBehavior" resultMap="BehaviorResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="Behavior_Column_List" />
+		from CMS_CUST_BEHAVIOR a 
+		left join CMS_PROJECT b on b.PROJECT_SOURCE_ID = a.INFO_ID 
+		<include refid="dynamicWhereBehavior" />
+		order by a.ACTION_DATE desc 
+	</select>
+	
+	<update id="updateBehavior" parameterType="java.util.Map">
+		update CMS_CUST_BEHAVIOR
+		set
+		INFO_VALID =
+		#{infoValid,jdbcType=TINYINT},
+		ACTION_DATE =
+		#{actionDate,jdbcType=TIMESTAMP} 
+		where 
+		ID = #{id,jdbcType=BIGINT} 
+	</update>
+	
+	<update id="updateBehaviorByDate" parameterType="java.util.Map">
+		update CMS_CUST_BEHAVIOR
+		set
+		INFO_VALID =
+		#{infoValid,jdbcType=TINYINT},
+		ACTION_DATE =
+		#{actionDate,jdbcType=TIMESTAMP} 
+		where 
+		USER_ID = #{userId} and 
+		ACTION_TYPE = #{actionType} and 
+		<choose>
+			<when test="infoType != null and infoType != ''">
+				INFO_TYPE = #{infoType} and 
+			</when>
+			<otherwise>
+				INFO_TYPE in ('11501', '11502', '11503') and 
+			</otherwise>
+		</choose>
+		INFO_VALID = #{infoValidWhere} and 
+		date_format(ACTION_DATE, '%Y-%m-%d') = #{actionDateWhere}
+	</update>
+</mapper>

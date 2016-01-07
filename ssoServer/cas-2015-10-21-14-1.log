@@ -1,0 +1,59 @@
+2015-10-21 14:08:04,575 WARN [org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler] - setRequireSecure() is deprecated and will be removed. Callback url validation is controlled by the proxy policy
+2015-10-21 14:08:05,249 WARN [org.jasig.cas.services.InMemoryServiceRegistryDaoImpl] - Runtime memory is used as the persistence storage for retrieving and persisting service definitions. Changes that are made to service definitions during runtime will be LOST upon container restarts.
+2015-10-21 14:08:05,311 WARN [org.jasig.cas.services.RegisteredServiceImpl] - [RegisteredServiceImpl] is deprecated and will be removed in future CAS releases. Consider using [RegexRegisteredService] instead.
+2015-10-21 14:08:05,411 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:08:06,990 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2015-10-21 14:08:06,994 INFO [org.jasig.cas.CasEnvironmentContextListener] - [jetty/8.1.7.v20120910] has loaded the CAS application context
+2015-10-21 14:08:22,125 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 14:08:22,125 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 14:08:26,080 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2015-10-21 14:08:26,121 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 expired tickets found to be removed.
+2015-10-21 14:08:26,122 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2015-10-21 14:10:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:10:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:12:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:12:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:14:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:14:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:16:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:16:05,823 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:18:05,820 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:18:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:20:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:20:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:22:05,829 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:22:05,830 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:24:05,820 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:24:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:26:05,835 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:26:05,836 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:28:05,835 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:28:05,835 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:30:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:30:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:32:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:32:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:34:05,820 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:34:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:36:06,131 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:36:06,131 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:38:06,775 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:38:06,776 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:40:05,915 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:40:05,915 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:42:05,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:42:05,829 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:44:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:44:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:46:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:46:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:48:05,820 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:48:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:50:05,820 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:50:05,848 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:52:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:52:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:54:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:54:05,822 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 14:56:05,820 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 14:56:05,821 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.

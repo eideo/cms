@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ReportMainMapper" >
+  <resultMap id="BaseResultMap" type="ReportMain" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="REPORT_NAME" property="reportName" jdbcType="VARCHAR" />
+    <result column="REPORT_URL" property="reportUrl" jdbcType="VARCHAR" />
+    <result column="REPORT_IMAGE" property="reportImage" jdbcType="VARCHAR" />
+    <result column="REPORT_PRICE" property="reportPrice" jdbcType="DECIMAL" />
+    <result column="REPORT_TPRICE" property="reportTprice" jdbcType="DECIMAL" />
+    <result column="REPORT_INDUXTRY" property="reportInduxtry" jdbcType="VARCHAR" />
+    <result column="REPORT_PAGES" property="reportPages" jdbcType="INTEGER" />
+    <result column="REPORT_WORDS" property="reportWords" jdbcType="INTEGER" />
+    <result column="REPORT_ATTENTIONS" property="reportAttentions" jdbcType="INTEGER" />
+    <result column="REPORT_HITS" property="reportHits" jdbcType="INTEGER" />
+    <result column="REPORT_SALES" property="reportSales" jdbcType="INTEGER" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="BIGINT" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REPORT_HIS_FLAG" property="reportHisFlag" jdbcType="TINYINT" />
+    <result column="REPORT_ONLINE_FLAG" property="reportOnlineFlag" jdbcType="TINYINT" />
+    <result column="REPORT_TAG" property="reportTag" jdbcType="VARCHAR" />
+    <result column="REPORT_TITLE" property="reportTitle" jdbcType="VARCHAR" />
+    <result column="REPORT_ABSTRACT" property="reportAbstract" jdbcType="VARCHAR" />
+    <result column="REPORT_HIS_FLAG_CN" property="reportHisFlagCn" jdbcType="VARCHAR" />
+    <result column="REPORT_ONLINE_FLAG_CN" property="reportOnlineFlagCn" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME_CN" property="createTimeCn" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME_CN" property="updateTimeCn" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="VARCHAR" />
+    <result column="INDUXTRY_NAME" property="induxtryName" jdbcType="VARCHAR" />
+    <result column="SUB_REPORT_TITLE" property="subReportTitle" jdbcType="VARCHAR" />
+    <result column="SUB_REPORT_ABSTRACT" property="subReportAbstract" jdbcType="VARCHAR" />
+    <result column="IS_CAROUSEL" property="isCarousel" jdbcType="TINYINT" />
+    <result column="IMAGE_INDEX" property="imageIndex" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    a.ID, a.REPORT_NAME, a.REPORT_URL, a.REPORT_IMAGE, a.REPORT_PRICE, a.REPORT_TPRICE, a.REPORT_INDUXTRY, 
+    a.REPORT_PAGES, a.REPORT_WORDS, a.REPORT_ATTENTIONS, a.REPORT_HITS, a.REPORT_SALES, a.CREATE_USER_ID, 
+    a.CREATE_TIME, a.UPDATE_USER_ID, a.UPDATE_TIME, a.REPORT_HIS_FLAG, a.REPORT_ONLINE_FLAG, a.REPORT_TAG,
+    a.REPORT_TITLE, a.REPORT_ABSTRACT, a.IS_CAROUSEL, 
+    case 
+    when  a.REPORT_HIS_FLAG = 0 then '否' 
+    when  a.REPORT_HIS_FLAG = 1 then '是' 
+    else '' end as REPORT_HIS_FLAG_CN,
+    case 
+    when  a.REPORT_ONLINE_FLAG = 0 then '否' 
+    when  a.REPORT_ONLINE_FLAG = 1 then '是' 
+    else '' end  as REPORT_ONLINE_FLAG_CN,
+    date_format(a.CREATE_TIME, '%Y-%m-%d %H:%i:%s') as CREATE_TIME_CN,
+    date_format(a.UPDATE_TIME, '%Y-%m-%d %H:%i:%s') as UPDATE_TIME_CN,
+    date_format(a.UPDATE_TIME, '%Y-%m-%d') as UPDATE_DATE,
+    b.CODE_NAME INDUXTRY_NAME,
+	case 
+	when CHAR_LENGTH(a.REPORT_TITLE) > 28 then CONCAT(SUBSTR(a.REPORT_TITLE, 1, 28), '...') 
+	else a.REPORT_TITLE end as SUB_REPORT_TITLE 
+  </sql>
+  
+  <select id="getByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from CMS_REPORT_MAIN a 
+   	left join (
+		select 
+		ID, CODE_NAME 
+		from CMS_CODE 
+		where CODE_TYPE = '行业_一级' 
+	) b on a.REPORT_INDUXTRY = b.ID 
+    where a.ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from CMS_REPORT_MAIN
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="ReportMain" useGeneratedKeys="true" keyProperty="id" >
+    insert into CMS_REPORT_MAIN (REPORT_NAME, REPORT_URL, 
+      REPORT_IMAGE, REPORT_PRICE, REPORT_TPRICE, 
+      REPORT_INDUXTRY, REPORT_PAGES, REPORT_WORDS, 
+      REPORT_ATTENTIONS, REPORT_HITS, REPORT_SALES, 
+      CREATE_USER_ID, CREATE_TIME, UPDATE_USER_ID, 
+      UPDATE_TIME, REPORT_HIS_FLAG, REPORT_ONLINE_FLAG, 
+      REPORT_TAG, REPORT_TITLE, REPORT_ABSTRACT)
+    values (#{reportName,jdbcType=VARCHAR}, #{reportUrl,jdbcType=VARCHAR}, 
+      #{reportImage,jdbcType=VARCHAR}, #{reportPrice,jdbcType=DECIMAL}, #{reportTprice,jdbcType=DECIMAL}, 
+      #{reportInduxtry,jdbcType=VARCHAR}, #{reportPages,jdbcType=INTEGER}, #{reportWords,jdbcType=INTEGER}, 
+      #{reportAttentions,jdbcType=INTEGER}, #{reportHits,jdbcType=INTEGER}, #{reportSales,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{reportHisFlag,jdbcType=TINYINT}, #{reportOnlineFlag,jdbcType=TINYINT}, 
+      #{reportTag,jdbcType=VARCHAR}, #{reportTitle,jdbcType=VARCHAR}, #{reportAbstract,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="ReportMain" >
+    update CMS_REPORT_MAIN
+    set REPORT_NAME = #{reportName,jdbcType=VARCHAR},
+      REPORT_URL = #{reportUrl,jdbcType=VARCHAR},
+      REPORT_IMAGE = #{reportImage,jdbcType=VARCHAR},
+      REPORT_PRICE = #{reportPrice,jdbcType=DECIMAL},
+      REPORT_TPRICE = #{reportTprice,jdbcType=DECIMAL},
+      REPORT_INDUXTRY = #{reportInduxtry,jdbcType=VARCHAR},
+      REPORT_PAGES = #{reportPages,jdbcType=INTEGER},
+      REPORT_WORDS = #{reportWords,jdbcType=INTEGER},
+      REPORT_ATTENTIONS = #{reportAttentions,jdbcType=INTEGER},
+      REPORT_HITS = #{reportHits,jdbcType=INTEGER},
+      REPORT_SALES = #{reportSales,jdbcType=INTEGER},
+      CREATE_USER_ID = #{createUserId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=BIGINT},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REPORT_HIS_FLAG = #{reportHisFlag,jdbcType=TINYINT},
+      REPORT_ONLINE_FLAG = #{reportOnlineFlag,jdbcType=TINYINT},
+      REPORT_TAG = #{reportTag,jdbcType=VARCHAR},
+      REPORT_TITLE = #{reportTitle,jdbcType=VARCHAR},
+      REPORT_ABSTRACT = #{reportAbstract,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  
+ 	<sql id="dynamicWhere">
+		<where>
+			REPORT_HIS_FLAG = 0 
+			<if test="reportInduxtry != null and reportInduxtry != ''">
+				and a.REPORT_INDUXTRY = #{reportInduxtry} 
+			</if>
+		</where>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Integer" parameterType="ReportMain">
+		select count(*) as num
+		from CMS_REPORT_MAIN a 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap" parameterType="ReportMain">
+		select 
+		CONCAT('report_index_', (@row_number :=@row_number + 1), '.png') as IMAGE_INDEX, x.* 
+		from (select
+		<include refid="Base_Column_List" />
+		from CMS_REPORT_MAIN a 
+		left join (
+			select 
+			ID, CODE_NAME 
+			from CMS_CODE 
+			where CODE_TYPE = '行业_一级' 
+		) b on a.REPORT_INDUXTRY = b.ID
+		<include refid="dynamicWhere" />
+		order by a.UPDATE_TIME desc) x, (SELECT @row_number := 0) y
+	</select>
+	
+	<select id="getListTop10" resultMap="BaseResultMap" parameterType="ReportMain">
+		select 
+		ID, 
+		REPORT_TITLE, 
+		case 
+		when CHAR_LENGTH(REPORT_TITLE) > 17 then CONCAT(SUBSTR(REPORT_TITLE, 1, 17), '...') 
+		else REPORT_TITLE end as SUB_REPORT_TITLE 
+		from CMS_REPORT_MAIN 
+		where REPORT_HIS_FLAG = 0 
+		order by REPORT_HITS desc limit 0, 10 
+	</select>
+
+	  <resultMap id="BaseResultMapTop" type="com.sbiao360.cms.domain.ReportMainTop" >
+	    <id column="ID" property="id" jdbcType="BIGINT" />
+	    <result column="REPORT_INDUXTRY" property="reportInduxtry" jdbcType="VARCHAR" />
+	    <result column="REPORT_TITLE" property="reportTitle" jdbcType="VARCHAR" />
+	    <result column="REPORT_ABSTRACT" property="reportAbstract" jdbcType="VARCHAR" />
+	    <result column="SUB_REPORT_TITLE" property="subReportTitle" jdbcType="VARCHAR" />
+	    <result column="SUB_REPORT_ABSTRACT" property="subReportAbstract" jdbcType="VARCHAR" />
+	  </resultMap>
+  
+	<select id="getListTop5" resultMap="BaseResultMapTop" parameterType="com.sbiao360.cms.domain.ReportMainTop">
+		select 
+		ID, 
+		REPORT_INDUXTRY, 
+		REPORT_TITLE, 
+		case 
+		when CHAR_LENGTH(REPORT_TITLE) > 11 then CONCAT(SUBSTR(REPORT_TITLE, 1, 11), '...') 
+		else REPORT_TITLE end as SUB_REPORT_TITLE, 
+		REPORT_ABSTRACT, 
+		case 
+		when CHAR_LENGTH(REPORT_ABSTRACT) > 70 then CONCAT(SUBSTR(REPORT_ABSTRACT, 1, 70), '...') 
+		else REPORT_ABSTRACT end as SUB_REPORT_ABSTRACT 
+		from CMS_REPORT_MAIN 
+		<where>
+			REPORT_HIS_FLAG = 0 
+			<if test="reportInduxtry != null and reportInduxtry != ''">
+				and REPORT_INDUXTRY = #{reportInduxtry} 
+			</if>
+		</where>
+		order by REPORT_HITS desc limit 0, 5 
+	</select>
+
+	<select id="getListTop5Default" resultMap="BaseResultMapTop" parameterType="java.util.Map">
+		<choose>
+			<when test="reportInduxtry != null and reportInduxtry != ''">
+				<![CDATA[
+					select 
+					ID, 
+					REPORT_INDUXTRY, 
+					REPORT_TITLE, 
+					case 
+					when CHAR_LENGTH(REPORT_TITLE) > 11 then CONCAT(SUBSTR(REPORT_TITLE, 1, 11), '...') 
+					else REPORT_TITLE end as SUB_REPORT_TITLE, 
+					REPORT_ABSTRACT, 
+					case 
+					when CHAR_LENGTH(REPORT_ABSTRACT) > 70 then CONCAT(SUBSTR(REPORT_ABSTRACT, 1, 70), '...') 
+					else REPORT_ABSTRACT end as SUB_REPORT_ABSTRACT 
+					from CMS_REPORT_MAIN 
+					where 
+					REPORT_HIS_FLAG = 0 and 
+					REPORT_INDUXTRY <> #{reportInduxtry} 
+					order by REPORT_HITS desc limit 0, ${num} 
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					select 
+					ID, 
+					REPORT_INDUXTRY, 
+					REPORT_TITLE, 
+					case 
+					when CHAR_LENGTH(REPORT_TITLE) > 11 then CONCAT(SUBSTR(REPORT_TITLE, 1, 11), '...') 
+					else REPORT_TITLE end as SUB_REPORT_TITLE, 
+					REPORT_ABSTRACT, 
+					case 
+					when CHAR_LENGTH(REPORT_ABSTRACT) > 70 then CONCAT(SUBSTR(REPORT_ABSTRACT, 1, 70), '...') 
+					else REPORT_ABSTRACT end as SUB_REPORT_ABSTRACT 
+					from CMS_REPORT_MAIN 
+					where 
+					REPORT_HIS_FLAG = 0 
+					order by REPORT_HITS desc limit 0, ${num} 
+				]]>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="getListCarousel" resultMap="BaseResultMap" >
+		select 
+		ID, 
+		REPORT_INDUXTRY, 
+		REPORT_URL, 
+		REPORT_TITLE, 
+		REPORT_ABSTRACT 
+		from CMS_REPORT_MAIN 
+		where 
+		REPORT_HIS_FLAG = 0 and 
+		IS_CAROUSEL = 1 
+		order by ID desc limit 0, 3 
+	</select>
+
+	<resultMap id="ReportInduxtryMap" type="com.sbiao360.cms.domain.ReportInduxtry" >
+		<result column="CODE" property="code" jdbcType="BIGINT" />
+    	<result column="VALUE" property="value" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getReportInduxtryList" resultMap="ReportInduxtryMap">
+		select 
+		ID as CODE,
+		CODE_NAME as VALUE 
+		from CMS_CODE 
+		where CODE_TYPE = '行业_一级' 
+	</select>
+
+	<update id="updateReportHits" parameterType="ReportMain">
+		update 
+		CMS_REPORT_MAIN
+		set 
+		REPORT_HITS = REPORT_HITS + 1 
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateReportAttentions" parameterType="java.util.Map">
+		update 
+		CMS_REPORT_MAIN
+		<set>
+			<if test="infoValid != null and infoValid == 1">
+				REPORT_ATTENTIONS = REPORT_ATTENTIONS + 1 
+			</if>
+			<if test="infoValid != null and infoValid == 0">
+				REPORT_ATTENTIONS = REPORT_ATTENTIONS - 1 
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="getListSuggest" resultType="java.lang.String" parameterType="java.util.Map" >
+		select 
+		REPORT_TITLE 
+		from CMS_REPORT_MAIN 
+		where 
+		REPORT_HIS_FLAG = 0 
+		and REPORT_TITLE like CONCAT('%', #{keywords}, '%')
+		order by REPORT_HITS desc limit 0, 5 
+	</select>
+	
+ 	<sql id="dynamicWhereSearch">
+		<where>
+			REPORT_HIS_FLAG = 0 
+			<if test="reportTitle != null and reportTitle != ''">
+				and a.REPORT_TITLE like CONCAT('%', #{reportTitle}, '%')
+			</if>
+		</where>
+	</sql>
+
+	<select id="getCountSearch" resultType="java.lang.Integer" parameterType="ReportMain">
+		select count(*) as num
+		from CMS_REPORT_MAIN a 
+		<include refid="dynamicWhereSearch" />
+	</select>
+
+	<select id="getListSearch" resultMap="BaseResultMap" parameterType="ReportMain">
+		select 
+		CONCAT('report_index_', (@row_number :=@row_number + 1), '.png') as IMAGE_INDEX, x.* 
+		from (select
+		<include refid="Base_Column_List" />
+		from CMS_REPORT_MAIN a 
+		left join (
+			select 
+			ID, CODE_NAME 
+			from CMS_CODE 
+			where CODE_TYPE = '行业_一级' 
+		) b on a.REPORT_INDUXTRY = b.ID
+		<include refid="dynamicWhereSearch" />
+		order by a.UPDATE_TIME desc) x, (SELECT @row_number := 0) y
+	</select>
+</mapper>

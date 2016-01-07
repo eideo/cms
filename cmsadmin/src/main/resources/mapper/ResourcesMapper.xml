@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ResourcesMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.Resources">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="RESOURCE_URL" property="resourceUrl" jdbcType="VARCHAR" />
+		<result column="RESOURCE_CLASS" property="resourceClass"
+			jdbcType="VARCHAR" />
+		<result column="RESOURCE_CODE" property="resourceCode"
+			jdbcType="VARCHAR" />
+		<result column="RESOURCE_NAME" property="resourceName"
+			jdbcType="VARCHAR" />
+		<result column="PARENT_RESOURCE_CODE" property="parentResourceCode"
+			jdbcType="VARCHAR" />
+		<result column="SEQUENCE" property="sequence" jdbcType="INTEGER" />
+		<result column="RESOURCE_TYPE" property="resourceType"
+			jdbcType="TINYINT" />
+		<result column="STATUS" property="status" jdbcType="TINYINT" />
+		<result column="OPER_AUTHORITY" property="operAuthority"
+			jdbcType="VARCHAR" />
+		<result column="RESOURCE_TYPE_CN" property="resourceTypeCn"
+			jdbcType="VARCHAR" />
+		<result column="STATUS_CN" property="statusCn" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, RESOURCE_URL, RESOURCE_CLASS, RESOURCE_CODE,
+		RESOURCE_NAME,
+		PARENT_RESOURCE_CODE,
+		SEQUENCE, RESOURCE_TYPE, STATUS, OPER_AUTHORITY,
+		case
+		when RESOURCE_TYPE = 0 then '页面'
+		when RESOURCE_TYPE = 1 then '菜单'
+		when RESOURCE_TYPE = 2 then '按钮'
+		when RESOURCE_TYPE = 3 then '其它'
+		else
+		'' end as RESOURCE_TYPE_CN,
+		case
+		when STATUS = 0 then '未启用'
+		when STATUS = 1 then '启用'
+		when STATUS = 2 then '暂停使用'
+		when STATUS = 3 then '废弃'
+		else
+		'' end as STATUS_CN
+	</sql>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_RESOURCES
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="getByResourceCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_RESOURCES
+		where RESOURCE_CODE =
+		#{resourceCode,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getListByMainMenu" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_RESOURCES
+		where PARENT_RESOURCE_CODE = '0' and STATUS = 1 
+		order by SEQUENCE
+		asc
+	</select>
+
+	<select id="getListtByParentResourceCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_RESOURCES
+		where PARENT_RESOURCE_CODE =
+		#{parentResourceCode,jdbcType=VARCHAR}
+		and STATUS = 1 
+	</select>
+
+	<select id="getListAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_RESOURCES where STATUS = 1 
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_RESOURCES
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.Resources">
+		insert into CMS_RESOURCES
+		(RESOURCE_URL, RESOURCE_CLASS,
+		RESOURCE_CODE, RESOURCE_NAME,
+		PARENT_RESOURCE_CODE,
+		SEQUENCE, RESOURCE_TYPE, STATUS, 
+		OPER_AUTHORITY
+		)
+		values
+		(#{resourceUrl,jdbcType=VARCHAR}, #{resourceClass,jdbcType=VARCHAR},
+		#{resourceCode,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR},
+		#{parentResourceCode,jdbcType=VARCHAR},
+		#{sequence,jdbcType=INTEGER},
+		#{resourceType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
+		#{operAuthority,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.Resources">
+		update
+		CMS_RESOURCES
+		set
+		RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+		RESOURCE_CLASS =
+		#{resourceClass,jdbcType=VARCHAR},
+		RESOURCE_CODE =
+		#{resourceCode,jdbcType=VARCHAR},
+		RESOURCE_NAME =
+		#{resourceName,jdbcType=VARCHAR},
+		PARENT_RESOURCE_CODE =
+		#{parentResourceCode,jdbcType=VARCHAR},
+		SEQUENCE =
+		#{sequence,jdbcType=INTEGER},
+		RESOURCE_TYPE =
+		#{resourceType,jdbcType=TINYINT},
+		STATUS = #{status,jdbcType=TINYINT},
+		OPER_AUTHORITY = #{operAuthority,jdbcType=VARCHAR} 
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					1 = 1 
+					<if test="eqResourceCode != null and eqResourceCode != ''">
+						and RESOURCE_CODE = #{eqResourceCode} 
+					</if>
+					<if test="likeResourceName != null and likeResourceName != ''">
+						and RESOURCE_NAME like CONCAT('%', #{likeResourceName}, '%')
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					1 = 1 
+					<if
+						test="eqResourceCode != null and eqResourceCode != '' and likeResourceName != null and likeResourceName != ''">
+						and (RESOURCE_CODE = #{eqResourceCode} or
+						RESOURCE_NAME like CONCAT('%', #{likeResourceName}, '%'))
+						and (RESOURCE_CODE = #{eqResourceCode} or RESOURCE_NAME like
+						CONCAT('%', #{likeResourceName}, '%'))
+					</if>
+					<if
+						test="eqResourceCode != null and eqResourceCode != '' and likeResourceName != null and likeResourceName == ''">
+						and (RESOURCE_CODE = #{eqResourceCode})
+					</if>
+					<if
+						test="eqResourceCode != null and eqResourceCode == '' and likeResourceName != null and likeResourceName != ''">
+						and (RESOURCE_NAME like CONCAT('%', #{likeResourceName}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						where 1 = 1 order by ${sortedObject} ${sortedValue}
+					</when>
+					<otherwise>
+						where 1 = 1 order by ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.Resources">
+		select count(*) as num
+		from CMS_RESOURCES
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.Resources">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_RESOURCES
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getCountByResourceCode" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_RESOURCES where
+		RESOURCE_CODE =
+		#{resourceCode,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getCountByParentResourceCode" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_RESOURCES where
+		RESOURCE_CODE =
+		#{parentResourceCode,jdbcType=VARCHAR}
+	</select>
+</mapper>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CustBehaviorMapper">
+	<resultMap id="BaseResultMap" type="custBehavior">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="LOGIN_ID" property="loginId" jdbcType="VARCHAR" />
+		<result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="IP" property="ip" jdbcType="BIGINT" />
+		<result column="ACTION_TYPE" property="actionType" jdbcType="TINYINT" />
+		<result column="INFO_TYPE" property="infoType" jdbcType="VARCHAR" />
+		<result column="INFO_ID" property="infoId" jdbcType="BIGINT" />
+		<result column="INFO_NAME" property="infoName" jdbcType="VARCHAR" />
+		<result column="INFO_VALID" property="infoValid" jdbcType="TINYINT" />
+		<result column="ACTION_DATE" property="actionDate" jdbcType="TIMESTAMP" />
+		<result column="COLUMN_LEVEL_ONE" property="columnLevelOne"
+			jdbcType="VARCHAR" />
+		<result column="COLUMN_LEVEL_TWO" property="columnLevelTwo"
+			jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="PARAMETER" property="parameter" jdbcType="VARCHAR" />
+		<result column="CONSUME_TIME" property="consumeTime" jdbcType="BIGINT" />
+		<result column="REMOTE_ADDR" property="remoteAddr" jdbcType="VARCHAR" />
+		<result column="KEYWORDS_TYPE" property="keywordsType"
+			jdbcType="VARCHAR" />
+		<result column="KEYWORDS" property="keywords" jdbcType="VARCHAR" />
+		<result column="SHARE_TYPE" property="shareType" jdbcType="TINYINT" />
+		<result column="SHARE_SYS" property="shareSys" jdbcType="VARCHAR" />
+		<result column="SHARE_TARGET" property="shareTarget" jdbcType="VARCHAR" />
+		<result column="SHARE_MESSAGE" property="shareMessage"
+			jdbcType="VARCHAR" />
+		<result column="CLICK_TYPE" property="clickType" jdbcType="TINYINT" />
+		<result column="CLICK_CONTENT" property="clickContent"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, USER_ID, LOGIN_ID, CUST_ID, CUST_NAME, IP, ACTION_TYPE,
+		INFO_TYPE,
+		INFO_ID, INFO_NAME,
+		INFO_VALID,
+		ACTION_DATE, COLUMN_LEVEL_ONE,
+		COLUMN_LEVEL_TWO, URL, PARAMETER, CONSUME_TIME,
+		REMOTE_ADDR,
+		KEYWORDS_TYPE, KEYWORDS, SHARE_TYPE, SHARE_SYS, SHARE_TARGET,
+		SHARE_MESSAGE,
+		CLICK_TYPE, CLICK_CONTENT
+	</sql>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_CUST_BEHAVIOR
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_CUST_BEHAVIOR
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="custBehavior"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into CMS_CUST_BEHAVIOR
+		(USER_ID, LOGIN_ID, CUST_ID, CUST_NAME,
+		IP, ACTION_TYPE, INFO_TYPE,
+		INFO_ID, INFO_NAME,INFO_VALID,
+		ACTION_DATE, COLUMN_LEVEL_ONE,
+		COLUMN_LEVEL_TWO,URL,
+		PARAMETER, CONSUME_TIME,
+		REMOTE_ADDR,
+		KEYWORDS_TYPE, KEYWORDS,
+		SHARE_TYPE, SHARE_SYS, SHARE_TARGET,
+		SHARE_MESSAGE, CLICK_TYPE,
+		CLICK_CONTENT)
+		values
+		(#{userId,jdbcType=BIGINT}, #{loginId,jdbcType=VARCHAR},
+		#{custId,jdbcType=VARCHAR},
+		#{custName,jdbcType=VARCHAR},
+		#{ip,jdbcType=BIGINT},
+		#{actionType,jdbcType=TINYINT},
+		#{infoType,jdbcType=VARCHAR},
+		#{infoId,jdbcType=BIGINT},
+		#{infoName,jdbcType=VARCHAR},
+		#{infoValid,jdbcType=TINYINT},
+		#{actionDate,jdbcType=TIMESTAMP},
+		#{columnLevelOne,jdbcType=VARCHAR},
+		#{columnLevelTwo,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{parameter,jdbcType=VARCHAR}, #{consumeTime,jdbcType=BIGINT},
+		#{remoteAddr,jdbcType=VARCHAR}, #{keywordsType,jdbcType=VARCHAR},
+		#{keywords,jdbcType=VARCHAR},
+		#{shareType,jdbcType=TINYINT},
+		#{shareSys,jdbcType=VARCHAR}, #{shareTarget,jdbcType=VARCHAR},
+		#{shareMessage,jdbcType=VARCHAR}, #{clickType,jdbcType=TINYINT},
+		#{clickContent,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="custBehavior">
+		update CMS_CUST_BEHAVIOR
+		set
+		USER_ID = #{userId,jdbcType=BIGINT},
+		LOGIN_ID =
+		#{loginId,jdbcType=VARCHAR},
+		CUST_ID = #{custId,jdbcType=VARCHAR},
+		CUST_NAME =
+		#{custName,jdbcType=VARCHAR},
+		IP = #{ip,jdbcType=BIGINT},
+		ACTION_TYPE =
+		#{actionType,jdbcType=TINYINT},
+		INFO_TYPE =
+		#{infoType,jdbcType=VARCHAR},
+		INFO_ID = #{infoId,jdbcType=BIGINT},
+		INFO_NAME = #{infoName,jdbcType=VARCHAR},
+		INFO_VALID =
+		#{infoValid,jdbcType=TINYINT},
+		ACTION_DATE =
+		#{actionDate,jdbcType=TIMESTAMP},
+		COLUMN_LEVEL_ONE =
+		#{columnLevelOne,jdbcType=VARCHAR},
+		COLUMN_LEVEL_TWO =
+		#{columnLevelTwo,jdbcType=VARCHAR},
+		URL = #{url,jdbcType=VARCHAR},
+		PARAMETER = #{parameter,jdbcType=VARCHAR},
+		CONSUME_TIME =
+		#{consumeTime,jdbcType=BIGINT},
+		REMOTE_ADDR =
+		#{remoteAddr,jdbcType=VARCHAR},
+		KEYWORDS_TYPE =
+		#{keywordsType,jdbcType=VARCHAR},
+		KEYWORDS =
+		#{keywords,jdbcType=VARCHAR},
+		SHARE_TYPE =
+		#{shareType,jdbcType=TINYINT},
+		SHARE_SYS =
+		#{shareSys,jdbcType=VARCHAR},
+		SHARE_TARGET =
+		#{shareTarget,jdbcType=VARCHAR},
+		SHARE_MESSAGE =
+		#{shareMessage,jdbcType=VARCHAR},
+		CLICK_TYPE =
+		#{clickType,jdbcType=TINYINT},
+		CLICK_CONTENT =
+		#{clickContent,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<update id="updateByProperties" parameterType="custBehavior">
+		update CMS_CUST_BEHAVIOR
+		set
+		INFO_VALID =
+		#{infoValid,jdbcType=TINYINT},
+		ACTION_DATE =
+		#{actionDate,jdbcType=TIMESTAMP} 
+		where 
+		USER_ID = #{userId,jdbcType=BIGINT} and 
+		ACTION_TYPE = #{actionType,jdbcType=TINYINT} and 
+		INFO_TYPE = #{infoType,jdbcType=VARCHAR} and 
+		INFO_ID = #{infoId,jdbcType=BIGINT} 
+	</update>
+
+	<update id="updateByFoot" parameterType="java.util.Map">
+		update CMS_CUST_BEHAVIOR
+		set
+		INFO_VALID =
+		#{infoValid,jdbcType=TINYINT},
+		ACTION_TYPE = 
+		#{actionTypeNew,jdbcType=TINYINT},
+		ACTION_DATE =
+		#{actionDate,jdbcType=TIMESTAMP} 
+		where 
+		USER_ID = #{userId,jdbcType=BIGINT} and 
+		ACTION_TYPE = #{actionType,jdbcType=TINYINT} and 
+		INFO_TYPE = #{infoType,jdbcType=VARCHAR} and 
+		INFO_ID = #{infoId,jdbcType=BIGINT} 
+	</update>
+
+	<select id="getCountByProperties" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select 
+		count(*) as num 
+		from CMS_CUST_BEHAVIOR 
+		where 
+		USER_ID = #{userId,jdbcType=BIGINT} and 
+		ACTION_TYPE = #{actionType,jdbcType=TINYINT} and 
+		INFO_TYPE = #{infoType,jdbcType=VARCHAR} and 
+		INFO_ID = #{infoId,jdbcType=BIGINT} 
+	</select>
+</mapper>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>行业指数</title>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/industry.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+</head>
+<body>
+	
+
+<!-- 	顶部导航 -->
+<div class="header">
+	<div class="user-nav clearfix">
+		<ul class="user-info clearfix">
+			<li><a href="http://101.200.0.81:8080/cas/login?service=http://101.200.0.81:8080/cms/homepage">登录</a></li>
+			<li>|</li>
+			<li><a href="http://101.200.0.81:8080/cms/register">注册</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">客户中心</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">个人中心</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 主导航	 -->
+<div class="main-nav clearfix">
+		<h1 class="logo">关系网</h1>
+		<ul class="nav">
+			<li><a href="http://101.200.0.81:8080/cms/homepage">首页</a></li>
+			<li><a href="http://101.200.0.81:8080/cms/htmlTemp/relation.html">关系网</a></li>
+			<li><a href="http://101.200.0.81:8080/cms/htmlTemp/industry.html" style="color:#47aaff">行业指数</a></li>
+			<li><a href="http://101.200.0.81:8080/cms/ranking" >排行榜</a></li>
+			<li><a href="http://101.200.0.81:8080/cms/report" >行业报告</a></li>
+		</ul>
+	<span id="icon"></span>
+</div>
+
+<!-- 导航下划线 -->
+<div class="hr"></div>
+
+<div class='profile'>
+	<div class='profileCon clearfix'>
+		<h2 class='title'>
+		</h2>
+		<div class='left'>
+			<div class='top'>
+				<h3>按一级行业分类</h3>
+				<div class='time' id='endTime'>
+					<div class='innerTime'>
+						<input type="text" id="dateRight" readonly value ='2015.11'/>
+					</div>
+					<i class='daShow'>
+					</i>
+				</div>
+				<div class='zhi'>至</div>
+				<div class='time' id='startTime'>
+					<div class='innerTime'>
+						<input type="text" id="dateLeft" readonly value ='2014.01'/>
+					</div>
+					<i class='daShow'>
+					</i>
+				</div>
+			</div>
+			<div class='chart' id='chart1'></div>
+		</div>
+		<div class='right'>
+			<div class='distr'>
+				<h3 class='mt25 ml30'><span style='font-weight:normal'>近两年</span> 信息数量分布</h3>
+				<div class='timeRange'>
+					<div class='con' id='timeRange'>
+						<i class='handleLeft' id='handleLeft'></i>
+						<span class='handle' id='timeHandle'>
+							2014-01-2015-12
+						</span>
+						<i class='handleRight' id='handleRight'></i>
+					</div>
+				</div>
+				<div id='chart2'></div>
+			</div>
+			<div class='prop'>
+				<h3 class='mt25 ml30'>信息类型占比</h3>
+				<div id='chart3'></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='industry'>
+	<div class='industryCon clearfix'>
+		<h2 class='title'></h2>
+		<div class='left'>
+			<h3 class='mt37 ml42'>房地产建筑行业  <span class='highLight'>景气指数</span></h3>
+			<div id='chart4'></div>
+			<div class='result'>本月 <span class='bold'>房地产建筑</span> 景气指数同比上升1%，环比下降2%，走势平稳</div>
+		</div>
+		<div class='right'>
+			<h3 class='mt37 ml42'>房地产建筑行业  <span class='highLight'>关注指数</span></h3>
+			<div id='chart5'></div>
+			<div class='result'>本月 <span class='bold'>房地产建筑</span> 景气指数同比上升1%，环比下降2%，走势平稳</div>
+		</div>
+	</div>
+	<div class='industryTag'>
+		<p>数据来源：中国采购与招标网大数据研究中心</p>
+		<p>作用说明：景气指数反映特定行业的景气变化情况，关注指数反映客户在互联网上对特定行业的关注程度及持续变化情况</p>
+		<p>算法说明：以中国采购与招标网大数据研究中心的数据资源和客户在我网的搜索量为基础，以特定行业为统计对象，科学分析并计算出各个特定行业的指数值。</p>
+	</div>
+</div>
+
+<div class='user'>
+	<div class='userCon clearfix'>
+		<h2 class='title'></h2>
+		<div class='left'>
+			<div class="province">省份</div>
+		</div>
+		<div class='right'>
+			<div id ='chart6'></div>
+			<div id ='chart7'></div>
+		</div>
+	</div>
+		<div class='userTag'>
+		<p>数据来源：中国采购与招标网大数据研究中心</p>
+		<p>作用说明：景气指数反映特定行业的景气变化情况，关注指数反映客户在互联网上对特定行业的关注程度及持续变化情况</p>
+		<p>算法说明：以中国采购与招标网大数据研究中心的数据资源和客户在我网的搜索量为基础，以特定行业为统计对象，科学分析并计算出各个特定行业的指数值。</p>
+	</div>
+</div>
+
+<div class='report'>
+	<div class='reportCon clearfix'>
+		<h2 class='title'></h2>
+		<div class='left'>
+			<div class='top'>
+				<div><span class='large'>房地产建筑行业</span>
+				<span class='small'>热门单位</span></div>		
+			</div>
+			<div class="list">
+				<div class='reTitle clearfix'>
+					<span class='rePm'>排名</span>
+					<span class='reGjc'>单位名称</span>
+					<span class='reZs'>搜索指数</span>
+				</div>			
+				<ul id='leftList' class='clearfix'>
+					<li><i class='rank1'></i>
+						<div class='rankT'>2001-2015年北京房地产</div> <div class='up'>1860024 <span class=''></span></div></li>
+					<li><i class='rank2'></i>
+						<div class='rankT'>2001-2015年北京房地产</div> <div class='up'>1860024 <span class=''></span></div></li>
+					<li><i class='rank3'></i>
+						<div class='rankT'>2001-2015年北京房地产</div> <div class='up'>1860024 <span class=''></span></div></li>
+					<li><i class='rank4'></i>
+						<div class='rankT'>2001-2015年北京房地产</div> <div class='down'>1860024 <span class=''></span></div></li>
+					<li><i class='rank5'></i>
+						<div class='rankT'>2001-2015年北京房地产</div> <div class='up'>1860024 <span class=''></span></div></li>
+
+				</ul>
+
+				<div class='more'>查看更多</div>
+			</div>
+		</div>
+		<div class='right clearfix'>
+			<div class="conLeft">
+				<div class='mTop'>
+					<i></i>
+					<span class='mtitle'>房地产建筑行业</span>
+           			<span class='subTitle'>热门报告</span>
+           		</div>
+				<div class="mBottom">
+					<ul>
+						<li class='li3'>
+							<i class="i3"></i>
+							<div class='bTitle'>2015房地产建筑行业报告</div>
+							<div class='bText'>
+								敌人首级;全新万里海域，畅享万舰齐发的厮杀快感跨服海盗玩海!这一次，让我们出海征服世界!敌人首级...
+							</div>
+						</li>
+
+						<li class='li4'>
+							<i class="i4"></i>
+							<div class='bTitle'>2015房地产建筑行业报告</div>
+							<div class='bText'>
+								敌人首级;全新万里海域，畅享万舰齐发的厮杀快感跨服海盗玩海!这一次，让我们出海征服世界!敌人首级...
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="conRight">
+
+				<div class='rTop'>
+					<ul>
+						<li class='li1'>
+							<i class="i1"></i>
+							<div class='bTitle'>2015房地产建筑行业报告</div>
+							<div class='bText'>
+								敌人首级;全新万里海域，畅享万舰齐发的厮杀快感跨服海盗玩海!这一次，让我们出海征服世界!敌人首级...
+							</div>
+						</li>
+
+						<li class='li2'>
+							<i class="i2"></i>
+							<div class='bTitle'>2015房地产建筑行业报告</div>
+							<div class='bText'>
+								敌人首级;全新万里海域，畅享万舰齐发的厮杀快感跨服海盗玩海!这一次，让我们出海征服世界!敌人首级...
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class='rTop'>
+					<ul>
+						<li class='li5'>
+							<i class="i5"></i>
+							<div class='bTitle'>2015房地产建筑行业报告</div>
+							<div class='bText'>
+								敌人首级;全新万里海域，畅享万舰齐发的厮杀快感跨服海盗玩海!这一次，让我们出海征服世界!敌人首级...
+							</div>
+						</li>
+
+						<li class='li6'>
+							<div class='chart'></div>
+							<div class='more'>查看更多</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	<!-- 底部信息 -->
+<div class="footer-bg">
+	<div class="footer clearfix">
+		<ul class="clearfix">
+			<li><a href="${resPath }/htmlTemp/about.html" target="_blank">关于我们</a></li>
+			<li>|</li>
+			<li><a href="${resPath }/htmlTemp/nav.html" target="_blank">网站导航</a></li>
+			<li>|</li>
+			<li><a href="${resPath }/htmlTemp/copyright.html" target="_blank">版权所有</a></li>
+			<li>|</li>
+			<li><a href="${resPath }/htmlTemp/link.html" target="_blank">友情链接</a></li>
+			<li>|</li>
+			<li><a href="${resPath }/htmlTemp/contact.html" target="_blank">联系我们</a></li>
+			<li>|</li>
+			<li><a href="${resPath }/htmlTemp/zhaopin.html" target="_blank">招聘信息</a></li>
+		</ul>
+		<p>Copyright©2001-2015 中国采购与招标网 Rights Reserved 京ICP证070104号 京公网安备 11010802011112号</p>
+	</div>
+</div>
+
+<script type="text/javascript" src="../resources/commons/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../resources/commons/js/lib/jquery-ui-datepicker.js"></script>
+<script type="text/javascript" src="../resources/commons/js/d3/d3.js"></script>
+<script type="text/javascript" src="../resources/commons/js/chart/industryChart.js"></script>
+<script type="text/javascript" src="../resources/commons/js/public/industry/industry.js"></script>
+<script type="text/javascript" src="../resources/commons/js/lib/dataZoom.js"></script>
+</body>
+</html>

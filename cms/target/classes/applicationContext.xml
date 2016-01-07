@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:cache="http://www.springframework.org/schema/cache" 
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/aop 
+      http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/cache
+      http://www.springframework.org/schema/cache/spring-cache-3.1.xsd">
+
+	<!-- 数据访问层配置 -->
+	<import resource="classpath:spring-dao.xml" />
+	<!--服务层配置 -->
+	<import resource="classpath:spring-service.xml" />
+	<!--FastDFS配置 -->
+	<import resource="classpath:spring-fs.xml" />
+
+	<bean id="methodTimeAdvice" class="com.sbiao360.sys.performance.MethodTimeAdvice" />
+
+	<!-- 日志记录某个类中方法执行时间aop 切点和通知的配置 -->
+	<aop:config>
+		<!-- 拦截 com.sbiao360.cms.service 包中的所有方法 -->
+		<aop:pointcut id="servicesPointcut"
+			expression="execution(* com.sbiao360.cms.service.*.*(..))" />
+		<aop:advisor id="methodTimeLog" advice-ref="methodTimeAdvice"
+			pointcut-ref="servicesPointcut" />
+	</aop:config>
+	
+	<context:property-placeholder  
+        location="classpath:redis.properties" />
+     <cache:annotation-driven cache-manager="cacheManager"/>
+     <!-- spring自己的换管理器，这里定义了两个缓存位置名称 ，既注解中的value -->  
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
+	    <property name="caches">  
+	        <set>  
+	            <bean class="com.sbiao360.sys.cache.base.RedisCache">  
+                    <property name="redisTemplate" ref="redisTemplate02" />  
+                    <property name="name" value="commonCache"/>  
+                </bean>
+	            <bean class="com.sbiao360.sys.cache.base.RedisCache">  
+                    <property name="redisTemplate" ref="redisTemplate01" />  
+                    <property name="name" value="testCache"/>  
+                </bean>
+	        </set>  
+	    </property>  
+	</bean>   
+	<!-- redis 相关配置 -->  
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxWait" value="${redis.maxWait}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <property name="maxActive" value="${redis.maxTotal}" />  
+    </bean>  
+  
+    <bean id="connectionFactory01"  
+        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
+        p:host-name="${redis.host}" p:port="${redis.port}" p:pool-config-ref="poolConfig"  
+        p:database="${redis.database}" p:password="${redis.password}" />
+
+	<bean id="redisTemplate01" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="connectionFactory01" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		</property>
+	</bean>  
+      
+    <bean id="connectionFactory02"  
+        class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
+        p:host-name="${redis.host}" p:port="${redis.port}" p:pool-config-ref="poolConfig"  
+        p:database="${redis.database}" p:password="${redis.password}" />  
+  
+    <bean id="redisTemplate02" class="org.springframework.data.redis.core.RedisTemplate">  
+        <property name="connectionFactory" ref="connectionFactory02" />  
+    </bean>  
+    
+   <bean id="cacheInitListener" class="com.sbiao360.sys.cache.CacheInitListener">
+    	<property name="cache">
+    	 	<bean class="com.sbiao360.sys.cache.base.RedisCache">  
+                <property name="redisTemplate" ref="redisTemplate02" />  
+                <property name="name" value="commonCache"/>  
+            </bean>
+    	</property>
+    	<property name="mapTimer">
+    	 	 <bean class="com.sbiao360.sys.cache.MapTimer">
+		    	<property name="customerBehaviorService">
+		    	 	<bean class="com.sbiao360.cms.service.CustomerBehaviorService"></bean>
+		    	</property>
+		    </bean>
+    	</property>
+    </bean>
+   
+</beans>

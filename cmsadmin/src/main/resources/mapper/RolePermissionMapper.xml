@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="RolePermissionMapper">
+	<resultMap id="BaseResultMap"
+		type="com.sbiao360.cmsadmin.model.RolePermission">
+		<result column="ROLE_ID" property="roleId" jdbcType="BIGINT" />
+		<result column="PERMISSIONS" property="permissions" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ROLE_ID, PERMISSIONS
+	</sql>
+
+	<delete id="deleteByRoleId" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_PERMISSION
+		where ROLE_ID = #{roleId,jdbcType=BIGINT}
+	</delete>
+
+	<delete id="deleteLikeResourceCode" parameterType="java.lang.String">
+		delete from
+		CMS_ROLE_PERMISSION
+		where PERMISSIONS like CONCAT('%',
+		#{resourceCode,jdbcType=VARCHAR}, '%')
+	</delete>
+
+	<delete id="deleteByResourceId" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_PERMISSION
+		where PERMISSIONS like CONCAT('%',
+		(select RESOURCE_CODE from CMS_RESOURCES where ID = #{id,jdbcType=BIGINT}), '%')
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.RolePermission">
+		insert into
+		CMS_ROLE_PERMISSION (ROLE_ID, PERMISSIONS)
+		values
+		(#{roleId,jdbcType=BIGINT}, #{permissions,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="getListByRoleKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE_PERMISSION
+		where ROLE_ID = (
+		select ROLE_ID from CMS_ROLE where ROLE_KEY = #{roleKey,jdbcType=VARCHAR})
+	</select>
+</mapper>

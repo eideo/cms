@@ -1,0 +1,281 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*头部*/
+.header{
+	width: 1200px;
+	height: 90px;
+	line-height: 90px; 
+	margin: 0 auto;
+}
+.header .logo{
+	width: 118px;
+	height: 30px;
+	background: url(../images/logo.png);
+	float: left;
+	text-indent: -9999em;
+	margin: 28px 18px 0 0;
+}
+.header h2{
+	width: 170px;
+	height: 24px;
+	line-height: 24px;
+	padding-left: 12px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #5e5e5e;
+	border-left: 1px solid #ebebeb;
+	margin-top: 30px;
+	float: left;
+}
+.header .nav{
+	float: right;
+}
+.header .nav li{
+	color: #5e5e5e;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+/*内容部分*/
+.content-box{
+	min-width: 1200px;
+	height: 675px;
+	background: #00bbff;
+}
+.content-box .content{
+	width: 1200px;
+	height: 675px;
+	margin: 0 auto;
+	background: url(../images/content-bg.png) no-repeat 0 134px;
+}
+.content .register-box{
+	width: 375px;
+	height: 510px;
+	background: #fff;
+	float: right;
+	margin-top: 75px;
+	padding-left: 35px;
+}
+.register-box strong{
+	font-size: 16px;
+	color: #47aaff;
+	float: left;
+	padding-left: 16px;
+	position: relative;
+	cursor: pointer;
+}
+h3 strong em{
+	display: block;
+	width: 95px;
+	height: 7px;
+	background: url(../images/registerh3.png);
+	position: absolute;
+	left: 0;
+	top: 33px;
+}
+.register-box .company{
+	margin-left: 45px;
+}
+.register-box h3 a{
+	font-size: 14px;
+	color: #ff5a5a;
+	margin-left: 68px;
+	margin-top: 4px;
+	float: left;
+	position: relative;
+}
+.register-box h3{
+	width: 340px;
+	margin-top: 40px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #e2e2e2;
+}
+
+.register-box a i{
+	width: 9px;
+	height: 11px;
+	background: url(../images/n.png);
+	position: absolute;
+	right: -10px;
+	top: -10px;
+}
+.register-box #div1{
+	height: 277px;
+}
+
+/*错误提示信息*/
+#div1 span{
+	position: absolute;
+	left: 10px;
+	top: 70px;
+	font-size: 12px;
+	color: red;
+	display: none;
+}
+.register-box #div2{
+	display: none;
+	height: 277px;
+}
+.user-box{
+	position: relative;
+}
+.username{
+	width: 318px;
+	height: 40px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	margin-top: 24px;
+	font-size: 14px;
+}
+.password{
+	width: 318px;
+	height: 40px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	margin-top: 24px;
+	font-size: 14px;
+}
+.password-box{
+	position: relative;
+}
+.r-password-box{
+	position: relative;
+}
+.r-password{
+	width: 318px;
+	height: 40px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	margin-top: 24px;
+	font-size: 14px;
+}
+.m-code{
+	width: 173px;
+	height: 40px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	margin-top: 27px;
+	float: left;
+	font-size: 14px;
+}
+.mcode-box{
+	width: 340px;
+	display: none;
+}
+
+.mcode-box a{
+	float: right;
+	width: 102px;
+	height: 42px;
+	background: #47aaff;
+	margin-top: 27px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 14px;
+	line-height: 42px;
+	text-align: center;
+}
+.v-code{
+	width: 173px;
+	height: 40px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	margin-top: 27px;
+	float: left;
+	font-size: 14px;
+}
+.code-box{
+	width: 340px;
+}
+
+.code-box img{
+	float: right;
+	margin-top: 27px;
+}
+#div2 span{
+	position: absolute;
+	left: 10px;
+	top: 70px;
+	font-size: 12px;
+	color: red;
+	display: none;
+}
+
+.user-protocol{width:340px;margin-top: 18px;}
+.user-protocol input{
+	float: left;
+	width: 15px;
+	height: 15px;
+	border-radius: 0;
+	border: 1px solid #8e8f8f;
+	margin-left: 10px;
+	margin-top: 2px;
+}
+.user-protocol label{
+	float: left;
+	color: #5e5e5e;
+	font-size: 14px;
+	margin-left: 8px;
+}
+.user-protocol a{
+	float: left;
+	color: #47aaff;
+}
+.register{
+	width: 340px;
+	height: 42px;
+	background: #47aaff;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 42px;
+	border: 0;
+	border-radius: 4px;
+	margin-top: 30px;
+	cursor: pointer;
+}
+.register{
+	width: 340px;
+	height: 42px;
+	background: #47aaff;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 42px;
+	border: 0;
+	border-radius: 4px;
+	margin-top: 26px;
+	cursor: pointer;
+}
+
+/*底部信息*/
+.footer-bg{
+	min-width: 1200px;
+	height: 100px;
+	background: #424242;
+}
+.footer{
+	width: 1200px;
+	height: 100px;
+	line-height: 100px;
+	margin: 0 auto;
+	color: #9e9e9e;
+}
+.footer ul{
+	float: left;
+}
+.footer ul li{
+	float: left;
+	margin-right: 4px;
+}
+.footer p{
+	float: right;
+	font-size: 12px;
+}
+.footer a{
+	color: #9e9e9e;
+	font-size: 12px;
+}

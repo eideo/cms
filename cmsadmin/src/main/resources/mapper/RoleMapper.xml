@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="RoleMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.Role">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="ROLE_KEY" property="roleKey" jdbcType="VARCHAR" />
+		<result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+		<result column="PARENT_ROLE_KEY" property="parentRoleKey"
+			jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="TINYINT" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="CREATE_USER_ID" property="createUserId"
+			jdbcType="BIGINT" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_USER_ID" property="updateUserId"
+			jdbcType="BIGINT" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="STATUS_CN" property="statusCn" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE_CN" property="createDateCn"
+			jdbcType="VARCHAR" />
+		<result column="UPDATE_DATE_CN" property="updateDateCn"
+			jdbcType="VARCHAR" />
+		<result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+		<result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, ROLE_KEY, ROLE_NAME, PARENT_ROLE_KEY, STATUS,
+		CREATE_DATE, CREATE_USER_ID, UPDATE_DATE, UPDATE_USER_ID, NOTE,
+		case
+		when STATUS = 0 then '未启用'
+		when STATUS = 1 then '启用'
+		when STATUS = 2 then '暂停使用'
+		when STATUS = 3 then '废弃'
+		else '' end as STATUS_CN,
+		date_format(CREATE_DATE, '%Y-%m-%d %H:%i:%s') as
+		CREATE_DATE_CN,
+		date_format(UPDATE_DATE, '%Y-%m-%d %H:%i:%s') as
+		UPDATE_DATE_CN,
+		(select LOGIN_ID from CMS_MEMBER_INFO where ID = CREATE_USER_ID) as
+		CREATE_USER,
+		(select LOGIN_ID from CMS_MEMBER_INFO where ID =
+		UPDATE_USER_ID) as UPDATE_USER
+	</sql>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="getByRoleKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE
+		where ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.Role">
+		insert into CMS_ROLE
+		(ROLE_KEY, ROLE_NAME,
+		PARENT_ROLE_KEY, STATUS, CREATE_DATE,
+		CREATE_USER_ID, UPDATE_DATE, UPDATE_USER_ID,
+		NOTE)
+		values
+		(#{roleKey,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR},
+		#{parentRoleKey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{createUserId,jdbcType=BIGINT},
+		#{updateDate,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT},
+		#{note,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.Role">
+		update CMS_ROLE
+		set ROLE_KEY =
+		#{roleKey,jdbcType=VARCHAR},
+		ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+		PARENT_ROLE_KEY = #{parentRoleKey,jdbcType=VARCHAR},
+		STATUS =
+		#{status,jdbcType=TINYINT},
+		CREATE_DATE =
+		#{createDate,jdbcType=TIMESTAMP},
+		CREATE_USER_ID =
+		#{createUserId,jdbcType=BIGINT},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP},
+		UPDATE_USER_ID =
+		#{updateUserId,jdbcType=BIGINT},
+		NOTE = #{note,jdbcType=VARCHAR}
+		where
+		ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					ROLE_KEY != 'ROLE_ADMIN' 
+					<if test="eqRoleKey != null and eqRoleKey != ''">
+						and ROLE_KEY = #{eqRoleKey} 
+					</if>
+					<if test="likeRoleName != null and likeRoleName != ''">
+						and ROLE_NAME like CONCAT('%', #{likeRoleName}, '%')
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					ROLE_KEY != 'ROLE_ADMIN' 
+					<if
+						test="eqRoleKey != null and eqRoleKey != '' and likeRoleName != null and likeRoleName != ''">
+						and (ROLE_KEY = #{eqRoleKey} or
+						ROLE_NAME like CONCAT('%', #{likeRoleName}, '%'))
+						and (ROLE_KEY = #{eqRoleKey} or ROLE_NAME like
+						CONCAT('%', #{likeRoleName}, '%'))
+					</if>
+					<if
+						test="eqRoleKey != null and eqRoleKey != '' and likeRoleName != null and likeRoleName == ''">
+						and (ROLE_KEY = #{eqRoleKey})
+					</if>
+					<if
+						test="eqRoleKey != null and eqRoleKey == '' and likeRoleName != null and likeRoleName != ''">
+						and (ROLE_NAME like CONCAT('%', #{likeRoleName}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						where ROLE_KEY != 'ROLE_ADMIN' order by ${sortedObject} ${sortedValue}
+					</when>
+					<otherwise>
+						where ROLE_KEY != 'ROLE_ADMIN' order by ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.Role">
+		select count(*) as num
+		from CMS_ROLE
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.Role">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getDropDownList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_ROLE 
+		<![CDATA[
+			where STATUS = 1 and ROLE_KEY <> 'ROLE_ADMIN'
+		]]>
+	</select>
+
+	<select id="getCountByRoleKey" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_ROLE
+		where ROLE_KEY =
+		#{roleKey,jdbcType=VARCHAR}
+	</select>
+</mapper>

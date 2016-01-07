@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SysUserMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.SysUser">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="LOGIN_ID" property="loginId" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="VARCHAR" />
+		<result column="ISADMIN" property="isAdmin" jdbcType="TINYINT" />
+		<result column="BELONG" property="belong" jdbcType="TINYINT" />
+		<result column="CUST_EMAIL" property="custEmail" jdbcType="VARCHAR" />
+		<result column="CUST_STATUS" property="custStatus" jdbcType="VARCHAR" />
+		<result column="DEPT_ID" property="deptId" jdbcType="BIGINT" />
+		<result column="CUST_BIRTHDAY" property="custBirthday"
+			jdbcType="TIMESTAMP" />
+		<result column="LAST_LOGINTIME" property="lastLoginTime"
+			jdbcType="TIMESTAMP" />
+		<result column="LOGIN_PASSWD" property="loginPasswd" jdbcType="VARCHAR" />
+		<result column="REGISTER_DATE" property="registerDate"
+			jdbcType="TIMESTAMP" />
+		<result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="SEX_CN" property="sexCn" jdbcType="VARCHAR" />
+		<result column="ISADMIN_CN" property="isAdminCn" jdbcType="VARCHAR" />
+		<result column="BELONG_CN" property="belongCn" jdbcType="VARCHAR" />
+		<result column="CUST_STATUS_CN" property="custStatusCn"
+			jdbcType="VARCHAR" />
+		<result column="CUST_BIRTHDAY_CN" property="custBirthdayCn" jdbcType="VARCHAR" />
+		<result column="LAST_LOGINTIME_CN" property="lastLoginTimeCn" jdbcType="VARCHAR" />
+		<result column="REGISTER_DATE_CN" property="registerDateCn" jdbcType="VARCHAR" />
+		<result column="ROLE_KEY" property="roleKey" jdbcType="VARCHAR" />
+		<result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		a.ID as ID, a.LOGIN_ID as LOGIN_ID, a.CUST_NAME as
+		CUST_NAME,
+		a.SEX as SEX, a.ISADMIN as ISADMIN, a.BELONG as BELONG,
+		a.CUST_EMAIL as
+		CUST_EMAIL, a.CUST_STATUS as CUST_STATUS,a.DEPT_ID as DEPT_ID,
+		a.CUST_BIRTHDAY as CUST_BIRTHDAY,
+		date_format(a.CUST_BIRTHDAY, '%Y-%m-%d') as CUST_BIRTHDAY_CN,
+		a.LAST_LOGINTIME as LAST_LOGINTIME,
+		date_format(a.LAST_LOGINTIME, '%Y-%m-%d %H:%i:%s') as LAST_LOGINTIME_CN,
+		a.LOGIN_PASSWD as LOGIN_PASSWD,
+		a.REGISTER_DATE as REGISTER_DATE,
+		date_format(a.REGISTER_DATE, '%Y-%m-%d %H:%i:%s') as REGISTER_DATE_CN,
+		a.MOBILE_PHONE as MOBILE_PHONE,
+		b.DEPT_NAME as DEPT_NAME,
+		case when
+		a.SEX = 'N' then '男' when a.SEX =
+		'Y' then '女' else '' end as SEX_CN,
+		case when a.ISADMIN = 1 then '是'
+		when a.ISADMIN = 0 then '否' else ''
+		end as ISADMIN_CN,
+		case when
+		a.BELONG = 1 then '后台系统' when a.BELONG = 0
+		then '前台系统' else '' end as
+		BELONG_CN,
+		case when a.CUST_STATUS = '1' then
+		'是' when a.CUST_STATUS =
+		'0'
+		then '否' else '' end as CUST_STATUS_CN,
+		d.ROLE_KEY as ROLE_KEY,
+		d.ROLE_NAME as ROLE_NAME
+	</sql>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_MEMBER_INFO a
+		left join CMS_DEPT b on b.ID = a.DEPT_ID
+		left
+		join CMS_ROLE_USER c on c.USER_ID = a.ID
+		left join CMS_ROLE d on d.ID =
+		c.ROLE_ID
+		where a.ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="getByLoginId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_MEMBER_INFO a
+		left join CMS_DEPT b on b.ID = a.DEPT_ID
+		left
+		join CMS_ROLE_USER c on c.USER_ID = a.ID
+		left join CMS_ROLE d on d.ID =
+		c.ROLE_ID
+		where a.LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getByCustEmail" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_MEMBER_INFO a
+		left join CMS_DEPT b on b.ID = a.DEPT_ID
+		left
+		join CMS_ROLE_USER c on c.USER_ID = a.ID
+		left join CMS_ROLE d on d.ID =
+		c.ROLE_ID
+		where a.CUST_EMAIL = #{custEmail,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_MEMBER_INFO
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<delete id="deleteRoleUserByUserid" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_USER
+		where USER_ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<delete id="deleteRoleUserByRoleid" parameterType="java.lang.Long">
+		delete from
+		CMS_ROLE_USER
+		where ROLE_ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.SysUser"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into CMS_MEMBER_INFO
+		(LOGIN_ID, CUST_NAME, SEX, ISADMIN,
+		BELONG, CUST_EMAIL, CUST_STATUS,
+		DEPT_ID, CUST_BIRTHDAY,
+		LAST_LOGINTIME,
+		LOGIN_PASSWD, REGISTER_DATE,
+		MOBILE_PHONE)
+		values (#{loginId,jdbcType=VARCHAR},
+		#{custName,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR},
+		#{isAdmin,jdbcType=TINYINT},
+		#{belong,jdbcType=TINYINT},
+		#{custEmail,jdbcType=VARCHAR},
+		#{custStatus,jdbcType=VARCHAR},
+		#{deptId,jdbcType=BIGINT},
+		#{custBirthday,jdbcType=TIMESTAMP},
+		#{lastLoginTime,jdbcType=TIMESTAMP}, 
+		#{loginPasswd,jdbcType=VARCHAR},
+		#{registerDate,jdbcType=TIMESTAMP},
+		#{mobilePhone,jdbcType=VARCHAR})
+	</insert>
+
+	<insert id="insertRoleUser" parameterType="com.sbiao360.cmsadmin.model.SysUser">
+		insert into
+		CMS_ROLE_USER (ROLE_ID, USER_ID)
+		values
+		((select ID from CMS_ROLE where ROLE_KEY = #{roleKey}), #{id,jdbcType=BIGINT})
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.SysUser">
+		update
+		CMS_MEMBER_INFO
+		set
+		LOGIN_ID = #{loginId,jdbcType=VARCHAR},
+		CUST_NAME =
+		#{custName,jdbcType=VARCHAR},
+		SEX = #{sex,jdbcType=VARCHAR},
+		ISADMIN =
+		#{isAdmin,jdbcType=TINYINT},
+		BELONG = #{belong,jdbcType=TINYINT},
+		CUST_EMAIL = #{custEmail,jdbcType=VARCHAR},
+		CUST_STATUS =
+		#{custStatus,jdbcType=VARCHAR},
+		DEPT_ID = #{deptId,jdbcType=BIGINT},
+		CUST_BIRTHDAY = #{custBirthday,jdbcType=TIMESTAMP},
+		LAST_LOGINTIME =
+		#{lastLoginTime,jdbcType=TIMESTAMP},
+		LOGIN_PASSWD =
+		#{loginPasswd,jdbcType=VARCHAR},
+		REGISTER_DATE =
+		#{registerDate,jdbcType=TIMESTAMP},
+		MOBILE_PHONE =
+		#{mobilePhone,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateRoleUser" parameterType="com.sbiao360.cmsadmin.model.SysUser">
+		update
+		CMS_ROLE_USER
+		set
+		ROLE_ID = (select ID from CMS_ROLE where ROLE_KEY = #{roleKey})
+		where USER_ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateRoleUserByRoleid" parameterType="java.lang.Long">
+		update
+		CMS_ROLE_USER
+		set
+		ROLE_ID = (select ID from CMS_ROLE where ROLE_KEY = 'ROLE_USER')
+		where ROLE_ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateByProperties" parameterType="java.util.Map">
+		update
+		CMS_MEMBER_INFO
+		<set>
+			<if test="loginId != null and loginId != '' ">
+				LOGIN_ID = #{loginId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null and custName != '' ">
+				CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null and sex != '' ">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="isAdmin != null ">
+				ISADMIN = #{isAdmin,jdbcType=TINYINT},
+			</if>
+			<if test="belong != null ">
+				BELONG = #{belong,jdbcType=TINYINT},
+			</if>
+			<if test="custEmail != null and custEmail != '' ">
+				CUST_EMAIL = #{custEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="custStatus != null and custStatus != '' ">
+				CUST_STATUS = #{custStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deptId != null ">
+				DEPT_ID = #{deptId,jdbcType=BIGINT},
+			</if>
+			<if test="custBirthday != null ">
+				CUST_BIRTHDAY = #{custBirthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginTime != null ">
+				LAST_LOGINTIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginPasswd != null and loginPasswd != '' ">
+				LOGIN_PASSWD = #{loginPasswd,jdbcType=VARCHAR},
+			</if>
+			<if test="registerDate != null ">
+				REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mobilePhone != null and mobilePhone != '' ">
+				MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					d.ROLE_KEY != 'ROLE_ADMIN' or d.ROLE_KEY is null 
+					<if test="eqBelong != null and eqBelong != ''">
+						and a.BELONG = #{eqBelong} 
+					</if>
+					<if test="likeLoginId != null and likeLoginId != ''">
+						and a.LOGIN_ID like CONCAT('%', #{likeLoginId}, '%')
+					</if>
+					<if test="likeCustName != null and likeCustName != ''">
+						and a.CUST_NAME like CONCAT('%', #{likeCustName}, '%')
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by a.${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					d.ROLE_KEY != 'ROLE_ADMIN' or d.ROLE_KEY is null 
+					<if test="eqBelong != null and eqBelong != ''">
+						and a.BELONG = #{eqBelong} 
+					</if>
+					<if
+						test="likeLoginId != null and likeLoginId != '' and likeCustName != null and likeCustName != ''">
+						and (a.LOGIN_ID like CONCAT('%', #{likeLoginId}, '%') or
+						a.CUST_NAME like CONCAT('%', #{likeCustName}, '%'))
+						and (a.LOGIN_ID
+						like CONCAT('%', #{likeLoginId}, '%') or a.CUST_NAME like
+						CONCAT('%', #{likeCustName}, '%'))
+					</if>
+					<if
+						test="likeLoginId != null and likeLoginId != '' and likeCustName != null and likeCustName == ''">
+						and (a.LOGIN_ID like CONCAT('%', #{likeLoginId}, '%'))
+					</if>
+					<if
+						test="likeLoginId != null and likeLoginId == '' and likeCustName != null and likeCustName != ''">
+						and (a.CUST_NAME like CONCAT('%', #{likeCustName}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by a.${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						where d.ROLE_KEY != 'ROLE_ADMIN' or d.ROLE_KEY is null order by a.${sortedObject}
+						${sortedValue}
+					</when>
+					<otherwise>
+						where d.ROLE_KEY != 'ROLE_ADMIN' or d.ROLE_KEY is null order by a.ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.SysUser">
+		select count(*) as num
+		from CMS_MEMBER_INFO a
+		left join CMS_DEPT b on b.ID = a.DEPT_ID
+		left
+		join
+		CMS_ROLE_USER c on c.USER_ID = a.ID
+		left join CMS_ROLE d on d.ID =
+		c.ROLE_ID
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.SysUser">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_MEMBER_INFO a
+		left join CMS_DEPT b on b.ID = a.DEPT_ID
+		left
+		join CMS_ROLE_USER c on c.USER_ID = a.ID
+		left join CMS_ROLE d on d.ID =
+		c.ROLE_ID
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getCountByLoginId" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_MEMBER_INFO where
+		LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getCountByCustEmail" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_MEMBER_INFO where
+		CUST_EMAIL = #{custEmail,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getCountByMobilePhone" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_MEMBER_INFO where
+		MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR}
+	</select>
+</mapper>

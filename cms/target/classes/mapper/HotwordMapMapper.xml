@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HotwordMapMapper">
+	<resultMap id="BaseResultMap" type="hotwordMap">
+		<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+		<result column="hot_word" property="hotWord" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		x.KEYWORDS hot_word, y.CODE_NAME area_name
+	</sql>
+
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from (
+		select
+		a.KEYWORDS, b.LOCATION, a.ACTION_DATE 
+		from CMS_CUST_BEHAVIOR a
+		left join CMS_IP b on a.IP between b.START_IP and b.END_IP
+		order by a.ACTION_DATE desc
+		limit 0,10) x
+		left join (
+		select CODE_NAME
+		from CMS_CODE
+		where CODE_VALUE1 = 3186) y
+		on x.LOCATION like CONCAT('%', y.CODE_NAME, '%') 
+		order by x.ACTION_DATE desc
+	</select>
+
+	<select id="selectLocation" parameterType="java.lang.Long"
+		resultType="java.lang.String">
+		select 
+		LOCATION 
+		from CMS_IP 
+		where #{ip,jdbcType=BIGINT} between START_IP and END_IP
+	</select>
+	
+	<select id="selectInit" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from (
+		select
+		a.KEYWORDS, b.LOCATION, a.ACTION_DATE 
+		from CMS_CUST_BEHAVIOR a
+		left join CMS_IP b on a.IP between b.START_IP and b.END_IP
+		order by a.ACTION_DATE desc
+		limit 0,1) x
+		left join (
+		select CODE_NAME
+		from CMS_CODE
+		where CODE_VALUE1 = 3186) y
+		on x.LOCATION like CONCAT('%', y.CODE_NAME, '%') 
+		order by x.ACTION_DATE desc
+	</select>
+</mapper>

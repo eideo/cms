@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<style type="text/css">
+	ul{
+		width: 800px;
+		margin: 100px auto;
+	}
+	ul li{
+		float: left;
+		position: relative;
+		font-size: 14px;
+		margin-left: 20px;	
+		background: red;
+		height:35px;
+		line-height: 35px;
+	/*	padding-bottom: 100px;
+		background: #ccc;*/
+	}	
+	ul li div{
+		width: 200px;
+		height: 200px;
+		background: #f90;
+		position: absolute;
+		top: 35px;
+		left: 0;
+		/*display: none;*/
+	}
+	ul li div a{
+		float: left;
+		font-size: 14px;
+		margin-left: 20px;
+	}
+</style>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// $('li').mouseover(function(){
+		// 	// alert('over');
+		// 	$(this).find('div').show();
+		// 	// $('div').css('display','none');
+		// 	// $('div').eq($(this).index()).css('display','block');
+		// });
+		// $('li').mouseout(function(){
+		// 	// alert('out');
+		// 	$(this).find('div').hide();
+		// 	return;
+		// 	// $('div').eq($(this).index()).css('display','none');
+		// });
+		// $('div').mouseout(function(){
+		// 	$('div').css('display','none');
+		// })
+		// var abs = ["1","2"]
+		$('li').each(function(i){
+			// alert(i);
+			if(i == 1){
+				$(this).find('span').html('fasdfasfasdfsdfsd');
+			}else{
+				$(this).find('span').html('fasfas');
+			}
+			
+		});
+		// $('li').eq(0).find().html();
+		// $('li').gt()
+		// $('li').
+	})
+</script>
+</head>
+<body>
+	<!-- <div></div> -->
+	<ul class="clearfix">
+		<li>
+			<span>北京</span>
+			<div class="clearfix">
+				<a href="javascript:;">海淀</a>
+				<a href="javascript:;">海淀</a>
+				<a href="javascript:;">海淀</a>
+				<a href="javascript:;">海淀</a>
+				<a href="javascript:;">海淀</a>
+			</div>
+		</li>
+		<li>
+			<span>上海</span>
+			<div style="display:block">
+				<a href="javascript:;">111</a>
+				<a href="javascript:;">222</a>
+				<a href="javascript:;">333</a>
+				<a href="javascript:;">海淀</a>
+				<a href="javascript:;">海淀</a>
+			</div>
+		</li>
+		<li>
+			<span>深圳</span>
+			<div>
+				<a href="javascript:;">石岩</a>
+				<a href="javascript:;">石岩</a>
+				<a href="javascript:;">石岩</a>
+				<a href="javascript:;">石岩</a>
+				<a href="javascript:;">石岩</a>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>

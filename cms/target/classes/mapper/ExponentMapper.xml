@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="exponentMapper">
+	<select id="informationType" parameterType="Map" resultType="Map">	
+		SELECT * FROM ((select SUM(cnum) project from CMS_XM_NUM a where 
+			a.INDUSTRY_ID=#{industryType} 
+			and a.start_date&gt;=#{startDate} 
+			and a.start_date&lt;=#{endDate}) AAAA,
+	(select SUM(cnum) zbgg from CMS_ZBGG_NUM b where 
+			b.INDUSTRY_ID=#{industryType} 
+			and b.start_date&gt;=#{startDate} 
+			and b.start_date&lt;=#{endDate}) BBBB,
+	(select SUM(cnum) zbgs from CMS_ZBGS_NUM c where 
+			c.INDUSTRY_ID=#{industryType} 
+			and c.start_date&gt;=#{startDate} 
+			and c.start_date&lt;=#{endDate}) VVVV)
+	</select>
+ 	<select id="primaryIndustry" parameterType="Map" resultType="Map">
+ 		<if test="informationType==null">
+ 			SELECT
+				t.INDUSTRY_NAME type,
+				t.INDUSTRY_id id,
+				SUM(t.CNUM) value
+			FROM
+				(
+					SELECT
+						*
+					FROM
+						CMS_XM_NUM
+					UNION
+						SELECT
+							*
+						FROM
+							CMS_ZBGG_NUM
+					UNION
+						SELECT
+							*
+						FROM
+							CMS_ZBGS_NUM
+				) t
+				where t.start_date&gt;=#{startDate} and t.start_date&lt;=#{endDate}
+			GROUP BY
+				t.INDUSTRY_NAME
+			ORDER BY
+				t.INDUSTRY_id ASC
+ 		</if>
+ 		<if test="informationType!=null">
+	 		select t.INDUSTRY_NAME type,t.INDUSTRY_id id,SUM(t.CNUM) value from 
+	 		<if test="informationType=='项目'">CMS_XM_NUM</if><if test="informationType=='招标'">CMS_ZBGG_NUM</if><if test="informationType=='中标'">CMS_ZBGS_NUM</if> t 
+	 		where t.start_date&gt;=#{startDate} and t.start_date&lt;=#{endDate}  group by t.INDUSTRY_ID  order by t.INDUSTRY_id asc 
+ 		</if>
+ 	</select>
+	<select id="informationDist" parameterType="Map" resultType="Map">
+		<if test="informationType==null">
+ 			select CONCAT(year(t.START_DATE),LPAD(month(t.START_DATE),2,0))+0 time,
+			SUM(cnum) value 
+			FROM
+				(
+					SELECT
+						*
+					FROM
+						CMS_XM_NUM
+					UNION
+						SELECT
+							*
+						FROM
+							CMS_ZBGG_NUM
+					UNION
+						SELECT
+							*
+						FROM
+							CMS_ZBGS_NUM
+				) t
+				where t.start_date&gt;=#{startDate} and t.start_date&lt;=#{endDate}
+			GROUP BY time order by t.start_date asc
+ 		</if>
+ 		<if test="informationType!=null">
+ 			select CONCAT(year(a.START_DATE),LPAD(month(a.START_DATE),2,0))+0 time,
+			SUM(cnum) value
+			from <if test="informationType=='项目'">CMS_XM_NUM</if><if test="informationType=='招标'">CMS_ZBGG_NUM</if><if test="informationType=='中标'">CMS_ZBGS_NUM</if> a where 
+			a.INDUSTRY_ID=#{industryType} 
+			and a.start_date&gt;=#{startDate} 
+			and a.start_date&lt;=#{endDate} GROUP BY time order by a.start_date asc
+ 		</if>
+		
+	</select>
+	
+	<select id="userSegm" parameterType="Map" resultType="Map">
+		<if test="informationType==null">
+ 			select t.AREA_NAME name,sum(t.CNUM) value 
+			FROM
+				(
+					SELECT
+						*
+					FROM
+						CMS_XM_NUM
+					UNION
+						SELECT
+							*
+						FROM
+							CMS_ZBGG_NUM
+					UNION
+						SELECT
+							*
+						FROM
+							CMS_ZBGS_NUM
+				) t
+				where t.start_date&gt;=#{startDate} and t.start_date&lt;=#{endDate}
+			 GROUP BY t.AREA_NAME order by value desc
+ 		</if>
+ 		<if test="informationType!=null">
+ 			select t.AREA_NAME name,sum(t.CNUM) value from <if test="informationType=='项目'">CMS_XM_NUM</if><if test="informationType=='招标'">CMS_ZBGG_NUM</if><if test="informationType=='中标'">CMS_ZBGS_NUM</if> t 
+			where t.INDUSTRY_ID=#{industryType}
+			and t.start_date&gt;=#{startDate} 
+			and t.start_date&lt;=#{endDate}
+			 GROUP BY t.AREA_NAME order by value desc
+ 		</if>
+	</select>
+	<select id="industryAccounted" parameterType="Map" resultType="Map">
+		select t.COMPANY_TYPE type,SUM(t.CNUM) value from CMS_XM_ROLE_NUM t 
+		where t.COMPANY_TYPE is not null 
+		and t.INDUSTRY_ID=#{industryType}
+		and t.start_date&gt;=#{startDate} 
+		and t.start_date&lt;=#{endDate}
+		GROUP BY t.COMPANY_TYPE
+	</select>
+	<select id="getProjectCount" parameterType="Map" resultType="Map">
+		select sum(t.cnum) projectCount from CMS_XM_NUM t where t.INDUSTRY_ID=#{industryType}
+		and t.start_date&gt;=#{startDate} 
+		and t.start_date&lt;=#{endDate}
+	</select>
+	<select id="getCompanyCount" parameterType="Map" resultType="Map">
+		select sum(t.cnum) companyCount from CMS_XM_COMPANY_NUM t where t.INDUSTRY_ID=#{industryType}
+		and t.start_date&gt;=#{startDate} 
+		and t.start_date&lt;=#{endDate}
+	</select>
+	<select id="competeAccounted" parameterType="Map" resultType="Map">
+		select sum(case WHEN t.CNUM&gt;#{maxNum} THEN 1 ELSE 0 END) strong,sum(case WHEN t.CNUM&lt;=${maxNum} and t.CNUM&gt;=${minNum} THEN 1 ELSE 0 END) middle,sum(case WHEN t.CNUM&lt;2 THEN 1 ELSE 0 END) weak 
+		from CMS_PERXM_COMPANY_NUM t where t.INDUSTRY_ID=#{industryType}
+		and t.start_date&gt;=#{startDate} 
+		and t.start_date&lt;=#{endDate}
+	</select>
+	
+</mapper>

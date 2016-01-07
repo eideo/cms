@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sitemesh>   
+
+   <!--  <mapping path="/home" decorator="/WEB-INF/decorators/portalbase.jsp"/> 
+    -->
+   <!-- 对同一路径，启用多个装饰器 -->
+<!--    <mapping>
+     <path>/admin/*</path>
+     <decorator>/WEB-INF/decorators/admin-base.jsp</decorator>
+     <decorator>/WEB-INF/decorators/base.jsp</decorator>
+   </mapping> -->
+   
+   
+    <!-- Exclude path from decoration. -->  
+    <mapping path="/common/*" exclude="true"/> 
+   <mapping path="/resources/*" exclude="true"/>  
+   <mapping path="/error/*" exclude="true"/>  
+   <mapping path="*.html" exclude="true"/>  
+   <mapping path="/htmlTemp/*" exclude="true"/> 
+   <mapping path="*loginIframe*" exclude="true"/> 
+   <mapping path="*test*" exclude="true"/>  
+   <mapping path="*about*" exclude="true"/>  
+   
+   <mapping path="/register" decorator="/WEB-INF/decrators/loginDecorator.jsp"/> 
+   <mapping >
+   	<path>/detail</path>
+   	<decorator>/WEB-INF/decrators/commonDecorator.jsp</decorator>
+   </mapping>
+   
+    <mapping>
+   	<path>/search</path>
+   	<decorator>/WEB-INF/decrators/commonDecorator.jsp</decorator>
+   </mapping>
+   
+   <mapping path="/homepage" decorator="/WEB-INF/decrators/homepageDecorator.jsp"/> 
+   <mapping path="/" decorator="/WEB-INF/decrators/homepageDecorator.jsp"/> 
+    <!-- 自定义 tag 规则 -->
+   <content-processor>
+      <tag-rule-bundle class="com.sbiao360.cms.base.tag.TagCustomRuleBundle"/> 
+   </content-processor>
+    
+</sitemesh>  

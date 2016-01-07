@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SysMethodTimeLogMapper">
+	<resultMap id="BaseResultMap" type="sysMethodTimeLog">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="EXEC_METHOD" property="execMethod" jdbcType="VARCHAR" />
+		<result column="EXEC_TIME" property="execTime" jdbcType="BIGINT" />
+		<result column="INSERT_DATE" property="insertDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, EXEC_METHOD, EXEC_TIME, INSERT_DATE
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_SYS_METHOD_TIME_LOG
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_SYS_METHOD_TIME_LOG
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="sysMethodTimeLog"
+		useGeneratedKeys="true" keyProperty="ID">
+		insert into
+		CMS_SYS_METHOD_TIME_LOG (EXEC_METHOD, EXEC_TIME,
+		INSERT_DATE)
+		values (#{execMethod,jdbcType=VARCHAR},
+		#{execTime,jdbcType=BIGINT},
+		#{insertDate,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="updateByPrimaryKey" parameterType="sysMethodTimeLog">
+		update
+		CMS_SYS_METHOD_TIME_LOG
+		set EXEC_METHOD =
+		#{execMethod,jdbcType=VARCHAR},
+		EXEC_TIME =
+		#{execTime,jdbcType=BIGINT},
+		INSERT_DATE =
+		#{insertDate,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

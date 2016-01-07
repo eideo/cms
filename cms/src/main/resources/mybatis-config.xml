@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings> 
+		<!-- changes from the defaults -->
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+      
+	<typeAliases> 
+		<typeAlias alias="user" type="com.sbiao360.cms.domain.User" />
+		<typeAlias alias="customerKeywords" type="com.sbiao360.cms.domain.CustomerKeywords" />
+		<typeAlias alias="publishInfo" type="com.sbiao360.cms.domain.PublishInfo" />
+		<typeAlias alias="project" type="com.sbiao360.cms.domain.Project" />
+		<typeAlias alias="projectContacts" type="com.sbiao360.cms.domain.ProjectContacts" />
+		<typeAlias alias="projectCompany" type="com.sbiao360.cms.domain.ProjectCompany" />
+		<typeAlias alias="hotwordMap" type="com.sbiao360.cms.domain.HotwordMap" />
+		<typeAlias alias="custBehavior" type="com.sbiao360.cms.domain.CustBehavior" />
+		<typeAlias alias="keywordsDict" type="com.sbiao360.cms.domain.KeywordsDict" />
+		<typeAlias alias="keywordsException" type="com.sbiao360.cms.domain.KeywordsException" />
+		<typeAlias alias="industryBoom" type="com.sbiao360.cms.domain.IndustryBoom" />
+		<typeAlias alias="industryAttention" type="com.sbiao360.cms.domain.IndustryAttention" />
+		<typeAlias alias="sysMethodTimeLog" type="com.sbiao360.sys.performance.domain.SysMethodTimeLog" />
+		<typeAlias alias="memberInfo" type="com.sbiao360.cms.domain.MemberInfo" />
+		<typeAlias alias="code" type="com.sbiao360.cms.domain.Code" />
+		<typeAlias alias="rankingData" type="com.sbiao360.cms.domain.RankingData" />
+		<typeAlias alias="ReportMain" type="com.sbiao360.cms.domain.ReportMain" />
+		<typeAlias alias="ReportDirectory" type="com.sbiao360.cms.domain.ReportDirectory" />
+		<typeAlias alias="company" type="com.sbiao360.cms.domain.Company" />
+		<typeAlias alias="PersonalCustBehavior" type="com.sbiao360.cms.domain.PersonalCustBehavior" />
+	</typeAliases>
+
+	<plugins>
+
+		    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+		    <plugin interceptor="com.github.pagehelper.PageHelper">
+		        <property name="dialect" value="mysql"/>
+		        <!-- 该参数默认为false -->
+		        <!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
+		        <!-- 和startPage中的pageNum效果一样-->
+		        <property name="offsetAsPageNum" value="true"/>
+		        <!-- 该参数默认为false -->
+		        <!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+		        <property name="rowBoundsWithCount" value="true"/>
+		        <!-- 设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果 -->
+		        <!-- （相当于没有执行分页查询，但是返回结果仍然是Page类型）-->
+		        <property name="pageSizeZero" value="true"/>
+		        <!-- 3.3.0版本可用 - 分页参数合理化，默认false禁用 -->
+		        <!-- 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
+		        <!-- 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据 -->
+		        <property name="reasonable" value="true"/>
+		    </plugin>
+		    
+	</plugins>
+	 
+	<mappers> 
+		<mapper resource="mapper/UserMapper.xml" />
+		<mapper resource="mapper/CustomerKeywordsMapper.xml" />
+		<mapper resource="mapper/PublishInfoMapper.xml" />
+		<mapper resource="mapper/RelationMapper.xml" />
+		<mapper resource="mapper/HotwordMapMapper.xml" />
+		<mapper resource="mapper/CustBehaviorMapper.xml" />
+		<mapper resource="mapper/KeywordsDictMapper.xml" />
+		<mapper resource="mapper/KeywordsExceptionMapper.xml" />
+		<mapper resource="mapper/IndustryBoomMapper.xml" />
+		<mapper resource="mapper/IndustryAttentionMapper.xml" />
+		<mapper resource="mapper/SysMethodTimeLogMapper.xml" />
+		<mapper resource="mapper/MemberInfoMapper.xml" />
+		<mapper resource="mapper/CodeMapper.xml" />
+		<mapper resource="mapper/RankingMapper.xml" />
+		<mapper resource="mapper/ReportMainMapper.xml" />
+		<mapper resource="mapper/ReportDirectoryMapper.xml" />
+		<mapper resource="mapper/ExponentMapper.xml"/>
+		<mapper resource="mapper/PersonalMapper.xml" />
+	</mappers>
+
+</configuration>

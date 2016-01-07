@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DepartmentMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.Department">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+		<result column="DEPT_KEY" property="deptKey" jdbcType="VARCHAR" />
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+		<result column="PARENT_DEPT_KEY" property="parentDeptKey"
+			jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="CREATE_USER_ID" property="createUserId"
+			jdbcType="BIGINT" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="PARENT_DEPT_NAME" property="parentDeptName" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE_CN" property="createDateCn" jdbcType="VARCHAR" />
+		<result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		a.ID as ID, a.COMPANY_NAME as COMPANY_NAME, a.DEPT_KEY as DEPT_KEY, 
+		a.DEPT_NAME as DEPT_NAME, a.PARENT_DEPT_KEY as PARENT_DEPT_KEY,
+		a.CREATE_DATE as CREATE_DATE, a.CREATE_USER_ID as CREATE_USER_ID, a.NOTE as NOTE,
+		(select b.DEPT_NAME from CMS_DEPT b where b.DEPT_KEY = a.PARENT_DEPT_KEY) as PARENT_DEPT_NAME,
+		date_format(a.CREATE_DATE, '%Y-%m-%d %H:%i:%s') as CREATE_DATE_CN,
+		(select LOGIN_ID from CMS_MEMBER_INFO where ID = a.CREATE_USER_ID) as CREATE_USER 
+	</sql>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_DEPT a 
+		where a.ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="getByDeptKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_DEPT a
+		where a.DEPT_KEY = #{deptKey,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		CMS_DEPT
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.Department">
+		insert into CMS_DEPT
+		(COMPANY_NAME, DEPT_KEY,
+		DEPT_NAME, PARENT_DEPT_KEY, CREATE_DATE,
+		CREATE_USER_ID, NOTE)
+		values (#{companyName,jdbcType=VARCHAR},
+		#{deptKey,jdbcType=VARCHAR},
+		#{deptName,jdbcType=VARCHAR},
+		#{parentDeptKey,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{createUserId,jdbcType=BIGINT}, #{note,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.Department">
+		update CMS_DEPT
+		set
+		COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+		DEPT_KEY =
+		#{deptKey,jdbcType=VARCHAR},
+		DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+		PARENT_DEPT_KEY = #{parentDeptKey,jdbcType=VARCHAR},
+		CREATE_DATE =
+		#{createDate,jdbcType=TIMESTAMP},
+		CREATE_USER_ID =
+		#{createUserId,jdbcType=BIGINT},
+		NOTE = #{note,jdbcType=VARCHAR}
+		where
+		ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					1 = 1 
+					<if test="eqDeptKey != null and eqDeptKey != ''">
+						and a.DEPT_KEY = #{eqDeptKey} 
+					</if>
+					<if test="likeDeptName != null and likeDeptName != ''">
+						and a.DEPT_NAME like CONCAT('%', #{likeDeptName}, '%')
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by a.${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					1 = 1 
+					<if
+						test="eqDeptKey != null and eqDeptKey != '' and likeDeptName != null and likeDeptName != ''">
+						and (a.DEPT_KEY = #{eqDeptKey} or
+						a.DEPT_NAME like CONCAT('%', #{likeDeptName}, '%'))
+						and (a.DEPT_KEY = #{eqDeptKey} or a.DEPT_NAME like
+						CONCAT('%', #{likeDeptName}, '%'))
+					</if>
+					<if
+						test="eqDeptKey != null and eqDeptKey != '' and likeDeptName != null and likeDeptName == ''">
+						and (a.DEPT_KEY = #{eqDeptKey})
+					</if>
+					<if
+						test="eqDeptKey != null and eqDeptKey == '' and likeDeptName != null and likeDeptName != ''">
+						and (a.DEPT_NAME like CONCAT('%', #{likeDeptName}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by a.${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						where 1 = 1 order by a.${sortedObject} ${sortedValue}
+					</when>
+					<otherwise>
+						where 1 = 1 order by a.ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.Department">
+		select count(*) as num
+		from CMS_DEPT a 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.Department">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_DEPT a 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getDropDownList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_DEPT a
+	</select>
+
+	<select id="getDeptSelectNoSelfList" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_DEPT a
+		where 
+		<![CDATA[
+			a.DEPT_KEY <> #{deptKey,jdbcType=VARCHAR} 
+		]]>
+	</select>
+
+	<select id="getCountByDeptKey" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_DEPT where
+		DEPT_KEY =
+		#{deptKey,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getCountByParentDeptKey" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(*) as num from CMS_DEPT where
+		DEPT_KEY =
+		#{parentDeptKey,jdbcType=VARCHAR}
+	</select>
+</mapper>

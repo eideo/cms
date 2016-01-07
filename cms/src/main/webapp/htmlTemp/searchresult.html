@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索结果</title>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/searchresult.css">
+	<script src="js/echarts-all.js"></script>
+	<script type="text/javascript" src="js/ichart.latest.min.js"></script>
+	<script type="text/javascript" src="js/sr_chart.js"></script>
+	<script type="text/javascript" src="js/searchresult.js"></script>
+	<script src="js/jquery-1.7.2.js"></script>
+</head>
+<body>
+<!-- 	顶部导航 -->
+<div class="header">
+	<div class="user-nav clearfix">
+		<ul class="user-info clearfix">
+			<li><a href="../homepage">登录</a></li>
+			<li>|</li>
+			<li><a href="register.html">注册</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">个人中心</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 主导航	 -->
+<div class="main-nav clearfix">
+	<h1 class="logo">关系网</h1>
+	<ul class="nav">
+		<li><a href="index.html" style="color:#47aaff">首页</a></li>
+		<li><a href="javascript:;">关系网</a></li>
+		<li><a href="javascript:;">行业指数</a></li>
+		<li><a href="javascript:;">排行榜</a></li>
+		<li><a href="javascript:;">行业报告</a></li>
+	</ul>
+</div>
+
+<!-- 搜索框 -->
+<div class="search-bg">
+	<div class="search clearfix">
+		<form>
+			<input type="text" class="searchBox" placeholder="请输入您要搜索的内容">
+			<div class="sIcon"></div>
+			<input type="button" class="searchBtn" value="搜索" id="btn">
+		</form>
+	</div>
+</div>
+
+<!-- 搜索条件 -->
+<div class="searchTerms">
+	<div class="typeBox clearfix" id="typeBox">
+		<div class="strong">内 容:</div>
+		<ul class="type clearfix" id="dtype">
+			<li><a href="javascript:;">不限</a></li>
+			<li class="active"><a href="javascript:;">项目</a></li>
+			<li><a href="javascript:;">招标</a></li>
+			<li><a href="javascript:;">中标</a></li>
+		</ul>
+	</div>
+	<div class="areaBox clearfix" id="areaBox">
+		<div class="strong">地 区:</div>
+		<ul class="area clearfix" id="dcity">
+			<li>不限
+				<div class="hidden"></div>
+			</li>
+			<li>北京
+				<div class="hidden clearfix">
+					<i></i>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">石景山区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">石景山区</a> 	
+				</div>
+			</li>
+			<li>上海
+				<div class="hidden clearfix">
+					<i></i>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">石景山区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">石景山区</a> 	
+				</div>
+			</li>
+			<li>重庆
+				<div class="hidden clearfix">
+					<i></i>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">石景山区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">朝阳区</a>
+					<a href="javascript:;">石景山区</a> 	
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="tradeBox clearfix" id="tradeBox">
+		<div class="strong">行 业:</div>
+		<ul class="trade clearfix" id="dtrade">
+			<li><a href="javascript:;">不限</a></li>
+			<li><a href="javascript:;">轻工</a></li>
+			<li class="active"><a href="javascript:;">能源</a></li>
+			<li><a href="javascript:;">化工</a></li>
+			<li><a href="javascript:;">机械电子</a></li>
+			<li><a href="javascript:;">交通运输</a></li>
+			<li><a href="javascript:;">公共设施</a></li>
+			<li><a href="javascript:;">医疗卫生</a></li>
+			<li><a href="javascript:;">农业水利</a></li>
+			<li><a href="javascript:;">房地产建筑</a></li>
+			<li><a href="javascript:;">科技文教旅游</a></li>
+			<li class="more"><a href="javascript:;">更多</a></li>
+		</ul>
+	</div>
+	<div class="termBox clearfix">
+		<div class="strong2">已选条件:</div>
+		<div class="term clearfix" id="term">
+			<div class="term1 clearfix" id="term1">
+				<h5>内容：</h5><span>项目</span>
+			</div>
+			<div class="term2 clearfix" id="term2">
+				<h5>地区：</h5><i>北京-</i><span>海淀</span>
+			</div>
+			<div class="term3 clearfix" id="term3">
+				<h5>行业：</h5>
+				<span>能源</span>
+			</div>
+		</div>
+		<p>共用<em>15</em>秒搜索到<em>15000</em>条信息</p>
+	</div>
+</div>
+
+<!-- 搜索结果图 -->
+<div class="chartBox clearfix">
+	<div class="leftImg">
+		<h3>搜索信息比例图</h3>
+		<div id="leftChart"></div>
+		<div class="legend clearfix">
+			<h4>信息内容比例图</h4>
+			<p class="clearfix">
+				<span class="le1">项目</span>
+				<span class="le2">招标</span>
+				<span class="le3">中标</span>
+			</p>
+		</div>
+	</div>
+	<div class="centerImg">
+		<div id="centerChart"></div>
+		<h4>地区比例图</h4>
+	</div>
+	<div class="rightImg">
+		<div id="rchart"></div>
+	</div>
+
+</div>
+
+<!-- 搜索结果 -->
+<div class="result">
+	<h3>搜索信息结果（共<span>5000</span>条）</h3>
+	<ul class="resultList" id="list">
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+		<li>
+			<a href="javascript:;" class="rpage"></a>
+			<h4 class="clearfix">
+				<a href="javascript:;" class="h">云南省临沧市耿马县勐永镇配套2014年抗旱应急工程招标公告</a>
+				<a href="javascript:;" class="ind">房地产建筑</a>
+				<a href="javascript:;" class="add">河北-廊坊</a>
+				<a href="javascript:;" class="bid">中标</a>
+			</h4>
+			<p>
+				招标代理公司（登录 查看）受业主单位（登录 查看） 委托，于2015-09-22在中国采购与招标网发布 松花江避暑城配水管网工程一期工程施工招标公告。现邀请全国供应商参与投标，有意向的单位请及时联系项目联系人参与投标。 招 标 公 告 项目编号XX 因第一次报名单位不足三家，现发布二次招标公告..
+			</p>
+			<p class="info clearfix">
+				<span class="time">发布时间：<i>2014-09-12</i></span>
+				<a href="javascript:;" class="attention">关注</a>
+				<a href="javascript:;" class="collection">收藏</a>
+				<a href="javascript:;" class="share">分享</a>
+			</p>
+		</li>
+	</ul>
+</div>
+<!-- 分页按钮 -->
+<div class="page clearfix" id="page">
+	<a href="javascript:;">上一页</a>
+	<a href="javascript:;">1</a>
+	<a href="javascript:;">2</a>
+	<a href="javascript:;">3</a>
+	<a href="javascript:;">4</a>
+	<a href="javascript:;">5</a>
+	<a href="javascript:;">···</a>
+	<a href="javascript:;">999</a>
+	<a href="javascript:;" class="last">下一页</a>
+</div>
+
+<!-- 相关搜索 -->
+<div class="rel-search">
+	<div class="rSearch">
+		<h4>相关搜索</h4>
+		<a href="javascript:;">建筑北京</a>
+		<a href="javascript:;">建筑房地产</a>
+		<a href="javascript:;">建筑深圳</a>
+		<a href="javascript:;">建筑化工</a>
+	</div>
+</div>
+
+<!-- 底部信息 -->
+<div class="footer-bg">
+	<div class="footer clearfix">
+		<ul class="clearfix">
+			<li><a href="javascript:;">关于我们</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">网站导航</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">版本所有</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">友情链接</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">联系我们</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">招聘信息</a></li>
+		</ul>
+		<p>Copyright©2001-2015 中国采购与招标网 Rights Reserved 京ICP证070104号 京公网安备 11010802011112号</p>
+	</div>
+</div>
+
+</body>
+</html>

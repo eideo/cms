@@ -1,0 +1,625 @@
+@charset "utf-8";
+
+/* 顶部 */
+.header{
+	min-width: 1200px;
+	height: 30px;
+	background: #f3f3f3;
+}
+.user-nav{
+	width:1200px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 auto; 
+}
+.user-info{
+	float: right;
+}
+.user-info li{
+	display: inline-block;
+	margin-left: 8px;
+	color: #5e5e5e;
+}
+.user-info li a{
+	color: #5e5e5e;
+	font-family: 'Microsoft YaHei';
+}
+
+/*主导航和logo*/
+.main-nav{
+	width: 1200px;
+	height: 90px;
+	line-height: 90px;
+	margin: 0 auto;
+}
+.logo{
+	width: 118px;
+	height: 30px;
+	background: url(../images/logo.png) no-repeat;
+	text-indent: -9999em;
+	float: left;
+	margin-top: 26px;
+}
+
+.nav{
+	float: left;
+	margin-left: 75px;
+}
+.nav li{
+	display: inline-block;
+	margin-left: 86px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.nav li a:hover{
+	color: #47aaff;
+}
+
+/*搜索框*/
+.search-bg{
+	min-width: 1200px;
+	background: #1269b3;	
+	height: 570px;
+	position: relative;
+}
+.bannar{
+	width: 1200px;
+	height: 570px;
+	margin: 0 auto;
+	position: relative;
+}
+.shadow{
+	width: 100%;
+	height: 170px;
+	background: #000;
+	opacity: 0.4;
+	filter:alpha(opacity:40);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.search-box{
+	width: 640px;
+	height: 170px;
+	position: absolute;
+	left: 280px;
+	top:450px;
+	z-index: 20;
+}
+.search{
+	position: relative;
+}
+.search input{
+	width: 478px;
+	height: 50px;
+	border: none;
+	background: #fff;
+	float: left;
+	padding-left: 56px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.search span{
+	display: block;
+	width: 56px;
+	height: 40px;
+	background: url(../images/search.png);
+	position: absolute;
+	left: 0;
+	top:6px;
+}
+.search button{
+	width: 106px;
+	height: 50px;
+	border: none;
+	float: left;
+	background: #47aaff;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	cursor: pointer;
+}
+.search-words{
+	margin-top: 25px;
+}
+.search-words .hotword{
+	margin-right: 0;
+}
+.search-words a{
+	float: left;
+	margin-right: 20px;
+	color: #dde4eb;
+}
+
+/*隐藏搜索框*/
+.searchhide{
+	width: 100%;
+	height: 99px;
+	background: url(../images/s2-bg.png);
+	position: fixed;
+	top: 0;
+	margin: 0 auto;
+	display: none;
+	z-index: 9999;
+}
+.search-box2{
+	width: 1200px;
+	height: 90px;
+	margin: 0 auto;
+}
+.s2{
+	float: left;
+	margin-top: 16px;
+	margin-left: 54px;
+	position: relative;
+}
+.s2 input{
+	width: 700px;
+	height: 42px;
+	border: 2px solid #47aaff;
+	float: left;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	padding-left: 58px;
+}
+.s2 span{
+	display: block;
+	width: 56px;
+	height: 40px;
+	background: url(../images/search.png);
+	position: absolute;
+	left: 3px;
+	top:3px;
+}
+.s2 button{
+	width: 142px;
+	height: 46px;
+	border: 2px solid #47aaff;
+	background: #47aaff;
+	float: left;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/*F1行业指数*/
+.f1{
+	width: 1200px;
+	margin:70px auto;
+}
+h2{
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+}
+h2 em{
+	float: left;
+	margin-right: 10px;
+}
+h2 i{
+	float: left;
+	margin-right: 15px;
+}
+h2 span{
+	width: 1064px;
+	height: 1px;
+	display: block;
+	background: #eaeaea;
+	float: left;
+	margin-top: 14px;
+}
+.f1 .chart{
+	width: 1200px;
+}
+.f1 .left-chart{
+	float: left;
+	margin-top: 100px;
+}
+.f1 .left-chart  li{
+	float: left;
+	margin-left: 17px;
+}
+.f1 .icon1{
+	display: block;
+	width: 20px;
+	height: 12px;
+	background:#ff5256; 
+	margin-top: 4px;
+}
+.f1 .icon2{
+	display: block;
+	width: 20px;
+	height: 12px;
+	background:#25cbc1; 
+	margin-top: 4px;
+}
+
+.f1 .icon3{
+	display: block;
+	width: 20px;
+	height: 12px;
+	background:#38e5ff; 
+	margin-top: 4px;
+}
+
+.f1 .icon4{
+	display: block;
+	width: 20px;
+	height: 12px;
+	background:#ffa938; 
+	margin-top: 4px;
+}
+
+.f1 .icon5{
+	display: block;
+	width: 20px;
+	height: 12px;
+	background:#fce22a; 
+	margin-top: 4px;
+}
+.f1 .icon6{
+	display: block;
+	width: 20px;
+	height: 12px;
+	background:#4ad486; 
+	margin-top: 4px;
+}
+.f1 .right-chart{
+	width: 561px;
+	float: left;
+	margin-top: 120px;
+}
+.f1 .right-chart h3{
+	color: #5e5e5e;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.f1 .right-chart h3 a{
+	color: #5e5e5e;
+}
+.f1 .right-chart h3 a:hover{
+	color:#47aaff;
+}
+.f1 .right-chart h3 strong{
+	color: #333;
+	font-size: 18px;
+	font-weight: bold;
+}
+.f1 .right-chart ul{
+	margin-left: 270px;
+}
+.f1 .right-chart img{
+	margin-top: 10px;
+}
+.f1 .right-chart li{
+	float: left;
+	margin-left: 10px;
+	color: #888;
+}
+.f1 .right-chart .icon1{
+	margin-left: 22px;
+}
+.f1 .right-chart .icon2{
+	margin-left: 22px;
+	background: #25cbc1;
+}
+.f1 .right-chart .bar-chart{
+	margin-top: 30px;
+}
+.f1 .right-chart .bar-chart img{
+	margin-left: 10px;
+}
+
+/*排行榜*/
+.f2{
+	width: 1200px;
+	margin:70px auto;
+}
+.f2 .chart{
+	margin-top: 120px;
+}
+.f2 .chart .map{
+	width: 800px;
+	height: 500px;
+	background: #ccc;
+	float: left;
+}
+.f2 .chart .key-words{
+	float: right;
+	width: 290px;
+	margin-top: 100px;
+}
+.a1{
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+	float: left;
+}
+.a2{
+	float: left;
+	color: #888;
+	float: right; 
+}
+#words{
+	width: 290px;
+	height: 310px;
+	border: 1px solid #f2f2f2;
+	border-top: 2px solid #47aaff;
+	margin-top: 15px;
+	position: relative;
+}
+#words a{position:absolute;top:0px;left:0px;color:#7a7a7a
+	;font-weight:bold;padding:3px 6px;}
+#words a:hover{background:#ff4444;border-radius:4px;color: #fff;}
+
+
+.f2 .hot{
+	margin-top: 60px;
+}
+.f2 .hot .info{
+	float: left;
+	width: 520px;
+}
+.f2 .hot .company{
+	float: right;
+	width: 650px;
+}
+.f2 .info-de{
+	width: 520px;
+	border: 1px solid #f2f2f2;
+	border-top: 2px solid #47aaff;
+	margin-top: 15px;
+}
+.f2 .info-de li{
+	height: 45px;
+	line-height: 40px;
+	border-left: 1px solid #fff;
+	border-bottom: 1px dotted #ebebeb;
+	font-size: 14px;
+}
+.f2 .info-de li.on{
+	background: #f8f8f8;
+	border-left: 1px solid #47aaff;
+}
+.f2 .info-de i{
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	background: #ebebeb;
+	margin-left: 25px;
+	margin-top: 10px;
+}
+.f2 .info-de span{
+	float: left;
+}
+.f2 .info-de .num{
+	margin-left: 30px;
+}
+.f2 .info-de .rank{
+	width: 40px;
+	height: 40px;
+	margin-left: 12px;
+	padding-left: 20px;
+	background: url(../images/rank.png) no-repeat 0 14px;
+	float: left;
+}
+.f2 .info-de .title{
+	float: left;
+	margin-left: 36px;
+	width: 265px;
+
+}
+.f2 .company-de{
+	width: 650px;
+	border: 1px solid #f2f2f2;
+	border-top: 2px solid #47aaff;
+	margin-top: 15px;
+}
+.f2 .company-de li{
+	height: 45px;
+	line-height: 40px;
+	border-bottom: 1px dotted #ebebeb;
+	border-left: 1px solid #fff;
+	font-size: 14px;
+}
+.f2 .company-de li.on{
+	background: #f8f8f8;
+	border-left: 1px solid #47aaff;
+}
+.f2 .company-de i{
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	background: #ebebeb;
+	margin-left: 25px;
+	margin-top: 10px;
+}
+.f2 .company-de span{
+	float: left;
+}
+.f2 .company-de .num{
+	margin-left: 52px;
+}
+.f2 .company-de .rank{
+	width: 40px;
+	height: 40px;
+	margin-left: 40px;
+	padding-left: 20px;
+	background: url(../images/rank.png) no-repeat;
+	float: left;
+	position: relative;
+	top: 14px;
+}
+.f2 .company-de .star{
+	float: left;
+	margin-top: 4px;
+	margin-left: 20px;
+	display: block;
+	width: 73px;
+	height: 12px;
+	background: url(../images/star1.png);
+	margin-top: 14px;
+}
+.f2 .company-de .title{
+	float: left;
+	margin-left: 36px;
+
+}
+
+/*行业报告*/
+.f3{
+	width: 1200px;
+	margin:70px auto;
+}
+.f3 ul{
+	margin-top: 100px;
+}
+.f3 ul li{
+	float: left;
+	width: 290px;
+	margin-right: 12px;
+}
+.f3 ul li a{
+	color: #aaa;
+}
+.f3 ul li div{
+	margin-bottom: 16px;
+}
+.f3 .report1{
+	width: 290px;
+	height: 178px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	background: #fcdd86;
+}
+.f3 .report1:hover{
+	background: #f8d77b;
+}
+.f3 .report2{
+	width: 290px;
+	height: 178px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	background: #42d3ba;
+}
+.f3 .report2:hover{
+	background: #2acdb1;
+}
+.f3 .report3{
+	width: 290px;
+	height: 178px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	background: #fc7a72;
+}
+.f3 .report3:hover{
+	background: #fb746b;
+}
+.f3 .report4{
+	width: 290px;
+	height: 178px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	background: #85b4e2;
+}
+.f3 .report4:hover{
+	background: #75ace3;
+}
+.f3 ul li h5{
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-top: 16px;
+}
+.f3 ul li h5 a{
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+}
+.f3 ul li p{
+	margin-left: 10px;
+}
+.f3 .last{
+	margin-right: -12px;
+}
+.bolang{
+	min-width: 1200px;
+	height: 143px;
+	background: url(../images/bolang.png);
+}
+
+.footer-bg{
+	min-width: 1200px;
+	height: 100px;
+	background: #424242;
+}
+.footer{
+	width: 1200px;
+	height: 100px;
+	line-height: 100px;
+	margin: 0 auto;
+	color: #9e9e9e;
+}
+.footer ul{
+	float: left;
+}
+.footer ul li{
+	float: left;
+	margin-right: 4px;
+}
+.footer p{
+	float: right;
+	font-size: 12px;
+}
+.footer a{
+	color: #9e9e9e;
+	font-size: 12px;
+}
+#btn{
+	width: 85px;
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	z-index: 9999;
+	display:none;
+}
+#btn #feedback{
+	width: 85px;
+	height: 84px;
+	background: url(../images/btn1.png);
+	cursor: pointer;
+}
+#btn #gotop{
+	width: 83px;
+	height: 83px;
+	border: 1px solid #ccc;
+	background: #fff;
+	cursor: pointer;
+}
+#btn #gotop span{
+	width: 83px;
+	height:16px; 
+	display: block;
+	background:url(../images/btn2.png);
+	margin-top: 20px;
+}
+#btn #gotop a{
+	display: block;
+	width: 83px;
+	margin-top: 15px;
+	text-align: center;
+	font-weight: bold;
+	color: #888;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="industryBoomMapper">
+  
+  	<select id="selectIndustryBoom" parameterType="Map" resultType="Map">
+  		 select year(t.DATA_DATE) datayear,MONTH(t.DATA_DATE) datamonth,sum(t.ICI) iciNum,t.INDUSTRY1_ID industry from CMS_INDUSTRY_BOOM t 
+		<where>
+			<if test="endDate!=null">
+			  and t.DATA_DATE&lt;=#{endDate} 
+			</if>
+			<if test="startDate">
+			  and t.DATA_DATE&gt;=#{startDate} 
+			</if>
+			<if test="endDate!=null">
+			  and t.INDUSTRY1_ID&lt;=#{industry} 
+			</if>
+		</where> 
+		GROUP BY datayear,datamonth,industry
+		order by datayear asc,datamonth asc
+  	</select>
+</mapper>

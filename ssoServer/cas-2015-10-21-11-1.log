@@ -1,0 +1,83 @@
+2015-10-21 11:00:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:00:23,599 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:02:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:02:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:04:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:04:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:06:23,607 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:06:23,607 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:08:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:08:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:10:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:10:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:12:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:12:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:14:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:14:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:16:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:16:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:18:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:18:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:20:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:20:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:22:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:22:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:24:07,363 INFO [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - AcceptUsersAuthenticationHandler failed authenticating null+password
+2015-10-21 11:24:07,394 INFO [org.jasig.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: null+password
+WHAT: supplied credentials: [null+password]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Wed Oct 21 11:24:07 GMT+08:00 2015
+CLIENT IP ADDRESS: 192.168.8.129
+SERVER IP ADDRESS: 192.168.8.129
+=============================================================
+
+
+2015-10-21 11:24:07,394 INFO [org.jasig.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: null+password
+WHAT: supplied credentials: [null+password]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Wed Oct 21 11:24:07 GMT+08:00 2015
+CLIENT IP ADDRESS: 192.168.8.129
+SERVER IP ADDRESS: 192.168.8.129
+=============================================================
+
+
+2015-10-21 11:24:07,396 INFO [org.jasig.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: null+password
+WHAT: 1 errors, 0 successes
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Wed Oct 21 11:24:07 GMT+08:00 2015
+CLIENT IP ADDRESS: 192.168.8.129
+SERVER IP ADDRESS: 192.168.8.129
+=============================================================
+
+
+2015-10-21 11:24:07,396 INFO [org.jasig.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: null+password
+WHAT: 1 errors, 0 successes
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Wed Oct 21 11:24:07 GMT+08:00 2015
+CLIENT IP ADDRESS: 192.168.8.129
+SERVER IP ADDRESS: 192.168.8.129
+=============================================================
+
+
+2015-10-21 11:24:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:24:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:26:23,593 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:26:23,594 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:28:23,595 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:28:23,596 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:30:23,596 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:30:23,596 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:32:23,606 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:32:23,607 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.

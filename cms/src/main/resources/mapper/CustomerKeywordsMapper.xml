@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="customerKeywordsMapper">
+  
+ 	 <resultMap id="ResultKeywords" type="customerKeywords" >
+	    <result column="record_id" property="recordId" jdbcType="VARCHAR" />
+	    <result column="cust_id" property="custId" jdbcType="INTEGER" />
+	    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+	    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+	    <result column="keywords_type" property="keywordsType" jdbcType="VARCHAR" />
+	    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+	    <result column="note" property="note" jdbcType="VARCHAR" />
+	    <result column="confirm_date" property="confirmDate" jdbcType="TIMESTAMP" />
+	    <result column="ip" property="ip" jdbcType="INTEGER" />
+	  </resultMap>
+	  
+	  <sql id="keywordsColumns">
+	  	record_id,cust_id,login_name,cust_name,keywords_type,keywords,note,confirm_date,ip
+	  </sql>
+	  
+	  <insert id="insertKeywords" parameterType="customerKeywords">
+	  	insert into CMS_CUSTOMER_KEYWORDS 
+	  	( <include refid="keywordsColumns" />  )
+	  	values (#{recordId,jdbcType=VARCHAR},#{custId,jdbcType=INTEGER},#{loginName,jdbcType=VARCHAR},#{custName,jdbcType=VARCHAR},#{keywordsType,jdbcType=VARCHAR},#{keywords,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{confirmDate,jdbcType=TIMESTAMP},#{ip,jdbcType=INTEGER})
+	  </insert>
+	  
+	  <select id="selectLikeKeywords" resultType="customerKeywords" parameterType="Map">
+		select t.keywords from CMS_CUSTOMER_KEYWORDS t
+		<if test="keywords!=null">
+		 where t.keywords like  CONCAT('%',#{keywords},'%' ) 
+		</if>
+		<if test="keywords==null">
+		 where LENGTH(t.keywords)&gt;=#{minLength} AND  LENGTH(t.keywords)&lt;=#{maxLength}
+		</if>
+		 GROUP BY t.keywords ORDER BY COUNT(t.record_id) DESC
+	  </select>
+	  
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	    http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<description>Spring-Service配置</description>
+
+	<bean id="configProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="properties" ref="configProperties" />
+	</bean>
+
+	<!-- 此注释里代码的作用是应用服务器每次启动都生成索引。在SystemInitListener里执行。可配置，不影响框架使用。 -->
+	<!-- <bean id="informationService" class="com.sbiao360.cmsadmin.service.InformationServiceImpl" 
+		/> -->
+
+	<!-- <bean id="indexingInformationJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="informationServiceImpl" />
+		<property name="targetMethod" value="indexingInformation" />
+	</bean> -->
+	<!-- 每天凌晨2点执行定时任务，生成索引。 -->
+	<!-- <bean id="indexingInformationJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="indexingInformationJob" />
+		<property name="cronExpression" value="0 0 2 * * ?" />
+	</bean> -->
+	
+	<!-- <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+		lazy-init="false">
+		<property name="triggers">
+			<list>
+				<ref bean="indexingInformationJobTrigger" />
+			</list>
+		</property>
+	</bean> -->
+
+	<bean id="updateUserPwdLogicBean"
+		class="com.sbiao360.cmsadmin.app.logic.UpdateUserPwdLogicServer" />
+
+	<!-- 配置业务逻辑池 -->
+	<bean id="logicExecuteWorkerEnginBean"
+		class="com.sbiao360.cmsadmin.app.logic.LogicExecuteWorkerEngine">
+		<property name="requestBeanTrans">
+			<map>
+				<entry key="1302">
+					<value>com.sbiao360.cmsadmin.app.bean.UpdateUserPwdRequestBean
+					</value>
+				</entry>
+			</map>
+		</property>
+		<property name="logicPool">
+			<map>
+				<entry key="1302">
+					<ref bean="updateUserPwdLogicBean" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- 配置接口传输操作协议对象 -->
+	<bean id="transmissionBean" class="com.sbiao360.cmsadmin.app.logic.Transmission">
+	</bean>
+
+</beans>

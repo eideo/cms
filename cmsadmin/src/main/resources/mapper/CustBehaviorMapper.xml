@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CustBehaviorMapper">
+	<resultMap id="BaseResultMap" type="com.sbiao360.cmsadmin.model.CustBehavior">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="USER_ID" property="userId" jdbcType="BIGINT" />
+		<result column="LOGIN_ID" property="loginId" jdbcType="VARCHAR" />
+		<result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+		<result column="IP" property="ip" jdbcType="BIGINT" />
+		<result column="ACTION_TYPE" property="actionType" jdbcType="TINYINT" />
+		<result column="INFO_TYPE" property="infoType" jdbcType="VARCHAR" />
+		<result column="INFO_ID" property="infoId" jdbcType="BIGINT" />
+		<result column="INFO_NAME" property="infoName" jdbcType="VARCHAR" />
+		<result column="INFO_VALID" property="infoValid" jdbcType="TINYINT" />
+		<result column="ACTION_DATE" property="actionDate" jdbcType="TIMESTAMP" />
+		<result column="COLUMN_LEVEL_ONE" property="columnLevelOne"
+			jdbcType="VARCHAR" />
+		<result column="COLUMN_LEVEL_TWO" property="columnLevelTwo"
+			jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="PARAMETER" property="parameter" jdbcType="VARCHAR" />
+		<result column="CONSUME_TIME" property="consumeTime" jdbcType="BIGINT" />
+		<result column="REMOTE_ADDR" property="remoteAddr" jdbcType="VARCHAR" />
+		<result column="KEYWORDS_TYPE" property="keywordsType"
+			jdbcType="VARCHAR" />
+		<result column="KEYWORDS" property="keywords" jdbcType="VARCHAR" />
+		<result column="SHARE_TYPE" property="shareType" jdbcType="TINYINT" />
+		<result column="SHARE_SYS" property="shareSys" jdbcType="VARCHAR" />
+		<result column="SHARE_TARGET" property="shareTarget" jdbcType="VARCHAR" />
+		<result column="SHARE_MESSAGE" property="shareMessage"
+			jdbcType="VARCHAR" />
+		<result column="CLICK_TYPE" property="clickType" jdbcType="TINYINT" />
+		<result column="CLICK_CONTENT" property="clickContent"
+			jdbcType="VARCHAR" />
+		<result column="ACTION_TYPE_CN" property="actionTypeCn" jdbcType="VARCHAR" />
+		<result column="INFO_VALID_CN" property="infoValidCn" jdbcType="VARCHAR" />
+		<result column="SHARE_TYPE_CN" property="shareTypeCn" jdbcType="VARCHAR" />
+		<result column="CLICK_TYPE_CN" property="clickTypeCn" jdbcType="VARCHAR" />
+		<result column="ACTION_DATE_CN" property="actionDateCn" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, USER_ID, LOGIN_ID, CUST_ID, CUST_NAME, IP, ACTION_TYPE, INFO_ID, INFO_NAME,
+		INFO_VALID,
+		ACTION_DATE, COLUMN_LEVEL_ONE, COLUMN_LEVEL_TWO, URL, PARAMETER, CONSUME_TIME,
+		REMOTE_ADDR,
+		KEYWORDS_TYPE, KEYWORDS, SHARE_TYPE, SHARE_SYS, SHARE_TARGET, SHARE_MESSAGE,
+		CLICK_TYPE, CLICK_CONTENT,
+		case 
+		when ACTION_TYPE = 1 then '访问'
+		when ACTION_TYPE = 2 then '点击'
+		when ACTION_TYPE = 3 then '关注'
+		when ACTION_TYPE = 4 then '收藏'
+		when ACTION_TYPE = 5 then '分享'
+		when ACTION_TYPE = 6 then '搜索'
+		when ACTION_TYPE = 7 then '点击搜索条件' 
+		else '' end as ACTION_TYPE_CN,
+		case 
+		when INFO_TYPE = '11501' then '项目'
+		when INFO_TYPE = '11502' then '招标'
+		when INFO_TYPE = '11503' then '中标'
+		when INFO_TYPE = '11504' then '采购'
+		when INFO_TYPE = '11505' then '新闻'
+		when INFO_TYPE = '11506' then '行业报告'
+		when INFO_TYPE = '1' then '关系网'
+		else '' end as INFO_TYPE,
+		case 
+		when INFO_VALID = 1 then '是'
+		when INFO_VALID = 0 then '否'
+		else '' end as INFO_VALID_CN,
+		case 
+		when SHARE_TYPE = 1 then '个人电脑'
+		when SHARE_TYPE = 2 then '手机'
+		when SHARE_TYPE = 3 then '平板电脑'
+		else '' end as SHARE_TYPE_CN,
+		case 
+		when CLICK_TYPE = 1 then '内容'
+		when CLICK_TYPE = 2 then '地区'
+		when CLICK_TYPE = 3 then '行业'
+		else '' end as CLICK_TYPE_CN,
+		date_format(ACTION_DATE, '%Y-%m-%d %H:%i:%s') as ACTION_DATE_CN
+	</sql>
+
+	<sql id="dynamicWhere">
+		<choose>
+			<when test="flag != null and flag == 'AND'">
+				<where>
+					1 = 1 
+					<if test="actionType != null and actionType != ''">
+						<choose>
+							<when test="actionType == 34 ">
+								and ACTION_TYPE in (3, 4)
+							</when>
+							<otherwise>
+								and ACTION_TYPE = #{actionType} 
+							</otherwise>
+						</choose>
+					</if>
+					<if test="likeLoginId != null and likeLoginId != ''">
+						and LOGIN_ID like CONCAT('%', #{likeLoginId}, '%')
+					</if>
+					<if test="likeCustName != null and likeCustName != ''">
+						and CUST_NAME like CONCAT('%', #{likeCustName}, '%')
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<when test="flag != null and flag == 'OR'">
+				<where>
+					1 = 1 
+					<if test="actionType != null and actionType != ''">
+						<choose>
+							<when test="actionType == 34 ">
+								and ACTION_TYPE in (3, 4)
+							</when>
+							<otherwise>
+								and ACTION_TYPE = #{actionType} 
+							</otherwise>
+						</choose>
+					</if>
+					<if
+						test="likeLoginId != null and likeLoginId != '' and likeCustName != null and likeCustName != ''">
+						and (LOGIN_ID like CONCAT('%', #{likeLoginId}, '%') or CUST_NAME like CONCAT('%', #{likeCustName}, '%'))
+						and (LOGIN_ID like CONCAT('%', #{likeLoginId}, '%') or CUST_NAME like CONCAT('%', #{likeCustName}, '%'))
+					</if>
+					<if
+						test="likeLoginId != null and likeLoginId != '' and likeCustName != null and likeCustName == ''">
+						and (LOGIN_ID like CONCAT('%', #{likeLoginId}, '%'))
+					</if>
+					<if
+						test="likeLoginId != null and likeLoginId == '' and likeCustName != null and likeCustName != ''">
+						and (CUST_NAME like CONCAT('%', #{likeCustName}, '%'))
+					</if>
+					<if
+						test="sortedObject != null and sortedObject != '' and sortedValue != null and sortedValue != ''">
+						order by ${sortedObject} ${sortedValue}
+					</if>
+				</where>
+			</when>
+			<otherwise>
+				<choose>
+					<when
+						test="sortedObject ! null and sortedObject != '' and sortedValue !=null and sortedValue != '' ">
+						<where>
+							1 = 1
+							<if test="actionType != null and actionType != ''">
+								<choose>
+									<when test="actionType == 34 ">
+										and ACTION_TYPE in (3, 4)
+									</when>
+									<otherwise>
+										and ACTION_TYPE = #{actionType} 
+									</otherwise>
+								</choose>
+							</if>
+						</where>
+						order by ${sortedObject} ${sortedValue}
+					</when>
+					<otherwise>
+						<where>
+							1 = 1
+							<if test="actionType != null and actionType != ''">
+								<choose>
+									<when test="actionType == 34 ">
+										and ACTION_TYPE in (3, 4)
+									</when>
+									<otherwise>
+										and ACTION_TYPE = #{actionType} 
+									</otherwise>
+								</choose>
+							</if>
+						</where>
+						order by ID desc
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Long"
+		parameterType="com.sbiao360.cmsadmin.model.CustBehavior">
+		select count(*) as num
+		from CMS_CUST_BEHAVIOR 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getList" resultMap="BaseResultMap"
+		parameterType="com.sbiao360.cmsadmin.model.CustBehavior">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_CUST_BEHAVIOR 
+		<include refid="dynamicWhere" />
+	</select>
+
+	<select id="getByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from CMS_CUST_BEHAVIOR
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from CMS_CUST_BEHAVIOR
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.sbiao360.cmsadmin.model.CustBehavior">
+		insert into CMS_CUST_BEHAVIOR (USER_ID, LOGIN_ID, 
+		CUST_ID, CUST_NAME,
+		IP, ACTION_TYPE, INFO_TYPE,
+		INFO_ID, INFO_NAME, INFO_VALID,
+		ACTION_DATE, COLUMN_LEVEL_ONE, COLUMN_LEVEL_TWO,
+		URL, PARAMETER, CONSUME_TIME,
+		REMOTE_ADDR, KEYWORDS_TYPE, KEYWORDS,
+		SHARE_TYPE, SHARE_SYS, SHARE_TARGET,
+		SHARE_MESSAGE, CLICK_TYPE, CLICK_CONTENT)
+		values (#{userId,jdbcType=BIGINT}, #{loginId,jdbcType=VARCHAR}, 
+		#{custId,jdbcType=BIGINT}, #{custName,jdbcType=VARCHAR},
+		#{ip,jdbcType=BIGINT}, #{actionType,jdbcType=TINYINT},
+		#{infoType,jdbcType=VARCHAR},
+		#{infoId,jdbcType=BIGINT}, #{infoName,jdbcType=VARCHAR}, #{infoValid,jdbcType=TINYINT},
+		#{actionDate,jdbcType=TIMESTAMP}, #{columnLevelOne,jdbcType=VARCHAR},
+		#{columnLevelTwo,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR}, #{parameter,jdbcType=VARCHAR}, #{consumeTime,jdbcType=BIGINT},
+		#{remoteAddr,jdbcType=VARCHAR}, #{keywordsType,jdbcType=VARCHAR},
+		#{keywords,jdbcType=VARCHAR},
+		#{shareType,jdbcType=TINYINT}, #{shareSys,jdbcType=VARCHAR}, #{shareTarget,jdbcType=VARCHAR},
+		#{shareMessage,jdbcType=VARCHAR}, 
+		#{clickType,jdbcType=TINYINT}, #{clickContent,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="update" parameterType="com.sbiao360.cmsadmin.model.CustBehavior">
+		update CMS_CUST_BEHAVIOR
+		set 
+		USER_ID = #{userId,jdbcType=BIGINT},
+		LOGIN_ID = #{loginId,jdbcType=VARCHAR},
+		CUST_ID = #{custId,jdbcType=BIGINT},
+		CUST_NAME = #{custName,jdbcType=VARCHAR},
+		IP = #{ip,jdbcType=BIGINT},
+		ACTION_TYPE = #{actionType,jdbcType=TINYINT},
+		INFO_TYPE = #{infoType,jdbcType=VARCHAR},
+		INFO_ID = #{infoId,jdbcType=BIGINT},
+		INFO_NAME = #{infoName,jdbcType=VARCHAR},
+		INFO_VALID = #{infoValid,jdbcType=TINYINT},
+		ACTION_DATE = #{actionDate,jdbcType=TIMESTAMP},
+		COLUMN_LEVEL_ONE = #{columnLevelOne,jdbcType=VARCHAR},
+		COLUMN_LEVEL_TWO = #{columnLevelTwo,jdbcType=VARCHAR},
+		URL = #{url,jdbcType=VARCHAR},
+		PARAMETER = #{parameter,jdbcType=VARCHAR},
+		CONSUME_TIME = #{consumeTime,jdbcType=BIGINT},
+		REMOTE_ADDR = #{remoteAddr,jdbcType=VARCHAR},
+		KEYWORDS_TYPE = #{keywordsType,jdbcType=VARCHAR},
+		KEYWORDS = #{keywords,jdbcType=VARCHAR},
+		SHARE_TYPE = #{shareType,jdbcType=TINYINT},
+		SHARE_SYS = #{shareSys,jdbcType=VARCHAR},
+		SHARE_TARGET = #{shareTarget,jdbcType=VARCHAR},
+		SHARE_MESSAGE = #{shareMessage,jdbcType=VARCHAR},
+		CLICK_TYPE = #{clickType,jdbcType=TINYINT},
+		CLICK_CONTENT = #{clickContent,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

@@ -1,0 +1,36 @@
+2015-10-21 11:44:48,500 INFO [org.jasig.cas.CasEnvironmentContextListener] - 
+******************** Welcome to CAS ********************
+CAS Version: null
+Java Home: C:\Program Files\Java\jdk1.8.0_60\jre
+Java Vendor: Oracle Corporation
+Java Version: 1.8.0_60
+OS Architecture: amd64
+OS Name: Windows 7
+OS Version: 6.1
+*******************************************************
+
+2015-10-21 11:44:54,362 WARN [org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler] - setRequireSecure() is deprecated and will be removed. Callback url validation is controlled by the proxy policy
+2015-10-21 11:44:54,992 WARN [org.jasig.cas.services.InMemoryServiceRegistryDaoImpl] - Runtime memory is used as the persistence storage for retrieving and persisting service definitions. Changes that are made to service definitions during runtime will be LOST upon container restarts.
+2015-10-21 11:44:55,078 WARN [org.jasig.cas.services.RegisteredServiceImpl] - [RegisteredServiceImpl] is deprecated and will be removed in future CAS releases. Consider using [RegexRegisteredService] instead.
+2015-10-21 11:44:55,175 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:44:56,625 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2015-10-21 11:44:56,629 INFO [org.jasig.cas.CasEnvironmentContextListener] - [jetty/8.1.7.v20120910] has loaded the CAS application context
+2015-10-21 11:45:15,503 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2015-10-21 11:45:15,529 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 expired tickets found to be removed.
+2015-10-21 11:45:15,529 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2015-10-21 11:46:32,002 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 11:46:32,002 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 11:46:55,487 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:46:55,488 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:48:55,487 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:48:55,507 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:50:55,487 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:50:55,488 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:52:55,486 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:52:55,487 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:54:55,487 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:54:55,488 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:56:55,486 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:56:55,487 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 11:58:55,488 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 11:58:55,488 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.

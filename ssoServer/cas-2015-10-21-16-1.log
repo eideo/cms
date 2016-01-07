@@ -1,0 +1,17 @@
+2015-10-21 16:11:35,582 WARN [org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler] - setRequireSecure() is deprecated and will be removed. Callback url validation is controlled by the proxy policy
+2015-10-21 16:11:36,290 WARN [org.jasig.cas.services.InMemoryServiceRegistryDaoImpl] - Runtime memory is used as the persistence storage for retrieving and persisting service definitions. Changes that are made to service definitions during runtime will be LOST upon container restarts.
+2015-10-21 16:11:36,350 WARN [org.jasig.cas.services.RegisteredServiceImpl] - [RegisteredServiceImpl] is deprecated and will be removed in future CAS releases. Consider using [RegexRegisteredService] instead.
+2015-10-21 16:11:36,452 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 16:11:38,002 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2015-10-21 16:11:38,009 INFO [org.jasig.cas.CasEnvironmentContextListener] - [jetty/8.1.7.v20120910] has loaded the CAS application context
+2015-10-21 16:11:56,843 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2015-10-21 16:11:56,899 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 expired tickets found to be removed.
+2015-10-21 16:11:56,900 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2015-10-21 16:12:36,261 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 16:12:36,261 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: / 
+2015-10-21 16:13:36,830 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 16:13:36,830 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 16:15:36,830 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 16:15:36,831 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2015-10-21 16:17:36,830 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2015-10-21 16:17:36,831 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
