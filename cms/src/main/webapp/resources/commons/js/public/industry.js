@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-06 13:47:34
+ * @Last Modified time: 2016-01-07 15:24:15
  */
 
 define(function(require, exports, module) {
@@ -399,14 +399,13 @@ define(function(require, exports, module) {
 				canClick = $(this).data('canClick'),
 				index = $(this).parent().index()
 
-			d3.selectAll('#chart1 .leftBarText').style('fill', '#333')
-			d3.select('#chart1 .texts g:nth-child(' + (index + 1) + ')').select('.leftBarText').style('fill', color)
-
-
 			if (!canClick) {
 
 				return
 			}
+
+			d3.selectAll('#chart1 .leftBarText').style('fill', '#333')
+			d3.select('#chart1 .texts g:nth-child(' + (index + 1) + ')').select('.leftBarText').style('fill', color)
 
 			Interaction.type = type
 			Interaction.id = id
@@ -431,14 +430,14 @@ define(function(require, exports, module) {
 				color = $(this).data('color'),
 				index = $(this).parent().index()
 
-			d3.selectAll('#chart1 .texts .leftBarText').style('fill', '#333')
-			d3.select($(this)[0]).style('fill', color)
-
-
 			if (!canClick) {
 
+				d3.select(this).style('cursor','default')
 				return
 			}
+
+			d3.selectAll('#chart1 .texts .leftBarText').style('fill', '#333')
+			d3.select($(this)[0]).style('fill', color)
 
 			Interaction.type = html
 			Interaction.id = id

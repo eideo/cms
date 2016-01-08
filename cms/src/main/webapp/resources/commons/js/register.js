@@ -17,15 +17,19 @@ var reCompany=/^[\u4e00-\u9fa5]{6,20}$/;
 var reEmail=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ ;
 
 //个人用户和企业用户注册框切换
-function tab(){
-	$('.personal').click(function(){
+function tab() {
+
+	$('.personal').click(function() {
+
 		$('#div1').show();
 		$('#div2').hide();
 		$(this).find('em').animate({left:'0'});
 		$('#div2 input').val('');
 		$('#div2 span').hide();
 	})
-	$('.company').click(function(){
+
+	$('.company').click(function() {
+
 		$('#div2').show();
 		$('#div1').hide();
 		$('.personal em').animate({left:'126px'});
@@ -35,50 +39,70 @@ function tab(){
 }
 
 //验证用户名
-var usernameCkeck = function (){
+var usernameCkeck = function () {
+
 	var result = true;
-	if($('#username').val()==''){
+
+	if($('#username').val()=='') {
+
 		$('.user-box span').hide();
 		$('.nullmsg').show();
+
 		result =false;
-	}else{
+	}else {
+
 		$('.nullmsg').hide();
-		if(!(reMoblie.test($('#username').val())||reEmail.test($('#username').val()))){
+
+		if(!(reMoblie.test($('#username').val())||reEmail.test($('#username').val()))) {
+
 			$('.user-box span').hide();
 			$('.errormsg').show();
+
 			result =false;
 		}else{
+
 			$('.errormsg').hide();
+
 			var result = true;
-//			用户名是否重复
+
+            //用户名是否重复
 			$.ajax({
+
 				url:path+'/checkUserName',
 				async:false,
 				dataType:'text',
 				type: "post",
 				data:{
+
 					username:$('#username').val()
 				},
-				success:function(str){
+				success:function(str) {
+
 					var json = eval("("+str+")");
-					if(json.status){
+
+					if(json.status) {
+
 						result =  true;
 						$('#s-name').hide();
 						$('#d-name').show();
-						if(reMoblie.test($('#username').val())){
+						if(reMoblie.test($('#username').val())) {
+
 							$('#mobile').show();
 							$('#code').hide();
-						}else{
+						}else {
+
 							$('#mobile').hide();
 							$('#code').show();
 						}	
-					}else{
+					}else {
+
 						result =  false;
 						$('#s-name').show();
 						$('#d-name').hide();
 					}
 				},
-				error:function(e){
+				error:function(e) {
+
 					alert('错误:'+e);
 					result =  false;
 				}
@@ -90,24 +114,31 @@ var usernameCkeck = function (){
 };
 
 //密码验证
-function passwordCkeck(){
+function passwordCkeck() {
+
 	var result = true;
-	if(!(rePassword.test($('#password').val()))){
+	if(!(rePassword.test($('#password').val()))) {
+
 		$('#p-error').show();
 		result = false;
-	}else{
+	}else {
+
 		$('#p-error').hide();
 		result = true;
 	}	
 	return result;
 }
-function r_passwordCkeck(){
+
+function r_passwordCkeck() {
+
 	var result = true;
 
-	if(($('#r-password').val()!=$('#password').val())){
+	if(($('#r-password').val()!=$('#password').val())) {
+
 		$('#rp-error').show();
 		result = false;
-	}else{
+	}else {
+
 		$('#rp-error').hide();
 		result = true;
 	}
@@ -116,7 +147,9 @@ function r_passwordCkeck(){
 
 //验证码验证
 function codeCkeck() {
+
 	var result = true;
+
 	$.ajax({
 		async:false,
 		url:path+'/getCertCodeStatus',
@@ -125,18 +158,24 @@ function codeCkeck() {
 		data:{
 			certCode:$('#v-code').val()
 		},
-		success:function(str){
+
+		success:function(str) {
+
 			var json = eval("("+str+")");
-			if(json.status){
+
+			if(json.status) {
+
 				$('#c-error').hide();
 				result = true;
-			}else{
+			}else {
+
 				$('#c-error').show();
 				result = false;
 			}
 			return result;
 		},
-		error:function(e){
+		error:function(e) {
+
 			alert('错误:'+e);
 			result = false;
 		}
@@ -145,41 +184,52 @@ function codeCkeck() {
 }
 
 //公司名验证
-function companyNameCkeck(){
+function companyNameCkeck() {
+
 	var result=true;
-	if($('#company-name').val()==''){
+	if($('#company-name').val()=='') {
+
 		$('.user-box span').hide();
 		$('#u-error2null').show();
 		result = false;
-	}else{
+	}else {
+
 		$('#u-error2null').hide();
-		if(!(reCompany.test($('#company-name').val()))){
+		if(!(reCompany.test($('#company-name').val()))) {
+
 			$('#u-error2').show();
 			result = false;
-		}else{
+		}else {
+
 			var result = true;
 			//公司名重名验证
 			$.ajax({
+
 				url:path+'/checkUserName',
 				async:false,
 				dataType:'text',
 				type: "post",
 				data:{
+
 					username:$('#company-name').val()
 				},
-				success:function(str){
+				success:function(str) {
+
 					var json = eval("("+str+")");
-					if(json.status){
+					if(json.status) {
+
 						$('#s-name2').hide();
 						$('#d-name2').show();
 						result =  true;
-					}else{
+					}else {
+
 						$('#s-name2').show();
 						$('#d-name2').hide();
 						result =  false;
 					}
 				},
-				error:function(e){
+				error:function(e) {
+
 					alert('错误:'+e);
 					
 					result =  false;
@@ -190,35 +240,44 @@ function companyNameCkeck(){
 	return result;
 }
 //联系人手机号验证
-function phoneCheck(){
+function phoneCheck() {
+
 	var result=true;
-	if(!(reMoblie.test($('#user-mobile').val()))){
+	if(!(reMoblie.test($('#user-mobile').val()))) {
+
 		$('#mobile2').show();
 		result=false;
-	}else{
+	}else {
+
 		result=true;
 	}
 	return result;
 }
 
 //公司用户密码验证
-function c_passwordCkeck(){
+function c_passwordCkeck() {
+
 	var result=true;
-	if(!(rePassword.test($('#password2').val()))){
+	if(!(rePassword.test($('#password2').val()))) {
+
 		$('#p-error2').show();
 		result = false;
-	}else{
+	}else {
+
 		$('#p-error2').hide();
 		result = true;
 	}
 	return result;
 }
-function rc_passwordCkeck(){
+function rc_passwordCkeck() {
+
 	var result=true;
-	if(($('#r-password2').val()!=$('#password2').val())){
+	if(($('#r-password2').val()!=$('#password2').val())) {
+
 		$('#rp-error2').show();
 		result = false;
-	}else{
+	}else {
+
 		$('#rp-error2').hide();
 		result = true;
 	}	
@@ -254,66 +313,94 @@ var oPassword2=$('#password2');
 var oPerror2=$('#p-error2');
 var oRpassword2=$('#r-password2');
 var oRperror2=$('#rp-error2');
-window.onload=function(){
+window.onload=function() {
+
 	tab();
 	$('#username').on("blur",usernameCkeck);
-	$('#username').focus(function(){
+	$('#username').focus(function() {
+
 		$('.user-box span').hide();
 	})
 
 	$('#password').on("blur",passwordCkeck);
 	$('#r-password').on("blur",r_passwordCkeck);
-	$('#password').focus(function(){
+
+	$('#password').focus(function() {
+
 		$('.password-box span').hide();
 	})
-	$('#r-password').focus(function(){
+
+	$('#r-password').focus(function() {
+
 		$('.r-password-box span').hide();
 	})
 	
 	$('#v-code').on("blur",codeCkeck);
-	$('#v-code').focus(function(){
+
+	$('#v-code').focus(function() {
+
 		$('#c-error').hide();
 	})
 	
 	$('#company-name').on("blur",companyNameCkeck);
-	$('#company-name').focus(function(){
+
+	$('#company-name').focus(function() {
+
 		$('.user-box span').hide();
 	})
 	
 	$('#user-mobile').on("blur",phoneCheck);
-	$('#user-mobile').focus(function(){
+
+	$('#user-mobile').focus(function() {
+
 		$('#mobile2').hide();
 	})
 	
 	$('#password2').on("blur",c_passwordCkeck);
+
 	$('#r-password2').on("blur",rc_passwordCkeck);
-	$('#password2').focus(function(){
+
+	$('#password2').focus(function() {
+
 		$('.r-password-box span').hide();
 	})
-	$('#r-password2').focus(function(){
+
+	$('#r-password2').focus(function() {
+
 		$('.r-password-box span').hide();
 	})
+
 	mCode.on("blur",phoneCodeValidate);
-	mCode.on("focus",function(){
+
+	mCode.on("focus",function() {
+
 		mError.hide();
 	});
 	
 //	短信定时器
 	var wait=60;
-	$('#mBtn').click(function(){
+
+	$('#mBtn').click(function() {
+
 		$(this).hide();
 		$('#relaunch').show();
+
 		clearInterval(timer);
-		var timer=setInterval(function(){
+		var timer=setInterval(function() {
+
 			wait--;
-			if(wait<0){
+			if(wait<0) {
+
 				wait=60;
 			}
-			if(wait==0){
+			if(wait==0) {
+
 				clearInterval(timer);
 				$('#mBtn').show();
 				$('#relaunch').hide();
-			}else{
+
+			}else {
+
 				$('#relaunch b').text(wait);
 			}
 		},1000)
@@ -324,33 +411,42 @@ window.onload=function(){
 
 
 var user2Validate = function () {
-	if(!(cR.test(oUser2.value))){
+
+	if(!(cR.test(oUser2.value))) {
+
 		oUerror2.style.display='block';
 		return false;
-	}else{
+	}else {
+
 		var result = true;
 		//公司名重名验证
 		$.ajax({
+
 			url:path+'/checkUserName',
 			async:false,
 			dataType:'text',
 			type: "post",
 			data:{
+
 				username:oUser2.value
 			},
-			success:function(str){
+			success:function(str) {
+
 				var json = eval("("+str+")");
-				if(json.status){
+				if(json.status) {
+
 					oDname2.style.display='block';
 					oSname2.style.display='none';
 					result =  true;
-				}else{
+				}else {
+
 					oSname2.style.display='block';
 					oDname2.style.display='none';
 					result =  false;
 				}
 			},
-			error:function(e){
+			error:function(e) {
+
 				alert('错误:'+e);
 				
 				result =  false;
@@ -360,11 +456,14 @@ var user2Validate = function () {
 	}
 }
 
-var oMobileValidate = function  (){
-	if(!(uRe.test(oMobile2.value))){
+var oMobileValidate = function  () {
+
+	if(!(uRe.test(oMobile2.value))) {
+
 		oMerror.style.display='block';
 		return false;
-	}else{
+	}else {
+
 		var result = true;
 		//号码注册
 		$.ajax({
@@ -395,10 +494,13 @@ var oMobileValidate = function  (){
 }
 
 
-var phoneCodeValidate = function(){
-	if(mCode.val()==""){
+var phoneCodeValidate = function() {
+
+	if(mCode.val()=="") {
+
 		return false;
-	}else{
+	}else {
+
 		var result = true;
 		$.ajax({
 			url:path+'/checkmes',
@@ -408,17 +510,21 @@ var phoneCodeValidate = function(){
 			data:{
 				mobileMessage:mCode.val()
 			},
-			success:function(str){
+			success:function(str) {
+
 				var json = eval("("+str+")");
-				if(json.status){
+				if(json.status) {
+
 					mError.hide();
 					result = true;
-				}else{
+				}else {
+
 					mError.show();
 					result = false;
 				}
 			},
-			error:function(e){
+			error:function(e) {
+
 				alert('错误:'+e);
 				result = false;
 			}
@@ -426,128 +532,165 @@ var phoneCodeValidate = function(){
 		return result;
 	}
 }
-function getPhoneCode(){
+function getPhoneCode() {
+
 	$.ajax({
 		url:path+'/sendmes',
 		dataType:'text',
 		type: "post",
 		data:{
+
 			mobile:oUser.val()
 		},
-		success:function(str){
+		success:function(str) {
+
 			var json = eval("("+str+")");
-			if(json.status){
+			if(json.status) {
+
 				oMerror2.hide();
 			}
 		},
-		error:function(e){
+		error:function(e) {
+
 			alert('错误:'+e);
 		}
 	});
 }
 var i = 60;
-function setTime(){
+function setTime() {
+
 	var a = document.getElementById("mBtn");
 	var str = "获取验证码";
-	if(i==0){
+	if(i==0){ 
+
 		clearTimeout();
 		i = 60;
 		a.innerText = str;
 		return;
 	}
+
 	a.innerText = str+"("+i+")";
 	i--;
 	setTimeout("setTime()", 1000);
 }
-function reloadcode(){
+function reloadcode() {
+
     var verify=document.getElementById('codeImg');
     verify.setAttribute('src',path+'/common/makeCertPic.jsp?it='+Math.random());
 }
 
-function validateUserAll(){
-	if(!usernameCkeck()){
+function validateUserAll() {
+
+	if(!usernameCkeck()) {
+
 		return false;
 	}
-	if(reMoblie.test(oUser.val())&&!phoneCodeValidate()){
+	if(reMoblie.test(oUser.val())&&!phoneCodeValidate()) {
+
 		return false;
 	}
-	if(!passwordCkeck()){
+	if(!passwordCkeck()) {
+
 		return false;
 	}
-	if(!r_passwordCkeck()){
+	if(!r_passwordCkeck()) {
+
 		return false;
 	};
-	if(!reMoblie.test(oUser.val())&&!codeCkeck()){
+	if(!reMoblie.test(oUser.val())&&!codeCkeck()) {
+
 		return false;
 	}
 	return true;
 }
-function validateCompanyAll(){
-	if(!companyNameCkeck()){
+function validateCompanyAll() {
+
+	if(!companyNameCkeck()) {
+
 		return false;
 	};
 
-	if(!c_passwordCkeck()){
+	if(!c_passwordCkeck()) {
+
 		return false;
 	}
-	if(!rc_passwordCkeck()){
+	if(!rc_passwordCkeck()) {
+
 		return false;
 	}
 	return true;
 }
 
-function ajaxSubmit(){
+function ajaxSubmit() {
+
 	var forms  = document.getElementsByName("reform");
 	var inputs = forms[0].getElementsByTagName("input");
 	var obj = {};
-	for(var i=0;i<inputs.length;i++){
-		if(inputs[i].name&&inputs[i].value){
+
+	for(var i=0;i<inputs.length;i++) {
+
+		if(inputs[i].name&&inputs[i].value) {
+
 			obj[inputs[i].name] = inputs[i].value;
 		}
 	}
-	if(!(($("#h3 em").css("left")=="0px"&&validateUserAll())||($("#h3 em").css("left")!="0px"&&validateCompanyAll()))){
+
+	if(!(($("#h3 em").css("left")=="0px"&&validateUserAll())||($("#h3 em").css("left")!="0px"&&validateCompanyAll()))) {
+
 		return false;
 	}
 	ajax({
+
 		url:path+"/registerMember",
 		data:obj,
-		success:function(str){
+		success:function(str) {
+
 			var json = eval('('+str+')');
-			if(json.status){
+			if(json.status) {
+
 				var user = obj.username?obj.username:obj["user-mobile"];
 				var password = obj.password?obj.password:obj.password2;
 				$.ajax({
+
 					type:"post",
 					async:true,
 					url:casBase+'/ajaxlogin',data:{user:user,passwd:password,service:path+'/homepage'},
 					dataType:"jsonp",
 					jsonp:'jsoncallback',
-					success:function(a){
-						if(a.result){
+					success:function(a) {
+
+						if(a.result) {
+
 							location.href = path+"/homepage?ticket="+a.st;
 						}
 					}
 				});
-			}else{
+			}else {
+
 				alert("注册信息有误，请重新填写！");
 			}
 		},
-		error:function(e){
+		error:function(e) {
+
 			alert('错误:'+e);
 		}
 	});
 	return false;
 }
 
-function toLoadTest(){
+function toLoadTest() {
+
 	$.ajax({
+		
 		type:"post",
 		async:true,
 		url:casBase+'/ajaxlogin',data:{user:'testUserForSys',passwd:'123456',service:path+'/homepage'},
 		dataType:"jsonp",
 		jsonp:'jsoncallback',
-		success:function(a){
-			if(a.result){
+		success:function(a) {
+
+			if(a.result) {
+
 				location.href = path+"/homepage?ticket="+a.st;
 			}
 		}

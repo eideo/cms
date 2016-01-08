@@ -109,8 +109,8 @@
         </div>
     </div>
     <div class='descr'></div>
-    <div class='tree'>
-        
+    <div class='tree' >
+        <img src='${resPath}/resources/commons/images/resTemp.png' />
     </div>
     <div class='recomCon'>
         <div class="top">

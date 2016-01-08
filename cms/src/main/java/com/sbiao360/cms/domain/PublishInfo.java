@@ -23,6 +23,8 @@ public class PublishInfo implements Serializable{
 	private Date publishDate;
 
 	private String infoType;
+	
+	private String projectName;
 
 	public String getTitle() {
 		return title;
@@ -78,6 +80,14 @@ public class PublishInfo implements Serializable{
 
 	public void setInfoType(String infoType) {
 		this.infoType = infoType;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 }

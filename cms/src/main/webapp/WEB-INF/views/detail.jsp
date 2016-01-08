@@ -46,7 +46,7 @@
 		<div class="detail">
 			${publishInfo.description}
 		</div>
-		<a class="img" href="${appPath }/relation"><img src="${resPath}/resources/commons/images/de_img.png"></a>
+		<a class="img" href="<c:if test="${infoType=='xmxx'}">${appPath }/relation?name=${publishInfo.projectName}</c:if><c:if test="${infoType!='xmxx'}">javaScript:void(0);</c:if>"><img src="${resPath}/resources/commons/images/de_img.png"></a>
 	</div>
 </div>
 

@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 14:46:18
+ * @Last Modified time: 2016-01-07 17:31:36
  */
 
 'use strict';
@@ -20,6 +20,7 @@ define(function(require, exports, module) {
 			colorset = setting.colorset,
 			margin = setting.margin,
 			opacity = setting.opacity,
+			legendOpacity = opacity.reverse(),
 			legend = setting.legend,
 			type = setting.type,
 			width = document.querySelector(selector).getBoundingClientRect().width,
@@ -105,7 +106,7 @@ define(function(require, exports, module) {
 				return colorset[i]
 			})
 			.attr('opacity', function(d, i) {
-				return opacity[i]
+				return legendOpacity[i]
 			})
 
 		type.append('text')
@@ -223,7 +224,8 @@ define(function(require, exports, module) {
 					return colorset[j];
 				})
 				.style("opacity", function(d, i) {
-					return opacity[i]
+				
+					return opacity[j]
 				})
 		}
 	}

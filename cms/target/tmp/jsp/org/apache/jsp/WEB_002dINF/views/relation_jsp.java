@@ -234,8 +234,10 @@ public final class relation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>\r\n");
       out.write("    </div>\r\n");
       out.write("    <div class='descr'></div>\r\n");
-      out.write("    <div class='tree'>\r\n");
-      out.write("        \r\n");
+      out.write("    <div class='tree' >\r\n");
+      out.write("        <img src='");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/resources/commons/images/resTemp.png' />\r\n");
       out.write("    </div>\r\n");
       out.write("    <div class='recomCon'>\r\n");
       out.write("        <div class=\"top\">\r\n");

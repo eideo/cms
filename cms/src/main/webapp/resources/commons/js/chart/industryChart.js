@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 14:44:00
+ * @Last Modified time: 2016-01-07 15:19:41
  */
 
 'use strict';
@@ -149,18 +149,10 @@ define(function(require, exports, module) {
 			.on('mouseover',function(d,i) {
 
 				d3.select(this).attr('opacity',0.7)
-
-				$('#chart1 .tip')
-					.css('background',colorset[i])
-					.css('left',xScale(xArray[i])+margin.left - 40)
-					.css('top',yScale(d['type'])+margin.top - 44-rangeBand )
-					.html(d['value']+"条<i style='background:"+colorset[i]+"'></i>")
-					.show()
 			})
 			.on('mouseout',function(d) {
 
 				d3.select(this).attr('opacity',1.0)
-				$('#chart1 .tip').hide()
 			})
 			.attr('x', function(d, i) {
 

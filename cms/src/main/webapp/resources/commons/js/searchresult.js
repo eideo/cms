@@ -65,6 +65,7 @@ define(function(require, exports, module) {
 
 			$('.searchBox').val(this.innerText);
 			ajaxSearch();
+			searchJump(".chartCon",0);
 		});
 	}
 
@@ -438,6 +439,7 @@ define(function(require, exports, module) {
 			$('.Checktime').hide();
 
 			ajaxSearch();
+			searchJump(".hr",0);
 			checkLimit();
 		})
 
@@ -449,6 +451,7 @@ define(function(require, exports, module) {
 			$('.term1').hide();
 
 			ajaxSearch();
+			searchJump(".hr",0);
 			checkLimit();
 		})
 		$('#un2').on("click", function() {
@@ -459,6 +462,7 @@ define(function(require, exports, module) {
 			$('.term2').hide();
 
 			ajaxSearch();
+			searchJump(".hr",0);
 			checkLimit();
 		})
 		$('#un3').on("click", function() {
@@ -469,6 +473,7 @@ define(function(require, exports, module) {
 			$('.term3').hide();
 
 			ajaxSearch();
+			searchJump(".hr",0);
 			checkLimit();
 		})
 
@@ -707,6 +712,7 @@ define(function(require, exports, module) {
 			}
 
 			ajaxSearch();
+			searchJump(".hr",0);
 		})
 
 		//点击二级行业，添加搜索条件
@@ -826,6 +832,7 @@ define(function(require, exports, module) {
 				$('.term3').show();
 			}
 			ajaxSearch();
+			searchJump(".hr",0);
 		})
 
 		//点击一级行业
@@ -923,6 +930,7 @@ define(function(require, exports, module) {
 			$('#opTime li:contains("' + text + '")').removeClass("active");
 			$(this).remove();
 			ajaxSearch();
+			searchJump(".hr",0);
 
 			if ($('.Checktime span').length == 0) {
 
@@ -989,6 +997,7 @@ define(function(require, exports, module) {
 			$('#dtype li:contains("' + text + '")').removeClass("active");
 			$(this).remove();
 			ajaxSearch();
+			searchJump(".hr",0);
 
 			if ($('.term1 span').length == 0) {
 
@@ -1015,6 +1024,7 @@ define(function(require, exports, module) {
 		$('.searchTerms').on("click", "li", function() {
 
 			ajaxSearch();
+			searchJump(".hr",0);
 		});
 
 
@@ -1022,6 +1032,7 @@ define(function(require, exports, module) {
 		$('.searchBtn').click(function() {
 
 			ajaxSearch();
+			searchJump(".chartCon",0);
 		})
 
 		// 按回车键搜索
@@ -1031,6 +1042,7 @@ define(function(require, exports, module) {
 			if (ev.keyCode == 13) {
 
 				ajaxSearch();
+				searchJump(".chartCon",0);
 			}
 		}
 	}
@@ -1158,11 +1170,16 @@ define(function(require, exports, module) {
 		$('.bid').each(function(){
 
 			var type = $(this).text();
-			if(type === "招标"){
+			if(type === "招标" || type === "中标"){
 
 				$(this).parent().parent().parent().find('.rpage').addClass('rno');
 				$(this).parent().parent().parent().find('.rpage').attr('href','');
 			}	
 		})
+	}
+
+	// 搜索锚点
+	function searchJump(oClass,distance) {
+		$("html, body").scrollTop(0).animate({scrollTop: $(oClass).offset().top+distance});
 	}
 })

@@ -261,7 +261,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t<div class=\"description\">\r\n");
       out.write("\t\t\t\t\t<h5><a class=\"cutTitle\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/reportdetail/{reportMain.id}\" id=\"info_{reportMain.id}\" onclick=\"javascript:custBehavior(2, 11506, {reportMain.id}, 1);\" target=\"_blank\">{reportMain.reportTitle}</a></h5>\r\n");
+      out.write("/reportdetail/{reportMain.id}\" id=\"info_{reportMain.id}\" onclick=\"javascript:custBehavior(2, 11506, {reportMain.id}, 1);\" >{reportMain.reportTitle}</a></h5>\r\n");
       out.write("\t\t\t\t\t<p>\r\n");
       out.write("\t\t\t\t\t\t<a class=\"trade\">{reportMain.induxtryName}</a>\r\n");
       out.write("\t\t\t\t\t\t<i class=\"line\"></i>\r\n");
@@ -677,7 +677,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(", 1);\" title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" target=\"_blank\">");
+          out.write("\" >");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a></h5>\r\n");
           out.write("\t\t\t\t\t\t\t\t\t\t\t<p>\r\n");
@@ -797,7 +797,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\" onclick=\"javascript:custBehavior(2, 11506, ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write(", 1);\" target=\"_blank\">");
+          out.write(", 1);\" >");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a></li>\r\n");
           out.write("\t\t\t\t");

@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-06 15:43:23
+ * @Last Modified time: 2016-01-08 16:17:30
  */
 
 'use strict';
@@ -40,7 +40,7 @@ define(function(require, exports, module) {
 		series: null,
 		legend: ['项目', '单位', '联系人'],
 		colorSet: {
-			project: '#ff3538',
+			project: '#f66567',
 			company: '#239deb',
 			person: '#ff9a00'
 		},
@@ -69,7 +69,6 @@ define(function(require, exports, module) {
 			},
 			success: function(data) {
 
-				console.log(JSON.stringify(data))
 				Tool.removeMask()
 
 				var series = {
@@ -94,6 +93,8 @@ define(function(require, exports, module) {
 	}
 
 	function loadUrlDate(callback) {
+
+		Tool.mask();
 
 		var url = window.location.href,
 			args
@@ -229,8 +230,8 @@ define(function(require, exports, module) {
 				range: null,
 				value: 10
 			}
-			/*var scale = new Scale(scaleOption)
-			scale.init()*/
+		var scale = new Scale(scaleOption)
+			scale.init()
 
 		$('.perRemCon .list').niceScroll({
 			cursorcolor: "#0a8dff",

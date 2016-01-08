@@ -84,7 +84,7 @@
 					<a code="2107" href="javascript:;">医疗卫生</a>
 					<a code="2108" href="javascript:;">房地产建筑</a>
 					<a code="2109" href="javascript:;">公共设施</a>
-					<a code="2110" href="javascript:;" class="hidden">科技文教旅游</a>
+					<a code="2110" href="javascript:;" class="hidden disLeft">科技文教旅游</a>
 					<a code="2111" href="javascript:;" class="hidden">轻工</a>
 					<a code="2112" href="javascript:;" class="hidden">化工</a>
 					<a code="2113" href="javascript:;" class="hidden">机械电子</a>
@@ -114,7 +114,7 @@
 					<a href="javascript:;" id="3186015">江西</a>
 					<a href="javascript:;" id="3186016">山东</a>
 					<a href="javascript:;" id="3186017">河南</a>
-					<a href="javascript:;" id="3186018" class="hidden">湖北</a>
+					<a href="javascript:;" id="3186018" class="hidden disLeft">湖北</a>
 					<a href="javascript:;" id="3186019" class="hidden">湖南</a>
 					<a href="javascript:;" id="3186020" class="hidden">广东</a>
 					<a href="javascript:;" id="3186021" class="hidden">广西</a>

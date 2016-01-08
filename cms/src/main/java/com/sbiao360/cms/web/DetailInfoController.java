@@ -35,6 +35,7 @@ public class DetailInfoController {
 		PublishInfo publishInfo = null;
 		if(!id.contains("-")){
 			publishInfo = publishInfoService.selectByPrimaryKey(id);
+			request.setAttribute("infoType", "xmxx");
 		}else{
 			String []idtype = id.split("-");
 			//中标公示

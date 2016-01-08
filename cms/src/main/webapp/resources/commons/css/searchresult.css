@@ -1064,7 +1064,7 @@
 		border: 1px solid #47aaff;
 	}
 	.more:hover em{
-		background: url(../images/icon1229.png) no-repeat -380px -320px;
+		background: url(../images/icon1229.png) no-repeat -380px -322px;
 	}
 	.searchTerms  div.active{
 		background: #47aaff;
@@ -1072,7 +1072,7 @@
 		border: 1px solid #47aaff;
 	}
 	.searchTerms  .more em.active{
-		background: url(../images/icon1229.png) no-repeat -380px -320px;
+		background: url(../images/icon1229.png) no-repeat -380px -322px;
 	}
 	.searchTerms i{
 		padding: 4px 6px;

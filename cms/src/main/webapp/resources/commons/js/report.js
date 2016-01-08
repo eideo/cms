@@ -50,11 +50,13 @@ function searchHint() {
 
 		$('.searchBox').val(this.innerHTML);
 		searchReport();
+		$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
 	});
 
 	$('.searchBtn').on("click", function() {
 
 		searchReport();
+		$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
 	});
 
 	// 按回车键搜索
@@ -64,6 +66,7 @@ function searchHint() {
 		if (ev.keyCode == 13) {
 
 			searchReport();
+			$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
 		}
 	}
 
