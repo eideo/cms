@@ -161,7 +161,7 @@
 			<div class="part part3">
 				<h3 class="clearfix">
 					<i class="rank"></i>
-					<i class="keyword">信息标题</i>
+					<i class="keyword">项目名称</i>
 					<i class="index">搜索指数</i>
 					<i class="link">相关链接</i>
 				</h3>
@@ -172,7 +172,7 @@
 			<div class="part part4">
 				<h3 class="clearfix">
 					<i class="rank"></i>
-					<i class="keyword">公司名称</i>
+					<i class="keyword">单位名称</i>
 					<i class="index">热度</i>
 					<i class="link">相关链接</i>
 					
@@ -213,7 +213,7 @@
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
 							<a href="${appPath}/search?keyword={name}">信息</a>
-							<a href="${appPath }/report/{id}">行业报告</a>
+							<a href="${appPath }/report/{industry}">行业报告</a>
 						</div>
 					</li>
 </script>
@@ -223,8 +223,8 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?name={name}">关系网</a>
-							<a href="${appPath }/report/{id}">行业报告</a>
+							<a href="${appPath}/relation?name={name}&type=company">关系网</a>
+							<a href="${appPath }/report/{industry}">行业报告</a>
 						</div>
 					</li>
 </script>
@@ -234,9 +234,9 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?name={name}">关系网</a>
+							<a href="${appPath}/relation?name={name}&type=project">关系网</a>
 							<a href="${appPath}/search?keyword={name}">信息</a>
-							<a href="${appPath }/report/{id}">行业报告</a>
+							<a href="${appPath }/report/{industry}">行业报告</a>
 						</div>
 					</li>
 </script>
@@ -246,8 +246,8 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?name={name}">关系网</a>
-							<a href="${appPath }/report/{id}">信息</a>
+							<a href="${appPath}/relation?industryId={industry}&type=project">关系网</a>
+							<a href="${appPath }/search?industryId={industry}">信息</a>
 						</div>
 					</li>
 </script>

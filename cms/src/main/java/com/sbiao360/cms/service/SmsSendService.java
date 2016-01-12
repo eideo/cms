@@ -142,7 +142,7 @@ public class SmsSendService {
 
 	public static void main(String[] args) {
 		SmsSendService smsSendService = new SmsSendService();
-		System.out.println(smsSendService.sendIdentifyingCode("18660391341",
+		System.out.println(smsSendService.sendIdentifyingCode("18519332091",
 				true, 6));
 	}
 }

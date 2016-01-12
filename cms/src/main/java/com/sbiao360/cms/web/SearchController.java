@@ -98,47 +98,14 @@ public class SearchController extends BaseController{
 		if(assertion!=null){
 			request.setAttribute("username", assertion.getPrincipal().getName());
 		}
-		@SuppressWarnings("unchecked")
-		Map<String, String[]> map = request.getParameterMap();
-		String searchString = getSearchString(map,IpTool.getClientAddress(request));
-		String pageNo = map.get("pageNo")!=null?map.get("pageNo")[0]:"";
-		int start = -1;
-		if(!StringUtil.isBlank(pageNo)){
-			start = Integer.parseInt(pageNo)*CommonConstants.PAGE_SIZE;
-		}else{
-			pageNo = "1";
-		}
-		Map<String, Object> indexMap = indexInfoService.queryIndexInfo(searchString,start,-1);
-		if(Float.parseFloat((String)indexMap.get("maxScore"))<2){
-			newKyException(request.getParameter("area"),request.getParameter("industry"),"noresult"
-					,IpTool.setIP(IpTool.getClientAddress(request)),request.getParameter("keywords"),
-					(String)indexMap.get("time"),searchString
-					);
-		}
-		if(Long.parseLong((String)indexMap.get("time"))>1000){
-			newKyException(request.getParameter("area"),request.getParameter("industry"),"timeout"
-					,IpTool.setIP(IpTool.getClientAddress(request)),request.getParameter("keywords"),
-					(String)indexMap.get("time"),searchString
-					);
-		}
-		customerKeywordsService.checkKeyWordsDict(request.getParameter("keywords"));
 		
-		request.setAttribute("nowPage", "seachPage");
-		request.setAttribute("listIndex", indexMap.get("result"));
-		
-		Long count = Long.parseLong((String)indexMap.get("num"));
-		Long num = count%CommonConstants.PAGE_SIZE==0?count/CommonConstants.PAGE_SIZE:count/CommonConstants.PAGE_SIZE+1;
-		request.setAttribute("num",num);
-		request.setAttribute("count", count);
-		request.setAttribute("time",  Float.parseFloat((String)indexMap.get("time"))/1000);
-		request.setAttribute("pageNo",pageNo);
 		
 		request.setAttribute("keyword", request.getParameter("keyword"));
 		request.setAttribute("area", request.getParameter("area"));
 		request.setAttribute("hotKeyWords", customerKeywordsService.getHotKeyWordsList());
 		request.setAttribute("industry", request.getParameter("industry"));
+		request.setAttribute("industryId", request.getParameter("industryId"));
 		request.setAttribute("type", request.getParameter("type"));
-		request.setAttribute("likeKeyWords", customerKeywordsService.selectLikeKeywordsDic(map.get("keyword")!=null?map.get("keyword")[0]:""));
 		return "/searchResult";
 	}
 	
@@ -255,16 +222,18 @@ public class SearchController extends BaseController{
 		String type = request.getParameter("type");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-		
+		String industryId = request.getParameter("industryId");
 		Map<String, String[]> map = new HashMap<>();
 		map.putAll(request.getParameterMap());
 		
 		map.remove("industry");
+		map.remove("industryId");
 		String searchString  = getSearchString(map);
 		List<Map<String,Object>> listIndustryGroup = indexInfoService.getFacetIndustryNum(searchString);
 		
 		map.remove("area");
 		map.put("industry",new String[]{industry});
+		map.put("industryId",new String[]{industryId});
 		searchString = getSearchString(map);
 		List<Map<String,Object>> listAreaGroup = indexInfoService.getFacetAreaNum(searchString);
 		
@@ -505,7 +474,11 @@ public class SearchController extends BaseController{
 		if(!StringUtil.isBlank(industry)){
 			escapedKw.add( " (category:"+ClientUtils.escapeQueryChars(industry).substring(0, ClientUtils.escapeQueryChars(industry).length()-1).replace(",", " category:")+")");
 		}
+		String industryId =  map.get("industryId")!=null?map.get("industryId")[0]:"";
 		
+		if(!StringUtil.isBlank(industryId)){
+			escapedKw.add( " (category:"+codeService.getIndustryName(industryId)+")");
+		}
 		String type =  map.get("type")!=null?map.get("type")[0]:"";
 		
 		String typeSearch = "";
@@ -636,7 +609,11 @@ public class SearchController extends BaseController{
 		if(!StringUtil.isBlank(industry)){
 			escapedKw.add( " (category:"+ClientUtils.escapeQueryChars(industry).replace(",", " category:")+")");
 		}
+		String industryId =  map.get("industryId")!=null?map.get("industryId")[0]:"";
 		
+		if(!StringUtil.isBlank(industryId)){
+			escapedKw.add( " (category:"+codeService.getIndustryName(industryId)+")");
+		}
 		String type =  map.get("type")!=null?map.get("type")[0]:"";
 		
 		String typeSearch = "";

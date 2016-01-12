@@ -549,7 +549,7 @@
 	}
 
 	/*隐藏地区*/
-	.searchTerms .hidden{
+	.searchTerms .secondaryRegion{
 		width: 350px;
 		border:  2px solid #d5ecff;
 		background: #fff;
@@ -560,7 +560,7 @@
 		display: none;
 		z-index:20;
 	}
-	.searchTerms .hidden a{
+	.searchTerms .secondaryRegion a{
 		float: left;
 		margin: 8px 8px 0 8px;
 		font-size:12px;
@@ -568,11 +568,11 @@
 		color:#5e5e5e;
 		border-radius: 2px;
 	}
-	.searchTerms .hidden a.active{
+	.searchTerms .secondaryRegion a.active{
 		background: #47aaff;
 		color: #fff;
 	}
-	.searchTerms .hidden a:hover{
+	.searchTerms .secondaryRegion a:hover{
 		background: #47aaff;
 		color: #fff;
 	}
@@ -720,6 +720,7 @@
 		margin-top:2px;
 	}
 	.resultList li a.rno{
+		cursor: auto;
 		background: url(../images/r_web3.png) no-repeat;
 	}
 	h4 a.negative{
@@ -1194,7 +1195,7 @@
 	}
 
 	/*隐藏地区*/
-	.searchTerms .hidden{
+	.searchTerms .secondaryRegion{
 		width: 330px;
 		border:  2px solid #d5ecff;
 		background: #fff;
@@ -1205,7 +1206,7 @@
 		display: none;
 		z-index:20;
 	}
-	.searchTerms .hidden a{
+	.searchTerms .secondaryRegion a{
 		float: left;
 		margin: 8px 8px 0 8px;
 		font-size:12px;
@@ -1213,11 +1214,11 @@
 		color:#5e5e5e;
 		border-radius: 3px;
 	}
-	.searchTerms .hidden a.active{
+	.searchTerms .secondaryRegion a.active{
 		background: #47aaff;
 		color: #fff;
 	}
-	.searchTerms .hidden a:hover{
+	.searchTerms .secondaryRegion a:hover{
 		background: #47aaff;
 		color: #fff;
 	}
@@ -1271,8 +1272,8 @@
 		width: 1000px;
 		margin-top: 6px;
 		height:30px;
-		display: none;
 		position: relative;
+		display: none;
 	}
 	.searchTerms .term{
 		float: left;

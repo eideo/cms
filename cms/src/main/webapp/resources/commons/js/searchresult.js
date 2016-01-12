@@ -5,6 +5,7 @@ define(function(require, exports, module) {
 	var Close = require('./lib/common');
 	var ajax = require('./public/ajax');
 	var SearchChart = require('./chart/searchChart');
+	var Tool = require('./util/tool')
 
 
 	$(function() {
@@ -31,6 +32,9 @@ define(function(require, exports, module) {
 
 		// 获取图表数据
 		getData();
+
+		// url传递默认条件
+		urlOption();
 
 	})
 
@@ -63,7 +67,7 @@ define(function(require, exports, module) {
 
 		$('.prompt').on("click", "li", function() {
 
-			$('.searchBox').val(this.innerText);
+			$('.searchBox').val($(this).text());
 			ajaxSearch();
 			searchJump(".chartCon",0);
 		});
@@ -312,7 +316,7 @@ define(function(require, exports, module) {
 		var type = "";
 		$("#term1 span").each(function() {
 
-			type += this.innerText + ",";
+			type += $(this).text() + ",";
 		});
 
 		var area = ""
@@ -324,7 +328,7 @@ define(function(require, exports, module) {
 		var trade = ""
 		$("#term3 span").each(function() {
 
-			trade += this.innerText + ",";
+			trade += $(this).text() + ",";
 		});
 
 		var data = {};
@@ -431,7 +435,7 @@ define(function(require, exports, module) {
 
 	function unlimit() {
 
-		$('#un').on("click", function() {
+		$('#anyTime').on("click", function() {
 
 			$('#Checktime span').remove();
 			$(this).addClass('active');
@@ -443,29 +447,29 @@ define(function(require, exports, module) {
 			checkLimit();
 		})
 
-		$('#un1').on("click", function() {
+		$('#anyType').on("click", function() {
 
 			$('#term1 span').remove();
 			$(this).addClass('active');
-			$('#dtype li').removeClass('active');
+			$('#opType li').removeClass('active');
 			$('.term1').hide();
 
 			ajaxSearch();
 			searchJump(".hr",0);
 			checkLimit();
 		})
-		$('#un2').on("click", function() {
+		$('#anyRegion').on("click", function() {
 
 			$('#term2 span').remove();
 			$(this).addClass('active');
-			$('#dcity span').removeClass('active');
+			$('#opCity span').removeClass('active');
 			$('.term2').hide();
 
 			ajaxSearch();
 			searchJump(".hr",0);
 			checkLimit();
 		})
-		$('#un3').on("click", function() {
+		$('#anyIndustry').on("click", function() {
 
 			$('#term3 span').remove();
 			$(this).addClass('active');
@@ -518,7 +522,7 @@ define(function(require, exports, module) {
 		})
 
 		//	地区二级目录
-		$('#dcity').on("mouseover", "li", function() {
+		$('#opCity').on("mouseover", "li", function() {
 
 			$(this).find('div').show();
 			$(this).find('i').show();
@@ -566,7 +570,7 @@ define(function(require, exports, module) {
 				if ($('.term2 span').length == 0) {
 
 					$('.term2').hide();
-					$('#un2').addClass('active');
+					$('#anyRegion').addClass('active');
 				}
 
 				checkLimit();
@@ -587,14 +591,14 @@ define(function(require, exports, module) {
 				}
 
 				$(this).addClass('active');
-				$('#un2').removeClass('active');
+				$('#anyRegion').removeClass('active');
 				$('.term2').show();
 			}
 
 		})
 
 		//点击二级城市，添加搜索条件
-		$('#dcity').on("click", "a", function() {
+		$('#opCity').on("click", "a", function() {
 
 			if ($(this).hasClass("active")) {
 
@@ -618,8 +622,8 @@ define(function(require, exports, module) {
 				if ($('.term2 span').length == 0) {
 
 					$('.term2').hide();
-					$('#dcity .active').removeClass('active');
-					$('#un2').addClass('active');
+					$('#opCity .active').removeClass('active');
+					$('#anyRegion').addClass('active');
 				}
 
 				checkLimit();
@@ -643,7 +647,7 @@ define(function(require, exports, module) {
 				$(".termBox").show();
 				$(this).addClass("active");
 				$(this).parent().parent().find("span").addClass('active');
-				$('#un2').removeClass('active');
+				$('#anyRegion').removeClass('active');
 
 				// add by yujunwei 2015-11-12 15:00
 				// 用户行为-点击搜索条件
@@ -704,8 +708,8 @@ define(function(require, exports, module) {
 			if ($('.term2 span').length == 0) {
 
 				$('.term2').hide();
-				$('#dcity .active').removeClass('active');
-				$('#un2').addClass('active');
+				$('#opCity .active').removeClass('active');
+				$('#anyRegion').addClass('active');
 			} else {
 
 				$('.term2').show();
@@ -741,7 +745,7 @@ define(function(require, exports, module) {
 
 					$('.term3').hide();
 					$('#dtrade .active').removeClass('active');
-					$('#un3').addClass('active');
+					$('#anyIndustry').addClass('active');
 				}
 
 				checkLimit();
@@ -765,7 +769,7 @@ define(function(require, exports, module) {
 				$(".termBox").show();
 				$(this).addClass("active");
 				$(this).parent().parent().find("span").addClass('active');
-				$('#un3').removeClass('active');
+				$('#anyIndustry').removeClass('active');
 
 				// add by yujunwei 2015-11-12 15:00
 				// 用户行为-点击搜索条件
@@ -826,7 +830,7 @@ define(function(require, exports, module) {
 
 				$('.term3').hide();
 				$('#dtrade .active').removeClass('active');
-				$('#un3').addClass('active');
+				$('#anyIndustry').addClass('active');
 			} else {
 
 				$('.term3').show();
@@ -851,7 +855,7 @@ define(function(require, exports, module) {
 				if ($('.term3 span').length == 0) {
 
 					$('.term3').hide();
-					$('#un3').addClass('active');
+					$('#anyIndustry').addClass('active');
 				}
 
 				checkLimit();
@@ -872,7 +876,7 @@ define(function(require, exports, module) {
 				}
 
 				$(this).addClass('active');
-				$('#un3').removeClass('active');
+				$('#anyIndustry').removeClass('active');
 				$('.term3').show();
 			}
 
@@ -890,7 +894,7 @@ define(function(require, exports, module) {
 				if ($('.Checktime span').length == 0) {
 
 					$('.Checktime').hide();
-					$('#un').addClass('active');
+					$('#anyTime').addClass('active');
 				}
 
 				checkLimit();
@@ -899,7 +903,7 @@ define(function(require, exports, module) {
 				$(".termBox").show();
 
 				//当条件没有选的时候默认是不限
-				$('#un').removeClass('active');
+				$('#anyTime').removeClass('active');
 				$(this).addClass('active');
 				if ($("#Checktime span:contains('" + compare + "')").length == 0) {
 
@@ -912,7 +916,7 @@ define(function(require, exports, module) {
 			// 当三个内容类别都被选中时，则为不限
 			if ($('#opTime').find('.active').length == 3) {
 
-				$('#un').addClass('active');
+				$('#anyTime').addClass('active');
 				$('#opTime li').removeClass('active');
 				$('.Checktime').find('span').remove();
 				$('.Checktime').hide();
@@ -935,7 +939,7 @@ define(function(require, exports, module) {
 			if ($('.Checktime span').length == 0) {
 
 				$('.Checktime').hide();
-				$('#un').addClass('active');
+				$('#anyTime').addClass('active');
 			} else {
 
 				$('.Checktime').show();
@@ -943,7 +947,7 @@ define(function(require, exports, module) {
 		})
 
 		//	添加内容搜索条件
-		$('#dtype li').click(function() {
+		$('#opType li').click(function() {
 
 			// add by yujunwei 2015-11-12 15:00
 			// 用户行为-点击搜索条件
@@ -957,7 +961,7 @@ define(function(require, exports, module) {
 				if ($('.term1 span').length == 0) {
 
 					$('.term1').hide();
-					$('#un1').addClass('active');
+					$('#anyType').addClass('active');
 				}
 
 				checkLimit();
@@ -966,7 +970,7 @@ define(function(require, exports, module) {
 				$(".termBox").show();
 
 				//当条件没有选的时候默认是不限
-				$('#un1').removeClass('active');
+				$('#anyType').removeClass('active');
 				$(this).addClass('active');
 				if ($("#term1 span:contains('" + compare + "')").length == 0) {
 
@@ -977,10 +981,10 @@ define(function(require, exports, module) {
 			}
 
 			// 当三个内容类别都被选中时，则为不限
-			if ($('#dtype').find('.active').length == 3) {
+			if ($('#opType').find('.active').length == 3) {
 
-				$('#un1').addClass('active');
-				$('#dtype li').removeClass('active');
+				$('#anyType').addClass('active');
+				$('#opType li').removeClass('active');
 				$('.term1').find('span').remove();
 				$('.term1').hide();
 
@@ -994,7 +998,7 @@ define(function(require, exports, module) {
 		$('#term1').on("click", "span", function() {
 
 			var text = $(this).text();
-			$('#dtype li:contains("' + text + '")').removeClass("active");
+			$('#opType li:contains("' + text + '")').removeClass("active");
 			$(this).remove();
 			ajaxSearch();
 			searchJump(".hr",0);
@@ -1002,7 +1006,7 @@ define(function(require, exports, module) {
 			if ($('.term1 span').length == 0) {
 
 				$('.term1').hide();
-				$('#un1').addClass('active');
+				$('#anyType').addClass('active');
 			} else {
 
 				$('.term1').show();
@@ -1173,13 +1177,41 @@ define(function(require, exports, module) {
 			if(type === "招标" || type === "中标"){
 
 				$(this).parent().parent().parent().find('.rpage').addClass('rno');
-				$(this).parent().parent().parent().find('.rpage').attr('href','');
+				$(this).parent().parent().parent().find('.rpage').removeAttr('href');
 			}	
 		})
 	}
 
 	// 搜索锚点
 	function searchJump(oClass,distance) {
-		$("html, body").scrollTop(0).animate({scrollTop: $(oClass).offset().top+distance});
+
+			$("html, body").scrollTop(0).animate({scrollTop: $(oClass).offset().top+distance});
 	}
+
+	// url传递默认条件
+	function urlOption(){
+
+		var urlParameter =Tool.getUrlArgs(document.getElementById('getUrlArgs'));
+
+		if(urlParameter['industryId']){
+
+			$('.termBox').show();
+			$('.term3').show();
+			$('#anyIndustry').removeClass('active');
+			var pid= urlParameter['industryId'];
+
+			if(pid==2113||pid==2114||pid==2115){
+
+				$('.liHidden').show();
+				$('#more').addClass('active');
+			}
+
+			var theSpan=$("'.trade li[id='"+pid+"']'").find('span');
+			theSpan.addClass('active');
+			$('<span></span>').attr('rid',pid).appendTo('#term3').text(theSpan.text());
+		}
+
+	}
+
+	module.exports = '';
 })

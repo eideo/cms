@@ -228,4 +228,7 @@
 		where t.COMPANY_ID in (select a.id from CMS_COMPANY a where a.company_name=#{name})
 		GROUP BY t.PROJECT_POST
 	</select>
+	<select id="selectRecommProject" parameterType="Map" resultType="Map">
+		select a.project_name projectName from CMS_PROJECT a ,(SELECT t.PROJECT_ID,COUNT(1) cc from CMS_COMPANY_PROJECT t,CMS_PROJECT b where b.CONFIRM_DATE>#{startDate} and t.PROJECT_ID=b.ID and b.INDUSTRY1_ID like concat('%',#{industryId},'%')  ORDER BY cc desc limit 0,1) b where a.ID=b.PROJECT_ID
+	</select>
 </mapper>

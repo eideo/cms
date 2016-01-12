@@ -21,6 +21,12 @@ function tab() {
 
 	$('.personal').click(function() {
 
+		if($('#username').val() == ''){
+
+			$('#mobile').hide();
+			$('#code').show();
+		}
+
 		$('#div1').show();
 		$('#div2').hide();
 		$(this).find('em').animate({left:'0'});

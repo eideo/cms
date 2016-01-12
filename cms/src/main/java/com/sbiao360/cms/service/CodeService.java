@@ -81,4 +81,9 @@ public class CodeService {
 	public List<Code> getCodeList(String type,String parentCode){
 		return codeDao.getCodeList(type, parentCode);
 	}
+
+	@Cacheable(key="'industry'+#industryId",value="commonCache")
+	public String getIndustryName(String industryId) {
+		return codeDao.getCodeName(industryId);
+	}
 }

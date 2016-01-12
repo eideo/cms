@@ -164,4 +164,7 @@ public class RelationService {
 		}
 		return result;
 	}
+	public Map<String, String> selectRecommProject(String industryId) {
+		return relationDao.selectRecommProject(industryId);
+	}
 }

@@ -8,6 +8,8 @@ public class RankingData {
 	
 	private Integer countIncre;
 	
+	private String industry;
+	
 	private String name;
 	
 	private Integer pm;
@@ -50,6 +52,14 @@ public class RankingData {
 
 	public void setPm(Integer pm) {
 		this.pm = pm;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
 	}
 
 }

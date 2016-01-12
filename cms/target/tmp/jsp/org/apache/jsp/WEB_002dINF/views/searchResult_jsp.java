@@ -1238,7 +1238,9 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/lib/seajs/config.js?v=1.0.1-20151229\"></script>\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
-      out.write("\r\n");
+      out.write("\tvar industryInit = \"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${industryId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\";\r\n");
       out.write("\t// 入口模块\r\n");
       out.write("\tseajs.use(\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));

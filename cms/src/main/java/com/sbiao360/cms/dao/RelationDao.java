@@ -1,5 +1,7 @@
 package com.sbiao360.cms.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +14,7 @@ import com.sbiao360.cms.domain.Company;
 import com.sbiao360.cms.domain.Project;
 import com.sbiao360.cms.domain.ProjectCompany;
 import com.sbiao360.cms.domain.ProjectContacts;
+import com.sbiao360.cms.zutil.DateTime;
 
 @Repository
 public class RelationDao {
@@ -99,5 +102,14 @@ public class RelationDao {
 	}
 	public List<Map<String,String>> companyPersonRoles(String name){
 		return this.baseDao.getList("relationMapper.companyPersonRoles", name);
+	}
+	
+	public Map<String,String> selectRecommProject(String industryId){
+		Map<String,String > map = new HashMap<>();
+		map.put("industryId", industryId);
+		Date d = new Date();
+		d.setYear(d.getYear()-1);
+		map.put("startDate", DateTime.toDate(null,d));
+		return this.baseDao.get("relationMapper.selectRecommProject",map);
 	}
 }

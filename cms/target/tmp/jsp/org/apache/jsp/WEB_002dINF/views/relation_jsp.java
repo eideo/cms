@@ -228,11 +228,11 @@ public final class relation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("<div class=\"chartCon\">\r\n");
       out.write("\r\n");
-      out.write("    <div class='scaleCon'>\r\n");
-      out.write("        <div class='scale' id='scale'>\r\n");
-      out.write("            <i class='handle' id='scaleHandle'></i>\r\n");
-      out.write("        </div>\r\n");
+      out.write("<!--     <div class='scaleCon'>\r\n");
+      out.write("    <div class='scale' id='scale'>\r\n");
+      out.write("        <i class='handle' id='scaleHandle'></i>\r\n");
       out.write("    </div>\r\n");
+      out.write("</div> -->\r\n");
       out.write("    <div class='descr'></div>\r\n");
       out.write("    <div class='tree' >\r\n");
       out.write("        <img src='");

@@ -1,35 +1,25 @@
 /* 
  * @Author: Administrator
  * @Date:   2015-12-10 15:54:04
- * @Last Modified by:   Administrator
- * @Last Modified time: 2015-12-17 18:01:50
+ * @Last Modified by:   zhanganchun
+ * @Last Modified time: 2016-01-11 11:33:39
  */
 
 
 define(function(require, exports, module) {
-	// 加载数据
-/*	$.ajax({
-			url:path+'/ranking/getKeywords',
-			type: 'GET',
-			success: function(data) {
-				console.log(data)
-			},
-			error: function() {
-				//alert('数据请求错误')
-				return "error";
-			}
-	})*/
-	var radius = 110;
+
+
+	var radius = 100;
 	var dtr = Math.PI / 180;
-	var d = 220;
+	var d = 200;
 
 	var mcList = [];
 	var active = false;
 	var lasta = 1;
 	var lastb = 1;
 	var distr = true;
-	var tspeed = 0.5;
-	var size = 235;
+	var tspeed = 10;
+	var size = 200;
 
 	var mouseX = 0;
 	var mouseY = 0;
@@ -38,44 +28,49 @@ define(function(require, exports, module) {
 
 	var aA = null;
 	var oDiv = null;
-	var i = 0;
-	var oTag = null;
 
-	oDiv = document.getElementById('words');
+	$(function() {
 
-	aA = oDiv.getElementsByTagName('a');
+		var i = 0;
+		var oTag = null;
 
-	for (i = 0; i < aA.length; i++) {
-		oTag = {};
+		oDiv = document.getElementById('words');
 
-		oTag.offsetWidth = aA[i].offsetWidth;
-		oTag.offsetHeight = aA[i].offsetHeight;
+		aA = oDiv.getElementsByTagName('a');
 
-		mcList.push(oTag);
-	}
+		for (i = 0; i < aA.length; i++) {
+			oTag = {};
 
-	sineCosine(0, 0, 0);
+			oTag.offsetWidth = aA[i].offsetWidth;
+			oTag.offsetHeight = aA[i].offsetHeight;
 
+			mcList.push(oTag);
+		}
 
-	oDiv.onmouseover = function() {
-		active = true;
-	};
+		sineCosine(0, 0, 0);
 
-	oDiv.onmouseout = function() {
-		active = false;
-	};
+		positionAll();
 
-	oDiv.onmousemove = function(ev) {
-		var oEvent = window.event || ev;
+		oDiv.onmouseover = function() {
+			active = true;
+		};
 
-		mouseX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2);
-		mouseY = oEvent.clientY - (oDiv.offsetTop + oDiv.offsetHeight / 2);
+		oDiv.onmouseout = function() {
+			active = false;
+		};
 
-		mouseX /= 5;
-		mouseY /= 5;
-	};
+		oDiv.onmousemove = function(ev) {
+			var oEvent = window.event || ev;
 
-	setInterval(update, 30);
+			mouseX = oEvent.clientX - (oDiv.offsetLeft + oDiv.offsetWidth / 2);
+			mouseY = oEvent.clientY - (oDiv.offsetTop + oDiv.offsetHeight / 2);
+
+			mouseX /= 5;
+			mouseY /= 5;
+		};
+
+		setInterval(update, 30);
+	});
 
 	function update() {
 		var a;
@@ -155,6 +150,7 @@ define(function(require, exports, module) {
 	}
 
 	function positionAll() {
+
 		var phi = 0;
 		var theta = 0;
 		var max = mcList.length;
@@ -163,7 +159,7 @@ define(function(require, exports, module) {
 		var aTmp = [];
 		var oFragment = document.createDocumentFragment();
 
-		//Ëæ»úÅÅÐò
+		//随机排序
 		for (i = 0; i < aA.length; i++) {
 			aTmp.push(aA[i]);
 		}
@@ -188,7 +184,7 @@ define(function(require, exports, module) {
 				phi = Math.random() * (Math.PI);
 				theta = Math.random() * (2 * Math.PI);
 			}
-			//×ø±ê±ä»»
+			//坐标变换
 			mcList[i - 1].cx = radius * Math.cos(theta) * Math.sin(phi);
 			mcList[i - 1].cy = radius * Math.sin(theta) * Math.sin(phi);
 			mcList[i - 1].cz = radius * Math.cos(phi);
@@ -205,7 +201,7 @@ define(function(require, exports, module) {
 			aA[i].style.left = mcList[i].cx + l - mcList[i].offsetWidth / 2 + 'px';
 			aA[i].style.top = mcList[i].cy + t - mcList[i].offsetHeight / 2 + 'px';
 
-			aA[i].style.fontSize = Math.ceil(12 * mcList[i].scale / 2) + 4 + 'px';
+			aA[i].style.fontSize = Math.ceil(12 * mcList[i].scale / 2) + 8 + 'px';
 
 			aA[i].style.filter = "alpha(opacity=" + 100 * mcList[i].alpha + ")";
 			aA[i].style.opacity = mcList[i].alpha;
@@ -220,5 +216,6 @@ define(function(require, exports, module) {
 		sc = Math.sin(c * dtr);
 		cc = Math.cos(c * dtr);
 	}
+
 	module.exports = positionAll;
 })

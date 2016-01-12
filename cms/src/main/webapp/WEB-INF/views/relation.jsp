@@ -103,11 +103,11 @@
 
 <div class="chartCon">
 
-    <div class='scaleCon'>
-        <div class='scale' id='scale'>
-            <i class='handle' id='scaleHandle'></i>
-        </div>
+<!--     <div class='scaleCon'>
+    <div class='scale' id='scale'>
+        <i class='handle' id='scaleHandle'></i>
     </div>
+</div> -->
     <div class='descr'></div>
     <div class='tree' >
         <img src='${resPath}/resources/commons/images/resTemp.png' />

@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-12-24 08:45:17
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-08 16:01:59
+* @Last Modified time: 2016-01-12 10:40:02
 */
 
 #relation{
@@ -111,7 +111,7 @@ body{
 }
 .searchBody{
 	width:auto;
-	height:40px;
+	height:38px;
 	float:right;
 	margin-right:28px;
 	margin-top:30px;
@@ -120,18 +120,18 @@ body{
 }
 
 .searchBody .inputBox{
-	width:380px;
+	width:240px;
 	float: left;
-	margin-left:2px;
 	position: relative;
 }
 .searchBody .inputText{
 	width:100%;
-	height:40px;
-	color: #888888;
-	background: #fff;
+	height:38px;
+	color: #5d5d5d;
+	background: #424242;
 	text-indent:10px;
-	outline:#fff;
+	outline:none !important;
+	border:1px solid #5d5d5d;
 	padding:0;
 	transition: all 1.0s;
 	-moz-transition: all 1.0s;	
@@ -139,23 +139,23 @@ body{
 	-o-transition: all 1.0s;
 }
 
-.searchBody .inputText:hover{
+/* .searchBody .inputText:hover{
 
 	background: #fff;
 	color:#000;
-}
+} */
 .searchBody .inputText.selected{
-	/* border-color:#fff;
-	color: #fff; */
+	background:#fff;
+	color:#5d5d5d;
 	transition: all 0.5s;
 	-moz-transition: all 0.5s;	
 	-webkit-transition: all 0.5s;
 	-o-transition: all 0.5s;
 }
 .searchBody .btnCon{
-	width:50px;
-	height:40px;
-	line-height:40px;
+	width:40px;
+	height:38px;
+	line-height:38px;
 	background: #0a8dff;
 	float: right;
 	font-size:16px;
@@ -167,9 +167,9 @@ body{
 .searchBody .searchItem{
     background:#fff;/*url(../images/relationBg.png) repeat;*/
     height: 160px;
-    width: 375px;
+    width: 446px;
     position: absolute;
-    top: 41px;
+    top: 38px;
     left: 0px;
     display: none;
     z-index: 9999;
@@ -192,10 +192,10 @@ body{
  }
 
 .searchBody .btn{
-	width:50px;
-	height:40px;
+	width:40px;
+	height:38px;
 	cursor: pointer;
-	background: url(../images/icon1229.png) no-repeat -408px -9px;
+	background: url(../images/icon1229.png) no-repeat -414px -10px;
 }
 .searchBody .btnCon {
 	transition: all 0.5s;
@@ -233,40 +233,43 @@ body{
 }
 /*角色*/
 .comRem{
-	width:160px;
-	height:40px;
+	width:100px;
+	height:38px;
 	line-height:20px;
 	text-align: center;
 	right: 70px;
     top: 12px;
 	display: inline-block;
-	background:#fff;
+	background:#424242;
+	border:1px solid #5d5d5d;
+	border-left:none;
+	border-right:none;
 	float: left;
-	border-left:1px solid #888888;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; 
+	-webkit-box-sizing:border-box;
 }
 
 .comRemCon{
  	position: relative;
  	width:100%;
- 	height:100%;
+ 	height:38px;
 }
 
 .comRemCon .topTitle{
-	color: #000;
- 	line-height:40px;
- 	font-size:14px;
+	color: #5d5d5d;
+	height:38px;
+ 	line-height:38px;
+ 	font-size:12px;
  	cursor: pointer;
 }
-.comRemCon .topTitle:hover{
-	color: #fff;
-	background: #0a8dff;
-}
+
 .comRemCon .list{
-	width:160px;
+	width:100px;
 	height:184px;
 	position: absolute;
 	overflow: hidden;
-	top:40px;
+	top:38px;
 	right:0px;
 	background:#f6f6f6;
 	z-index:9999;
@@ -293,13 +296,13 @@ body{
 	width:20px;
 	height:20px;
 	position: absolute;
-	right:10px;
+	right:0px;
 	top:10px;
 	background: url(../images/icon1229.png) -27px -320px no-repeat;
 	cursor: pointer;
 }
 .topTitle.selected i{
-	background:url(../images/icon1229.png) -380px -321px no-repeat;
+	background:url(../images/icon1229.png) -341px -320px no-repeat;
 }
 .comRemCon .list li.selected {
 	color: #fff;
@@ -320,44 +323,43 @@ body{
 }
 
 .perRem{
-	width:150px;
-	height:40px;
+	width:106px;
+	height:38px;
 	line-height:20px;
 	text-align: center;
 	right: 70px;
     top: 12px;
 	color:#fff;
 	display: inline-block;
-	background:#fff;
+	background:#424242;
+	border:1px solid #5d5d5d;
 	float: left;
-	margin-left:1px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; 
+	-webkit-box-sizing:border-box;
 }
 
 .perRemCon{
  	position: relative;
  	width:100%;
  	height:100%;
- 	line-height:40px;
+ 	line-height:38px;
  	font-size:16px;
  	cursor: pointer;
 }
 .perRemCon .topTitle{
-	color: #fff;
- 	line-height:40px;
+	color: #5d5d5d;
+ 	line-height:38px;
  	font-size:14px;
  	cursor: pointer;
- 	color:#000;
 }
-.perRemCon .topTitle:hover{
-	background:#0a8dff;
-	color: #fff;
-}
+
 .perRemCon .list{
-	width:150px;
+	width:104px;
 	height:184px;
 	position: absolute;
 	overflow: hidden;
-	top:40px;
+	top:38px;
 	right:0px;
 	background:#f6f6f6;
 	z-index:9999;
@@ -642,6 +644,7 @@ body{
 	color:#0a8dff !important;
 	text-align:center;
 	margin-top:10px;
+	opacity: 0.4;
 	height:35px;
 	line-height:35px;
 }
@@ -660,7 +663,7 @@ body{
 	width:100px;
 	height:115px;
 	top:26px;
-	left:87px;
+	left:20px;
 	background: url(../images/smRelation.png) no-repeat;
 }
 .scale{

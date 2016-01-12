@@ -1,3 +1,11 @@
+/* 
+* @Author: zhanganchun
+* @Date:   2016-01-04 15:01:07
+* @Last Modified by:   zhanganchun
+* @Last Modified time: 2016-01-11 13:48:30
+* @ 排行榜入口模块
+*/
+
 'use strict';
 define(function(require, exports, module) {
 
@@ -6,6 +14,7 @@ define(function(require, exports, module) {
 
 	var hot = true;
 	var asc = true;
+	var tagIndex = 0;
 
 	var Chart = require('../../js/chart/chart');
 	var mapSetting = {
@@ -207,6 +216,16 @@ define(function(require, exports, module) {
 		return html;
 	}
 
+	function initHotWord(parm) {
+
+		$('.words a').eq(tagIndex++).html(parm);
+
+		if (tagIndex > 14) {
+
+			tagIndex = 0
+		}
+	}
+
 	$(function() {
 
 		positionAll();
@@ -235,6 +254,8 @@ define(function(require, exports, module) {
 						}
 
 						dataset = [data.areaName, data.hotWord]
+
+						initHotWord(data.hotWord)
 
 						var width = document.querySelector(mapSetting.selector).getBoundingClientRect().width,
 							height = document.querySelector(mapSetting.selector).getBoundingClientRect().height

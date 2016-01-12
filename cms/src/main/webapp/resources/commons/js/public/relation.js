@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-08 16:17:30
+ * @Last Modified time: 2016-01-12 10:13:37
  */
 
 'use strict';
@@ -28,7 +28,8 @@ define(function(require, exports, module) {
 		startDate: '201312',
 		endDate: '201511',
 		rolesName: '',
-		rolesType: 'company'
+		rolesType: 'company',
+		industryId:'2108'
 	}
 
 	var RelationChart = require('../../js/chart/relationChart')
@@ -40,7 +41,7 @@ define(function(require, exports, module) {
 		series: null,
 		legend: ['项目', '单位', '联系人'],
 		colorSet: {
-			project: '#f66567',
+			project: '#ff1d20',
 			company: '#239deb',
 			person: '#ff9a00'
 		},
@@ -55,6 +56,7 @@ define(function(require, exports, module) {
 
 	function getRelation(callback) {
 
+		Tool.mask();
 		$.ajax({
 			url: path + '/getRelation',
 			type: 'POST',
@@ -81,7 +83,7 @@ define(function(require, exports, module) {
 					alert("没有相关数据")
 					return
 				}
-
+				
 				setting.series = series
 				RelationChart.init(setting)
 			},
@@ -94,8 +96,6 @@ define(function(require, exports, module) {
 
 	function loadUrlDate(callback) {
 
-		Tool.mask();
-
 		var url = window.location.href,
 			args
 
@@ -104,10 +104,27 @@ define(function(require, exports, module) {
 			return
 		} else {
 
-			args = Tool.getUrlArgs(document.getElementById('getUrlArgs')),
-				AjaxObj.name = decodeURIComponent(args['name']),
-				AjaxObj.id = args['id']
+			args = Tool.getUrlArgs(document.getElementById('getUrlArgs'))
+
+			AjaxObj.name = decodeURIComponent(args['name'])
+			AjaxObj.id = args['id']
 			AjaxObj.rolesType = args['type']
+
+			if (args['industryId']) {
+
+				AjaxObj.industryId = args['industryId']
+				getRecommProject(function() {
+
+					$(".searchBody .inputText")
+						.val(AjaxObj.name)
+						.data('cValue', AjaxObj.name)
+
+					getRelation()
+					getRelationRoles()
+				})
+
+				return
+			}
 
 			$(".searchBody .inputText")
 				.val(AjaxObj.name)
@@ -165,6 +182,10 @@ define(function(require, exports, module) {
 			},
 			success: function(data) {
 
+				if (!data) {
+
+					return 
+				}
 				var companyRoles = data.companyRoles,
 					personRoles = data.personRoles,
 					comRemConli = $('.comRemCon .list li'),
@@ -211,6 +232,26 @@ define(function(require, exports, module) {
 		})
 	}
 
+	function getRecommProject(callback) {
+		$.ajax({
+			url: path + '/getRecommProject',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				industryId:AjaxObj.industryId
+			},
+			success: function(data) {
+				
+				AjaxObj.name = data.projectName
+				AjaxObj.rolesType = 'project'
+				if (callback && callback() ) {
+
+					callback()
+				}
+			}
+		})
+	}
+
 	function initSlider() {
 
 		var sliderOption = {
@@ -230,8 +271,8 @@ define(function(require, exports, module) {
 				range: null,
 				value: 10
 			}
-		var scale = new Scale(scaleOption)
-			scale.init()
+		/*var scale = new Scale(scaleOption)
+			scale.init()*/
 
 		$('.perRemCon .list').niceScroll({
 			cursorcolor: "#0a8dff",
@@ -357,9 +398,17 @@ define(function(require, exports, module) {
 
 			var con = $(this).parent().find('div').eq(1),
 				e = e || window.event,
-				display = con.css('display')
+				display = con.css('display'),
+				selected = $(this).hasClass('selected')
 
 			display === 'none' ? con.slideDown(500) : con.slideUp(500)
+
+			if (!selected) {
+
+				$(this).addClass('selected')
+			} else {
+				$(this).removeClass('selected')
+			}
 
 			e.stopPropagation()
 		})
@@ -387,12 +436,6 @@ define(function(require, exports, module) {
 
 				AjaxObj.personRole = word
 			}
-		})
-
-		$('.topTitle').hover(function() {
-			$(this).addClass('selected')
-		}, function() {
-			$(this).removeClass('selected')
 		})
 	}
 

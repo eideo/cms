@@ -1,5 +1,7 @@
 package com.sbiao360.cms.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,7 +22,9 @@ import org.apache.solr.common.util.Hash;
 import org.jasig.cas.client.util.AssertionHolder;
 import org.jasig.cas.client.validation.Assertion;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
 import com.sbiao360.cms.domain.Company;
@@ -46,7 +50,6 @@ public class RelationshipController extends BaseController{
 	
 	@Resource
 	private CodeService codeService;
-	
 	
 	/**
 	 * 获取关系网初始化数据
@@ -327,7 +330,7 @@ public class RelationshipController extends BaseController{
 			Map<String,Object> mapPerson = relationService.getContactsById(dataId);
 			String name = (String) mapPerson.get("name");
 			String cellphone = (String) mapPerson.get("cellphone");
-			cellphone = StringUtil.isBlank(cellphone)?"":(cellphone.length()>2?cellphone:cellphone.substring(0, 3));
+			cellphone = StringUtil.isBlank(cellphone)?"":(cellphone.length()>2?cellphone.substring(0, 3):cellphone);
 			String address = (String)mapPerson.get("address");
 			String email = (String)mapPerson.get("email");
 			String service = (StringUtil.isNotBlank(email)&&email.indexOf("@")>0)?email.split("@")[1]:"";
@@ -409,5 +412,19 @@ public class RelationshipController extends BaseController{
 			ajaxJson(JSON.toJSONString(map), response);
 		}
 		
+	}
+	
+	/**
+	 * 获取推荐行业项目名称
+	 * @param request
+	 * @param response
+	 * @author 廖得宇
+	 * 	2016年1月4日
+	 */
+	@RequestMapping({"/getRecommProject"})
+	public void selectRecommProject(HttpServletRequest request,HttpServletResponse response){
+		String industry = request.getParameter("industryId");
+		Map<String,String> map = relationService.selectRecommProject(industry);
+		ajaxJson(JSON.toJSONString(map), response);
 	}
 }

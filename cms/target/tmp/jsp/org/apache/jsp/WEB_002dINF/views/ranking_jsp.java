@@ -209,7 +209,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t<a code=\"2107\" href=\"javascript:;\">医疗卫生</a>\r\n");
       out.write("\t\t\t\t\t<a code=\"2108\" href=\"javascript:;\">房地产建筑</a>\r\n");
       out.write("\t\t\t\t\t<a code=\"2109\" href=\"javascript:;\">公共设施</a>\r\n");
-      out.write("\t\t\t\t\t<a code=\"2110\" href=\"javascript:;\" class=\"hidden\">科技文教旅游</a>\r\n");
+      out.write("\t\t\t\t\t<a code=\"2110\" href=\"javascript:;\" class=\"hidden disLeft\">科技文教旅游</a>\r\n");
       out.write("\t\t\t\t\t<a code=\"2111\" href=\"javascript:;\" class=\"hidden\">轻工</a>\r\n");
       out.write("\t\t\t\t\t<a code=\"2112\" href=\"javascript:;\" class=\"hidden\">化工</a>\r\n");
       out.write("\t\t\t\t\t<a code=\"2113\" href=\"javascript:;\" class=\"hidden\">机械电子</a>\r\n");
@@ -239,7 +239,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186015\">江西</a>\r\n");
       out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186016\">山东</a>\r\n");
       out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186017\">河南</a>\r\n");
-      out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186018\" class=\"hidden\">湖北</a>\r\n");
+      out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186018\" class=\"hidden disLeft\">湖北</a>\r\n");
       out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186019\" class=\"hidden\">湖南</a>\r\n");
       out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186020\" class=\"hidden\">广东</a>\r\n");
       out.write("\t\t\t\t\t<a href=\"javascript:;\" id=\"3186021\" class=\"hidden\">广西</a>\r\n");
@@ -279,7 +279,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<div class=\"part part3\">\r\n");
       out.write("\t\t\t\t<h3 class=\"clearfix\">\r\n");
       out.write("\t\t\t\t\t<i class=\"rank\"></i>\r\n");
-      out.write("\t\t\t\t\t<i class=\"keyword\">信息标题</i>\r\n");
+      out.write("\t\t\t\t\t<i class=\"keyword\">项目名称</i>\r\n");
       out.write("\t\t\t\t\t<i class=\"index\">搜索指数</i>\r\n");
       out.write("\t\t\t\t\t<i class=\"link\">相关链接</i>\r\n");
       out.write("\t\t\t\t</h3>\r\n");
@@ -290,7 +290,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<div class=\"part part4\">\r\n");
       out.write("\t\t\t\t<h3 class=\"clearfix\">\r\n");
       out.write("\t\t\t\t\t<i class=\"rank\"></i>\r\n");
-      out.write("\t\t\t\t\t<i class=\"keyword\">公司名称</i>\r\n");
+      out.write("\t\t\t\t\t<i class=\"keyword\">单位名称</i>\r\n");
       out.write("\t\t\t\t\t<i class=\"index\">热度</i>\r\n");
       out.write("\t\t\t\t\t<i class=\"link\">相关链接</i>\r\n");
       out.write("\t\t\t\t\t\r\n");
@@ -335,7 +335,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("/search?keyword={name}\">信息</a>\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/report/{id}\">行业报告</a>\r\n");
+      out.write("/report/{industry}\">行业报告</a>\r\n");
       out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t</li>\r\n");
       out.write("</script>\r\n");
@@ -347,10 +347,10 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t<div class=\"linkResult\">\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/relation?name={name}\">关系网</a>\r\n");
+      out.write("/relation?name={name}&type=company\">关系网</a>\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/report/{id}\">行业报告</a>\r\n");
+      out.write("/report/{industry}\">行业报告</a>\r\n");
       out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t</li>\r\n");
       out.write("</script>\r\n");
@@ -362,13 +362,13 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t<div class=\"linkResult\">\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/relation?name={name}\">关系网</a>\r\n");
+      out.write("/relation?name={name}&type=project\">关系网</a>\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/search?keyword={name}\">信息</a>\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/report/{id}\">行业报告</a>\r\n");
+      out.write("/report/{industry}\">行业报告</a>\r\n");
       out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t</li>\r\n");
       out.write("</script>\r\n");
@@ -380,10 +380,10 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t<div class=\"linkResult\">\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/relation?name={name}\">关系网</a>\r\n");
+      out.write("/relation?industryId={industry}&type=project\">关系网</a>\r\n");
       out.write("\t\t\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/report/{id}\">信息</a>\r\n");
+      out.write("/search?industryId={industry}\">信息</a>\r\n");
       out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t</li>\r\n");
       out.write("</script>\r\n");

@@ -6,6 +6,7 @@
 	  <result column="countNow" property="countNow" jdbcType="VARCHAR" />
 	  <result column="countIncre" property="countIncre" jdbcType="VARCHAR" />
 	  <result column="name" property="name" jdbcType="VARCHAR" />
+	  <result column="industry" property="industry" jdbcType="VARCHAR" />
 	</resultMap>
 	<!-- 搜索关键词排行榜和关系网关键词排行榜 -->
 	<select id="selectKeywordsRanking" parameterType="Map" resultMap="RankingData">
@@ -79,7 +80,8 @@
 				<include refid="sumSql"></include>
 			) countNow,
 			p.PROJECT_NAME name,
-			t.INFO_ID id
+			t.INFO_ID id,
+			max(p.industry1_id) industry
 		FROM
 			CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
 		WHERE
@@ -104,8 +106,8 @@
 			(
 				<include refid="sumSql"></include>
 			) countNow,
-			t.INFO_ID id
-			
+			t.INFO_ID id,
+			max(p.industry1_id) industry
 		FROM
 			CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
 		WHERE
@@ -126,13 +128,14 @@
 	</select>
 	<!-- 单位 -->
 	<select id="selectCompanyRanking" parameterType="Map" resultMap="RankingData">
-		select c.COMPANY_NAME name,sum(b.countNow) countNow,c.COMPANY_ID id
+		select c.COMPANY_NAME name,sum(b.countNow) countNow,c.COMPANY_ID id,max(b.industry)
 			from CMS_COMPANY_PROJECT c 
 			join (SELECT
 				(
 				<include refid="sumSql"></include>
 			) countNow,
-				p.id
+				p.id,
+			max(p.industry1_id) industry
 			FROM
 				CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
 			WHERE
@@ -194,8 +197,9 @@
 			) countNow,
 			t.INFO_ID id, 
 			re.REPORT_TITLE name,
-			code.code_name industry,
-			re.id industryId
+			code.id code,
+			max(re.id) industryId,
+			max(re.report_induxtry) industry
 		FROM
 			CMS_CODE code,CMS_CUST_BEHAVIOR t join CMS_REPORT_MAIN re on re.id=t.info_id 
 		WHERE
@@ -249,10 +253,10 @@
 	
 	<select id="selectKeywordsRankingDefault" resultMap="RankingData">
 		<![CDATA[
-			select z.name, z.id, z.countNow 
+			select z.name, z.id, z.countNow ,z.industry
 			from 
 			(select 
-			y.PROJECT_NAME as name, x.PROJECT_ID as id, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
+			y.PROJECT_NAME as name, x.PROJECT_ID as id,y.industry1_id industry, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
 			from 
 			(select 
 			(@row_number :=@row_number + 1) as ROW_INDEX,
@@ -273,7 +277,7 @@
 			left join CMS_PROJECT y on y.ID = x.PROJECT_ID
 			union 
 			select 
-			y.COMPANY_NAME as name, x.COMPANY_ID as id, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
+			y.COMPANY_NAME as name, x.COMPANY_ID as id,'' industry, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
 			from 
 			(select 
 			(@row_number :=@row_number + 1) as ROW_INDEX,
@@ -298,7 +302,7 @@
 	
 	<select id="selectInfoRankingDefault" resultMap="RankingData">
 		<![CDATA[
-			select z.name, z.id, z.countNow 
+			select z.name, z.id, z.countNow ,y.industry1_id industry
 			from 
 			(select 
 			y.PROJECT_NAME as name, x.PROJECT_ID as id, x.NUM * 403 + (100 - x.ROW_INDEX) as countNow
@@ -328,7 +332,7 @@
 		<choose>
 			<when test="num != null and num != ''">
 				<![CDATA[
-					select z.name, z.id, z.countNow 
+					select z.name, z.id, z.countNow ,(select max(p.industry1_id) from CMS_PROJECT p,CMS_COMPANY_PROJECT cp WHERE cp.project_id=p.id and cp.company_id=z.id) industry
 					from 
 					(select 
 					y.COMPANY_NAME as name, x.COMPANY_ID as id, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
@@ -355,7 +359,7 @@
 			</when>
 			<otherwise>
 				<![CDATA[
-					select z.name, z.id, z.countNow 
+					select z.name, z.id, z.countNow ,(select max(p.industry1_id) from CMS_PROJECT p,CMS_COMPANY_PROJECT cp WHERE cp.project_id=p.id and cp.company_id=z.id) industry
 					from 
 					(select 
 					y.COMPANY_NAME as name, x.COMPANY_ID as id, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
@@ -385,10 +389,10 @@
 
 	<select id="selectReportRankingDefault" resultMap="RankingData">
 		<![CDATA[
-			select z.name, z.id, z.countNow 
+			select z.name, z.id, z.countNow,z.industry
 			from 
 			(select 
-			REPORT_TITLE as name, ID as id, REPORT_WORDS as countNow
+			REPORT_TITLE as name, ID as id, REPORT_WORDS as countNow,report_induxtry industry
 			from CMS_REPORT_MAIN 
 			order by REPORT_WORDS desc, ID asc 
 			limit 0, 100 

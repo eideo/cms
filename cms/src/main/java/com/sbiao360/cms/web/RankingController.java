@@ -150,7 +150,20 @@ public class RankingController extends BaseController{
 		if(!StringUtil.isBlank(sort)&&!asc.equals("1")){
 			Collections.reverse(result);
 		}
-		
+		for(RankingData rank:result){
+			String industrys = rank.getIndustry();
+			if(industrys!=null){
+				String[] strs=industrys.split(",");
+				l:for(String str:strs){
+					if(StringUtil.isNotBlank(str)){
+						rank.setIndustry(str.substring(0,4));
+						break l;
+					}
+				}
+			}else{
+				rank.setIndustry("");
+			}
+		}
 		Map<String ,Object> map1 = new HashMap<>();
 		map1.put("status", true);
 		int num = result.size()%20==0?result.size()/20:(result.size()/20+1);

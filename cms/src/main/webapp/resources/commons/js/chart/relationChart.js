@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-08 16:22:44
+ * @Last Modified time: 2016-01-12 10:44:35
  */
 
 'use strict';
@@ -13,7 +13,7 @@ define(function(require, exports, module) {
 
 	var Tool = require('../../js/util/tool')
 
-	var cola = require('cola')
+	var Cola = require('cola')
 
 	var RelationChart = {}
 
@@ -34,7 +34,7 @@ define(function(require, exports, module) {
 			person: '联系人'
 		},
 		color,
-		cola,
+		d3Cola,
 		outer,
 		legendCon,
 		vis,
@@ -43,13 +43,7 @@ define(function(require, exports, module) {
 		nodesLayer,
 		link,
 		node;
-
-	var sourceDate, modelgraph, viewgraph = {
-			nodes: [],
-			links: []
-		},
-		startNode;
-
+	var sourceDate, modelgraph, viewgraph,startNode;	
 	var chartUniqId = 0
 
 	function loadInformation(parm, d, pos) {
@@ -153,45 +147,28 @@ define(function(require, exports, module) {
 	function refocus(focus) {
 
 		modelgraph.links.forEach(function(l) {
+            var u = modelgraph.nodes[l.source],
+                v = modelgraph.nodes[l.target];
 
-			var u = modelgraph.nodes[l.source],
-				v = modelgraph.nodes[l.target];
+            if (u === focus && !inView(v)) addViewNode(v, focus);
+            if (v === focus && !inView(u)) addViewNode(u, focus);
 
-			if (u === focus && !inView(v)) addViewNode(v, focus);
-			if (v === focus && !inView(u)) addViewNode(u, focus);
-		})
+        });
 
-		viewgraph.links = [];
+       	viewgraph.links = [];
 
-		viewgraph.nodes.forEach(function(v) {
+        modelgraph.links.forEach(function(l) {
 
-			v.color = colorSet[v['type']]
-			v.stroke = true
-		})
+            var u = modelgraph.nodes[l.source],
+                v = modelgraph.nodes[l.target];
 
-		modelgraph.links.forEach(function(l) {
-
-			var u = modelgraph.nodes[l.source],
-				v = modelgraph.nodes[l.target];
-
-			if (inView(u) && inView(v)) {
-
-				viewgraph.links.push({
-					source: u,
-					target: v
-				})
-			}
-
-			if (inView(u) && !inView(v)) {
-				u.color = colorSet[u['type']];
-				u.stroke = false
-			}
-
-			if (!inView(u) && inView(v)) {
-				v.color = colorSet[v['type']];
-				v.stroke = true
-			}
-		})
+            if (inView(u) && inView(v)) {
+            	viewgraph.links.push({
+	                source: u,
+	                target: v
+	            });
+            }
+        });
 	}
 
 	function inView(v) {
@@ -235,8 +212,6 @@ define(function(require, exports, module) {
 
 		d3.selectAll('.tip').remove()
 
-		$(this).attr('transform', 'scale(1.4)')
-
 		var type = d['type'],
 			id = d['dataId'],
 			parm = {
@@ -254,7 +229,7 @@ define(function(require, exports, module) {
 
 	function mouseout(d) {
 
-		$(this).attr('transform', 'scale(1.0)')
+		//$(this).attr('transform', 'scale(1.0)')
 	}
 
 	function toggleImageZoom(img) {
@@ -278,7 +253,7 @@ define(function(require, exports, module) {
 
 	function update() {
 
-		cola.nodes(viewgraph.nodes)
+		d3Cola.nodes(viewgraph.nodes)
 			.links(viewgraph.links)
 			.avoidOverlaps(true)
 			.convergenceThreshold(1e-9)
@@ -301,7 +276,7 @@ define(function(require, exports, module) {
 			});
 
 		node.exit().remove()
-
+		
 		var enter = node.enter()
 			.append("g")
 			.attr("class", 'node')
@@ -317,7 +292,7 @@ define(function(require, exports, module) {
 
 				d3.event.preventDefault()
 			})
-			.call(cola.drag)
+			.call(d3Cola.drag)
 
 		enter.append('svg:circle')
 			.attr('r', function(d, i) {
@@ -325,16 +300,34 @@ define(function(require, exports, module) {
 				var type = d['type']
 
 				if (type === 'project') {
-					return 20
+					return 25
 				} else if (type === 'company') {
-					return 15
+					return 20
 				} else if (type === 'person') {
-					return 10
+					return 15
 				}
 			})
 			.attr('fill', function(d, i) {
 
 				return colorSet[d['type']]
+			})
+			.attr('stroke',function(d) {
+				var type = d['type']
+
+				if (type === 'project') {
+					return '#fff'
+				} else{
+					return
+				}
+			})
+			.attr('stroke-width',function(d) {
+				var type = d['type']
+
+				if (type === 'project') {
+					return '2px'
+				} else{
+					return '0px'
+				}
 			})
 			.on('mouseover', mouseover)
 			.on('mouseout', mouseout)
@@ -343,7 +336,41 @@ define(function(require, exports, module) {
 				click(d)
 			})
 
-		cola.on("tick", function() {
+		enter.append('svg:text')
+			.attr('dy','0.35em')
+			.on('click', function(d, i) {
+
+				click(d)
+			})
+			.style('text-anchor','middle')
+			.style('fill','#fff')
+			.style('cursor','pointer')
+			.text(function(d) {
+
+				var type = d['type'];
+
+				if (type === 'project') {
+					return '项目';
+				} else if (type === 'company') {
+					return '单位';
+				} else if (type === 'person') {
+					return '人';
+				}
+			})
+			.style('font-size',function(d) {
+
+				var type = d['type'];
+
+				if (type === 'project') {
+					return "12px";
+				} else if (type === 'company') {
+					return "10px";
+				} else if (type === 'person') {
+					return "8px";
+				}
+			})
+
+		d3Cola.on("tick", function() {
 			link.attr("x1", function(d) {
 					return d.source.x;
 				})
@@ -362,6 +389,7 @@ define(function(require, exports, module) {
 			})
 		})
 	}
+
 	RelationChart.init = function(setting) {
 
 		d3.select(setting.selector).selectAll('svg').remove()
@@ -384,7 +412,7 @@ define(function(require, exports, module) {
 		color = d3.scale.category20();
 
 
-		cola = cola.d3adaptor()
+		d3Cola = Cola.d3adaptor()
 			.linkDistance(80)
 			.size([width, height]);
 
@@ -412,6 +440,12 @@ define(function(require, exports, module) {
 
 		edgesLayer = vis.append("g")
 		nodesLayer = vis.append("g")
+
+		
+		sourceDate, modelgraph, viewgraph = {
+			nodes: [],
+			links: []
+		}
 
 		modelgraph = series;
 
