@@ -46,7 +46,7 @@
 		</ul>
 		<c:if test="${notSearch==null}">
 			<div class="search">
-				<input type="text" class="searchBox" value="${keyword}" placeholder="请输入您要搜索的内容">
+				<input type="text" class="searchBox" id="searchBox"  value="${keyword}" placeholder="请输入您要搜索的内容">
 				<input type="button" class="searchBtn">
 				<ul class="prompt">
 					<li>提示1</li>
@@ -55,6 +55,7 @@
 					<li>提示4</li>
 					<li>提示5</li>
 				</ul>
+				<i></i>
 			</div>
 		</c:if>
 	</div>

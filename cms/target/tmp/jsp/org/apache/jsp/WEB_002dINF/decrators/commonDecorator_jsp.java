@@ -410,7 +410,7 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
       do {
         out.write("\r\n");
         out.write("\t\t\t<div class=\"search\">\r\n");
-        out.write("\t\t\t\t<input type=\"text\" class=\"searchBox\" value=\"");
+        out.write("\t\t\t\t<input type=\"text\" class=\"searchBox\" id=\"searchBox\"  value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${keyword}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\" placeholder=\"请输入您要搜索的内容\">\r\n");
         out.write("\t\t\t\t<input type=\"button\" class=\"searchBtn\">\r\n");
@@ -421,6 +421,7 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write("\t\t\t\t\t<li>提示4</li>\r\n");
         out.write("\t\t\t\t\t<li>提示5</li>\r\n");
         out.write("\t\t\t\t</ul>\r\n");
+        out.write("\t\t\t\t<i></i>\r\n");
         out.write("\t\t\t</div>\r\n");
         out.write("\t\t");
         int evalDoAfterBody = _jspx_th_c_if_2.doAfterBody();

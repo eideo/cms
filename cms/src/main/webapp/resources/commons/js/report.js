@@ -70,6 +70,25 @@ function searchHint() {
 		}
 	}
 
+	var searchInput=document.getElementById('searchBox');
+
+	searchInput.oninput=function(){
+
+		if(this.value !='') {
+
+			$('.search i').show();
+		}else {
+
+			$('.search i').hide();
+		}
+	}
+
+	$('.search i').click(function() {
+
+		$('.searchBox').val('');
+		$(this).hide();
+	})
+
 }
 
 function closeLoginBox() {

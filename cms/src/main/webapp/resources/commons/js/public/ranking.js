@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-01-04 15:01:07
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-11 13:48:30
+* @Last Modified time: 2016-01-12 10:52:44
 * @ 排行榜入口模块
 */
 
@@ -279,6 +279,11 @@ define(function(require, exports, module) {
 				word = $(this).html()
 
 			window.location.href = path + '/search?keyword=' + word
+		})
+
+		$('.words a').on('click',function() {
+
+			window.location.href = path + '/search?keyword=' + $(this).html()
 		})
 	})
 	module.exports = '';

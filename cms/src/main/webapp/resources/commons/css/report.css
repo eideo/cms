@@ -293,6 +293,16 @@
 		float:right;
 		position: relative;
 	}
+	.search i{
+		width: 26px;
+		height: 26px;
+		cursor: pointer;
+		position: absolute;
+		top: 3px;
+		right: 22px;
+		background: url(../images/emptySearchBox.png) no-repeat 0 6px;
+		display: none;
+	}
 	.searchBox:hover{
 		border: 1px solid #aaa;
 	}
@@ -784,6 +794,16 @@
 		height:30px;
 		float:right;
 		position: relative;
+	}
+	.search i{
+		width: 26px;
+		height: 26px;
+		cursor: pointer;
+		position: absolute;
+		top: 3px;
+		right: 20px;
+		background: url(../images/emptySearchBox.png) no-repeat 0 6px;
+		display: none;
 	}
 	.searchBox:hover{
 		border: 1px solid #aaa;

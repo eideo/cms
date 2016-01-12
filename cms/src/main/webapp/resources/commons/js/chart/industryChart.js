@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 15:19:41
+ * @Last Modified time: 2016-01-12 13:55:20
  */
 
 'use strict';
@@ -56,16 +56,15 @@ define(function(require, exports, module) {
 			xArray = [],
 			yArray = []
 
-		for (var i = 0; i < series.length; i++) {
-
-			xArray.push(series[i]['value'])
-			yArray.push(series[i]['type'])
-		}
+		series.forEach(function(item) {
+			xArray.push(item['value']);
+			yArray.push(item['type']);
+		});
 
 		max = d3.max(xArray, function(d, i) {
 
-			return Math.ceil(d)
-		})
+			return Math.ceil(d);
+		});
 
 		svg = d3.selectAll(selector)
 			.append('svg')
@@ -262,12 +261,11 @@ define(function(require, exports, module) {
 			xArray = [],
 			yArray = []
 
-		for (var i = 0; i < series.length; i++) {
-
-			xArray.push(series[i]['time'])
-			yArray.push(series[i]['value'])
-		}
-
+		series.forEach(function(item) {
+			xArray.push(item['time']);
+			yArray.push(item['value']);	
+		});
+		
 		max = d3.max(yArray, function(d, i) {
 
 			return Math.ceil(d)
@@ -342,29 +340,15 @@ define(function(require, exports, module) {
 
 				$(this).data('time', d)
 
-				var seriesLength = parseInt(series.length)
-
 				var dd = d.toString().substr(4, 2),
 					yearStart = d.toString().substr(0, 4)
 
-				if (seriesLength <= 24) {
+				if (parseInt(dd) % 2 == 0) {
 
-					if (parseInt(dd) % 2 == 0) {
+					return dd
+				} else {
 
-						return dd
-					} else {
-
-						return ''
-					}
-				} else if (seriesLength > 24) {
-
-					if (parseInt(dd) === 1) {
-
-						return yearStart
-					} else {
-
-						return ''
-					}
+					return ''
 				}
 			})
 
@@ -452,10 +436,10 @@ define(function(require, exports, module) {
 			return d.value
 		})
 
-		for (var i = 0; i < series.length; i++) {
+		series.forEach(function(item) {
 
-			total += series[i].value
-		}
+			total += item['value']
+		})
 
 		var arc = d3.svg.arc()
 			.outerRadius(width / 6)
@@ -650,15 +634,15 @@ define(function(require, exports, module) {
 			xArray = [],
 			yArray = []
 
-		for (var i = 0; i < series.length; i++) {
+		series.forEach(function(item) {
 
-			xArray.push(series[i]['time'])
-			yArray.push(series[i]['value'])
-		}
-
+			xArray.push(item['time'])
+			yArray.push(item['value'])
+		})	
+		
 		max = d3.max(yArray, function(d, i) {
 
-			return Math.ceil(d) + 10
+			return Math.ceil(d)*(1.1)
 		})
 
 		svg = d3.selectAll(selector)
@@ -740,29 +724,15 @@ define(function(require, exports, module) {
 
 				$(this).data('time', d)
 
-				var seriesLength = series.length
-
 				var dd = d.toString().substr(4, 2),
 					yearStart = d.toString().substr(0, 4)
 
-				if (seriesLength < 48) {
+				if (parseInt(dd) % 2 == 0) {
 
-					if (parseInt(dd) % 2 == 0) {
+					return dd
+				} else {
 
-						return dd
-					} else {
-
-						return ''
-					}
-				} else if (seriesLength >= 48) {
-
-					if (parseInt(dd) === 1) {
-
-						return yearStart
-					} else {
-
-						return ''
-					}
+					return ''
 				}
 			})
 
@@ -954,7 +924,7 @@ define(function(require, exports, module) {
 
 		max = d3.max(yArray, function(d, i) {
 
-			return Math.ceil(d) + 10
+			return Math.ceil(d)*(1.1);
 		})
 
 		svg = d3.selectAll(selector)
@@ -1043,29 +1013,16 @@ define(function(require, exports, module) {
 			.text(function(d) {
 
 				$(this).data('time', d)
-				var seriesLength = series.length
 
 				var dd = d.toString().substr(4, 2),
 					yearStart = d.toString().substr(0, 4)
 
-				if (seriesLength < 48) {
+				if (parseInt(dd) % 2 == 0) {
 
-					if (parseInt(dd) % 2 == 0) {
+					return dd
+				} else {
 
-						return dd
-					} else {
-
-						return ''
-					}
-				} else if (seriesLength >= 48) {
-
-					if (parseInt(dd) === 1) {
-
-						return yearStart
-					} else {
-
-						return ''
-					}
+					return ''
 				}
 			})
 
@@ -1501,7 +1458,6 @@ define(function(require, exports, module) {
 		}
 
 		// add the line
-
 		var outerArray = polyArray[raderLength]
 		for (var n = 0; n < outerArray.length; n++) {
 
@@ -1520,7 +1476,6 @@ define(function(require, exports, module) {
 		}
 
 		// add the rader
-
 		var rScale = d3.scale.linear()
 			.domain([0, d3.max(series, function(d, i) {
 				return d['value']
@@ -1797,7 +1752,7 @@ define(function(require, exports, module) {
 			})
 			.attr("y", function(d, i) {
 
-				return contentH + 20 // - hScale(d['value']) + 16
+				return contentH + 20;
 			})
 			.text(function(d, i) {
 

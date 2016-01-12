@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 17:31:36
+ * @Last Modified time: 2016-01-12 15:21:01
  */
 
 'use strict';
@@ -41,11 +41,10 @@ define(function(require, exports, module) {
 
 		var seriesArray = series[0].concat(series[1])
 
-		for (var i = 0; i < seriesArray.length; i++) {
+		seriesArray.forEach(function(item) {
 
-			//xArray.push(series[i].time)
-			yArray.push(seriesArray[i].value)
-		}
+			yArray.push(item.value);
+		});
 
 		for (var i = 0; i < series[0].length; i++) {
 
@@ -132,7 +131,7 @@ define(function(require, exports, module) {
 			.scale(yScale)
 			.orient('left')
 			.tickSize(0)
-			.tickPadding(15)
+			.tickPadding(10)
 			.tickFormat(function(d) {
 				return d
 			})
@@ -332,21 +331,27 @@ define(function(require, exports, module) {
 			.attr('y', function(d, i) {
 				return i * 23 + (0.4 * height) + 10
 			})
-			.text(function(d, i) {
+			.transition()
+			.duration(1500)
+			.tween('text',function(d, i) {
 
 				var value = ((d.data.value / total).toFixed(2) * 100).toString()
 
 				if (value.length > 3) {
 
-					value = value.substr(0, 3)
+					value = value.substr(0, 2)
 				}
 
 				var nameArray = d.data['name'].split('-'),
 					len = nameArray.length,
 					name
-					len > 1 ? name = nameArray[1] : name = nameArray[0]
+					len > 1 ? name = nameArray[1] : name = nameArray[0];
 
-				return name + '   ' + value + '%'
+				return function(t) {
+
+					d3.select(this)
+						.text(name+'   '+(t*value).toFixed(0)+ "%");
+				}
 			})
 
 			function tweenPie(b, callback) {
@@ -447,7 +452,6 @@ define(function(require, exports, module) {
 			.attr('fill', function(d, i) {
 				return colorset[i]
 			})
-
 	}
 
 	SearchChart.Cloud2 = function(setting) {
@@ -570,7 +574,6 @@ define(function(require, exports, module) {
 						return colorset[i]
 					})
 			}
-
 	}
 
 	SearchChart.rect = function(setting) {
@@ -606,7 +609,7 @@ define(function(require, exports, module) {
 
 		var max = d3.max(yArray, function(d, i) {
 
-			return Math.ceil(d)
+			return Math.ceil(d)*(1.2)
 		})
 
 		for (var i = 0; i < series.length; i++) {
@@ -653,6 +656,10 @@ define(function(require, exports, module) {
 			.attr('class', 'rectCon')
 			.attr('transform', 'translate(' + (margin.left) + ',' + (margin.top) + ')')
 
+		var textCon = svg.append('g')
+			.attr('class', 'textCon')
+			.attr('transform', 'translate(' + (margin.left) + ',' + (margin.top) + ')')
+
 		rectCon.selectAll('rect')
 			.data(series)
 			.enter()
@@ -680,369 +687,32 @@ define(function(require, exports, module) {
 
 				return hScale(d[1])
 			})
+
+		textCon.selectAll('text')
+			.data(series)
+			.enter()
+			.append('text')
+			.attr('fill','#5d5d5d')
+			.attr('x', function(d, i) {
+
+				return xScale(xArray[i]);
+			})
+			.attr("y", function(d, i) {
+
+				return contentH - hScale(d[1]) - 10;
+			})
+			.transition()
+			.duration(1500)
+			.tween('text',function(d,i) {
+
+				var trueNumber = Math.round(((d[1] / total)* 10000).toFixed(2)) / 100
+
+				return function(t) {
+
+					d3.select(this)
+						.text((t*trueNumber).toFixed(0)+ "%")
+				}
+			})
 	}
 	module.exports = SearchChart;
 })
-
-/*$(function() {
-
-	var leftSetting = {
-		selector: '.chartwrap .left',
-		margin: {
-			left: 50,
-			top: 50,
-			right: 30,
-			bottom: 40
-		},
-		colorset: ['#ffce00', '#ff7133', '#5d5d5d'],
-		series: [
-			[{
-				time: '201401',
-				value: 1000
-			}, {
-				time: '201402',
-				value: 1400
-			}, {
-				time: '201403',
-				value: 1500
-			}, {
-				time: '201404',
-				value: 1600
-			}, {
-				time: '201405',
-				value: 2500
-			}, {
-				time: '201406',
-				value: 3100
-			}, {
-				time: '201407',
-				value: 4780
-			}, {
-				time: '201408',
-				value: 4580
-			}, {
-				time: '201409',
-				value: 7460
-			}, {
-				time: '201410',
-				value: 4330
-			}, {
-				time: '201411',
-				value: 4300
-			}, {
-				time: '201412',
-				value: 2000
-			}],
-			[{
-				time: '201401',
-				value: 1100
-			}, {
-				time: '201402',
-				value: 1400
-			}, {
-				time: '201403',
-				value: 2000
-			}, {
-				time: '201404',
-				value: 3000
-			}, {
-				time: '201405',
-				value: 3500
-			}, {
-				time: '201406',
-				value: 4500
-			}, {
-				time: '201407',
-				value: 5400
-			}, {
-				time: '201408',
-				value: 6300
-			}, {
-				time: '201409',
-				value: 7200
-			}, {
-				time: '201410',
-				value: 6000
-			}, {
-				time: '201411',
-				value: 5900
-			}, {
-				time: '201412',
-				value: 5800
-			}],
-			[{
-				time: '201401',
-				value: 1200
-			}, {
-				time: '201402',
-				value: 1400
-			}, {
-				time: '201403',
-				value: 1600
-			}, {
-				time: '201404',
-				value: 1800
-			}, {
-				time: '201405',
-				value: 2100
-			}, {
-				time: '201406',
-				value: 2600
-			}, {
-				time: '201407',
-				value: 2700
-			}, {
-				time: '201408',
-				value: 3800
-			}, {
-				time: '201409',
-				value: 3900
-			}, {
-				time: '201410',
-				value: 4000
-			}, {
-				time: '201411',
-				value: 5000
-			}, {
-				time: '201412',
-				value: 6000
-			}]
-		],
-		type: ['项目', '招标', '中标'],
-		opacity: [0.4, 0.8, 0.4]
-	}
-
-
-	var arcSetting = {
-		selector: '.chartwrap .right .chart1',
-		width: 280,
-		height: 240,
-		margin: {
-			left: 0,
-			top: 0,
-			right: 0,
-			bottom: 0
-		},
-		colorset: ['#6ba3f1', '#ffd55a', '#49d5b6', '#b699f1', '#f26370', '#4ad486'],
-		series: [{
-			name: '能源',
-			weight: 1,
-			value: 5
-		}, {
-			name: '医疗',
-			weight: 1,
-			value: 8
-		}, {
-			name: '环保',
-			weight: 1,
-			value: 9
-		}, {
-			name: '机械电子',
-			weight: 1,
-			value: 10
-		}, {
-			name: '化工',
-			weight: 1,
-			value: 15
-		}]
-	}
-
-
-	var tagSetting = {
-		selector: '.chartwrap .right .chart2',
-		margin: {
-			left: 40,
-			top: 50,
-			right: 50,
-			bottom: 60
-		},
-		colorset: ['#65bbff', '#96ccff', '#ddeeff', '#c4e5ff', '#addaff', '#97cfff', '#97cfff'],
-		series: [
-			["广东", 1200],
-			["武汉", 1500],
-			["上海", 1300],
-			["北京", 300],
-			["福建", 400],
-			["杭州", 500]
-		]
-
-	}
-
-	function GetRequest() {
-		var url = location.search; //获取url中"?"符后的字串
-		var theRequest = new Object();
-		if (url.indexOf("?") != -1) {
-			var str = url.substr(1);
-			var strs = str.split("&");
-			for (var i = 0; i < strs.length; i++) {
-				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-			}
-		}
-		return theRequest;
-	}
-
-	function getData() {
-
-		var mhref = window.location.href.split('=')
-		var word = decodeURIComponent(mhref[1])
-
-		var term1Spans = $('.term .term1>.span span'),
-			term2Spans = $('.term .term2>.span span'),
-			term3Spans = $('.term .term3>.span span'),
-			typeArray = [],
-			cityArray = [],
-			tradeArray = [],
-			typeString,
-			cityString,
-			tradeString
-
-		console.log('-------------------887',term1Spans,term2Spans,term3Spans)
-		for (var si=0;si<term1Spans.length;si++) {
-
-			typeArray.push(term1Spans.eq(si).text())
-			
-		}
-		
-		for (var sj=0;sj<term2Spans.length;sj++) {
-
-			cityArray.push(term2Spans.eq(sj).text())
-
-		}
-
-		for (var sk=0;sk<term3Spans.length;sk++) {
-			console.log(term3Spans.eq(sk).text())
-			tradeArray.push(term3Spans.eq(sk).text())
-		}
-
-		typeString = typeArray.join(',')
-		cityString = cityArray.join(',')
-		tradeString = tradeArray.join(',')
-
-		console.log('------------------------908',tradeArray,tradeString)
-		$.ajax({
-			url: path + '/getsearchstatistics',
-			data: {
-				'type':typeString,
-				'keywords': word,
-				'area': cityString,
-				'industry': tradeString,
-				'startDate': '201401',
-				'endDate': '201512'
-			},
-			type: "POST",
-			dataType: "json",
-			success: function(data) {
-				console.log(data)
-				var dataArea = data[0].dataArea,
-					dataIndustry = data[0].dataIndustry,
-					dataTimeo = data[0].dataTimeo,
-					tagSeries = [],
-					arcSeries = [],
-					leftSeries = [
-						[],
-						[],
-						[]
-					]
-
-				for (var i = 0; i < dataArea.length; i++) {
-
-					var temp = [dataArea[i].area, dataArea[i].nums]
-					tagSeries.push(temp)
-				}
-
-
-				for (var j = 0; j < dataIndustry.length; j++) {
-
-					var temp1 = {
-						name: dataIndustry[j]['industry'],
-						weight: 1,
-						value: dataIndustry[j]['nums']
-					}
-
-					arcSeries.push(temp1)
-				}
-
-
-				for (var k = 0; k < dataTimeo.length; k++) {
-
-					var bid = {
-						time: dataTimeo[k]['time'],
-						value: dataTimeo[k]['bid']
-					}
-
-					var project = {
-						time: dataTimeo[k]['time'],
-						value: dataTimeo[k]['project']
-					}
-
-					var tender = {
-						time: dataTimeo[k]['time'],
-						value: dataTimeo[k]['tender']
-					}
-
-					// bid 投标 tender 招标 设计稿有出入
-					leftSeries[0].push(project)
-					leftSeries[1].push(tender)
-					leftSeries[2].push(bid)
-				}
-
-				tagSetting.series = tagSeries
-				SearchChart.rect(tagSetting)
-
-				arcSetting.series = arcSeries
-				SearchChart.pieCircle(arcSetting)
-
-				leftSetting.series = leftSeries
-				SearchChart.brokeArea(leftSetting)
-			},
-			error: function() {
-				alert("请求异常");
-			}
-		})
-	}
-
-	getData()
-
-
-	$('#dtype>li').on('click',function(e) {
-
-		var e = e || window.event,
-			display = $('.term1').css('display')
-
-		if (display === 'block') {
-			getData()
-		}
-	})
-
-
-	$('.type>li').on('click',function(e) {
-
-		var e = e || window.event,
-			display = $('.term1').css('display')
-
-		if (display === 'block') {
-			getData()
-		}
-	})
-
-
-	$('.area>li').on('click',function(e) {
-
-		var e = e || window.event,
-			display = $('.term2').css('display')
-
-		if (display === 'block') {
-			getData()
-		}
-	})
-
-	$('.trade>li').on('click',function(e) {
-
-		var e = e || window.event,
-			display = $('.term3').css('display')
-
-		if (display === 'block') {
-			getData()
-		}
-	})
-})*/

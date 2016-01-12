@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-10 15:54:04
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-11 11:33:39
+ * @Last Modified time: 2016-01-12 10:50:12
  */
 
 
@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 	var lasta = 1;
 	var lastb = 1;
 	var distr = true;
-	var tspeed = 10;
+	var tspeed = 5;
 	var size = 200;
 
 	var mouseX = 0;
