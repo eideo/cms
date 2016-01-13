@@ -315,18 +315,33 @@ public class ExponentService {
 	public List<Map<String, Object>> informationType(Map<String, Object> map) {
 		Map<String,Object> re = exponentDao.informationType(map);
 		List<Map<String, Object>> list = new ArrayList<>();
-		Map<String,Object> map1 = new HashMap<>();
-		map1.put("name", "项目");
-		map1.put("value", re.get("project")==null?0:re.get("project"));
-		list.add(map1);
-		Map<String,Object> map2 = new HashMap<>();
-		map2.put("name", "招标");
-		map2.put("value", re.get("zbgg")==null?0:re.get("zbgg"));
-		list.add(map2);
-		Map<String,Object> map3 = new HashMap<>();
-		map3.put("name", "中标");
-		map3.put("value", re.get("zbgs")==null?0:re.get("zbgs"));
-		list.add(map3);
+		if(re!=null){
+			Map<String,Object> map1 = new HashMap<>();
+			map1.put("name", "项目");
+			map1.put("value", re.get("project")==null?0:re.get("project"));
+			list.add(map1);
+			Map<String,Object> map2 = new HashMap<>();
+			map2.put("name", "招标");
+			map2.put("value", re.get("zbgg")==null?0:re.get("zbgg"));
+			list.add(map2);
+			Map<String,Object> map3 = new HashMap<>();
+			map3.put("name", "中标");
+			map3.put("value", re.get("zbgs")==null?0:re.get("zbgs"));
+			list.add(map3);
+		}else{
+			Map<String,Object> map1 = new HashMap<>();
+			map1.put("name", "项目");
+			map1.put("value", 0);
+			list.add(map1);
+			Map<String,Object> map2 = new HashMap<>();
+			map2.put("name", "招标");
+			map2.put("value", 0);
+			list.add(map2);
+			Map<String,Object> map3 = new HashMap<>();
+			map3.put("name", "中标");
+			map3.put("value", 0);
+			list.add(map3);
+		}
 		return list;
 	}
 	
@@ -418,5 +433,9 @@ public class ExponentService {
 		}
 		Collections.sort(listre, new ExpontCompare());
 		return listre;
+	}
+
+	public Map<String, Object> getDateRange() {
+		return exponentDao.getDateRange();
 	}
 }

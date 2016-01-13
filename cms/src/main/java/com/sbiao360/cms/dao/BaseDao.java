@@ -2,6 +2,7 @@ package com.sbiao360.cms.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public interface BaseDao{
       
@@ -26,4 +27,6 @@ public interface BaseDao{
 	public int getCount(String key,Object object);
 	
 	public <T>  T selectOne(String key,Object params);
+
+	public Map<String, Object> get(String string);
 }

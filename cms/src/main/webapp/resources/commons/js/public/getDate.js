@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-12-16 08:41:22
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-13 17:03:18
+* @Last Modified time: 2016-01-13 17:23:07
 */
 
 'use strict';
@@ -21,12 +21,12 @@ define(function(require, exports, module) {
 			month: '11'
 		},
 		rangeStartTime:{
-			year: '2012',
-			month: '01'
+			year: startDate.substr(0,4),
+			month: startDate.substr(5,2)
 		},
 		rangeEndTime: {
-			year: '2015',
-			month: '11'
+			year: endDate.substr(0,4),
+			month: endDate.substr(5,2)
 		},
 		chartColor:'#ff8519',
 		informationType: '项目',

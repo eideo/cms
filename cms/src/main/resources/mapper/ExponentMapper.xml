@@ -140,5 +140,11 @@
 		and t.start_date&gt;=#{startDate} 
 		and t.start_date&lt;=#{endDate}
 	</select>
-	
+	<select id="getDateRange" resultType="Map">
+		select min(a) startDate from (select min(t.START_DATE) a from CMS_XM_NUM t where t.START_DATE is not null
+		union ALL
+		select min(a.START_DATE) from CMS_ZBGS_NUM a where a.START_DATE is not null
+		union ALL
+		select min(b.START_DATE) from CMS_ZBGG_NUM b where b.START_DATE is not null) x;
+	</select>
 </mapper>

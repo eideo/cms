@@ -314,6 +314,14 @@ public final class industry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t</div>\r\n");
       out.write("</div>\r\n");
       out.write("\t<myScript>\r\n");
+      out.write("\t\t<script type=\"text/javascript\" >\r\n");
+      out.write("\t\t\tvar startDate=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${startDate}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\";\r\n");
+      out.write("\t\t\tvar endDate=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${endDate}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\";\r\n");
+      out.write("\t\t</script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/lib/seajs/sea.js?v=1.0.1-20151229\"></script>\r\n");

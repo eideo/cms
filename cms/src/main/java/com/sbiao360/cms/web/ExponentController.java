@@ -2,6 +2,7 @@ package com.sbiao360.cms.web;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import com.alibaba.fastjson.JSON;
 import com.sbiao360.cms.domain.Code;
 import com.sbiao360.cms.service.CodeService;
 import com.sbiao360.cms.service.ExponentService;
+import com.sbiao360.cms.zutil.DateTime;
 import com.sbiao360.cms.zutil.StringUtil;
 
 /**
@@ -52,7 +54,12 @@ public class ExponentController extends BaseController{
 		if(assertion!=null){
 			request.setAttribute("username", assertion.getPrincipal().getName());
 		}
+		Map<String, Object> map = exponentService.getDateRange();
 		request.setAttribute("notSearch", "true");
+		request.setAttribute("startDate", map.get("startDate"));
+		Date d = new Date();
+		d.setDate(0);
+		request.setAttribute("endDate", DateTime.toDate("yyyy-MM-dd",d));
 		return "industry";
 	}
 	

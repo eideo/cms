@@ -41,6 +41,9 @@ public class ExponentDao {
 	public Map<String, Object> competeAccounted(Map<String, Object> params) {
 		return this.baseDao.get("exponentMapper.competeAccounted", params);
 	}
+	public Map<String, Object> getDateRange() {
+		return this.baseDao.get("exponentMapper.getDateRange");
+	}
 	
 	
 	

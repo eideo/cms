@@ -2,6 +2,8 @@ package com.sbiao360.cms.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -72,6 +74,11 @@ public class BaseDaoMyBatis extends SqlSessionDaoSupport implements BaseDao{
 		@Override
 		public int getCount(String key, Object params) {
 			return getSqlSession().selectOne(key,params);
+		}
+
+		@Override
+		public Map<String, Object> get(String key) {
+			return getSqlSession().selectOne(key);
 		}
 
 }
