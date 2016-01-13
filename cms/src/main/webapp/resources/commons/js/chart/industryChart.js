@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-12 13:55:20
+ * @Last Modified time: 2016-01-13 11:47:12
  */
 
 'use strict';
@@ -361,7 +361,7 @@ define(function(require, exports, module) {
 			.y1(function(d, i) {
 				return yScale(d['value']);
 			})
-			.interpolate("cardinal");
+			.interpolate("basic");
 
 		var linePath = d3.svg.line()
 			.x(function(d, i) {

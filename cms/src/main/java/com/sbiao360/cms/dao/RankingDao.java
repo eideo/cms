@@ -48,20 +48,20 @@ public class RankingDao {
 		return baseDao.get("ranking.selectHisReportRanking", params);
 	}
 
-	public List<RankingData> selectKeywordsRankingDefault() {
-		return baseDao.getList("ranking.selectKeywordsRankingDefault");
+	public List<RankingData> selectKeywordsRankingDefault(Map<String, Object> map) {
+		return baseDao.getList("ranking.selectKeywordsRankingDefault", map);
 	}
 
-	public List<RankingData> selectInfoRankingDefault() {
-		return baseDao.getList("ranking.selectInfoRankingDefault");
+	public List<RankingData> selectInfoRankingDefault(Map<String, Object> map) {
+		return baseDao.getList("ranking.selectInfoRankingDefault", map);
 	}
 
 	public List<RankingData> selectCompanyRankingDefault(Map<String, Object> map) {
 		return baseDao.getList("ranking.selectCompanyRankingDefault", map);
 	}
 
-	public List<RankingData> selectReportRankingDefault() {
-		return baseDao.getList("ranking.selectReportRankingDefault");
+	public List<RankingData> selectReportRankingDefault(Map<String, Object> map) {
+		return baseDao.getList("ranking.selectReportRankingDefault", map);
 	}
 
 }

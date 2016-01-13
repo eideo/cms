@@ -47,11 +47,11 @@ text {
 	display: none;
 }
 
-.xAxis .tick line,.yAxis .tick line {
+/* .xAxis .tick line,.yAxis .tick line {
 	fill: none;
 	stroke: #F3F3F4;
 	stroke-width: 1;
-}
+} */
 
 .navWrapper{
 	width:100%;
@@ -73,6 +73,9 @@ text {
 	}
 	.user-info{
 		float: right;
+		height: 20px;
+		line-height: 20px;
+		margin-top: 5px;
 	}
 	.user-info li{
 		display: inline-block;

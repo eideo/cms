@@ -1558,27 +1558,11 @@ div.xi{
 .common_operation .title span.on{
 	color: #47aaff;
 }
-.common_operation .title .selectall{
-	width: 130px;
-	padding-left: 67px;
+.common_operation .title .list{
+	width: 167px;
+	padding-left: 30px;
 	position: relative;
 }
-.common_operation .title .selectall i{
-	width: 13px;
-	height: 13px;
-	border: 1px solid #a8a8a8;
-	position: absolute;
-	top: 15px;
-	left: 26px;
-	border-radius: 2px;
-	cursor: pointer;
-	
-}
-.common_operation .title .selectall i.on{
-	border: 1px solid #47aaff;
-	background: url(../images/icon1229.png) no-repeat -338px -492px;
-}
-
 .common_operation .title .project{
 	width: 590px;
 	text-align: center;

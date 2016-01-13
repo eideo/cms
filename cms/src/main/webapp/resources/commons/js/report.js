@@ -15,6 +15,8 @@ $(function() {
 
 	// 行业报告列表关注收藏分享
 	userBehavior();
+
+	urlOption();
 });
 
 // 搜索框交互
@@ -516,4 +518,24 @@ function reportView(id) {
 	var height = parseInt($(window).height() * 0.8);
 	// alert(width + "/" + height);
 	popWin.showWin(width, height, reporttitle, url);
+}
+
+// url传递默认行业分类
+
+function getUrlArgs() {
+
+	var url = window.location.href
+	var urlArr = url.split('/');
+	var args = urlArr[urlArr.length-1];
+	return args;
+
+}
+function urlOption() {
+
+	var pid = getUrlArgs();
+	var theIndustry=$("'.term li[rid='"+pid+"']'");
+
+	theIndustry.addClass('active');
+	theIndustry.find('a').addClass('active');
+	theIndustry.find('i').addClass('active');
 }

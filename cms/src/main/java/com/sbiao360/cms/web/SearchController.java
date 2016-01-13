@@ -576,7 +576,7 @@ public class SearchController extends BaseController{
 		customerKeywordsService.insertKeyWords(custBehavior);
 		
 		// start add by yujw 20150922
-		String area = customerBehaviorService.getAreaByIp(custBehavior
+		String area = ip.contains("192.168")?"北京":customerBehaviorService.getAreaByIp(custBehavior
 				.getIp());
 		JSONObject hotword = new JSONObject();
 		hotword.put("hotWord", str);

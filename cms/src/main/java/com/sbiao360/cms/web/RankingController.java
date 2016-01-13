@@ -93,7 +93,8 @@ public class RankingController extends BaseController{
 			result = rankingService.selectKeywordsRanking(map,circle);
 			resetCount(result);
 			if (null != result && result.size() == 0) {
-				result = rankingService.selectKeywordsRankingDefault();
+				map.put("industry", industry);
+				result = rankingService.selectKeywordsRankingDefault(map);
 			}
 		}
 		//信息
@@ -104,7 +105,7 @@ public class RankingController extends BaseController{
 			result = rankingService.selectInfoRanking(map,circle);
 			resetCount(result);
 			if (null != result && result.size() == 0) {
-				result = rankingService.selectInfoRankingDefault();
+				result = rankingService.selectInfoRankingDefault(map);
 			}
 		}
 		//公司
@@ -120,15 +121,15 @@ public class RankingController extends BaseController{
 			}
 			result = rankingService.selectCompanyRanking(map,circle);
 			resetCount(result);
-			if (null != result) {
+			if (result.size()>0) {
 				if (StringUtil.isBlank(sort) && result.size() < totalCompany) {
 					int lessNum = totalCompany - result.size();
 					map.put("num", lessNum);
 					lessResult = rankingService.selectCompanyRankingDefault(map);
 					result.addAll(lessResult);
-				} else {
-					result = rankingService.selectCompanyRankingDefault(map);
-				}
+				} 
+			}else {
+				result = rankingService.selectCompanyRankingDefault(map);
 			}
 		}
 		//报告
@@ -139,7 +140,7 @@ public class RankingController extends BaseController{
 			result = rankingService.selectReportRanking(map, circle);
 			resetCount(result);
 			if (null != result && result.size() == 0) {
-				result = rankingService.selectReportRankingDefault();
+				result = rankingService.selectReportRankingDefault(map);
 			}
 		}
 		

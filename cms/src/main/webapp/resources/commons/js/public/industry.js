@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 15:24:15
+ * @Last Modified time: 2016-01-13 16:38:49
  */
 
 define(function(require, exports, module) {
@@ -68,27 +68,21 @@ define(function(require, exports, module) {
 	}
 
 	function initYearZoom() {
-
-		var leftVal = $('#dateLeft').val(),
-			rightVal = $('#dateRight').val()
-
-		var leftYear = leftVal.substr(0,4),
-			leftMonth = leftVal.substr(5,2),
-			rightYear = rightVal.substr(0,4),
-			rightMonth = rightVal.substr(5,2)
-
+		console.log(Interaction.rangeStartTime,Interaction.rangeEndTime)
 		// 滑动块初始化
 		var dataZoomObj = {
 			selector: 'timeRange',
 			handle: 'timeHandle',
 			show:'timeShow',
+			rangeStartTime:Interaction.rangeStartTime,
+			rangeEndTime:Interaction.rangeEndTime,
 			timeStart: {
-				year:leftYear,
-				month:leftMonth
+				year:Interaction.leftStartTime.year,
+				month:Interaction.leftStartTime.month
 			},
 			timeEnd:{
-				year:rightYear,
-				month:rightMonth
+				year:Interaction.leftEndTime.year,
+				month:Interaction.leftEndTime.month
 			}
 		}
  
@@ -378,14 +372,12 @@ define(function(require, exports, module) {
 
 		Interaction.getFullDate = getFullDate
 		Interaction.getLeftDate = getLeftBar
-		Interaction.initDataZoom = initDataZoom
 		Interaction.initYearZoom = initYearZoom
 		Interaction.type = "房地产建筑";
 		Interaction.id = "2108";
 		
 		getLeftBar()
 		getFullDate()
-		initDataZoom()
 		initYearZoom()
 		loadReportData()
 		loadReportTop5()

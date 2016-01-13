@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-12 10:13:37
+ * @Last Modified time: 2016-01-13 15:29:11
  */
 
 'use strict';
@@ -29,7 +29,8 @@ define(function(require, exports, module) {
 		endDate: '201511',
 		rolesName: '',
 		rolesType: 'company',
-		industryId:'2108'
+		industryId:'2108',
+		canSearch:false
 	}
 
 	var RelationChart = require('../../js/chart/relationChart')
@@ -322,7 +323,8 @@ define(function(require, exports, module) {
 
 			AjaxObj.name = word
 			AjaxObj.rolesType = type
-
+			AjaxObj.canSearch = true
+			
 			getRelationRoles()
 		})
 
@@ -354,8 +356,12 @@ define(function(require, exports, module) {
 				return
 			} else {
 
-				Tool.mask()
-				getRelation()
+				if (AjaxObj.canSearch) {
+
+					Tool.mask()
+					getRelation()
+				}
+
 			}
 		})
 	}

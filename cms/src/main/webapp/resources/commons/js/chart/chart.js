@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-09 17:30:30
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-07 09:45:59
+ * @Last Modified time: 2016-01-13 11:03:55
  */
 
 'use strict';
@@ -619,7 +619,13 @@ define(function(require, exports, module) {
         var content = svg.append("g")
             .attr("class", "content")
             .attr("transform", "translate(" + margin.left + ", " + 20 + ")")
-
+        
+        var defs = svg.append('defs')
+            defs.append('filter')
+            .attr('id','GaussianBlur')
+            .append('feGaussianBlur')
+            .attr('in','SourceGraphic')
+            .attr('stdDeviation','1')
 
         d3.json(path + '/resources/json/china.json', function(data) {
 
@@ -636,6 +642,7 @@ define(function(require, exports, module) {
                 .attr("stroke-width", "1px")
                 .attr("stroke-linejoin", "round")
                 .attr("stroke", '#3e99ff')
+
 
             var southChina = svg.append('image')
                 .attr('class', 'southChinaSea')

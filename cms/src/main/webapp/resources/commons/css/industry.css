@@ -342,7 +342,7 @@ h3
     top: -1px;
     left: 260px;
 
-    width: 44px;
+    width: auto;
     height: 20px;
 
     cursor: pointer;
@@ -353,7 +353,7 @@ h3
 
     color: #fff;
     background: url(../images/timeHandle.png) no-repeat;
-
+    background: #7ec3ff;
     direction: block;
 }
 

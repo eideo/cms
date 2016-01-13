@@ -556,5 +556,58 @@ public class CustomerBehaviorController extends BaseController {
 							custBehavior.getActionDate()) + "," + "topClick");
 		}
 	}
+	
+	// 用户行为-点击搜索条件
+		@RequestMapping(value = "/relationClick", method = RequestMethod.POST)
+		public void relationClick(
+				HttpServletRequest request,
+				HttpServletResponse response,
+				@RequestParam(required = false, defaultValue = "") Long infoId,
+				@RequestParam(required = false, defaultValue = "") String infoType,
+				@RequestParam(required = false, defaultValue = "") String infoName)
+				throws IOException {
+			Long ip = 0L;
+			String ipStr = IpTool.getClientAddress(request);
+			if (null != ipStr && !"".equals(ipStr)) {
+				ip = IpTool.setIP(ipStr);
+			}
+
+			Assertion assertion = AssertionHolder.getAssertion();
+			Long userId = 0L;
+			String custName = "";
+			String loginId = "";
+
+			if (assertion != null) {
+				userId = Long.parseLong((String) assertion.getPrincipal()
+						.getAttributes().get("id"));
+				custName = (String) assertion.getPrincipal().getAttributes()
+						.get("name");
+				loginId = assertion.getPrincipal().getName();
+			}
+
+			CustBehavior custBehavior = new CustBehavior();
+			custBehavior.setUserId(userId);
+			custBehavior.setCustName(custName);
+			custBehavior.setLoginId(loginId);
+			custBehavior.setIp(ip);
+			custBehavior.setInfoType(infoType);
+			custBehavior.setActionType((short) 2);
+			custBehavior.setActionDate(new Date());
+			custBehavior.setInfoId(infoId);
+			custBehavior.setInfoName(infoName);
+			custBehavior.setInfoValid((short) 1);
+			custBehavior.setColumnLevelOne("关系网");
+
+			customerBehaviorService.insertCustomerClickRelNetwork(custBehavior);
+
+			if (userId.longValue() != 0) {
+				CustBehaviorLog.info(userId
+						+ ","
+						+ request.getSession().getId()
+						+ ","
+						+ DateTime.toDate("yyyy-MM-dd HH:mm:ss",
+								custBehavior.getActionDate()) + "," + "relNetwork");
+			}
+		}
 
 }

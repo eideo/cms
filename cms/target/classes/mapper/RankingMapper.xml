@@ -252,7 +252,6 @@
 	</select>
 	
 	<select id="selectKeywordsRankingDefault" resultMap="RankingData">
-		<![CDATA[
 			select z.name, z.id, z.countNow ,z.industry
 			from 
 			(select 
@@ -274,7 +273,14 @@
 			ORDER BY
 				NUM DESC, PROJECT_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
-			left join CMS_PROJECT y on y.ID = x.PROJECT_ID
+			left join CMS_PROJECT y on y.ID = x.PROJECT_ID where y.CONFIRM_DATE&lt;=#{endDate}
+			AND y.CONFIRM_DATE&gt;=#{startDate}
+			<if test="industry!=null">
+			AND y.industry1_id like CONCAT('%',#{industry},'%')
+			</if>
+			<if test="areaCode!=null">
+			AND y.area_tail_id like CONCAT('%',#{areaCode},'%')
+			</if>
 			union 
 			select 
 			y.COMPANY_NAME as name, x.COMPANY_ID as id,'' industry, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
@@ -284,28 +290,31 @@
 			a.COMPANY_ID as COMPANY_ID, a.NUM as NUM
 			from 
 			(SELECT
-				COMPANY_ID,
-				count(PROJECT_ID) as NUM
+				cp.COMPANY_ID,
+				count(1) as NUM
 			FROM
-				CMS_COMPANY_PROJECT
-			WHERE
-				COMPANY_NAME IS NOT NULL
+				CMS_COMPANY_PROJECT cp,CMS_PROJECT PR WHERE PR.ID=cp.PROJECT_ID
+				<if test="industry!=null">
+				AND PR.industry1_id like CONCAT('%',#{industry},'%')
+				</if>
+				<if test="areaCode!=null">
+				AND PR.area_tail_id like CONCAT('%',#{areaCode},'%')
+				</if>
+				AND cp.COMPANY_NAME IS NOT NULL
 			GROUP BY
-				COMPANY_ID
+				cp.COMPANY_ID
 			ORDER BY
-				NUM DESC, COMPANY_ID ASC
+				NUM DESC, cp.COMPANY_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
 			left join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
 			order by z.countNow desc limit 0, 100 
-		]]>
 	</select>
 	
 	<select id="selectInfoRankingDefault" resultMap="RankingData">
-		<![CDATA[
-			select z.name, z.id, z.countNow ,y.industry1_id industry
+			select z.name, z.id, z.countNow ,z.industry1_id industry
 			from 
 			(select 
-			y.PROJECT_NAME as name, x.PROJECT_ID as id, x.NUM * 403 + (100 - x.ROW_INDEX) as countNow
+			y.PROJECT_NAME as name, x.PROJECT_ID as id, x.NUM * 403 + (100 - x.ROW_INDEX) as countNow,y.industry1_id
 			from 
 			(select 
 			(@row_number :=@row_number + 1) as ROW_INDEX,
@@ -323,15 +332,19 @@
 			ORDER BY
 				NUM DESC, PROJECT_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
-			left join CMS_PROJECT y on y.ID = x.PROJECT_ID) z
+			left join CMS_PROJECT y on y.ID = x.PROJECT_ID where 1=1
+			<if test="industry!=null">
+			AND y.industry1_id like CONCAT('%',#{industry},'%')
+			</if>
+			<if test="areaCode!=null">
+			AND y.area_tail_id like CONCAT('%',#{areaCode},'%')
+			</if>) z
 			order by z.countNow desc limit 0, 100 
-		]]>
 	</select>
 	
 	<select id="selectCompanyRankingDefault" parameterType="java.util.Map" resultMap="RankingData">
 		<choose>
 			<when test="num != null and num != ''">
-				<![CDATA[
 					select z.name, z.id, z.countNow ,(select max(p.industry1_id) from CMS_PROJECT p,CMS_COMPANY_PROJECT cp WHERE cp.project_id=p.id and cp.company_id=z.id) industry
 					from 
 					(select 
@@ -342,23 +355,26 @@
 					a.COMPANY_ID as COMPANY_ID, a.NUM as NUM
 					from 
 					(SELECT
-						COMPANY_ID,
-						count(PROJECT_ID) as NUM
+						cp.COMPANY_ID,
+						count(1) as NUM
 					FROM
-						CMS_COMPANY_PROJECT
-					WHERE
-						COMPANY_NAME IS NOT NULL
+						CMS_COMPANY_PROJECT cp,CMS_PROJECT PR WHERE PR.ID=cp.PROJECT_ID
+						<if test="industry!=null">
+						AND PR.industry1_id like CONCAT('%',#{industry},'%')
+						</if>
+						<if test="areaCode!=null">
+						AND PR.area_tail_id like CONCAT('%',#{areaCode},'%')
+						</if>
+						AND cp.COMPANY_NAME IS NOT NULL
 					GROUP BY
-						COMPANY_ID
+						cp.COMPANY_ID
 					ORDER BY
-						NUM DESC, COMPANY_ID ASC
+						NUM DESC, cp.COMPANY_ID ASC
 					limit 0, ${num}) a, (SELECT @row_number := 0) as t) x
 					left join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
 					order by z.countNow desc limit 0, ${num} 
-				]]>
 			</when>
 			<otherwise>
-				<![CDATA[
 					select z.name, z.id, z.countNow ,(select max(p.industry1_id) from CMS_PROJECT p,CMS_COMPANY_PROJECT cp WHERE cp.project_id=p.id and cp.company_id=z.id) industry
 					from 
 					(select 
@@ -369,34 +385,39 @@
 					a.COMPANY_ID as COMPANY_ID, a.NUM as NUM
 					from 
 					(SELECT
-						COMPANY_ID,
-						count(PROJECT_ID) as NUM
+						cp.COMPANY_ID,
+						count(1) as NUM
 					FROM
-						CMS_COMPANY_PROJECT
-					WHERE
-						COMPANY_NAME IS NOT NULL
+						CMS_COMPANY_PROJECT cp,CMS_PROJECT PR WHERE PR.ID=cp.PROJECT_ID
+						<if test="industry!=null">
+						AND PR.industry1_id like CONCAT('%',#{industry},'%')
+						</if>
+						<if test="areaCode!=null">
+						AND PR.area_tail_id like CONCAT('%',#{areaCode},'%')
+						</if>
+						AND cp.COMPANY_NAME IS NOT NULL
 					GROUP BY
-						COMPANY_ID
+						cp.COMPANY_ID
 					ORDER BY
-						NUM DESC, COMPANY_ID ASC
+						NUM DESC, cp.COMPANY_ID ASC
 					limit 0, 100) a, (SELECT @row_number := 0) as t) x
 					left join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
 					order by z.countNow desc limit 0, 100 
-				]]>
 			</otherwise>
 		</choose>
 	</select>
 
 	<select id="selectReportRankingDefault" resultMap="RankingData">
-		<![CDATA[
 			select z.name, z.id, z.countNow,z.industry
 			from 
 			(select 
 			REPORT_TITLE as name, ID as id, REPORT_WORDS as countNow,report_induxtry industry
-			from CMS_REPORT_MAIN 
+			from CMS_REPORT_MAIN where 1=1
+			<if test="industry!=null">
+				AND report_induxtry =#{industry}
+			</if>
 			order by REPORT_WORDS desc, ID asc 
 			limit 0, 100 
 			) z
-		]]>
 	</select>
 </mapper>

@@ -1,8 +1,8 @@
 /* 
  * @Author: Micheal
  * @Date:   2015-11-28 15:46:08
- * @Last Modified by:   Administrator
- * @Last Modified time: 2016-01-04 11:18:14
+ * @Last Modified by:   zhanganchun
+ * @Last Modified time: 2016-01-13 17:05:02
  */
 
 'use strict';
@@ -23,14 +23,8 @@ define(function(require, exports, module) {
 		this.range = null
 		this.value = null
 		this.rightValue = null
-		this.rangeStart = {
-				year: '2001',
-				month: '01'
-			},
-			this.rangeEnd = {
-				year: new Date().getFullYear(),
-				month: new Date().getMonth()
-			}
+		this.rangeStart = option.rangeStartTime
+		this.rangeEnd = option.rangeEndTime
 		this.timeStart = option.timeStart
 		this.timeEnd = option.timeEnd
 		this.leftTime = null
@@ -112,7 +106,6 @@ define(function(require, exports, module) {
 			}
 		}
 
-
 		return timeArray
 	}
 
@@ -127,8 +120,7 @@ define(function(require, exports, module) {
 
 		var that = this,
 			timeArray = that._getTimeRange(),
-			timeStr = $('#' + that.handleShow).html().toString(),
-			leftTime = Interaction.leftStartTime.year.toString()+ Interaction.leftStartTime.month.toString(),
+			leftTime = Interaction.leftStartTime.year.toString() + Interaction.leftStartTime.month.toString(),
 			rightTime = Interaction.leftEndTime.year.toString() + Interaction.leftEndTime.month.toString(),
 			leftValue = timeArray.indexOf(leftTime),
 			rightValue = timeArray.indexOf(rightTime)
@@ -155,9 +147,9 @@ define(function(require, exports, module) {
 			pos = 0
 		}
 
-		if (pos > this.width - 44) {
+		if (pos > this.width - that.handleWidth) {
 
-			pos = that.width - 44
+			pos = that.width - that.handleWidth
 		}
 
 		that.handle.style.left = pos + 'px'
@@ -165,13 +157,13 @@ define(function(require, exports, module) {
 		if (direction === undefined) {
 
 			that.handle.style.left = (that.value / that.range)*that.width + 'px'
-
+			that.handle.style.width = (24/that.range)* that.width +"px"
+			that.handleWidth = (24/that.range)* that.width
 		} else {
 
 			that.value = Math.round(that.range * (pos / that.width))
 		}
 		
-
 		var leftTime = timeArray[that.value],
 		    rightTime = timeArray[parseInt(that.value) + 23]
 
@@ -189,7 +181,6 @@ define(function(require, exports, module) {
 		Interaction.leftStartTime.month = lmonth
 		Interaction.leftEndTime.year = ryear
 		Interaction.leftEndTime.month = rmonth
-
 	}
 
 	DataZoom.prototype.upDate = function() {
@@ -247,6 +238,8 @@ define(function(require, exports, module) {
 
 			$('#dateLeft').val(Interaction.leftStartTime.year + '.'+Interaction.leftStartTime.month)
 			$('#dateRight').val(Interaction.leftEndTime.year + '.'+Interaction.leftEndTime.month)
+
+			console.log(Interaction.leftEndTime)
 			Interaction.getLeftDate()
 			Interaction.getFullDate('second', parm)
 		})

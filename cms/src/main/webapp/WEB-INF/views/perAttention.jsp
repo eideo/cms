@@ -11,21 +11,6 @@
 		<link rel="stylesheet" type="text/css" media="screen and (max-width: 1200px)" href="${resPath}/resources/commons/css/user-min.css?v=1.0.1-20151229">
 		<link rel="stylesheet" type="text/css" media="screen and (min-width: 1200px)" href="${resPath}/resources/commons/css/user.css?v=1.0.1-20151229">
 	</myCss>
-	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/user.js?v=1.0.1-20151231"></script>
-		<script type="text/javascript">
-			$(".tcdPageCode").createPage({
-		        pageCount : ${totalPage},
-		        current : ${currentPage},
-		        backFn : function(p) {
-		        	ajaxCustBehaviorList(p);
-		        }
-		    });
-		</script>
-	</myScript>
 </head>
 <body>
 	<!-- 页面位置 -->
@@ -97,18 +82,25 @@
 				<div class="section my_attention common_operation" style="display:block;">
 					<h2>我的关注<i></i></h2>
 					<div class="title clearfix">
-						<span class="selectall"><i></i>全选</span>
+						<span class="list"><i></i>关注列表</span>
 						<span class="project">
 							<i></i>
-							<span>信息名称</span>
+							<span>信息类别</span>
 							<input id="action_type" type="hidden" value="3" />
 							<input id="info_type" type="hidden" value="" />
 							<ul class="tab_n title_tab">
 								<b></b>
-								<li class="all_type">信息名称</li>
-								<li class="xiangmu_type" onclick="javascript:getByInfoType('11501');">项目</li>
-								<li class="zhaobiao_type" onclick="javascript:getByInfoType('11502');">招标</li>
-								<li class="zhongbiao_type" onclick="javascript:getByInfoType('11503');">中标</li>
+								<li class="all_type">信息类别</li>
+								<li class="xiangmu_type" onclick="javascript:getByInfoType('11501');">
+									项目
+								</li>
+								<li class="zhaobiao_type" onclick="javascript:getByInfoType('11502');">招标
+								</li>
+								<li class="zhongbiao_type" onclick="javascript:getByInfoType('11503');">中标
+								</li>
+								<li class="report_type" >
+								行业报告
+								</li>
 							</ul>
 						</span>
 						<span class="operation">操作</span>
@@ -175,5 +167,20 @@
 			</div>	
 		</li>
 	</script>
+	<myScript>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/user.js?v=1.0.1-20151231"></script>
+		<script type="text/javascript">
+			$(".tcdPageCode").createPage({
+		        pageCount : ${totalPage},
+		        current : ${currentPage},
+		        backFn : function(p) {
+		        	ajaxCustBehaviorList(p);
+		        }
+		    });
+		</script>
+	</myScript>
 </body>
 </html>

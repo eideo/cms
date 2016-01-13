@@ -8,22 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=1.0.1-20151229">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=1.0.1-20151229">
 	</myCss>
-	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript">
-			var resPath = "${resPath}";
-			$(".tcdPageCode").createPage({
-		        pageCount : ${totalPage},
-		        current : ${currentPage},
-		        backFn : function(p) {
-		        	ajaxReport(p);
-		        }
-		    });
-		</script>
-	</myScript>
 </head>
 <body>
 	<!-- 轮播图 -->
@@ -59,16 +43,16 @@
 		<div class="term clearfix">
 			<input id="induxtry_id" type="hidden" value="${induxtryId }" />
 			<ul class="clearfix">
-				<li class="li1" onclick="javascript:getByInduxtry(2101);"><i class="i1"></i><a>冶金矿产原材料</a></li>
-				<li class="li2" onclick="javascript:getByInduxtry(2102);"><i class="i2"></i><a>能源</a></li>
-				<li class="li3" onclick="javascript:getByInduxtry(2103);"><i class="i3"></i><a>农林水利</a></li>
-				<li class="li4" onclick="javascript:getByInduxtry(2104);"><i class="i4"></i><a>环保</a></li>
-				<li class="li5 right" onclick="javascript:getByInduxtry(2105);"><i class="i5"></i><a>交通运输</a></li>
-				<li class="li6" onclick="javascript:getByInduxtry(2107);"><i class="i6"></i><a>医疗卫生</a></li>
-				<li class="li7" onclick="javascript:getByInduxtry(2108);"><i class="i7"></i><a>房地产建筑</a></li>
-				<li class="li8" onclick="javascript:getByInduxtry(2111);"><i class="i8"></i><a>轻工</a></li>
-				<li class="li9" onclick="javascript:getByInduxtry(2112);"><i class="i9"></i><a>化工</a></li>
-				<li class="li10 right" onclick="javascript:getByInduxtry(2113);"><i class="i10"></i><a>机械电子</a></li>
+				<li class="li1" onclick="javascript:getByInduxtry(2101);" rid="2101"><i class="i1"></i><a>冶金矿产原材料</a></li>
+				<li class="li2" onclick="javascript:getByInduxtry(2102);" rid="2102"><i class="i2"></i><a>能源</a></li>
+				<li class="li3" onclick="javascript:getByInduxtry(2103);" rid="2103"><i class="i3"></i><a>农林水利</a></li>
+				<li class="li4" onclick="javascript:getByInduxtry(2104);" rid="2104"><i class="i4"></i><a>环保</a></li>
+				<li class="li5 right" onclick="javascript:getByInduxtry(2105);" rid="2105"><i class="i5"></i><a>交通运输</a></li>
+				<li class="li6" onclick="javascript:getByInduxtry(2107);" rid="2107"><i class="i6"></i><a>医疗卫生</a></li>
+				<li class="li7" onclick="javascript:getByInduxtry(2108);" rid="2108"><i class="i7"></i><a>房地产建筑</a></li>
+				<li class="li8" onclick="javascript:getByInduxtry(2111);" rid="2111"><i class="i8"></i><a>轻工</a></li>
+				<li class="li9" onclick="javascript:getByInduxtry(2112);" rid="2112"><i class="i9"></i><a>化工</a></li>
+				<li class="li10 right" onclick="javascript:getByInduxtry(2113);" rid="2113"><i class="i10"></i><a>机械电子</a></li>
 			</ul>
 		</div>
 	</div>
@@ -185,6 +169,22 @@
 			</div>
 		</li>
 	</script>
+	<myScript>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript">
+			var resPath = "${resPath}";
+			$(".tcdPageCode").createPage({
+		        pageCount : ${totalPage},
+		        current : ${currentPage},
+		        backFn : function(p) {
+		        	ajaxReport(p);
+		        }
+		    });
+		</script>
+	</myScript>
 	<script>
 	window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};
 	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];

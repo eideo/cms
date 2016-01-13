@@ -99,7 +99,7 @@ public class SmsSendService {
 	 * */
 	public String smsSend(String phone, String content) {
 		String result = "false";
-		String contentTemplate = "【国信创新】客户您好，" + content;
+		String contentTemplate = "客户您好，" + content;
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(CommonConstants.SMS_TARGETS);
 		try {

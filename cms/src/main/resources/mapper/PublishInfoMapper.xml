@@ -16,10 +16,10 @@
 		select a.id,a.title,a.table_name,b.description,b.html_id,a.publish_date, '11501' as info_type,c.project_Name from CMS_V_PUBLISH_INFO a,CMS_V_PUBLISH_CONTENT b,CMS_PROJECT c where a.id=b.id and a.id=#{id} and c.PROJECT_SOURCE_ID=a.id limit 0,1
 	</select>
 	<select id="selectByZBGGPrimaryKey" parameterType="String" resultMap="PublishInfo">
-		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11502' as info_type from CMS_ZBGG_M a where a.record_id=#{id}
+		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11502' as info_type from CMS_ZBGG_M a where a.record_id=#{id} limit 0,1
 	</select>
 	<select id="selectByZBGSPrimaryKey" parameterType="String" resultMap="PublishInfo">
-		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11503' as info_type from CMS_ZBGS_M a where a.record_id=#{id}
+		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11503' as info_type from CMS_ZBGS_M a where a.record_id=#{id} limit 0,1
 	</select>
 	
 	<sql id="groupWhere">

@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jasig.cas.client.util.AssertionHolder;
+import org.jasig.cas.client.validation.Assertion;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +62,10 @@ public class DetailInfoController {
 		request.setAttribute("publishInfo", publishInfo);
 		request.setAttribute("hotKeyWords",
 				customerKeywordsService.getHotKeyWordsList());
+		Assertion assertion = AssertionHolder.getAssertion();
+		if(assertion!=null){
+			request.setAttribute("username", assertion.getPrincipal().getName());
+		}
 		request.setAttribute("notSearch", "true");
 		return "/detail";
 	}

@@ -21,7 +21,7 @@
 		<div class='left'>
 			<div class='top'>
 				<h3>按一级行业分类</h3>
-				<div class='time' id='endTime'>
+				<!--<div class='time' id='endTime'>
 					<div class='innerTime'>
 						<input type="text" id="dateRight"  value ='2015.11'/>
 					</div>
@@ -35,7 +35,7 @@
 					</div>
 					<i class='daShow'>
 					</i>
-				</div>
+				</div> -->
 			</div>
 			<div class='chart' id='chart1'>
 				<div class='tip'>

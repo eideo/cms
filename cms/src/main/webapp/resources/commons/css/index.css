@@ -18,6 +18,9 @@ body{
 .header_bg .nav li a:hover{
 	color:#fff;
 }
+.header_bg .user-info{
+	margin-top: 30px;
+}
 .imgBox ul li{
 	min-width: 100%;
 	display: none;

@@ -27,13 +27,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sbiao360.cms.domain.Company;
+import com.sbiao360.cms.domain.CustBehavior;
 import com.sbiao360.cms.domain.Project;
 import com.sbiao360.cms.domain.ProjectCompany;
 import com.sbiao360.cms.domain.ProjectContacts;
 import com.sbiao360.cms.service.CodeService;
+import com.sbiao360.cms.service.CustomerBehaviorService;
+import com.sbiao360.cms.service.CustomerKeywordsService;
 import com.sbiao360.cms.service.RelationService;
 import com.sbiao360.cms.zutil.DateTime;
+import com.sbiao360.cms.zutil.IpTool;
 import com.sbiao360.cms.zutil.StringUtil;
 import com.sbiao360.cms.zutil.Tools;
 
@@ -51,6 +56,9 @@ public class RelationshipController extends BaseController{
 	@Resource
 	private CodeService codeService;
 	
+	@Resource
+	private CustomerKeywordsService customerKeywordsService;
+	
 	/**
 	 * 获取关系网初始化数据
 	 * @param request
@@ -61,6 +69,8 @@ public class RelationshipController extends BaseController{
 	@RequestMapping({"/getRelation"})
 	public void getRelation(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
+		//保存用户搜索记录
+		insertCustBehavior(name,IpTool.getClientAddress(request));
 		String companyRole = request.getParameter("companyRole");
 		String personRole = request.getParameter("personRole");
 		
@@ -426,5 +436,31 @@ public class RelationshipController extends BaseController{
 		String industry = request.getParameter("industryId");
 		Map<String,String> map = relationService.selectRecommProject(industry);
 		ajaxJson(JSON.toJSONString(map), response);
+	}
+	
+	/**
+	 * 搜集用户数据
+	 * @param str
+	 * @param ip
+	 * @author 廖得宇
+	 * 	2016年1月5日
+	 */
+	private void insertCustBehavior(String str,String ip){
+		Assertion assertion = AssertionHolder.getAssertion();
+		CustBehavior custBehavior = new CustBehavior();
+		if(assertion!=null){
+			custBehavior.setUserId(Long.parseLong( (String) assertion.getPrincipal().getAttributes().get("id")));
+			custBehavior.setCustName( (String) assertion.getPrincipal().getAttributes().get("name"));
+			custBehavior.setLoginId(assertion.getPrincipal().getName());
+		}else{
+			custBehavior.setUserId((long) 0);
+		}
+		custBehavior.setActionDate(new Date());
+		custBehavior.setIp(IpTool.setIP(ip));
+		custBehavior.setActionType((short) 6);
+		custBehavior.setColumnLevelOne("关系网");
+		custBehavior.setKeywords(str);
+		custBehavior.setInfoValid((short) 1);
+		customerKeywordsService.insertKeyWords(custBehavior);
 	}
 }

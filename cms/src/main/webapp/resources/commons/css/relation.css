@@ -14,6 +14,11 @@ body{
 	height:100%;
 	font-family: '微软雅黑',Arial;
 }
+#relationImg{
+	width: 460px;
+	height: 356px;
+	margin:90px auto;
+}
 
 /*头部导航条TODO模块化*/
 .navCon {
@@ -248,6 +253,9 @@ body{
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; 
 	-webkit-box-sizing:border-box;
+}
+#Rem{
+	float: left;
 }
 
 .comRemCon{

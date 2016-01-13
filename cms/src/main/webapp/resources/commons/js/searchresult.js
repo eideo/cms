@@ -131,15 +131,7 @@ define(function(require, exports, module) {
 			bottom: 60
 		},
 		colorset: ['#65bbff', '#96ccff', '#ddeeff', '#c4e5ff', '#addaff', '#97cfff', '#97cfff'],
-		series: [
-			["广东", 1200],
-			["武汉", 1500],
-			["上海", 1300],
-			["北京", 300],
-			["福建", 400],
-			["杭州", 500]
-		]
-
+		series: []
 	}
 
 	function GetRequest() {
@@ -172,7 +164,6 @@ define(function(require, exports, module) {
 	}
 
 	// 获取图表部分的数据，刷新图表
-
 	function getData() {
 
 		var mhref = window.location.href.split('=')
@@ -189,8 +180,6 @@ define(function(require, exports, module) {
 			tradeString,
 			timeStart,
 			timeEnd
-
-
 
 		for (var sj = 0; sj < term1Spans.length; sj++) {
 
@@ -243,7 +232,7 @@ define(function(require, exports, module) {
 				type: "POST",
 				dataType: "json",
 				success: function(data) {
-					console.log(data)
+					
 					var dataArea = data[0].dataArea,
 						dataIndustry = data[0].dataIndustry,
 						dataTimeo = data[0].dataTimeo,
@@ -254,60 +243,65 @@ define(function(require, exports, module) {
 						tempArray3 = [],
 						leftSeries = []
 
-					for (var i = 0; i < dataArea.length; i++) {
+					if (dataArea.length !==0 ) {
 
-						var temp = [dataArea[i].area, dataArea[i].nums]
-						tagSeries.push(temp)
+						dataArea.forEach(function(item) {
+
+							var temp = [item['area'], item['nums']];
+							tagSeries.push(temp);
+						})
+
+						tagSetting.series = tagSeries
+						SearchChart.rect(tagSetting)
+					}
+					
+					if (dataIndustry.length !==0 ) {
+
+						dataIndustry.forEach(function(item) {
+							var temp1 = {
+								name: item['industry'],
+								weight: 1,
+								value: item['nums']
+							}
+
+							arcSeries.push(temp1)
+						})
+
+						arcSetting.series = arcSeries
+						SearchChart.pieCircle(arcSetting)
 					}
 
+					if (dataTimeo.length !==0 ) {
 
-					for (var j = 0; j < dataIndustry.length; j++) {
+						dataTimeo.forEach(function(item) {
 
-						var temp1 = {
-							name: dataIndustry[j]['industry'],
-							weight: 1,
-							value: dataIndustry[j]['nums']
-						}
+							var bid = {
+								time: item['time'],
+								value: item['bid']
+							}
 
-						arcSeries.push(temp1)
-					}
+							var project = {
+								time: item['time'],
+								value: item['project']
+							}
 
+							var tender = {
+								time: item['time'],
+								value: item['tender']
+							}
 
-					for (var k = 0; k < dataTimeo.length; k++) {
+							tempArray1.push(project)
+							tempArray2.push(tender)
+							tempArray3.push(bid)
+						})
 
-						var bid = {
-							time: dataTimeo[k]['time'],
-							value: dataTimeo[k]['bid']
-						}
+						leftSeries.push(tempArray1)
+						leftSeries.push(tempArray2)
+						leftSeries.push(tempArray3)
 
-						var project = {
-							time: dataTimeo[k]['time'],
-							value: dataTimeo[k]['project']
-						}
-
-						var tender = {
-							time: dataTimeo[k]['time'],
-							value: dataTimeo[k]['tender']
-						}
-
-						// bid 投标 tender 招标 设计稿有出入
-						tempArray1.push(project)
-						tempArray2.push(tender)
-						tempArray3.push(bid)
-					}
-
-					leftSeries.push(tempArray1)
-					leftSeries.push(tempArray2)
-					leftSeries.push(tempArray3)
-
-					tagSetting.series = tagSeries
-					SearchChart.rect(tagSetting)
-
-					arcSetting.series = arcSeries
-					SearchChart.pieCircle(arcSetting)
-
-					leftSetting.series = leftSeries
-					SearchChart.brokeArea(leftSetting)
+						leftSetting.series = leftSeries
+						SearchChart.brokeArea(leftSetting)
+					}			
 				},
 				error: function() {
 					alert("请求异常");

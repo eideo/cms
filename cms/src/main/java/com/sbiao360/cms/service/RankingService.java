@@ -36,13 +36,13 @@ public class RankingService {
 		return result;
 	}
 	
-	public List<RankingData> selectKeywordsRankingDefault() {
-		List<RankingData> result = rankingDao.selectKeywordsRankingDefault();
+	public List<RankingData> selectKeywordsRankingDefault(Map<String, Object> map) {
+		List<RankingData> result = rankingDao.selectKeywordsRankingDefault(map);
 		return result;
 	}
 
-	public List<RankingData> selectInfoRankingDefault() {
-		List<RankingData> result = rankingDao.selectInfoRankingDefault();
+	public List<RankingData> selectInfoRankingDefault(Map<String, Object> map) {
+		List<RankingData> result = rankingDao.selectInfoRankingDefault(map);
 		return result;
 	}
 
@@ -51,8 +51,8 @@ public class RankingService {
 		return result;
 	}
 
-	public List<RankingData> selectReportRankingDefault() {
-		List<RankingData> result = rankingDao.selectReportRankingDefault();
+	public List<RankingData> selectReportRankingDefault(Map<String, Object> map) {
+		List<RankingData> result = rankingDao.selectReportRankingDefault(map);
 		return result;
 	}
 

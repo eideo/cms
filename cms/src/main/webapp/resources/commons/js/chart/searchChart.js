@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-12 15:21:01
+ * @Last Modified time: 2016-01-13 11:27:53
  */
 
 'use strict';
@@ -39,7 +39,7 @@ define(function(require, exports, module) {
 			xArray = [],
 			yArray = []
 
-		var seriesArray = series[0].concat(series[1])
+		var seriesArray = series[0].concat(series[1]).concat(series[2])
 
 		seriesArray.forEach(function(item) {
 
@@ -48,14 +48,13 @@ define(function(require, exports, module) {
 
 		for (var i = 0; i < series[0].length; i++) {
 
-			var temp = series[0][i].time
-			//var newTime = parseInt(temp.substr(4, 2))
-			xArray.push(temp)
+			var temp = series[0][i].time;
+			xArray.push(temp);
 		}
 
 		var max = d3.max(seriesArray, function(d, i) {
 
-			return Math.ceil(d['value']) * 1.1
+			return Math.ceil(d['value']) * 1.1;
 		})
 
 		var date = new Date()
@@ -79,13 +78,6 @@ define(function(require, exports, module) {
 			.attr('class', 'content')
 			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-		var title = svg.append('text')
-			.attr('transform', 'translate(' + 5 + ',' + 25 + ')')
-			.text('行业内容比例图')
-			.style('font-size', 12)
-			.style('font-weight', 'normal')
-			.style('fill', '#000')
-
 		var gLegend = svg.append('g')
 			.attr('transform', 'translate(' + (width * 0.6) + ',' + 25 + ')')
 
@@ -93,6 +85,10 @@ define(function(require, exports, module) {
 			.data(type)
 			.enter()
 			.append('g')
+
+		svg.append('text')
+			.attr('transform', 'translate(' + (margin.left-30)+ ',' + (margin.top -10) + ')')
+			.text('(/条)')
 
 		type.append('rect')
 			.attr('x', function(d, i) {
@@ -131,6 +127,7 @@ define(function(require, exports, module) {
 			.scale(yScale)
 			.orient('left')
 			.tickSize(0)
+			.ticks(6)
 			.tickPadding(10)
 			.tickFormat(function(d) {
 				return d
@@ -173,7 +170,7 @@ define(function(require, exports, module) {
 						return dd
 					} else {
 
-						return dd
+						return ''
 					}
 			})
 
@@ -186,7 +183,7 @@ define(function(require, exports, module) {
 
 				return yScale(d['value']);
 			})
-			.interpolate("basic")
+			.interpolate("linear")
 
 		svg.append("clipPath")
 			.attr("id", "content-brokeArea" + date)
@@ -213,10 +210,10 @@ define(function(require, exports, module) {
 
 			pct.append("path")
 				.datum(series[j])
-				.attr("stroke", function(d, i) {
+				/*.attr("stroke", function(d, i) {
 
 					return colorset[j];
-				})
+				})*/
 				.attr("d", area)
 				.style("fill", function(d, i) {
 
@@ -269,7 +266,7 @@ define(function(require, exports, module) {
 			.attr('height', height)
 
 		var content = svg.append('g')
-			.attr('transform', 'translate(' + (width * 0.4) + ',' + (height / 2 + 20) + ')')
+			.attr('transform', 'translate(' + (width * 0.4) + ',' + (height / 2) + ')')
 			.attr('class', 'content')
 
 		var rect = content.selectAll('g.arc')
@@ -301,13 +298,6 @@ define(function(require, exports, module) {
 			.transition()
 			.ease('elastic')
 
-		var title = svg.append('text')
-			.attr('transform', 'translate(' + 45 + ',' + 25 + ')')
-			.text('行业领域比例图')
-			.style('font-size', 12)
-			.style('font-weight', 'normal')
-			.style('fill', '#000')
-
 		var type = svg.selectAll('.legend')
 			.data(pie(series))
 			.enter()
@@ -317,7 +307,7 @@ define(function(require, exports, module) {
 			.attr('x', (width * 0.65))
 			.attr('y', function(d, i) {
 
-				return i * 23 + (0.4 * height) + 10
+				return i * 23 + (0.2 * height) + 20
 			})
 			.attr('width', 11)
 			.attr('height', 10)
@@ -329,7 +319,7 @@ define(function(require, exports, module) {
 			.attr('dy', '0.75em')
 			.attr('x', (width * 0.65) + 16)
 			.attr('y', function(d, i) {
-				return i * 23 + (0.4 * height) + 10
+				return i * 23 + (0.2 * height) + 20
 			})
 			.transition()
 			.duration(1500)
@@ -622,13 +612,6 @@ define(function(require, exports, module) {
 			.attr('width', width)
 			.attr('height', height)
 
-		title = svg.append('text')
-			.attr('transform', 'translate(' + 30 + ',' + 25 + ')')
-			.text('地区比例图')
-			.style('font-size', 12)
-			.style('font-weight', 'normal')
-			.style('fill', '#000')
-
 		xScale = d3.scale.ordinal()
 			.domain(xArray)
 			.rangeBands([0, contentW], 0.5)
@@ -660,11 +643,32 @@ define(function(require, exports, module) {
 			.attr('class', 'textCon')
 			.attr('transform', 'translate(' + (margin.left) + ',' + (margin.top) + ')')
 
+		var defs = svg.append('defs')
+
+		var linearGradient = defs.append('linearGradient')
+			.attr('id','myGradient')
+			.attr({
+				"x1":'0%',
+				"y1":'0%',
+				"x2":'100%',
+				"y2":'100%'
+			})
+
+		var stop = linearGradient.append('stop')
+			.attr({
+				"offset":'0%',
+				"stop-color":'#FOO'
+			})
+		var stopEnd = linearGradient.append('stop')
+			.attr('offset','100%')
+			.attr('stop-color','#65bbff')
+
+
 		rectCon.selectAll('rect')
 			.data(series)
 			.enter()
 			.append('rect')
-			.attr('fill', function(d, i) {
+			.attr('fill',function(d, i) {
 				return colorset[0]
 			})
 			.attr('x', function(d, i) {

@@ -1,8 +1,8 @@
 /* 
 * @Author: Administrator
 * @Date:   2015-12-16 08:41:22
-* @Last Modified by:   Administrator
-* @Last Modified time: 2015-12-23 14:00:05
+* @Last Modified by:   zhanganchun
+* @Last Modified time: 2016-01-13 17:03:18
 */
 
 'use strict';
@@ -21,12 +21,12 @@ define(function(require, exports, module) {
 			month: '11'
 		},
 		rangeStartTime:{
-			year: '2001',
+			year: '2012',
 			month: '01'
 		},
 		rangeEndTime: {
-			year: new Date().getFullYear() + '',
-			month: new Date().getMonth() + ''
+			year: '2015',
+			month: '11'
 		},
 		chartColor:'#ff8519',
 		informationType: '项目',

@@ -145,7 +145,7 @@ public final class industry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t<div class='left'>\r\n");
       out.write("\t\t\t<div class='top'>\r\n");
       out.write("\t\t\t\t<h3>按一级行业分类</h3>\r\n");
-      out.write("\t\t\t\t<div class='time' id='endTime'>\r\n");
+      out.write("\t\t\t\t<!--<div class='time' id='endTime'>\r\n");
       out.write("\t\t\t\t\t<div class='innerTime'>\r\n");
       out.write("\t\t\t\t\t\t<input type=\"text\" id=\"dateRight\"  value ='2015.11'/>\r\n");
       out.write("\t\t\t\t\t</div>\r\n");
@@ -159,7 +159,7 @@ public final class industry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t<i class='daShow'>\r\n");
       out.write("\t\t\t\t\t</i>\r\n");
-      out.write("\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t</div> -->\r\n");
       out.write("\t\t\t</div>\r\n");
       out.write("\t\t\t<div class='chart' id='chart1'>\r\n");
       out.write("\t\t\t\t<div class='tip'>\r\n");

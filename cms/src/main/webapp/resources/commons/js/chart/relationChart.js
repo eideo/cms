@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-12 10:44:35
+ * @Last Modified time: 2016-01-13 12:00:49
  */
 
 'use strict';
@@ -206,6 +206,24 @@ define(function(require, exports, module) {
 
 		refocus(focus);
 		update();
+
+		$.ajax({
+			url: path + '/customerBehavior/relationClick',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				'infoId': node.dataId,
+				'infoType':'11501',
+				'infoName': node.name
+			},
+			success: function(data) {
+				console.log(data)
+			},
+			error: function(error) {
+
+				return "error";
+			}
+		})
 	}
 
 	function mouseover(d) {
