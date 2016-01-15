@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt'%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/functions' prefix='fn'%>
@@ -13,6 +12,11 @@
 <%--  <c:set var="casPath" value="http://192.168.8.133:9080/login?service=http://192.168.8.129:8080/homepage"/>--%>
   <c:set var="casBase" value="http://101.200.0.81/cas"/>
 <c:set var="imgPath" value="http://101.200.0.81" />
+
+<!-- [if Ite IE8]>
+<script type="text/javascript" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>
+<script type="text/javascript" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>
+<![endif]-->
 
 <script type="text/javascript">
 	var path = "${resPath}";

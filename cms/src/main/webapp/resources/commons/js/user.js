@@ -1,5 +1,5 @@
 'use strict';
-
+var option = null;
 $(function(){
 
 	tabHover();
@@ -56,7 +56,9 @@ $(function(){
 	footListHover();
 
 	clickLink('.cart_list li');	
-	clickLink('.message_list li');		
+	clickLink('.message_list li');	
+
+	saveImg();	
 });
 
 function tabHover() {
@@ -829,6 +831,11 @@ function changeFace(boxClass) {
 	$(boxClass).mouseover(function() {
 
 		$(this).find('a').show();
+		$(this).find('a').click(function() {
+
+			$('.shadow_all').show();
+			$('.updateImgBox').show();
+		})
 	}).mouseout(function() {
 
 		$(this).find('a').hide();
@@ -868,6 +875,75 @@ function ajaxAvatarUpload(userId) {
 	});
 }
 
+// 头像上传预览
+function uploadFace(file){
+ 	var imgReg = /(.jpg|.JPG|.jpeg|.JPEG|.png|.PNG|.gif|.GIF){1}/;
+ 	var uploadFile = document.getElementById('personalAvatar');
+ 	var uploadError = document.getElementById('uploadError');
+ 	if(!(imgReg.test(uploadFile.value))){
+
+ 		uploadError.innerHTML='上传失败，请选择正确的图片格式';
+ 		option = false;
+ 		
+ 	}else{
+		previewImage(file);
+		uploadError.innerHTML='上传成功';
+		option = true;	
+ 	}
+ 	return option ;
+ }
+function previewImage(file) {
+  var MAXWIDTH  = 260; 
+  var MAXHEIGHT = 180;
+  var div = document.getElementById('preview');
+  if (file.files && file.files[0])
+  {
+      div.innerHTML ='<img id=imghead>';
+      var img = document.getElementById('imghead');
+      img.onload = function(){
+        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+        img.width  =  rect.width;
+        img.height =  rect.height;
+      }
+      var reader = new FileReader();
+      reader.onload = function(evt){img.src = evt.target.result;}
+      reader.readAsDataURL(file.files[0]);
+  }
+  else //兼容IE
+  {
+    var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+    file.select();
+    var src = document.selection.createRange().text;
+    div.innerHTML = '<img id=imghead>';
+    var img = document.getElementById('imghead');
+    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+    status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+    div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;"+sFilter+src+"\"'></div>";
+  }
+}
+function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+    var param = {top:0, left:0, width:width, height:height};
+    if( width>maxWidth || height>maxHeight )
+    {
+        rateWidth = width / maxWidth;
+        rateHeight = height / maxHeight;
+         
+        if( rateWidth > rateHeight )
+        {
+            param.width =  maxWidth;
+            param.height = Math.round(height / rateWidth);
+        }else
+        {
+            param.width = Math.round(width / rateHeight);
+            param.height = maxHeight;
+        }
+    }
+     
+    param.left = Math.round((maxWidth - param.width) / 2);
+    param.top = Math.round((maxHeight - param.height) / 2);
+    return param;
+} 
+
 //图像加载出错时处理
 function errorAvatar(img) {
 
@@ -879,6 +955,31 @@ function errorAvatarTwo(img) {
 
 	img.src = resPath + "/resources/commons/images/face2.png";
 	img.onerror = null;
+}
+
+// 保存头像
+function saveImg() {
+	$('#saveImg').click(function(){
+
+		if(option) {
+
+			var userId = $(this).attr('userId');
+			ajaxAvatarUpload(userId);
+			$('#personalAvatar').val('');
+			$('.updateImgBox').hide();
+			$('.shadow_all').hide();
+			$('#imghead').attr('src','');
+			$('#uploadError').text('');
+		}
+	})
+	$('.cancel').click(function() {
+
+		$('#personalAvatar').val('');
+		$('#imghead').attr('src','');
+		$('.updateImgBox').hide();
+		$('.shadow_all').hide();
+		$('#uploadError').text('');
+	})
 }
 
 // 列表链接

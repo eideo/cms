@@ -35,24 +35,18 @@
             <div class='comRem'>
                 <span>单位角色：</span>
                 <ul>
+                    <li class="item">全部</li>
                     <li class="item">业主</li>
                     <li class="item">设计院</li>
                     <li class="item">承建商</li>
-                    <li class="item">地税局</li>
-                    <li class="item">承建商</li>
-                    <li class="item">地税局</li>
-                    <li class="item">承建商</li>
-                    <li class="item">地税局</li>
-
                 </ul>
             </div>
             <div class='perRem'>
                <span>联系人角色：</span>
                 <ul>
+                     <li class="item">全部</li>
                     <li class="item">设计师</li>
-                    <li class="item">项目负责人</li>
-                    <li class="item">项目知情人</li>
-                  
+                    <li class="item">项目负责人</li>                  
                 </ul>
             </div>
         </div>
@@ -98,7 +92,7 @@
 </div>
 
     <myScript>
-
+      
         <script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=1.0.1-20160113"></script>
         <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=1.0.1-20160113"></script>
         <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=1.0.1-20160113"></script>
@@ -135,18 +129,6 @@
                                 element: '#searchText',
                                 intro: '<div id="guideMsg"><h3>精确搜索</h3><p>输入项目名称或单位名称按角色进行关系精确查询</p></div>',
                                 position: 'left'
-                            },
-                            {
-                                //第三步引导
-                                element: '#Rem',
-                                intro: '<div id="guideMsg"><h3>精确搜索</h3><p>选择角色进行精确查询</p></div>',
-                                position: 'left'
-                            },
-                            {
-                                //第四步引导
-                                element: '.sliderBody',
-                                intro: '<div id="guideMsg"><h3>时间轴筛选</h3><p>亲，您还可以通过时间轴对搜索进行调整。</p></div>',
-                                position: 'right'
                             },
                             {
                                 //第五步引导

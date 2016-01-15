@@ -92,12 +92,9 @@
 				<div class="section my_info" style="display:block;">
 					<h2>个人信息<i></i></h2>
 					<div class="my_info_box clearfix">
-						<div class="update">
-							<button onclick="javascript:ajaxAvatarUpload(${userId });">上传</button>
-						</div>
 						<div class="face">
 							<img id="uploadAvatar" src="${imgPath}/${memberinfo.avatarPath }" onerror="errorAvatarTwo(this);" >
-							<a><input type="file" id="personalAvatar" name="personalAvatar">更换头像</a>
+							<a>更换头像</a>
 						</div>
 						<div class="info_box">
 							<div class="username_box">
@@ -182,6 +179,28 @@
 		<h6>网页提示</h6>
 		<p class="msg">未知错误，请求异常</p>
 		<a class="ensure">确定</a>
+	</div>
+
+	<!-- 	上传头像层 -->
+	<div class="updateImgBox">
+		<h3>上传头像</h3>
+		<div class="updateBtn">
+			<a>
+				<em>上传头像</em>
+				<input type="file"  onchange="uploadFace(this)"  id="personalAvatar" name="personalAvatar">
+			</a>
+			<span id="uploadError"></span>
+		</div>
+		<div class="alertMsg">
+			您可以上传JPG、GIF或PNG文件上传图片最大2M,推荐100x100
+		</div>
+		<div class="subBtn">
+			<input type="submit" value="保存"  id="saveImg"  userId="${userId }">
+			<input type="reset" value="取消"  class="cancel">
+		</div>
+		<div class="previewImg" id="preview">
+			<img src="" alt="" id="imghead">
+		</div>
 	</div>
 </body>
 </html>

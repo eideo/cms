@@ -14,7 +14,38 @@ define(function(require, exports, module) {
 		// 关闭登录框
 		Close.closeLoginBox();
 
+		recommend();
 	});
+
+	// 相关信息判断
+
+	function recommend() {
+
+		var type = $('.title').attr('infotype');
+		if(type == '11501') {
+
+			$('.bxiangmu').hide();
+			$('.xiangmu').hide();
+			$('.bzhaobiao').css('color','#0a8dff');
+			$('.bzhaobiao i').show();
+			$('.zhaobiao').show();
+		}else if(type == '11502') {
+
+			$('.bzhaobiao').hide();
+			$('.zhaobiao').hide();
+			$('.bxiangmu i').show();
+			$('.bxiangmu').css('color','#0a8dff');
+			$('.xiangmu').show();
+		}else if(type == '11503'){
+			
+			$('.bzhongbiao').hide();
+			$('.zhongbiao').hide();
+			$('.bxiangmu i').show();
+			$('.bxiangmu').css('color','#0a8dff');
+			$('.xiangmu').show();
+		}
+	}
+
 	function tab(aBtn, aBox) {
 		$(aBtn + ' li').click(function() {
 			$(aBtn + ' li').css('color', '#5e5e5e');

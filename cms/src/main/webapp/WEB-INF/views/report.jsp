@@ -129,6 +129,10 @@
 			</ul>
 		</div>
 	</div>
+	<a id="gotop">
+		<i></i>
+		<span>顶部</span>
+	</a>
 
 	<script type="text/html" id="listTemplate">
 		<li class="clearfix">

@@ -1062,6 +1062,10 @@
 		</c:forEach>
 	</div>
 </div>
+<a id="gotop">
+	<i></i>
+	<span>顶部</span>
+</a>
 <script type="text/html" id="listTemp">
 			<li>
 				<h4 class="clearfix">

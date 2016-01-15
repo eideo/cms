@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-15 10:33:38
+ * @Last Modified time: 2016-01-15 16:28:28
  */
 
 'use strict';
@@ -201,6 +201,7 @@ define(function(require, exports, module) {
 
 					return colorset[j];
 				})
+				.attr('stroke-width',2)
 				.attr('fill','none')
 				.attr("d", lineArea)
 				
@@ -294,9 +295,10 @@ define(function(require, exports, module) {
 			.attr('height', 9)
 			.attr({
 				rx:1,
-				ry:1,
-				fill:"none"
-
+				ry:1
+			})
+			.attr('fill',function(d, i) {
+				return colorset[i]
 			})
 			.attr('stroke', function(d, i) {
 				return colorset[i]

@@ -206,6 +206,10 @@
 		</form>
 	</div>
 </div>
+<a id="gotop">
+	<i></i>
+	<span>顶部</span>
+</a>
 <script type="text/html" id = "partTemp2">
 				<li class="clearfix">
 						<i class="rankResult -[{num}==1:one;{num}==2:two;{num}==3:three;]-">{num}</i>

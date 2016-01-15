@@ -17,7 +17,7 @@
 
 <!-- 中间内容 -->
 <div class="article">
-	<h2 class="title" id="info_${publishInfo.id}">${publishInfo.title}</h2>
+	<h2 class="title" id="info_${publishInfo.id}" infotype="${publishInfo.infoType}">${publishInfo.title}</h2>
 	<div class="info clearfix">
 		<span class="time">发布时间：<i><fmt:formatDate value="${publishInfo.publishDate}" pattern="yyyy-MM-dd"/></i></span>
 		<div class="navBox clearfix">
@@ -53,11 +53,34 @@
 <!-- 相关推荐 -->
 <div class="tuijian">
 	<ul class="btn clearfix">
-		<li style="color:#0a8dff;">相关招标信息<i style="display:block;"></i></li>
-		<li>相关采购信息<i></i></li>
-		<li>相关中标信息<i></i></li>
+		<li style="color:#0a8dff;" class="bxiangmu">相关项目信息<i style="display:block;"></i></li>
+		<li class="bzhaobiao">相关招标信息<i></i></li>
+		<li class="bzhongbiao">相关中标信息<i></i></li>
+		<li class="bcaigou">相关采购信息<i></i></li>
 	</ul>
-	<ol class="de-list" style="display:block;">
+	<ol class="de-list xiangmu">
+		<li>
+			<i></i>
+			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
+		</li>
+		<li>
+			<i></i>
+			<a href="javascript:;">【沧州新建华】【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
+		</li>
+		<li>
+			<i></i>
+			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
+		</li>
+		<li>
+			<i></i>
+			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
+		</li>
+		<li>
+			<i></i>
+			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
+		</li>
+	</ol>
+	<ol class="de-list zhaobiao">
 		<li>
 			<i></i>
 			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
@@ -79,7 +102,7 @@
 			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告【沧州新建华】遥控器询价项目采购公告</a>
 		</li>
 	</ol>
-	<ol class="de-list">
+	<ol class="de-list zhongbiao">
 		<li>
 			<i></i>
 			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>
@@ -101,7 +124,7 @@
 			<a href="javascript:;">10月28日单梁吊机遥控器询价项目采购公告</a>
 		</li>
 	</ol>
-	<ol class="de-list">
+	<ol class="de-list caigou">
 		<li>
 			<i></i>
 			<a href="javascript:;">【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告【沧州新建华】10月28日单梁吊机遥控器询价项目采购公告</a>

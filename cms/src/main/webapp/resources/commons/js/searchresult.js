@@ -36,6 +36,8 @@ define(function(require, exports, module) {
 		// url传递默认条件
 		urlOption();
 
+		goTop();
+
 	})
 
 	function searchHint() {
@@ -1269,6 +1271,32 @@ define(function(require, exports, module) {
 		}
 
 	}
+
+	function goTop() {
+		$(window).scroll(function () {
+
+			if($(window).scrollTop() > 200) {
+
+				$('#gotop').show();
+				console.log($(window).scrollTop());
+			}else {
+				$('#gotop').hide();
+			}	
+		})
+		$('#gotop').click(function () {
+
+			$('body,html').animate({scrollTop:0},300);
+		}).mouseover(function() {
+
+			$('#gotop i').hide();
+			$('#gotop span').show();
+		}).mouseout(function() {
+
+			$('#gotop i').show();
+			$('#gotop span').hide();
+		})
+	}
+
 
 	module.exports = '';
 })

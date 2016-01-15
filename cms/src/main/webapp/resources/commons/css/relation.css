@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-12-24 08:45:17
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-15 08:25:17
+* @Last Modified time: 2016-01-15 16:35:07
 */
 
 #relation
@@ -129,9 +129,9 @@ body
 
     background: url(../images/icon1229.png) -146px -939px no-repeat;
     /*     transition: background 0.2s;
-	-moz-transition: background 0.2s;	
-	-webkit-transition: background 0.2s;
-	-o-transition: background 0.2s; */
+    -moz-transition: background 0.2s;   
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s; */
 }
 
 .slider .timeShow
@@ -191,8 +191,8 @@ body
 
 /* .searchBody .inputText:hover{
 
-	background: #fff;
-	color:#000;
+    background: #fff;
+    color:#000;
 } */
 .searchBody .inputText.selected
 {
@@ -299,18 +299,21 @@ body
 .tree
 {
     position: relative;
+
     overflow: hidden;
-    zoom:1;
+    zoom: 1;
+
     width: 100%;
     height: 100%;
 }
 
 .tree img
 {
-    margin: 0 auto;
     position: absolute;
-    top:50%;
-    margin-top:-170px;
+    top: 50%;
+
+    margin: 0 auto;
+    margin-top: -170px;
 }
 /*角色*/
 .rem
@@ -336,6 +339,8 @@ body
 }
 .comRem ul li
 {
+    line-height: 20px;
+
     float: left;
 
     width: auto;
@@ -347,7 +352,7 @@ body
 .comRem span
 {
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 5px;
 
     display: inline-block;
@@ -356,28 +361,36 @@ body
 }
 .comRem ul
 {
-     left: 65px;
-    top:0px;
-    min-height:30px;
-    height:auto;
     position: absolute;
+    top: 18px;
+    left: 65px;
+
+    height: auto;
+    min-height: 30px;
+
+    background: #424242;
 }
 .comRem ul li
 {
+    line-height: 20px;
+
     float: left;
 
-    width: 60px;
+    width: auto;
     height: 20px;
-    margin-top: 10px;
     margin-left: 5px;
-    padding: 0 5px;
+    padding: 0 10px;
 
     cursor: pointer;
     text-align: center;
 
-    color: #fff;
+    color: #ebebeb;
+    border: 1px solid #5d5d5d;
     border-radius: 3px;
-    background: #b8b8b8;
+}
+.comRem ul li:last-child
+{
+    margin-bottom: 5px;
 }
 .comRem ul li.selected
 {
@@ -394,6 +407,7 @@ body
 
     display: inline-block;
     float: left;
+
     width: 50%;
     height: 40px;
 }
@@ -401,7 +415,7 @@ body
 .perRem span
 {
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 5px;
 
     display: inline-block;
@@ -410,41 +424,52 @@ body
 }
 .perRem ul
 {
-    left: 65px;
-    top:0px;
-    min-height:30px;
-    height:auto;
     position: absolute;
+    top: 9px;
+    left: 74px;
 
+    height: auto;
+    min-height: 30px;
+
+    background: #424242;
 }
-.perRem .more{
-	position: absolute;
-	width: 20px;
+.perRem .more
+{
+    position: absolute;
+    top: 19px;
+    right: -12px;
+
+    width: 20px;
     height: 20px;
-    right: 5px;
-    top: 10px;
-    background: url(../images/icon1229.png) -27px -320px no-repeat;
+
     cursor: pointer;
+
+    background: url(../images/icon1229.png) -27px -320px no-repeat;
 }
 .perRem ul li
 {
     float: left;
 
-    width: 60px;
+    width: auto;
     height: 20px;
     margin-top: 10px;
     margin-left: 5px;
-    padding: 0 5px;
+    padding: 0 10px;
 
     cursor: pointer;
     text-align: center;
 
-    color: #fff;
+    color: #ebebeb;
+    border: 1px solid #5d5d5d;
     border-radius: 3px;
-    background: #b8b8b8;
 }
-.perRem ul li.hidden{
-	display: none;
+.perRem ul li:last-child
+{
+    margin-bottom: 5px;
+}
+.perRem ul li.hidden
+{
+    display: none;
 }
 .perRem ul li.selected
 {
@@ -582,7 +607,7 @@ body
 
     width: 200px;
     height: auto;
-    min-height:200px;
+    min-height: 200px;
     padding: 3px 3px 10px 3px;
 
     border: 1px solid #1f1263;
@@ -756,6 +781,101 @@ body
     stroke: #fff;
     stroke-width: 2px;
 }
+
+/*浏览器兼容性*/
+.compatible-contianer
+{
+    line-height: 50px;
+
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    min-width: 800px;
+    height: 50px;
+
+    background: url(../images/searchChartBack.png) repeat;
+}
+.cpt-ct
+{
+    font-size: 12px;
+
+    text-align: center;
+
+    color: #363636;
+}
+.cpt-ct i
+{
+    display: inline-block;
+
+    width: 12px;
+    height: 14px;
+    margin-right: 5px;
+
+    vertical-align: -2px;
+
+    background: url(/static/img/iefixed-sprite.png) no-repeat 0 0;
+}
+.cpt-ct a
+{
+    color: #39b94e;
+}
+.cpt-ct a:hover
+{
+    text-decoration: underline;
+}
+.cpt-handle
+{
+    font-size: 12px;
+    line-height: 27px;
+
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.cpt-handle a
+{
+    display: inline-block;
+
+    vertical-align: middle;
+}
+.cpt-handle .cpt-agin
+{
+    margin-right: 5px;
+
+    color: #656e73;
+}
+.cpt-handle .cpt-agin:hover
+{
+    color: #363d40;
+}
+.cpt-close
+{
+    line-height: 16px;
+
+    width: 16px;
+    height: 16px;
+
+    transition: .3s;
+    text-align: center;
+
+    border-radius: 50%;
+}
+
+.cpt-close i
+{
+    display: inline-block;
+
+    width: 9px;
+    height: 9px;
+
+    vertical-align: 1px;
+
+    background: url(../images/mClose.png) no-repeat;
+}
+
 
 @media  screen and (max-width: 1440px) and (min-width:1025px)
 {

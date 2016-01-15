@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-01-15 10:41:25
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-15 13:16:09
+* @Last Modified time: 2016-01-15 13:55:32
 * @ 消息提示框，目前仅成功和错误两种
 */
 
@@ -24,7 +24,7 @@
 			var text = option.text,
 				type = option.type,
 				conWidth = 344,
-				conHeigtht = 185,
+				conHeigtht = 135,
 				titleColor = "#ebebeb",
 				titleHeight = 43,
 				timeout = option.timeout || 1500
@@ -109,7 +109,7 @@
 				.css({
 					marginTop:'20px'
 				})
-				.appendTo($messageCon)
+				
 
 			var $buttonCancle = $('<span>取消</span>')
 				.css({
@@ -143,13 +143,13 @@
 
 
 
-			$buttonSubmit.on('click',function(e) {
+/*			$buttonSubmit.on('click',function(e) {
 
 				var e = e || window.event;
 
 				$messageCon.remove()
 				e.preventDefault()
-			})
+			})*/
 
 			$close.on('click',function(e) {
 
@@ -163,7 +163,7 @@
 				timeout = 1500
 			} else {
 
-				timeout = 2000
+				timeout = 3000
 			}
 
 			setTimeout(function(){

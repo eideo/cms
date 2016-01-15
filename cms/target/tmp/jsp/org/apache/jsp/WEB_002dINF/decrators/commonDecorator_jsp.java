@@ -80,7 +80,6 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\t<sitemesh:write property='myCss'/>\r\n");
       out.write("\t");
       out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -114,6 +113,11 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!-- [if Ite IE8]>\r\n");
+      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
+      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
+      out.write("<![endif]-->\r\n");
       out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
