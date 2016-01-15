@@ -228,10 +228,10 @@ public class RelationshipController extends BaseController{
 				}
 			}
 		}
-		if(nowSize==objectList.size()||objectList.size()>100){
+		if(nowSize==objectList.size()||objectList.size()>50){
 			return;
 		}
-		getAllRelation(result, allKey, personRole, personRole, nowSize,baseuniqId,params,level+1);
+		getAllRelation(result, allKey, companyRole, personRole, nowSize,baseuniqId,params,level+1);
 	}
 	
 	

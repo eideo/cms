@@ -437,10 +437,10 @@ width: 395px;
 	background: url(../images/icon1229.png) no-repeat -338px -492px;
 }
 .cart_list .name b{
-	width: 32px;
+	width: 50px;
 	height: 16px;
 	border: 1px solid #6cbcfe;
-	border-radius: 3px;
+	border-radius: 2px;
 	font-size: 12px;
 	font-weight: normal;
 	display: inline-block;
@@ -507,12 +507,6 @@ width: 395px;
 .paging{
 	width: 930px;	
 }
-.tcdPageCode{color: #5e5e5e;	display:table;margin:0 auto;padding-top:40px;padding-bottom:40px;}
-.tcdPageCode a{display: inline-block;color: #5e5e5e;display: inline-block;height: 25px; line-height: 25px;width:46px;height:26px;border: 1px solid #ddd; margin: 0 2px;border-radius: 4px;line-height:26px;text-align:center;}
-.tcdPageCode a:hover{background:#47aaff;color:#fff;}
-.tcdPageCode span.current{display: inline-block;height: 26px;line-height: 25px;width:46px;margin: 0 2px;color: #fff;background-color: #47aaff; border: 1px solid #47aaff;border-radius: 2px;text-align:center;}
-.tcdPageCode span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 2px;vertical-align: middle;}
-
 /*结算*/
 .balance{
 	width: 930px;
@@ -1558,24 +1552,19 @@ div.xi{
 .common_operation .title span.on{
 	color: #47aaff;
 }
-.common_operation .title .list{
-	width: 167px;
-	padding-left: 30px;
-	position: relative;
-}
 .common_operation .title .project{
-	width: 590px;
+	width: 750px;
 	text-align: center;
 	position: relative;
 	cursor: pointer;
-	padding-left: 0;	
+	padding-left: 30px;	
 }
 .common_operation .title .project i{
 	width: 14px;
 	height: 12px;
 	position: absolute;
 	top: 20px;
-	left: 58px;
+	left: 90px;
 	background: url(../images/icon1229.png) no-repeat -29px -327px;
 }
 .common_operation .project .tab_n{
@@ -1585,7 +1574,7 @@ div.xi{
 	background: #fff;
 	position: absolute;
 	line-height: 41px;
-	left:-26px;
+	left:4px;
 	top:0px;
 	z-index: 66;
 	text-align: left;
@@ -1614,10 +1603,10 @@ div.xi{
 }
 
 .cart_list .name b{
-	width: 32px;
+	width: 50px;
 	height: 16px;
 	border: 1px solid #6cbcfe;
-	border-radius: 3px;
+	border-radius: 2px;
 	font-size: 12px;
 	font-weight: normal;
 	display: inline-block;

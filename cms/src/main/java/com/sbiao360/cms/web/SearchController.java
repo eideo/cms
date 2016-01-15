@@ -492,6 +492,9 @@ public class SearchController extends BaseController{
 			if(StringUtil.contains(type, "招标")){
 				typeSearch += " (table_name:ZBXX -table_name2:ZBGS )";
 			}
+			if(StringUtil.contains(type, "采购")){
+				typeSearch += " (table_name:ZFCG)";
+			}
 			escapedKw.add(" ("+typeSearch+")");
 		}
 		
@@ -626,6 +629,9 @@ public class SearchController extends BaseController{
 			}
 			if(StringUtil.contains(type, "招标")){
 				typeSearch += " (table_name:ZBXX -table_name2:ZBGS )";
+			}
+			if(StringUtil.contains(type, "采购")){
+				typeSearch += " (table_name:ZFCG)";
 			}
 			escapedKw.add(" ("+typeSearch+")");
 		}

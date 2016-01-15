@@ -38,9 +38,32 @@
 			when a.INFO_TYPE = '11506' then '行业报告'
 			when a.INFO_TYPE = '1' then '关系网' 
 			else '' end as INFO_TYPE_CN, 
-			case 
-			when CHAR_LENGTH(b.INTRODUCTION) > 47 then CONCAT(SUBSTR(b.INTRODUCTION, 1, 47), '...') 
-			else b.INTRODUCTION end as SUB_INTRODUCTION, 
+				(CASE
+			WHEN a.INFO_TYPE = '11501' and CHAR_LENGTH(b.INTRODUCTION)>400 THEN
+				CONCAT(SUBSTR(b.INTRODUCTION, 1, 400),'...')
+			WHEN a.INFO_TYPE = '11501' and CHAR_LENGTH(b.INTRODUCTION)<=400 THEN
+				b.INTRODUCTION
+			WHEN a.INFO_TYPE = '11502' and CHAR_LENGTH(c.DESCRIPTION)>400 THEN
+				CONCAT(SUBSTR(c.DESCRIPTION, 1, 400),'...')
+			WHEN a.INFO_TYPE = '11502' and CHAR_LENGTH(c.DESCRIPTION)<=400 THEN
+				c.DESCRIPTION
+			WHEN a.INFO_TYPE = '11503' and CHAR_LENGTH(d.DESCRIPTION)>400 THEN
+				CONCAT(SUBSTR(d.DESCRIPTION, 1, 400),'...')
+			WHEN a.INFO_TYPE = '11503' and CHAR_LENGTH(d.DESCRIPTION)<=400 THEN
+				d.DESCRIPTION
+			WHEN a.INFO_TYPE = '11504' THEN
+				'采购'
+			WHEN a.INFO_TYPE = '11505' THEN
+				'新闻'
+			WHEN a.INFO_TYPE = '11506' and CHAR_LENGTH(e.REPORT_ABSTRACT)>400 THEN
+				CONCAT(SUBSTR(e.REPORT_ABSTRACT, 1, 400),'...')
+			WHEN a.INFO_TYPE = '11506' and CHAR_LENGTH(e.REPORT_ABSTRACT)<=400 THEN
+				d.DESCRIPTION
+			WHEN a.INFO_TYPE = '1' THEN
+				'关系网'
+			ELSE
+				''
+			END) AS SUB_INTRODUCTION, 
 			case 
 			when a.INFO_TYPE = '11501' then b.ENABLED_FLAG 
 			else 1 end as ENABLED_FLAG, 
@@ -64,7 +87,7 @@
 					and a.INFO_TYPE = #{infoType} 
 				</when>
 				<otherwise>
-					and a.INFO_TYPE in ('11501', '11502', '11503') 
+					and a.INFO_TYPE in ('11501', '11502', '11503','11506') 
 				</otherwise>
 			</choose>
 		</where>
@@ -81,8 +104,11 @@
 		<include refid="Behavior_Column_List" />
 		from CMS_CUST_BEHAVIOR a 
 		left join CMS_PROJECT b on b.PROJECT_SOURCE_ID = a.INFO_ID 
+		LEFT JOIN CMS_ZBGG_M c on c.RECORD_ID=a.INFO_ID
+	LEFT JOIN CMS_ZBGS_M d on d.RECORD_ID=a.INFO_ID
+	LEFT JOIN CMS_REPORT_MAIN e on e.ID=a.INFO_ID
 		<include refid="dynamicWhereBehavior" />
-		order by a.ACTION_DATE desc 
+		order by a.ACTION_DATE desc
 	</select>
 	
 	<update id="updateBehavior" parameterType="java.util.Map">

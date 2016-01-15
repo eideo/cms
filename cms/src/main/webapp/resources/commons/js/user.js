@@ -1,6 +1,7 @@
 'use strict';
 
 $(function(){
+
 	tabHover();
 	
 	// 更换头像
@@ -53,6 +54,8 @@ $(function(){
 
 	// 我的足迹信息列表移入移出效果
 	footListHover();
+
+					
 });
 
 function tabHover() {
@@ -149,7 +152,8 @@ function classSwith(){
 
 function checkList() {
 
-	var aLi=$('.optional').length-1;
+	var aLi=$('.optional').length;
+	console.log(aLi);
 
 	$('#custBehaviorList').on("click", ".check", function() {
 
@@ -163,7 +167,9 @@ function checkList() {
 			oLi.find('.check').removeClass('on');
 		}
 
-		if($('.name').find('.on').length==aLi) {
+		var listNum = $('.name').find('.on').length
+		aLi = $('.optional').length;
+		if(listNum == aLi) {
 
 			$('.selectall').find('i').addClass('on');
 		}else {
@@ -439,6 +445,7 @@ function ajaxCustBehaviorList(p) {
 					}
 
 					$("#custBehaviorList").append(html);
+					introductionError();
 				}
 
 				if(!p) {
@@ -868,4 +875,13 @@ function errorAvatarTwo(img) {
 
 	img.src = resPath + "/resources/commons/images/face2.png";
 	img.onerror = null;
+}
+
+function introductionError() {
+
+	if($('.introductionError').text() == "{custBehavior.subIntroduction}") {
+
+		console.log(1);
+		$('.introductionError').text("123");
+	}
 }

@@ -1,8 +1,8 @@
 /* 
  * @Author: Administrator
  * @Date:   2015-12-17 09:35:18
- * @Last Modified by:   Administrator
- * @Last Modified time: 2015-12-22 10:21:05
+ * @Last Modified by:   zhanganchun
+ * @Last Modified time: 2016-01-14 17:34:24
  */
 
 'use strict';
@@ -26,7 +26,6 @@ define(function(require, exports, module) {
 	}
 
 	/*遮罩层*/
-
 	Tool.mask = function () {
 		
 		clearInterval(maskTimer)
@@ -78,6 +77,25 @@ define(function(require, exports, module) {
 		}
 
 		return _args
+	}
+
+	/*数组去重*/
+	Tool.unique = function(arr) {
+		
+	      var result = [], isRepeated;
+	      for (var i = 0, len = arr.length; i < len; i++) {
+	          isRepeated = false;
+	          for (var j = 0, len = result.length; j < len; j++) {
+	              if (arr[i] == result[j]) {   
+	                  isRepeated = true;
+	                  break;
+	              }
+	        }
+	         if (!isRepeated) {
+	            result.push(arr[i]);
+	         }
+	    }
+	    return result;
 	}
 
 	module.exports = Tool

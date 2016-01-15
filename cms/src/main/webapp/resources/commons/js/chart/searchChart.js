@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-13 11:27:53
+ * @Last Modified time: 2016-01-14 15:53:31
  */
 
 'use strict';
@@ -183,7 +183,7 @@ define(function(require, exports, module) {
 
 				return yScale(d['value']);
 			})
-			.interpolate("linear")
+			.interpolate("cardinal")
 
 		svg.append("clipPath")
 			.attr("id", "content-brokeArea" + date)

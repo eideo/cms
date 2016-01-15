@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*����λ����Ϣ*/
 .message_top{
-	width: 935px;
+	width: 975px;
 	height: 20px;
 	line-height: 20px;
 	margin: 15px auto;
@@ -31,12 +31,12 @@
 
 /*��Ҫ����*/
 .main{
-	width: 960px;
+	width: 1000px;
 	margin: 0 auto;
 	margin-bottom: 60px;
 }
 .main .sign{
-	width: 210px;
+	width: 225px;
 	float: left;
 	border: 1px solid #ebebeb;
 }
@@ -44,7 +44,7 @@
 	cursor: pointer;
 }
 .main .content{
-	width: 720px;
+	width: 740px;
 	float: right;
 /*	background: #f90;*/
 }
@@ -185,7 +185,7 @@
 	color: #5e5e5e;
 }
 .sign .personal_center li a.active{
-	background: url(../images/userli.png) no-repeat -21px;
+	background: url(../images/userli.png) no-repeat -13px;
 	color: #fff;
 }
 /*�����ʲ�������*/
@@ -401,9 +401,8 @@
 	display: none;
 }
 .cart_list .name{
-	width: 300px;
 	position: relative;
-	padding-left: 32px;
+	padding-left: 46px;
 	line-height: 24px;
 	margin-top: 22px;
 	font-size: 14px;
@@ -420,8 +419,8 @@
 	height: 13px;
 	border: 1px solid #a8a8a8;
 	position: absolute;
-	top: 15px;
-	left: 9px;
+	top: 18px;
+	left: 16px;
 	border-radius: 2px;
 	
 } 
@@ -430,10 +429,10 @@
 	background: url(../images/icon1229.png) no-repeat -338px -492px;
 }
 .cart_list .name b{
-	width: 32px;
+	width: 50px;
 	height: 16px;
 	border: 1px solid #6cbcfe;
-	border-radius: 3px;
+	border-radius: 2px;
 	font-size: 12px;
 	font-weight: normal;
 	display: inline-block;
@@ -1200,7 +1199,7 @@ div.xi{
 }
 /*������Ϣ*/
 .my_info_box{
-	width: 720px;
+	width: 740px;
 	height: 470px;
 	background: #f6f6f6;
 	margin-top: 7px;
@@ -1638,18 +1637,18 @@ div.xi{
 }
 
 .common_operation .title .project{
-	width: 400px;
+	width: 622px;
 	text-align: center;
 	position: relative;
 	cursor: pointer;
-	padding-left: 0;	
+	padding-left: 30px;	
 }
 .common_operation .title .project i{
 	width: 14px;
 	height: 12px;
 	position: absolute;
 	top: 20px;
-	left: 58px;
+	left: 88px;
 	background: url(../images/icon1229.png) no-repeat -29px -327px;
 }
 .common_operation .project .tab_n{
@@ -1659,7 +1658,7 @@ div.xi{
 	background: #fff;
 	position: absolute;
 	line-height: 41px;
-	left:-26px;
+	left:4px;
 	top:0px;
 	z-index: 66;
 	text-align: left;
@@ -1674,12 +1673,12 @@ div.xi{
 }
 .common_operation .title .operation{
 	text-align: left;
-	width: 90px;
+	width: 50px;
 	padding-left: 30px;
 }
 
 .collection_list .name{
-	width: 598px;
+	width: 632px;
 } 
 .collection_list .name span{
 	color: #5e5e5e;
@@ -1688,10 +1687,10 @@ div.xi{
 }
 
 .cart_list .name b{
-	width: 32px;
+	width: 50px;
 	height: 16px;
 	border: 1px solid #6cbcfe;
-	border-radius: 3px;
+	border-radius: 2px;
 	font-size: 12px;
 	font-weight: normal;
 	display: inline-block;

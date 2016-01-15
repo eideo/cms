@@ -23,6 +23,8 @@
 		<if test="areaCode!=null">
 			AND t.AREA_CODE =#{areaCode}
 		</if>
+		AND t.KEYWORDS!=''
+		AND t.KEYWORDS is not null
 		GROUP BY
 			t.KEYWORDS
 		ORDER BY
@@ -273,8 +275,8 @@
 			ORDER BY
 				NUM DESC, PROJECT_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
-			left join CMS_PROJECT y on y.ID = x.PROJECT_ID where y.CONFIRM_DATE&lt;=#{endDate}
-			AND y.CONFIRM_DATE&gt;=#{startDate}
+			left join CMS_PROJECT y on y.ID = x.PROJECT_ID where y.PUBLISH_DATE&lt;=#{endDate}
+			AND y.PUBLISH_DATE&gt;=#{startDate}
 			<if test="industry!=null">
 			AND y.industry1_id like CONCAT('%',#{industry},'%')
 			</if>

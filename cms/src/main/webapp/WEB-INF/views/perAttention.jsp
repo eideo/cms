@@ -82,24 +82,23 @@
 				<div class="section my_attention common_operation" style="display:block;">
 					<h2>我的关注<i></i></h2>
 					<div class="title clearfix">
-						<span class="list"><i></i>关注列表</span>
 						<span class="project">
 							<i></i>
-							<span>信息类别</span>
+							<span>列表分类</span>
 							<input id="action_type" type="hidden" value="3" />
 							<input id="info_type" type="hidden" value="" />
 							<ul class="tab_n title_tab">
 								<b></b>
-								<li class="all_type">信息类别</li>
+								<li class="all_type">列表分类</li>
 								<li class="xiangmu_type" onclick="javascript:getByInfoType('11501');">
 									项目
 								</li>
-								<li class="zhaobiao_type" onclick="javascript:getByInfoType('11502');">招标
+								<li class="zhaobiao_type" onclick="javascript:getByInfoType('11502');">		招标
 								</li>
-								<li class="zhongbiao_type" onclick="javascript:getByInfoType('11503');">中标
+								<li class="zhongbiao_type" onclick="javascript:getByInfoType('11503');">	中标
 								</li>
-								<li class="report_type" >
-								行业报告
+								<li class="report_type" onclick="javascript:getByInfoType('11506');">
+									行业报告
 								</li>
 							</ul>
 						</span>
@@ -109,14 +108,16 @@
 						<c:choose>
 							<c:when test="${!empty custBehaviorList}">
 								<c:forEach var="custBehavior" items="${custBehaviorList}">
-									<li class="${custBehavior.styleClassLi}" id="${custBehavior.id}">
+									<li class="${custBehavior.styleClassLi}" id="${custBehavior.id}" inType="${custBehavior.infoType}" infoId="${custBehavior.infoId}">
 										${custBehavior.styleClassBorder}
 										<span class="name">
 											${custBehavior.styleClassCheck}
 											<a href="javascript:;">信息名称：${custBehavior.subInfoName}</a>
 											<b>${custBehavior.infoTypeCn}</b>
 											<br>
-											<span>${custBehavior.subIntroduction}</span>
+											<span>
+												${custBehavior.subIntroduction}
+											</span>
 										</span>
 										<div class="operation">
 											<a href="javascript:;" class="remove" onclick="javascript:deleteCustBehavior(${custBehavior.id});"><i></i>删除</a>
@@ -153,14 +154,16 @@
 	</div>
 
 	<script type="text/html" id="custBehaviorListTemplate">
-		<li class="{custBehavior.styleClassLi}" id="{custBehavior.id}">
+		<li class="{custBehavior.styleClassLi}" id="{custBehavior.id}" inType="{custBehavior.infoType}" infoId="{custBehavior.infoId}">
 			{custBehavior.styleClassBorder}
 			<span class="name">
 				{custBehavior.styleClassCheck}
-				<a href="javascript:;">{custBehavior.subInfoName}</a>
+				<a href="javascript:;">信息名称：{custBehavior.subInfoName}</a>
 				<b>{custBehavior.infoTypeCn}</b>
 				<br>
-				<span>{custBehavior.subIntroduction}</span>
+				<span class="introductionError">
+				{custBehavior.subIntroduction}
+				</span>
 			</span>
 			<div class="operation">
 				<a href="javascript:;" class="remove" onclick="javascript:deleteCustBehavior({custBehavior.id});"><i></i>删除</a>

@@ -187,7 +187,7 @@ public class PersonalController extends BaseController {
 		paraMap.put("userId", userId);
 		paraMap.put("infoType", "");
 
-		// 当前页数
+		// 当前页数 	
 		int currentPage = 1;
 		// 每页显示数目
 		int pageSize = 5;

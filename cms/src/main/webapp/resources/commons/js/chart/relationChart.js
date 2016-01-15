@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-13 12:00:49
+ * @Last Modified time: 2016-01-15 08:31:04
  */
 
 'use strict';
@@ -74,13 +74,6 @@ define(function(require, exports, module) {
 		var type = type
 		var that = this
 
-		var tipWrap = $('<div></div>')
-			.addClass('tipWrap')
-
-		var i = $('<i>x</i>')
-			.addClass('close')
-			.appendTo(tipWrap)
-
 		var typeChinese = ''
 
 		if (type === 'person') {
@@ -91,15 +84,11 @@ define(function(require, exports, module) {
 			typeChinese = '单位'
 		}
 
-		var tipTitle = $('<div></div>')
-			.addClass('tipTitle')
-			.html(typeChinese + "：" + data.name)
+		$('.tipCon').html('')
+
+		$('.tipTitle').html(typeChinese + "：" + data.name)
 			.attr('title', data.name)
-			.appendTo(tipWrap)
-
-		var tipCon = $('<div class="tipCon"></div>')
-			.appendTo(tipWrap)
-
+			
 		if (type === "person") {
 
 			var ul = $('<ul></ul>')
@@ -107,30 +96,23 @@ define(function(require, exports, module) {
 				.append('<li class="info"> 邮箱：' + data.email + '</li>')
 				.append('<li class="info">电话：' + data.cellphone + ' </li>')
 				.append('<li class="more">了解更多</li>')
-				.appendTo(tipCon)
+				.appendTo($('.tipCon'))
 		} else if (type === 'company') {
 
 			var ul = $('<ul></ul>')
 				.append('<li class="info">地址：' + data.address + '</li>')
 				.append('<li class="info"> 座机：' + data.phone + '</li>')
 				.append('<li class="more">了解更多</li>')
-				.appendTo(tipCon)
+				.appendTo($('.tipCon'))
 		} else if (type === 'project') {
 
 			var ul = $('<ul></ul>')
 				.append('<li class="info">地址：' + data.address + '</li>')
 				.append('<li class="info">项目总额：' + data.total + '</li>')
 				.append('<li class="more">了解更多</li>')
-				.appendTo(tipCon)
+				.appendTo($('.tipCon'))
 
 		}
-
-		var tip = $('<div></div>')
-			.addClass('tip tip' + d['uniqId'])
-			.css('left', pos[0] + 20)
-			.css('top', pos[1] - 30)
-			.append(tipWrap)
-			.appendTo($('.tree'))
 	}
 
 	function redraw() {
@@ -217,7 +199,7 @@ define(function(require, exports, module) {
 				'infoName': node.name
 			},
 			success: function(data) {
-				console.log(data)
+				
 			},
 			error: function(error) {
 
@@ -228,8 +210,8 @@ define(function(require, exports, module) {
 
 	function mouseover(d) {
 
-		d3.selectAll('.tip').remove()
-
+		$('.tip').show()
+		
 		var type = d['type'],
 			id = d['dataId'],
 			parm = {

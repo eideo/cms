@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-13 15:29:11
+ * @Last Modified time: 2016-01-15 08:23:36
  */
 
 'use strict';
@@ -23,8 +23,8 @@ define(function(require, exports, module) {
 		type: 0,
 		smallName: '',
 		name: '',
-		companyRole: '业主',
-		personRole: '项目负责人',
+		companyRoleArray: [],
+		personRoleArray: [],
 		startDate: '201312',
 		endDate: '201511',
 		rolesName: '',
@@ -56,8 +56,12 @@ define(function(require, exports, module) {
 	var Event = require('../../js/util/event')
 
 	function getRelation(callback) {
-
+		
 		Tool.mask();
+		
+		var argComRole = AjaxObj.companyRoleArray.join(','),
+			argPerRole = AjaxObj.personRoleArray.join(',')
+
 		$.ajax({
 			url: path + '/getRelation',
 			type: 'POST',
@@ -67,8 +71,8 @@ define(function(require, exports, module) {
 				endDate: AjaxObj.endDate,
 				type: 0,
 				name: AjaxObj.name,
-				companyRole: AjaxObj.companyRole,
-				personRole: AjaxObj.personRole
+				companyRole: '',
+				personRole: ''
 			},
 			success: function(data) {
 
@@ -110,6 +114,7 @@ define(function(require, exports, module) {
 			AjaxObj.name = decodeURIComponent(args['name'])
 			AjaxObj.id = args['id']
 			AjaxObj.rolesType = args['type']
+			AjaxObj.canSearch = true
 
 			if (args['industryId']) {
 
@@ -120,8 +125,10 @@ define(function(require, exports, module) {
 						.val(AjaxObj.name)
 						.data('cValue', AjaxObj.name)
 
-					getRelation()
-					getRelationRoles()
+					getRelationRoles(function() {
+
+						getRelation()
+					})
 				})
 
 				return
@@ -131,8 +138,10 @@ define(function(require, exports, module) {
 				.val(AjaxObj.name)
 				.data('cValue', AjaxObj.name)
 
-			getRelation()
-			getRelationRoles()
+			getRelationRoles(function() {
+
+				getRelation()
+			})
 		}
 	}
 
@@ -187,50 +196,69 @@ define(function(require, exports, module) {
 
 					return 
 				}
+
+				$('.comRem ul').html('')
+				$('.perRem ul').html('')
+
 				var companyRoles = data.companyRoles,
-					personRoles = data.personRoles,
-					comRemConli = $('.comRemCon .list li'),
-					perRemConli = $('.perRemCon .list li'),
-					comRole,
-					perRole
+					personRoles = data.personRoles
+				
 
-				$('.comRemCon .list li.selected').removeClass('selected')
-				$('.perRemCon .list li.selected').removeClass('selected')
+				AjaxObj.companyRoleArray.push(companyRoles[0]['role'])
+				AjaxObj.personRoleArray.push(personRoles[0]['role'])
 
-				companyRoles[0] ? comRole = companyRoles[0]['role'] : comRole = AjaxObj.companyRole
-				personRoles[0] ? perRole = personRoles[0]['role'] : perRole = AjaxObj.companyRole
+				companyRoles.forEach(function(item,index) {
 
-				$('.comRemCon .topTitle').html(comRole + '<i></i>')
-				$('.personRoles .topTitle').html(perRole + '<i></i>')
+					var $li = $('<li class="item"></li>')
+						.html(item['role'])
+						.appendTo($('.comRem ul'))
 
+					if (index === 0) {
 
-				for (var i = 0, n = comRemConli.length; i < n; i++) {
+						$li.addClass("selected")
+					}
+				})
 
-					var $li = $(comRemConli[i])
+				personRoles.forEach(function(item,index) {
 
-					companyRoles.forEach(function(item) {
+					var role = item['role'];
 
-						if ($li.html() === item.role) {
+					if (role.length > 5) {
 
-							$li.attr('canClick', true)
-						}
-					})
+						role = role.substr(0,5)
+					}
+
+					var $li = $('<li class="item"></li>')
+						.html(role)
+						.appendTo($('.perRem ul'))
+
+					if (index > 2) {
+
+						$li.addClass('hidden')
+					}
+
+					if (index === 0) {
+
+						$li.addClass("selected")
+					}
+				})
+
+				if (personRoles.length > 3) {
+
+					var $more = $('<i class="more"></i>').appendTo($('.perRem'))
 				}
 
-				for (var i = 0, n = perRemConli.length; i < n; i++) {
+				if (companyRoles.length > 3) {
 
-					var $li = $(perRemConli[i])
-
-					personRoles.forEach(function(item) {
-
-						if ($li.html() === item.role) {
-
-							$li.attr('canClick', true)
-						}
-					})
+					var $more = $('<i class="more"></i>').appendTo($('.comRem'))
 				}
-			}
-		})
+
+				if (callback && callback()) {
+
+					callback()
+				}
+			}			
+		})	
 	}
 
 	function getRecommProject(callback) {
@@ -263,9 +291,9 @@ define(function(require, exports, module) {
 			dom: '.timeShow'
 		}
 
-		var slider = new Slider(sliderOption)
+	/*	var slider = new Slider(sliderOption)
 		slider.init()
-
+*/
 		var scaleOption = {
 				selector: 'scale',
 				handle: 'scaleHandle',
@@ -275,15 +303,7 @@ define(function(require, exports, module) {
 		/*var scale = new Scale(scaleOption)
 			scale.init()*/
 
-		$('.perRemCon .list').niceScroll({
-			cursorcolor: "#0a8dff",
-			cursorwidth: '4px',
-			cursorborder: '#0a8dff'
-		})
-
 		// 手动删除滚动条的横向div
-		$('#ascrail2000-hr').remove()
-
 		$("#marquee").kxbdMarquee({
 			direction: "up",
 			isEqual: false,
@@ -368,25 +388,6 @@ define(function(require, exports, module) {
 
 	function initRole() {
 
-		/*浏览展开*/
-		$('.recomCon .top').find('i').on('click', function(e) {
-
-			var display = $('.recom').css('display')
-			display === 'none' ? $('.recom').slideDown(500) : $('.recom').slideUp(500)
-			display === 'none' ? $(this).addClass('selected') : $(this).removeClass('selected')
-		})
-
-		$('.topTitle').find('i').live('click', function(e) {
-
-			var con = $(this).parent().parent().find('.list'),
-				display = con.css('display'),
-				e = e || window.event
-
-			display === 'none' ? con.slideDown(500) : con.slideUp(500)
-			display === 'none' ? $(this).addClass('selected') : $(this).removeClass('selected')
-
-			e.stopPropagation()
-		})
 
 		// 鼠标滑过事件
 		$('.tip .close').live('click', function(e) {
@@ -394,55 +395,68 @@ define(function(require, exports, module) {
 			$(this).parent().parent().remove()
 		})
 
-		$('.tip').live('mouseleave', function(e) {
+		$(".recomCon").draggable({containment:"parent"});
+		$('.tip').draggable({containment:"parent"});
 
-			var e = e || window.event
-			$(this).remove()
-		})
+		$('.comRem ul li,.perRem ul li').live('click',function(e) {
 
-		$('.perRemCon .topTitle,.comRemCon .topTitle').on('click', function(e) {
+			var parent = $(this).parent().parent(),
+				word = $(this).html(),
+				comIndex,
+				perIndex
 
-			var con = $(this).parent().find('div').eq(1),
-				e = e || window.event,
-				display = con.css('display'),
-				selected = $(this).hasClass('selected')
-
-			display === 'none' ? con.slideDown(500) : con.slideUp(500)
-
-			if (!selected) {
-
-				$(this).addClass('selected')
-			} else {
+			if ($(this).hasClass('selected') ) {
 				$(this).removeClass('selected')
+			} else {
+				$(this).addClass('selected')
 			}
 
-			e.stopPropagation()
-		})
+			if (parent.hasClass('comRem')) {
 
-		$('.list li.item').on('click', function(e) {
+				comIndex = AjaxObj.companyRoleArray.indexOf(word)
 
-			if (!$(this).attr('canClick')) {
+				if (comIndex === -1) {
+
+					AjaxObj.companyRoleArray.push(word)
+				} else {
+					AjaxObj.companyRoleArray.splice(comIndex,1)
+				}
+			} else if (parent.hasClass('perRem')) {
+
+				perIndex = AjaxObj.personRoleArray.indexOf(word)
+
+				if (perIndex === -1) {
+
+					AjaxObj.personRoleArray.push(word)
+				} else {
+					AjaxObj.personRoleArray.splice(perIndex,1)
+				}
+			}
+
+			if (AjaxObj.canSearch) {
+
+				getRelation()	
+			} else {
+				
+				$('.searchBody .inputText').addClass('selected')
 
 				return
-			}
+			}	
+		})
 
-			var e = e || window.event,
-				word = $(this).html(),
-				parent = $(this).parent().parent().parent(),
-				top = parent.find('div').eq(0),
-				con = parent.find('div').eq(1)
+		$('.perRem .more,.conRem .more').live('click',function() {
 
-			top.html(word + '<i></i>')
-			con.slideUp('fast')
+			var parent = $(this).parent().find('ul'),
+				height = parent.height()
 
-			if (parent.parent().hasClass('comRem')) {
+			if (parent.height() === 30) {
 
-				AjaxObj.companyRole = word
-			} else if (parent.parent().hasClass('perRem')) {
-
-				AjaxObj.personRole = word
+				parent.find('li').removeClass('hidden')
+			} else {
+				parent.find('li:gt(2)').addClass('hidden')
 			}
 		})
+
 	}
 
 	$(function() {

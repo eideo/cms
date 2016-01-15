@@ -135,13 +135,13 @@ public class ExponentController extends BaseController{
 			boolean f = false;
 			l:for(int i=0;i<primaryIndustry.size();i++){
 				Map<String,Object> child = primaryIndustry.get(i);
-				String name = (String) child.get("type");
-				if(name==null){
+				String id = (String) child.get("id");
+				if(id==null){
 					primaryIndustry.remove(i);
 					i--;
 					continue;
 				}
-				if(code.getName().equals(name)){
+				if(code.getCode().equals(id)){
 					f=true;
 					break l;
 				}

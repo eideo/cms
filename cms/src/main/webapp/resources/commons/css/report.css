@@ -145,47 +145,6 @@
 	display:none;
 }
 
-/*分页*/
-.tcdPageCode{color: #5e5e5e;	display:table;margin:0 auto;padding-top:40px;padding-bottom:40px;}
-.tcdPageCode a{font-family:Arial;display: inline-block;color: #5e5e5e;display: inline-block;height: 25px; line-height: 25px;width:46px;height:26px;border: 1px solid #ddd; margin: 0 2px;border-radius: 2px;line-height:26px;text-align:center;}
-.tcdPageCode a:hover{border:1px solid #47aaff;}
-.tcdPageCode span.current{font-family:Arial;display: inline-block;height: 26px;line-height: 25px;width:46px;margin: 0 2px;color: #fff;background-color: #47aaff; border: 1px solid #47aaff;border-radius: 2px;text-align:center;border: 1px solid #47aaff;position: relative;top: -1px;}
-.tcdPageCode span.disabled{font-family:Arial;display: inline-block;color: #888;display: inline-block;height: 25px; line-height: 25px;width:46px;height:26px;border: 1px solid #ddd; margin: 0 2px;border-radius: 2px;line-height:26px;text-align:center;}
-.tcdPageCode span:hover{border:1px solid #47aaff;cursor:pointer;}
-.tcdPageCode .prevPage,.tcdPageCode .nextPage{color:#888;}
-.paging p{
-	float: right;
-	line-height: 17px;
-	padding-top: 20px;
-}
-
-.paging p i{
-	float: left;
-}
-
-.paging p .span{
-	width: 40px;
-	height: 15px;
-	display: block;
-	float: left;
-	margin: 0 10px;
-	outline: none;
-	padding-left: 5px;
-	border: 1px solid #b5b5b5;
-}
-
-.paging .sure{
-	float: right;
-	width: 63px;
-	height: 29px;
-	background: #e1e1e1;
-	border: none;
-	font-size: 14px;
-	color: #3c3c3c;
-	cursor: pointer;
-	margin-top: 12px;
-	margin-left: 20px;
-}
 /*关注分享收藏*/
 .list .navBox{
 	float: right;
@@ -1102,12 +1061,12 @@
 	#box #prev{
 		left: 10px;
 		top:80px;
-		background: url(../images/icon1210.png) no-repeat -298px -104px #000;
+		background: url(../images/icon1229.png) no-repeat -298px -104px #000;
 	}
 	#box #next{
 		right: 10px;
 		top:80px;
-		background: url(../images/icon1210.png) no-repeat -352px -104px #000;
+		background: url(../images/icon1229.png) no-repeat -352px -104px #000;
 	}
 	#box ul{
 		position: absolute;

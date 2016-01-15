@@ -97,15 +97,14 @@
 				<div class="section my_attention common_operation" style="display:block;">
 					<h2>我的收藏<i></i></h2>
 					<div class="title clearfix">
-						<span class="list">收藏列表</span>
 						<span class="project">
 							<i></i>
-							<span>信息类别</span>
+							<span>列表分类</span>
 							<input id="action_type" type="hidden" value="4" />
 							<input id="info_type" type="hidden" value="" />
 							<ul class="tab_n title_tab">
 								<b></b>
-								<li class="all_type">信息类别</li>
+								<li class="all_type">列表分类</li>
 								<li class="xiangmu_type" onclick="javascript:getByInfoType('11501');">项目
 								</li>
 								<li class="zhaobiao_type" onclick="javascript:getByInfoType('11502');">招标

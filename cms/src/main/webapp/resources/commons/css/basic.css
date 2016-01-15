@@ -364,6 +364,143 @@ text {
 		color: #0a8dff;
 	}
 }
+
+/*分页*/
+/* 分页 */
+.page
+{
+    height: 112px;
+    margin: 0 auto;
+}
+.tcdPageCode
+{
+    display: table;
+
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    color: #5e5e5e;
+}
+.tcdPageCode a
+{
+    font-family: Arial;
+    line-height: 25px;
+    line-height: 26px;
+
+    display: inline-block;
+    display: inline-block;
+
+    width: 46px;
+    height: 25px;
+    height: 26px;
+    margin: 0 2px;
+
+    text-align: center;
+
+    color: #5e5e5e;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+.tcdPageCode a:hover
+{
+    border: 1px solid #47aaff;
+}
+.tcdPageCode span.current
+{
+    font-family: Arial;
+    line-height: 25px;
+
+    position: relative;
+    top: -1px;
+
+    display: inline-block;
+
+    width: 46px;
+    height: 26px;
+    margin: 0 2px;
+
+    text-align: center;
+
+    color: #fff;
+    border: 1px solid #47aaff;
+    border: 1px solid #47aaff;
+    border-radius: 2px;
+    background-color: #47aaff;
+}
+.tcdPageCode span.disabled
+{
+    font-family: Arial;
+    line-height: 25px;
+    line-height: 26px;
+
+    display: inline-block;
+    display: inline-block;
+
+    width: 46px;
+    height: 25px;
+    height: 26px;
+    margin: 0 2px;
+
+    text-align: center;
+
+    color: #888;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+.tcdPageCode span.disabled:hover
+{
+    cursor: default;
+    border: 1px solid #ddd;
+}
+.tcdPageCode .prevPage,
+.tcdPageCode .nextPage
+{
+    color: #888;
+}
+.paging p
+{
+    line-height: 17px;
+
+    float: right;
+
+    padding-top: 20px;
+}
+.paging p i
+{
+    float: left;
+}
+.paging p .span
+{
+    display: block;
+    float: left;
+
+    width: 40px;
+    height: 15px;
+    margin: 0 10px;
+    padding-left: 5px;
+
+    border: 1px solid #b5b5b5;
+    outline: none;
+}
+.paging .sure
+{
+    font-size: 14px;
+
+    float: right;
+
+    width: 63px;
+    height: 29px;
+    margin-top: 12px;
+    margin-left: 20px;
+
+    cursor: pointer;
+
+    color: #3c3c3c;
+    border: none;
+    background: #e1e1e1;
+}
+
 /*标题截取*/
 .cutTitle{
 		overflow:hidden;

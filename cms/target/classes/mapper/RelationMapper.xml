@@ -118,10 +118,10 @@
 		    </foreach>
 		</if>) 
 		<if test="startDate!=null">
-		 and t.CONFIRM_DATE &gt;=${startDate}
+		 and t.PUBLISH_DATE &gt;=${startDate}
 		</if>
 		<if test="endDate!=null">
-		 and t.CONFIRM_DATE &lt;${endDate}
+		 and t.PUBLISH_DATE &lt;${endDate}
 		 </if>
 	</select>
 	
@@ -182,10 +182,10 @@
 	<select id="getProjectByName" parameterType="String" resultMap="ProjectResult">
 		select <include refid="projectColumns"></include> from CMS_PROJECT t where t.project_name=#{name}
 		<if test="startDate!=null">
-		 and t.CONFIRM_DATE &gt;=${startDate}
+		 and t.PUBLISH_DATE &gt;=${startDate}
 		</if>
 		<if test="endDate!=null">
-		 and t.CONFIRM_DATE &lt;${endDate}
+		 and t.PUBLISH_DATE &lt;${endDate}
 		 </if> limit 0,1
 	</select>
 	<select id="getCompanyByName" parameterType="String" resultMap = "companyResult">
@@ -203,10 +203,10 @@
 	<select id="relationSuggestProject" parameterType="Map" resultType = "Map">	
 		select b.PROJECT_NAME name from CMS_PROJECT b where b.PROJECT_NAME like  CONCAT('%',#{name},'%')
 		<if test="startDate!=null">
-		 and b.CONFIRM_DATE &gt;=${startDate}
+		 and b.PUBLISH_DATE &gt;=${startDate}
 		</if>
 		<if test="endDate!=null">
-		 and b.CONFIRM_DATE &lt;${endDate}
+		 and b.PUBLISH_DATE &lt;${endDate}
 		 </if> LIMIT 0,5
 	</select>
 	
@@ -229,6 +229,6 @@
 		GROUP BY t.PROJECT_POST
 	</select>
 	<select id="selectRecommProject" parameterType="Map" resultType="Map">
-		select a.project_name projectName from CMS_PROJECT a ,(SELECT t.PROJECT_ID,COUNT(1) cc from CMS_COMPANY_PROJECT t,CMS_PROJECT b where b.CONFIRM_DATE>#{startDate} and t.PROJECT_ID=b.ID and b.INDUSTRY1_ID like concat('%',#{industryId},'%')  ORDER BY cc desc limit 0,1) b where a.ID=b.PROJECT_ID
+		select a.project_name projectName from CMS_PROJECT a ,(SELECT t.PROJECT_ID,COUNT(1) cc from CMS_COMPANY_PROJECT t,CMS_PROJECT b where b.PUBLISH_DATE>#{startDate} and t.PROJECT_ID=b.ID and b.INDUSTRY1_ID like concat('%',#{industryId},'%')  ORDER BY cc desc limit 0,1) b where a.ID=b.PROJECT_ID
 	</select>
 </mapper>
