@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-01-15 10:41:25
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-15 13:07:08
+* @Last Modified time: 2016-01-15 13:16:09
 * @ 消息提示框，目前仅成功和错误两种
 */
 
@@ -157,6 +157,14 @@
 				$messageCon.remove()
 				e.preventDefault()
 			})
+
+			if (type === 'success') {
+
+				timeout = 1500
+			} else {
+
+				timeout = 2000
+			}
 
 			setTimeout(function(){
 

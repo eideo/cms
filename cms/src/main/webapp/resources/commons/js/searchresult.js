@@ -304,7 +304,12 @@ define(function(require, exports, module) {
 					}			
 				},
 				error: function() {
-					alert("请求异常");
+
+					$.Message({
+						text:'请求异常',
+						type:"failure"
+					})
+					
 				}
 			})
 	}
@@ -440,6 +445,11 @@ define(function(require, exports, module) {
 			}
 		}, function(data) {
 
+			$.Message({
+
+				text:'非常抱歉，服务器发生错误',
+				type:'failure'
+			})
 			//alert("非常抱歉，服务器发生错误，请联系管理员解决！");
 		});
 	}
@@ -591,7 +601,11 @@ define(function(require, exports, module) {
 
 				if ($("#term2 span").length == 5) {
 
-					alert("最多同时选择5个地区!");
+					$.Message({
+
+						text:'最多同时选择5个地区',
+						type:'failure'
+					})
 					return;
 				}
 
@@ -644,7 +658,11 @@ define(function(require, exports, module) {
 
 				if ($("#term2 span").length == 5) {
 
-					alert("最多同时选择5个地区!");
+					$.Message({
+
+						text:'最多同时选择5个地区',
+						type:'failure'
+					})
 					return;
 				}
 
@@ -766,7 +784,12 @@ define(function(require, exports, module) {
 
 				if ($("#term3 span").length == 5) {
 
-					alert("最多同时选择5个行业!");
+
+					$.Message({
+
+						text:'最多同时选择5个行业',
+						type:'failure'
+					})
 					return;
 				}
 
@@ -876,7 +899,12 @@ define(function(require, exports, module) {
 
 				if ($("#term3 span").length == 5) {
 
-					alert("最多同时选择5个行业!");
+					$.Message({
+
+						text:'最多同时选择5个行业',
+						type:'failure'
+					})
+					
 					return;
 				}
 
@@ -1093,7 +1121,11 @@ define(function(require, exports, module) {
 					$('.shadow_all').show();
 				} else if (status == -2) {
 
-					alert("请求异常");
+					$.Message({
+
+						text:'请求异常！',
+						type:'failure'
+					})
 				}
 			} else {
 
@@ -1113,7 +1145,11 @@ define(function(require, exports, module) {
 					$('.shadow_all').show();
 				} else if (status == -2) {
 
-					alert("请求异常");
+					$.Message({
+
+						text:'请求异常！',
+						type:'failure'
+					})
 				}
 			}
 		});
@@ -1143,7 +1179,11 @@ define(function(require, exports, module) {
 					$('.shadow_all').show();
 				} else if (status == -2) {
 
-					alert("请求异常");
+					$.Message({
+
+						text:'请求异常！',
+						type:'failure'
+					})
 				}
 			} else {
 
@@ -1163,7 +1203,11 @@ define(function(require, exports, module) {
 					$('.shadow_all').show();
 				} else if (status == -2) {
 
-					alert("请求异常");
+					$.Message({
+
+						text:'请求异常！',
+						type:'failure'
+					})
 				}
 			}
 		});

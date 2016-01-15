@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-15 11:56:54
+ * @Last Modified time: 2016-01-15 13:09:43
  */
 
 'use strict';
@@ -85,7 +85,12 @@ define(function(require, exports, module) {
 
 				if (data.linkList.length === 0) {
 
-					alert("没有相关数据")
+					$.Message({
+
+						text:'没有相关数据！',
+						type:'success'
+					})
+					
 					return
 				}
 				
@@ -465,12 +470,6 @@ define(function(require, exports, module) {
 		loadUrlDate()
 		initFocus()
 		initRole()
-
-		$.Message({
-
-			text:'亲，恭喜你操作成功了！',
-			type:'success'
-		})
 
 		Event.listen('timeChange', function(parm) {
 
