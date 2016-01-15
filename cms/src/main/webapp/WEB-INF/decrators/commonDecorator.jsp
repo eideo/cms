@@ -86,7 +86,9 @@
 </div>
 </c:if>
 	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js"></script>
+	<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
+	<!--<script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>-->
 	<script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js"></script>
 	<sitemesh:write property='myScript'/>
 </body>

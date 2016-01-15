@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-15 08:23:36
+ * @Last Modified time: 2016-01-15 11:56:54
  */
 
 'use strict';
@@ -465,6 +465,12 @@ define(function(require, exports, module) {
 		loadUrlDate()
 		initFocus()
 		initRole()
+
+		$.Message({
+
+			text:'亲，恭喜你操作成功了！',
+			type:'success'
+		})
 
 		Event.listen('timeChange', function(parm) {
 

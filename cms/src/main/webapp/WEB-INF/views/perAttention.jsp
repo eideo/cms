@@ -112,10 +112,10 @@
 										${custBehavior.styleClassBorder}
 										<span class="name">
 											${custBehavior.styleClassCheck}
-											<a href="javascript:;">信息名称：${custBehavior.subInfoName}</a>
+											<a href="" class="infoLink" target="_blank">信息名称：${custBehavior.subInfoName}</a>
 											<b>${custBehavior.infoTypeCn}</b>
 											<br>
-											<span>
+											<span  class="cutTitle">
 												${custBehavior.subIntroduction}
 											</span>
 										</span>
@@ -158,15 +158,15 @@
 			{custBehavior.styleClassBorder}
 			<span class="name">
 				{custBehavior.styleClassCheck}
-				<a href="javascript:;">信息名称：{custBehavior.subInfoName}</a>
+				<a href="" class="infoLink"  target="_blank">信息名称：{custBehavior.subInfoName}</a>
 				<b>{custBehavior.infoTypeCn}</b>
 				<br>
-				<span class="introductionError">
+				<span  class="cutTitle">
 				{custBehavior.subIntroduction}
 				</span>
 			</span>
 			<div class="operation">
-				<a href="javascript:;" class="remove" onclick="javascript:deleteCustBehavior({custBehavior.id});"><i></i>删除</a>
+				<a href="${appPath }/detail/${custBehavior.id}" class="remove" onclick="javascript:deleteCustBehavior({custBehavior.id});"><i></i>删除</a>
 			</div>	
 		</li>
 	</script>

@@ -119,13 +119,13 @@
 												<c:forEach var="custBehavior" items="${footprint.value}">
 													<c:choose>
 														<c:when test="${custBehavior.enabledFlag == 1}">
-															<li class="zhaobiao">
+															<li class="zhaobiao" inType="${custBehavior.infoType}" infoId="${custBehavior.infoId}">
 																<i class="f_border"></i>
 																<i class="f_remove" id="remove_${custBehavior.id}" onclick="javascript:deleteById(${custBehavior.id});"></i>
 																<div class="f_title">
-																	<a href="javascript:;" class="name">信息名称：${custBehavior.subInfoName}</a>
+																	<a href="javascript:;" class="name cutTitle infoLink"  target="_blank">信息名称：${custBehavior.subInfoName}</a>
 																	<span>${custBehavior.infoTypeCn}</span>
-																	<p>
+																	<p class="cutParagraph">
 																		${custBehavior.subIntroduction}
 																	</p>
 																</div>
@@ -158,11 +158,11 @@
 															<li class="xiangmu failure_info">
 																<i class="f_remove" id="remove_${custBehavior.id}" onclick="javascript:deleteById(${custBehavior.id});"></i>
 																<div class="f_title">
-																	<a href="javascript:;" class="name">信息名称：${custBehavior.subInfoName}
+																	<a href="javascript:;" class="name cutTitle">信息名称：${custBehavior.subInfoName}
 																	</a>
 																	<span>${custBehavior.infoTypeCn}</span>
 																	<span class="failure_icon">失效</span>
-																	<p>
+																	<p  class="cutParagraph">
 																		${custBehavior.subIntroduction}
 																	</p>
 																</div>	

@@ -1597,6 +1597,7 @@ div.xi{
 	width: 730px;
 } 
 .collection_list .name span{
+	width: 700px;
 	color: #5e5e5e;
 	font-weight: normal;
 	font-size: 14px;
@@ -1813,6 +1814,8 @@ div.xi{
 	border-radius: 3px;
 }
 .f_title p{
+	width: 866px;
+	height: 56px;
 	font-size: 14px;
 	color: #5e5e5e;
 }

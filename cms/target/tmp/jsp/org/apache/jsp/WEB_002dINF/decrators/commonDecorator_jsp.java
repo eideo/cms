@@ -192,7 +192,11 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
         return;
       out.write("\r\n");
       out.write("\t<script type=\"text/javascript\" src=\"http://libs.baidu.com/jquery/1.7.2/jquery.min.js\"></script>\r\n");
-      out.write("\t<script type=\"text/javascript\" src=\"http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js\"></script>\r\n");
+      out.write("\t<script type=\"text/javascript\" src=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/resources/commons/js/lib/message.js\"></script>\r\n");
+      out.write("\t<script src=\"//cdn.bootcss.com/d3/3.5.12/d3.js\"></script>\r\n");
+      out.write("\t<!--<script type=\"text/javascript\" src=\"http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js\"></script>-->\r\n");
       out.write("\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/ajaxCommon.js\"></script>\r\n");

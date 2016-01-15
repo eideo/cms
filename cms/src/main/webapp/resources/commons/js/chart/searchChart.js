@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-14 15:53:31
+ * @Last Modified time: 2016-01-15 10:33:38
  */
 
 'use strict';
@@ -79,7 +79,7 @@ define(function(require, exports, module) {
 			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
 		var gLegend = svg.append('g')
-			.attr('transform', 'translate(' + (width * 0.6) + ',' + 25 + ')')
+			.attr('transform', 'translate(' + (width * 0.5) + ',' + 25 + ')')
 
 		var type = gLegend.selectAll('.legend')
 			.data(type)
@@ -92,23 +92,23 @@ define(function(require, exports, module) {
 
 		type.append('rect')
 			.attr('x', function(d, i) {
-				return i * 45
+				return i * 62
 			})
 			.attr('y', 0)
-			.attr('width', 14)
-			.attr('height', 10)
+			.attr('rx',2)
+			.attr('ry',2)
+			.attr('width', 16)
+			.attr('height', 6)
 			.attr('fill', function(d, i) {
 				return colorset[i]
 			})
-			.attr('opacity', function(d, i) {
-				return legendOpacity[i]
-			})
+			
 
 		type.append('text')
-			.attr('dx', '1.5em')
+			.attr('dx', '2em')
 			.attr('dy', '0.75em')
 			.attr('x', function(d, i) {
-				return i * 45
+				return i * 62
 			})
 			.attr('y', 0)
 			.text(function(d, i) {
@@ -143,16 +143,6 @@ define(function(require, exports, module) {
 			.attr('transform', 'translate(' + 0 + ',' + (height - margin.top - margin.bottom) + ')')
 			.call(xAxis)
 
-
-		svg.selectAll('.yAxis .tick')
-			.attr('opacity', function(d, i) {
-				d3.select(this).append('line')
-					.attr('x1', 0)
-					.attr('y1', 0)
-					.attr('x2', (contentW))
-					.attr('y2', 0)
-			})
-
 		// 修改X轴上的文本
 		svg.selectAll('.xAxis .tick').selectAll('text')
 			.text(function(d) {
@@ -174,16 +164,16 @@ define(function(require, exports, module) {
 					}
 			})
 
-		var area = d3.svg.area()
+		var lineArea = d3.svg.line()
 			.x(function(d, i) {
 				return xScale(xArray[i])
 			})
-			.y0(height - margin.top - margin.bottom)
-			.y1(function(d, i) {
+			.y(function(d, i) {
 
 				return yScale(d['value']);
 			})
 			.interpolate("cardinal")
+			
 
 		svg.append("clipPath")
 			.attr("id", "content-brokeArea" + date)
@@ -205,24 +195,15 @@ define(function(require, exports, module) {
 		for (var j = 0; j < series.length; j++) {
 
 			var pct = svg.select(".lineArea")
-				.append("g")
-				.attr("class", "pct")
-
-			pct.append("path")
+				.append("path")
 				.datum(series[j])
-				/*.attr("stroke", function(d, i) {
-
-					return colorset[j];
-				})*/
-				.attr("d", area)
-				.style("fill", function(d, i) {
+				.attr("stroke", function() {
 
 					return colorset[j];
 				})
-				.style("opacity", function(d, i) {
+				.attr('fill','none')
+				.attr("d", lineArea)
 				
-					return opacity[j]
-				})
 		}
 	}
 
@@ -266,7 +247,7 @@ define(function(require, exports, module) {
 			.attr('height', height)
 
 		var content = svg.append('g')
-			.attr('transform', 'translate(' + (width * 0.4) + ',' + (height / 2) + ')')
+			.attr('transform', 'translate(' + (width * 0.25) + ',' + (height / 2) + ')')
 			.attr('class', 'content')
 
 		var rect = content.selectAll('g.arc')
@@ -304,20 +285,37 @@ define(function(require, exports, module) {
 			.append('g')
 
 		type.append('rect')
-			.attr('x', (width * 0.65))
+			.attr('x', (width * 0.5))
 			.attr('y', function(d, i) {
 
 				return i * 23 + (0.2 * height) + 20
 			})
-			.attr('width', 11)
-			.attr('height', 10)
-			.attr('fill', function(d, i) {
+			.attr('width', 9)
+			.attr('height', 9)
+			.attr({
+				rx:1,
+				ry:1,
+				fill:"none"
+
+			})
+			.attr('stroke', function(d, i) {
 				return colorset[i]
 			})
 
-		type.append('text')
-			.attr('dy', '0.75em')
-			.attr('x', (width * 0.65) + 16)
+		type.append('image')
+			.attr('x', (width * 0.55))
+			.attr('y', function(d, i) {
+
+				return i * 23 + (0.2 * height) + 16
+			})
+			.attr('class', 'legendTitle')
+            .attr('width', 42)
+            .attr('height', 17)
+            .attr('xlink:href', path + '/resources/commons/images/title_back.png')
+
+        type.append('text')
+        	.attr('dy', '0.75em')
+        	.attr('x', (width * 0.6) - 5)
 			.attr('y', function(d, i) {
 				return i * 23 + (0.2 * height) + 20
 			})
@@ -332,16 +330,27 @@ define(function(require, exports, module) {
 					value = value.substr(0, 2)
 				}
 
+				return function(t) {
+
+					d3.select(this)
+						.text((t*value).toFixed(0)+ "%");
+				}
+			})
+
+		type.append('text')
+			.attr('dy', '0.75em')
+			.attr('x', (width * 0.65) + 16)
+			.attr('y', function(d, i) {
+				return i * 23 + (0.2 * height) + 20
+			})
+			.text(function(d, i) {
+
 				var nameArray = d.data['name'].split('-'),
 					len = nameArray.length,
 					name
 					len > 1 ? name = nameArray[1] : name = nameArray[0];
 
-				return function(t) {
-
-					d3.select(this)
-						.text(name+'   '+(t*value).toFixed(0)+ "%");
-				}
+				return name
 			})
 
 			function tweenPie(b, callback) {
@@ -589,7 +598,10 @@ define(function(require, exports, module) {
 			xAxis,
 			yAxis,
 			xArray = [],
-			yArray = []
+			yArray = [],
+			trueYarray = [],
+			trueXarray = []
+
 
 		for (var i = 0; i < series.length; i++) {
 
@@ -607,6 +619,18 @@ define(function(require, exports, module) {
 			total += series[i][1]
 		}
 
+		yArray.forEach(function(item,index) {
+
+			var trueNumber = Math.round(((item / total)* 10000).toFixed(2)) / 100;
+
+			trueYarray.push(trueNumber)
+		});
+
+		var percentMax =  d3.max(trueYarray, function(d, i) {
+
+			return d;
+		});
+
 		svg = d3.selectAll(selector)
 			.append('svg')
 			.attr('width', width)
@@ -617,7 +641,7 @@ define(function(require, exports, module) {
 			.rangeBands([0, contentW], 0.5)
 
 		yScale = d3.scale.linear()
-			.domain([0, max])
+			.domain([0, percentMax])
 			.range([contentH, 0])
 
 		hScale = d3.scale.linear()
@@ -626,14 +650,30 @@ define(function(require, exports, module) {
 
 		xAxis = d3.svg.axis()
 			.scale(xScale)
+			.tickSize(0)
+			.tickPadding(8)
 			.tickValues(xArray)
 			.orient('bottom')
+
+		yAxis = d3.svg.axis()
+			.scale(yScale)
+			.orient('left')
+			.tickSize(0)
+			.ticks(5)
+			.tickPadding(3)
+			.tickFormat(function(d) {
+				return d + '%';
+			})
 
 		svg.append('g')
 			.attr('class', 'axis xAxis')
 			.attr('transform', 'translate(' + margin.left + ',' + (height - margin.bottom) + ')')
 			.call(xAxis)
 
+		svg.append('g')
+			.attr('class', 'axis yAxis')
+			.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+			.call(yAxis)
 
 		var rectCon = svg.append('g')
 			.attr('class', 'rectCon')
@@ -691,32 +731,7 @@ define(function(require, exports, module) {
 
 				return hScale(d[1])
 			})
-
-		textCon.selectAll('text')
-			.data(series)
-			.enter()
-			.append('text')
-			.attr('fill','#5d5d5d')
-			.attr('x', function(d, i) {
-
-				return xScale(xArray[i]);
-			})
-			.attr("y", function(d, i) {
-
-				return contentH - hScale(d[1]) - 10;
-			})
-			.transition()
-			.duration(1500)
-			.tween('text',function(d,i) {
-
-				var trueNumber = Math.round(((d[1] / total)* 10000).toFixed(2)) / 100
-
-				return function(t) {
-
-					d3.select(this)
-						.text((t*trueNumber).toFixed(0)+ "%")
-				}
-			})
 	}
+
 	module.exports = SearchChart;
 })

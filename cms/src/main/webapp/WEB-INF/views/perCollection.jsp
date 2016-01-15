@@ -121,14 +121,14 @@
 						<c:choose>
 							<c:when test="${!empty custBehaviorList}">
 								<c:forEach var="custBehavior" items="${custBehaviorList}">
-									<li class="${custBehavior.styleClassLi}" id="${custBehavior.id}">
+									<li class="${custBehavior.styleClassLi}" id="${custBehavior.id}" inType="${custBehavior.infoType}" infoId="${custBehavior.infoId}">
 										${custBehavior.styleClassBorder}
 										<span class="name">
 											${custBehavior.styleClassCheck}
-											<a href="javascript:;">信息名称：${custBehavior.subInfoName}</a>
+											<a href="" class="infoLink" target="_blank">信息名称：${custBehavior.subInfoName}</a>
 											<b>${custBehavior.infoTypeCn}</b>
 											<br>
-											<span>${custBehavior.subIntroduction}</span>
+											<span class="cutTitle">${custBehavior.subIntroduction}</span>
 										</span>
 										<div class="operation">
 											<a href="javascript:;" class="remove" onclick="javascript:deleteCustBehavior(${custBehavior.id});"><i></i>删除</a>
@@ -165,14 +165,14 @@
 	</div>
 
 	<script type="text/html" id="custBehaviorListTemplate">
-		<li class="{custBehavior.styleClassLi}" id="{custBehavior.id}">
+		<li class="{custBehavior.styleClassLi}" id="{custBehavior.id}" inType="{custBehavior.infoType}" infoId="{custBehavior.infoId}">
 			{custBehavior.styleClassBorder}
 			<span class="name">
 				{custBehavior.styleClassCheck}
-				<a href="javascript:;">{custBehavior.subInfoName}</a>
+				<a href="" class="infoLink" target="_blank">{custBehavior.subInfoName}</a>
 				<b>{custBehavior.infoTypeCn}</b>
 				<br>
-				<span>{custBehavior.subIntroduction}</span>
+				<span class="cutTitle">{custBehavior.subIntroduction}</span>
 			</span>
 			<div class="operation">
 				<a href="javascript:;" class="remove" onclick="javascript:deleteCustBehavior({custBehavior.id});"><i></i>删除</a>

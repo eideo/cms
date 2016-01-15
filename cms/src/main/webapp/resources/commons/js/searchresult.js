@@ -95,12 +95,12 @@ define(function(require, exports, module) {
 	var leftSetting = {
 		selector: '.chartwrap .left',
 		margin: {
-			left: 50,
+			left: 63,
 			top: 50,
 			right: 30,
 			bottom: 40
 		},
-		colorset: ['#ffce00', '#ff7133', '#5d5d5d'],
+		colorset: ['#ffb503', '#fd8b59', '#91e035'],
 		series: [],
 		type: ['项目', '招标', '中标'],
 		opacity: [0.4, 0.8, 0.4]
@@ -125,12 +125,12 @@ define(function(require, exports, module) {
 	var tagSetting = {
 		selector: '.chartwrap .right .chart2',
 		margin: {
-			left: 40,
+			left: 70,
 			top: 50,
 			right: 50,
 			bottom: 60
 		},
-		colorset: ['#65bbff', '#96ccff', '#ddeeff', '#c4e5ff', '#addaff', '#97cfff', '#97cfff'],
+		colorset: ['#ffb541', '#96ccff', '#ddeeff', '#c4e5ff', '#addaff', '#97cfff', '#97cfff'],
 		series: []
 	}
 

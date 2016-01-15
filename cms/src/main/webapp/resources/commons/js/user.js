@@ -55,7 +55,8 @@ $(function(){
 	// 我的足迹信息列表移入移出效果
 	footListHover();
 
-					
+	clickLink('.cart_list li');	
+	clickLink('.message_list li');		
 });
 
 function tabHover() {
@@ -445,7 +446,6 @@ function ajaxCustBehaviorList(p) {
 					}
 
 					$("#custBehaviorList").append(html);
-					introductionError();
 				}
 
 				if(!p) {
@@ -461,6 +461,10 @@ function ajaxCustBehaviorList(p) {
 					});
 				}
 			}
+
+			clickLink('.cart_list li');
+			clickLink('.message_list li');
+			
 		},
 		error : function() {
 
@@ -877,11 +881,26 @@ function errorAvatarTwo(img) {
 	img.onerror = null;
 }
 
-function introductionError() {
+// 列表链接
+function clickLink(listClass) {
 
-	if($('.introductionError').text() == "{custBehavior.subIntroduction}") {
+	$(listClass).each(function () {
 
-		console.log(1);
-		$('.introductionError').text("123");
-	}
+		var linkNum = $(this).attr('infoId');
+		var linkWord = path+'/detail/';
+		var linkWord2 = path+'/reportdetail/';
+		var infoType = $(this).attr('intype');
+		// $(this).find('.infoLink').attr('href',infoType);
+		var infoName= $(this).find('.infoLink');
+		// a.attr('href',infoType)
+		if(infoType ==11501){
+			infoName.attr('href',linkWord+linkNum);
+		}else if(infoType ==11502){
+			infoName.attr('href',linkWord+'zbgg-'+linkNum);
+		}else if(infoType ==11503){
+			infoName.attr('href',linkWord+'zbgs-'+linkNum);
+		}else{
+			infoName.attr('href',linkWord2+linkNum);
+		}
+	})
 }
