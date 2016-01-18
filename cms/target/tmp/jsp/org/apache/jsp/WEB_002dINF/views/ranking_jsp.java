@@ -65,7 +65,6 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -99,6 +98,11 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!-- [if Ite IE8]>\r\n");
+      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
+      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
+      out.write("<![endif]-->\r\n");
       out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
@@ -324,6 +328,10 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t</form>\r\n");
       out.write("\t</div>\r\n");
       out.write("</div>\r\n");
+      out.write("<a id=\"gotop\">\r\n");
+      out.write("\t<i></i>\r\n");
+      out.write("\t<span>顶部</span>\r\n");
+      out.write("</a>\r\n");
       out.write("<script type=\"text/html\" id = \"partTemp2\">\r\n");
       out.write("\t\t\t\t<li class=\"clearfix\">\r\n");
       out.write("\t\t\t\t\t\t<i class=\"rankResult -[{num}==1:one;{num}==2:two;{num}==3:three;]-\">{num}</i>\r\n");

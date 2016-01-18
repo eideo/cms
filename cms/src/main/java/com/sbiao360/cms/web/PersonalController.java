@@ -426,5 +426,11 @@ public class PersonalController extends BaseController {
 
 		ajaxJson(result.toJSONString(), response);
 	}
+	
+	@RequestMapping({"/findPwd"})
+	public String findPwd(HttpServletRequest request, HttpServletResponse response){
+		request.setAttribute("notSearch", "true");
+		return "findPwd";
+	}
 
 }

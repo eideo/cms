@@ -8,11 +8,23 @@
       <link rel="stylesheet" type="text/css" href="${resPath}/resources/error/css/error.css" />
   </head>
 <body>
-     <div id="container"><img class="png" src="${resPath}/resources/error/images/404.png" />
-       <img class="png msg" src="${resPath}/resources/error/images/404_msg.png" />
-       <p><a href="${appPath}/homepage"><img class="png" src="${resPath}/resources/error/images/404_to_index.png" /></a> </p>
-   </div>
-    <div id="cloud" class="png"></div>
+  
+  <div class="errorCon">
+  </div>
+  <div class='bottom_bg'></div>
+<!--<div id="container"><img class="png" src="${resPath}/resources/error/images/404.png" />
+  <img class="png msg" src="${resPath}/resources/error/images/404_msg.png" />
+  <p><a href="${appPath}/homepage"><img class="png" src="${resPath}/resources/error/images/404_to_index.png" /></a> </p>
+   </div>-->
+    <div id="cloud" class="png">
+      <div class='earth'>
+        <p class='title'></p>
+        <div class='btnCon'>
+          <a href="${appPath}/homepage"><img class="png" src="${resPath}/resources/error/images/backHome.png" /></a>
+          <a href="#" id='refresh' onclick="history.go(-1)"><img class="png" src="${resPath}/resources/error/images/refresh.png" /></a>
+        </div>
+      </div>
+    </div>
     <pre style="DISPLAY: none"></pre>
 </body>
 </html>

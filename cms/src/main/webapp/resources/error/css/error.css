@@ -4,34 +4,92 @@ body, div {
     padding: 0;
 }
 body {
-    background: url("../images/error_bg.jpg") repeat-x scroll 0 0 #67ACE4;
+    background:#64cefe;
 }
-#container {
-    margin: 0 auto;
-    padding-top: 50px;
-    text-align: center;
-    width: 560px;
-}
-#container img {
-    border: medium none;
-    margin-bottom: 50px;
-}
-#container .error {
-    height: 200px;
+
+.errorCon{
     position: relative;
+    width:1200px;
+    height:430px;
+    margin:0px auto;
+    margin-top:231px;
+    background: url(../images/earth_03.png) no-repeat center top;
 }
-#container .error img {
-    bottom: -50px;
-    position: absolute;
-    right: -50px;
-}
-#container .msg {
-    margin-bottom: 65px;
-}
+
 #cloud {
-    background: url("../images/error_cloud.png") repeat-x scroll 0 0 transparent;
-    bottom: 0;
-    height: 170px;
+    background:#fff;
+    border-top: 5px solid #2e94ff;
+    height: 288px;
     position: absolute;
     width: 100%;
+    box-shadow: 0px -2px 20px #1F0505;
+}
+
+#cloud .earth{
+    width:1200px;
+    height:280px;
+    margin:-20px auto;
+    background:url(../images/earth.png) no-repeat 869px 0px;
+    position: relative;
+    overflow: hidden;
+    zoom:1;
+}
+
+#cloud .earth p{
+    margin: 0 auto;
+    margin-top:38px;
+    height:50px;
+    width:340px;
+    background:url(../images/title.png) no-repeat;
+}
+
+#cloud .earth .btnCon{
+    margin:0 auto;
+    width:220px;
+    margin-top:30px;
+    text-align: center;
+}
+#cloud .earth .btnCon a{
+    display: inline-block;
+}
+
+@media  screen and (max-width: 1024px){
+    
+    .errorCon{
+        width:900px;
+        height:330px;
+        margin-top:131px;
+        background-size: 900px 330px;
+    }
+    #cloud .earth{
+        width:900px;
+        background:url(../images/earth.png) no-repeat 669px 0px;
+    }
+}
+@media  screen and (min-width: 1024px) and (max-width: 1366px) {
+    
+    .errorCon{
+        width:900px;
+        height:330px;
+        margin-top:171px;
+        background-size: 900px 330px;
+    }
+    #cloud .earth{
+        width:900px;
+        background:url(../images/earth.png) no-repeat 669px 0px;
+    }
+}
+
+@media  screen and (min-width: 1366px) and (max-width: 1919px) {
+    
+    .errorCon{
+        width:900px;
+        height:330px;
+        margin-top:271px;
+        background-size: 900px 330px;
+    }
+    #cloud .earth{
+        width:900px;
+        background:url(../images/earth.png) no-repeat 669px 0px;
+    }
 }
