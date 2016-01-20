@@ -987,8 +987,8 @@
 		<c:forEach var="indexInfo" items="${listIndex}">
 			<li>
 				<h4 class="clearfix">
-					<a href="${appPath }/detail/${indexInfo.id}" class="h" id="info_${indexInfo.id}" onclick="javascript:custBehaviorClick(2, ${indexInfo.infoType}, '${indexInfo.id}', 1);">${indexInfo.title}</a>
-					<a href="${appPath }/relation<c:if test="${indexInfo.projectName!=null}">?name=${indexInfo.projectName}</c:if>"  onclick="javascript:custBehaviorClick(2, '1', '${indexInfo.id}', 1);" class="rpage"></a>
+					<a href="${appPath }/detail/${indexInfo.id}" class="h" id="info_${indexInfo.id}" onclick="javascript:custBehaviorClick(2, ${indexInfo.infoType}, '${indexInfo.id}', 1);" target="_blank">${indexInfo.title}</a>
+					<a href="${appPath }/relation<c:if test="${indexInfo.projectName!=null}">?name=${indexInfo.projectName}&&type=project</c:if>"  onclick="javascript:custBehaviorClick(2, '1', '${indexInfo.id}', 1);" class="rpage"  target="_blank"></a>
 				</h4>
 				<p>
 					${indexInfo.description}
@@ -1028,15 +1028,6 @@
 		</c:forEach>
 	</ul>
 </div>
-<!-- 错误提示框 -->
-<div class="errorMessage">
-	<h6>网页提示</h6>
-	<p>未知错误，请求异常</p>
-	<div class="clearfix">
-		<a class="cancel">取消</a>
-		<a class="ensure">确定</a>
-	</div>
-</div>
 
 <!-- 分页-->
 <div class="page">
@@ -1069,8 +1060,8 @@
 <script type="text/html" id="listTemp">
 			<li>
 				<h4 class="clearfix">
-					<a href="${appPath }/detail/{indexInfo.id}" class="h" id="info_{indexInfo.id}" onclick="javascript:custBehaviorClick(2, {indexInfo.infoType}, '{indexInfo.id}', 1);">{indexInfo.title}</a>
-					<a href="${appPath }/relation{projectName}" onclick="javascript:custBehaviorClick(2, '1', '{indexInfo.id}', 1);" class="rpage"></a>
+					<a href="${appPath }/detail/{indexInfo.id}" class="h" id="info_{indexInfo.id}" onclick="javascript:custBehaviorClick(2, {indexInfo.infoType}, '{indexInfo.id}', 1);"  target="_blank">{indexInfo.title}</a>
+					<a href="${appPath }/relation{projectName}" onclick="javascript:custBehaviorClick(2, '1', '{indexInfo.id}', 1);" class="rpage"  target="_blank"></a>
 				</h4>
 				<p>
 					{indexInfo.description}

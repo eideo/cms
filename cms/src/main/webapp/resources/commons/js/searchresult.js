@@ -36,6 +36,8 @@ define(function(require, exports, module) {
 		// url传递默认条件
 		urlOption();
 
+		pageClick();
+
 		goTop();
 
 	})
@@ -206,7 +208,7 @@ define(function(require, exports, module) {
 
 
 		for (var sk = 0; sk < term3Spans.length; sk++) {
-			console.log(term3Spans.eq(sk).text())
+			
 			tradeArray.push(term3Spans.eq(sk).text())
 		}
 
@@ -275,6 +277,7 @@ define(function(require, exports, module) {
 
 					if (dataTimeo.length !==0 ) {
 
+					
 						dataTimeo.forEach(function(item) {
 
 							var bid = {
@@ -326,12 +329,7 @@ define(function(require, exports, module) {
 		}
 
 		//获取搜索条件、
-		var time = "";
-		$("#Checktime span").each(function() {
-			// alert(this.attr('circle'));
-
-			time += $(this).attr('circle') + ",";
-		});
+		var time = $("#Checktime span").attr('circle');
 
 		var type = "";
 		$("#term1 span").each(function() {
@@ -379,6 +377,23 @@ define(function(require, exports, module) {
 				$("#s_time").text(datas.time);
 				$("#s_number").text(datas.count);
 				$(".resultList").html("");
+
+				if (datas.listIndex.length === 0) {
+
+					$.Message({
+						text:"没有相关数据",
+						type:"failure"
+					})
+
+					var imgError = path+'/resources/commons/images/searchError.png';
+
+					$('#list').html('<img src="'+path+'/resources/commons/images/searchError.png'+'" style="margin:100px auto"/>')
+					$(".tcdPageCode").hide()
+				}else {
+
+					$(".tcdPageCode").show();
+				}
+
 
 				for (var i = 0; i < datas.listIndex.length; i++) {
 
@@ -947,7 +962,9 @@ define(function(require, exports, module) {
 
 				//当条件没有选的时候默认是不限
 				$('#anyTime').removeClass('active');
+				$('#opTime li').removeClass('active');
 				$(this).addClass('active');
+				$('#Checktime span').remove();
 				if ($("#Checktime span:contains('" + compare + "')").length == 0) {
 
 					$('<span></span>').text(compare).appendTo('#Checktime').attr('circle', circle);
@@ -956,19 +973,6 @@ define(function(require, exports, module) {
 				$('.Checktime').show();
 			}
 
-			// 当三个内容类别都被选中时，则为不限
-			if ($('#opTime').find('.active').length == 3) {
-
-				$('#anyTime').addClass('active');
-				$('#opTime li').removeClass('active');
-				$('.Checktime').find('span').remove();
-				$('.Checktime').hide();
-
-				if ($('#term').find('span').length == 0) {
-
-					$('.termBox').hide();
-				}
-			}
 		})
 
 		$('#Checktime').on("click", "span", function() {
@@ -1278,7 +1282,6 @@ define(function(require, exports, module) {
 			if($(window).scrollTop() > 200) {
 
 				$('#gotop').show();
-				console.log($(window).scrollTop());
 			}else {
 				$('#gotop').hide();
 			}	
@@ -1297,6 +1300,14 @@ define(function(require, exports, module) {
 		})
 	}
 
+	// 点击页码返回结果列表顶部
+	function pageClick() {
+
+		$('.tcdPageCode').on("click", "a", function() {
+
+			$("html, body").scrollTop(0).animate({scrollTop: $(".result").offset().top-30});
+		})
+	}
 
 	module.exports = '';
 })

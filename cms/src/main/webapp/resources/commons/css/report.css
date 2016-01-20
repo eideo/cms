@@ -333,7 +333,7 @@
 	.s_nav .h2{
 		float: left;
 		color: #333;
-		line-height: 174px;
+		line-height: 190px;
 		text-align: center;
 		border: 1px solid #ebebeb;
 		position: relative;
@@ -346,7 +346,9 @@
 		box-shadow: 0 1px 1px #e7e7e7;
 		-moz-box-shadow: 0 1px 1px #e7e7e7;
 		-webkit-box-shadow: 0 1px 1px #e7e7e7;	
-		color:#5e5e5e;
+		color:#888;
+		font-size: 18px;
+		font-weight: bold;
 	}
 	.s_nav div.active{
 		background: #47aaff;
@@ -387,9 +389,9 @@
 	}
 	.h2 i{
 		position: absolute;
-		width:30px;
-		height:30px;
-		top:40px;
+		width:40px;
+		height:40px;
+		top:30px;
 		left:74px;
 		background: url(../images/icon1229.png) no-repeat -29px -694px;
 	}
@@ -736,7 +738,7 @@
 		color: #0a8dff;
 	}
 	.hot li a:visited{
-		color: #888;
+		color: #ccc;
 	}
 	/*·ÖÒ³*/
 	.paging{
@@ -832,7 +834,7 @@
 	.s_nav .h2{
 		float: left;
 		color: #333;
-		line-height: 170px;
+		line-height: 190px;
 		text-align: center;
 		border: 1px solid #ebebeb;
 		cursor:pointer;
@@ -845,6 +847,9 @@
 		box-shadow: 0 1px 1px #e7e7e7;
 		-moz-box-shadow: 0 1px 1px #e7e7e7;
 		-webkit-box-shadow: 0 1px 1px #e7e7e7;	
+		font-size: 18px;
+		color: #888;
+		font-weight: bold;
 	}
 	.s_nav div.active{
 		background: #47aaff;
@@ -887,9 +892,9 @@
 
 	.h2 i{
 		position: absolute;
-		width:30px;
-		height:30px;
-		top:40px;
+		width:40px;
+		height:40px;
+		top:30px;
 		left:52px;
 		background: url(../images/icon1229.png) no-repeat -29px -694px;
 	}
@@ -1233,7 +1238,7 @@
 		color: #0a8dff;
 	}
 	.hot li a:visited{
-		color: #888;
+		color: #ccc;
 	}
 	/*·ÖÒ³*/
 	.paging{

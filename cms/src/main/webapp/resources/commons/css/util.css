@@ -1,8 +1,8 @@
 /* 
 * @Author: Administrator
 * @Date:   2015-12-17 14:52:30
-* @Last Modified by:   Administrator
-* @Last Modified time: 2015-12-17 15:36:30
+* @Last Modified by:   zhanganchun
+* @Last Modified time: 2016-01-18 14:05:39
 */
 
 .mask{
@@ -19,16 +19,16 @@
 }
 
 .maskTip{
-	width:300px;
-	height:40px;
+	width:447px;
+	height:200px;
 	color:#fff;
 	line-height:40px;
 	text-indent:20px;
 	position:absolute;
 	left:50%;
-	margin-left:-150px;
+	margin-left:-223px;
 	top:50%;
-	margin-top:-20px;
+	margin-top:-100px;
 }
 
 .maskTip img{

@@ -39,4 +39,7 @@ public class PublishInfoDao{
 	public List<Map<String, Object>> selectGroupByMonth(Map<String, Object> params) {
 		return this.baseDao.getList("publishInfo.selectGroupByMonth", params);
 	}
+	public PublishInfo selectByCGGXXPrimaryKey(String string) {
+		return this.baseDao.get("publishInfo.selectByCGXXPrimaryKey",string);
+	}
 }

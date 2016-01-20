@@ -18,6 +18,8 @@ $(function() {
 
 	urlOption();
 
+	pageClick();
+
 	goTop()
 });
 
@@ -27,7 +29,7 @@ function goTop() {
 		if($(window).scrollTop() > 200) {
 
 			$('#gotop').show();
-			console.log($(window).scrollTop());
+			
 		}else {
 			$('#gotop').hide();
 		}	
@@ -412,9 +414,11 @@ function getSuggestReport(keywords) {
 		type: "POST",
 		dataType: "json",
 		success: function(data) {
-			// alert(data.status);
+
 			if (data.status) {
+
 				$(".prompt").html("");
+
 				for (var i = 0; i < data.resultList.length; i++) {
 					var li = $("<li>" + data.resultList[i] + "</li>");
 					$(".prompt").append(li);
@@ -445,21 +449,37 @@ function searchReport(p) {
 		type: "POST",
 		dataType: "json",
 		success: function(data) {
-			// alert(data.success);
+
 			if (data.success == true) {
+
 				$("#reportMainList").html("");
+
+				if (data.reportMainList.length === 0) {
+
+					var imgError = path+'/resources/commons/images/searchError.png';
+
+					$('#reportMainList').html('<img src="'+path+'/resources/commons/images/searchError.png'+'" style="margin:100px auto"/>')
+					$(".tcdPageCode").hide()
+				}
+				
 				for (var i = 0; i < data.reportMainList.length; i++) {
+
 					var reportMain = data.reportMainList[i];
 					var html = $("#listTemplate").html();
+
 					for (var key in reportMain) {
+
 						while (html.indexOf("{reportMain." + key + "}") != -1) {
+
 							html = html.replace("{reportMain." + key + "}", reportMain[key]);
 						}
 					}
+
 					$("#reportMainList").append(html);
 				}
 
 				if (!p) {
+
 					$(".tcdPageCode").createPage({
 						pageCount: data.totalPage,
 						current: data.currentPage,
@@ -502,9 +522,18 @@ function ajaxReport(p) {
 		type: "POST",
 		dataType: "json",
 		success: function(data) {
-			// alert(data.success);
+
 			if (data.success == true) {
+
 				$("#reportMainList").html("");
+
+				if (data.reportMainList.length === 0) {
+
+					var imgError = path+'/resources/commons/images/searchError.png';
+
+					$('#reportMainList').html('<img src="'+path+'/resources/commons/images/searchError.png'+'" style="margin:100px auto"/>')
+					$(".tcdPageCode").hide()
+				}
 				for (var i = 0; i < data.reportMainList.length; i++) {
 					var reportMain = data.reportMainList[i];
 					var html = $("#listTemplate").html();
@@ -564,4 +593,13 @@ function urlOption() {
 	theIndustry.addClass('active');
 	theIndustry.find('a').addClass('active');
 	theIndustry.find('i').addClass('active');
+}
+
+// 点击页码返回结果列表顶部
+function pageClick() {
+
+	$('.tcdPageCode').on("click", "a", function() {
+
+		$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+	})
 }

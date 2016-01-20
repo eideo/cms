@@ -1,1 +1,148 @@
 @charset "utf-8";
+body{
+	background: #f3f3f3;
+}
+.navWrapper{
+	background: #fff;
+}
+.content{
+	width: 1000px;
+	height: 550px;
+	margin: 50px auto;
+	background: #fff;
+	padding-top: 50px;
+}
+.operationFrame .error{
+	position: absolute;
+	bottom: -20px;
+	left: 20px;
+	color: red;
+}
+h3{
+	width: 800px;
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 18px;
+	color: #333;
+	border-bottom: 2px solid #47aaff;
+	padding-bottom: 10px;
+}
+.findBox{
+	width: 450px;
+	margin: 100px auto;
+}
+.findBox .sign{
+	margin: 30px auto;
+	font-size: 16px;
+	border-bottom: 2px solid #e2e2e2;
+	line-height: 36px;
+	position: relative;
+}
+.findBox .sign span{
+	display: inline-block;
+	cursor: pointer;
+	color: #47aaff;
+}
+.sign i{
+	position: absolute;
+	width: 95px;
+	height: 7px;
+	background: url(../images/registerh3.png) no-repeat;
+	bottom: -7px;
+	left: 0;
+}
+.findBox .sign .emailBtn{
+	margin-right: 45px;
+	margin-left: 15px;
+	color: #47aaff;
+}
+.findBox p{
+	font-size: 14px;
+	font-weight: bold;
+}
+.emailBox,.phoneBox{
+	margin: 26px 0 30px 0;
+	position: relative;
+}
+.phone{
+	display: none;
+}
+.codeBox{
+	position: relative;
+	margin-bottom: 30px;
+}
+#email,#phone{
+	width: 450px;
+	height: 42px;
+	border: 1px solid #d7d7d7;
+	border-radius: 2px;
+	padding-left: 20px;
+}
+#code{
+	width: 328px;
+	height: 42px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	border-radius: 2px;
+	float: left;
+}
+#phoneCode{
+	width: 328px;
+	height: 42px;
+	padding-left: 20px;
+	border: 1px solid #d7d7d7;
+	border-radius: 2px;
+	display: inline-block;
+	position: relative;
+	float: left;
+}
+.codeBox span{
+	width: 96px;
+	height: 42px;
+	display: inline-block;
+	margin-left: 20px;
+	background: #47aaff;
+	text-align: center;
+	 line-height: 42px; 
+	color: #fff;
+	font-size: 14px;
+	border-radius: 2px;
+	float: left;
+}
+.codeBox .codeBtn{
+	width: 96px;
+	height: 42px;
+	display: inline-block;
+	margin-left: 20px;
+	background: #47aaff;
+	color: #fff;
+	text-align: center;
+	line-height: 42px;
+	font-size: 14px;
+	border-radius: 2px;
+}
+.submit{
+	width: 450px;
+	height: 42px;
+	border: none;
+	background: #47aaff;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	line-height: 42px;
+	border-radius: 2px;
+}
+
+/*重置密码页*/
+#password,#repassword{
+	width: 450px;
+	height: 42px;
+	border: 1px solid #d7d7d7;
+	border-radius: 2px;
+	padding-left: 20px;
+	margin-bottom: 30px
+}
+
+#password{
+	margin-top: 26px;
+}

@@ -151,8 +151,8 @@
 						<div class="keyResult cutTitle">${ranking.name}</div>
 						<i <c:if test="${(status.index+1)<=3}">class="red"</c:if><c:if test="${(status.index+1)>3}">class="indexResult"</c:if>>${ranking.countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?name=${ranking.name}">关系网</a>
-							<a href="${appPath}/search?keyword=${ranking.name}">信息</a>
+							<a href="${appPath}/relation?name=${ranking.name}" target="_blank">关系网</a>
+							<a href="${appPath}/search?keyword=${ranking.name}" target="_blank">信息</a>
 						</div>	
 					</li>
 				</c:forEach>
@@ -216,8 +216,8 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/search?keyword={name}">信息</a>
-							<a href="${appPath }/report/{industry}">行业报告</a>
+							<a href="${appPath}/search?keyword={name}"  target="_blank">信息</a>
+							<a href="${appPath }/report/{industry}"  target="_blank">行业报告</a>
 						</div>
 					</li>
 </script>
@@ -227,8 +227,8 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?name={name}&type=company">关系网</a>
-							<a href="${appPath }/report/{industry}">行业报告</a>
+							<a href="${appPath}/relation?name={name}&type=company" target="_blank">关系网</a>
+							<a href="${appPath }/report/{industry}"  target="_blank">行业报告</a>
 						</div>
 					</li>
 </script>
@@ -238,9 +238,9 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?name={name}&type=project">关系网</a>
-							<a href="${appPath}/search?keyword={name}">信息</a>
-							<a href="${appPath }/report/{industry}">行业报告</a>
+							<a href="${appPath}/relation?name={name}&type=project" target="_blank">关系网</a>
+							<a href="${appPath}/search?keyword={name}" target="_blank">信息</a>
+							<a href="${appPath }/report/{industry}" target="_blank">行业报告</a>
 						</div>
 					</li>
 </script>
@@ -250,8 +250,8 @@
 						<div class="keyResult cutTitle">{name}</div>
 						<i class="-[{num}>3:indexResult;{num}<=3:red;]-">{countNow}</i>
 						<div class="linkResult">
-							<a href="${appPath}/relation?industryId={industry}&type=project">关系网</a>
-							<a href="${appPath }/search?industryId={industry}">信息</a>
+							<a href="${appPath}/relation?industryId={industry}&type=project" target="_blank">关系网</a>
+							<a href="${appPath }/search?industryId={industry}" target="_blank">信息</a>
 						</div>
 					</li>
 </script>

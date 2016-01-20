@@ -73,7 +73,7 @@
 	
 	<select id="getProjectByResourceId" parameterType="String" resultMap="ProjectResult">
 		select <include refid="projectColumns"></include>,(select a.description from CMS_V_PUBLISH_CONTENT a where a.id=t.project_Source_id ) as resourceDescription 
-		from CMS_PROJECT t where t.project_Source_id=#{id}
+		from CMS_PROJECT t where t.project_Source_id=#{id} and t.status = 10201
 	</select>
 	
 	<select id="getProjectById" parameterType="String" resultMap="ProjectResult">

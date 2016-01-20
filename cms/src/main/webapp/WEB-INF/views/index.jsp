@@ -54,13 +54,15 @@
 
 	<div class="shadow_bg">
 		<div class="header_bg clearfix">
-		    <h2></h2>
+		    <h2>
+		    	<a href="${appPath }/homepage"></a>
+		    </h2>
 			<ul class="nav clearfix">
-				<li><a href="${appPath }/homepage" class='buttonHover' id="index">首页</a></li>
-				<li><a href="${appPath }/relation" class='buttonHover'>关系网</a></li>
-				<li><a href="${appPath }/industry" class='buttonHover'>行业指数</a></li>
-				<li><a href="${appPath }/ranking" class='buttonHover'>排行榜</a></li>
-				<li><a href="${appPath }/report" class='buttonHover'>行业报告</a></li>
+				<li><a href="${appPath }/homepage" class='buttonHover' id="index" target="_blank">首页</a></li>
+				<li><a href="${appPath }/relation" class='buttonHover' target="_blank">关系网</a></li>
+				<li><a href="${appPath }/industry" class='buttonHover' target="_blank">行业指数</a></li>
+				<li><a href="${appPath }/ranking" class='buttonHover' target="_blank">排行榜</a></li>
+				<li><a href="${appPath }/report" class='buttonHover' target="_blank">行业报告</a></li>
 			</ul>
 			<c:if test="${empty username}">
 				<div class="option">
@@ -70,9 +72,9 @@
 			</c:if>
 			<ul class="user-info clearfix">
 				<c:if test="${not empty username}">
-					<li><a href="javascript:;">欢迎您，${username }</a></li>
+					<li><a href="javascript:;" target="_blank">欢迎您，${username }</a></li>
 					<li>|</li>
-					<li><a href="${appPath}/personal/information">个人中心</a></li>
+					<li><a href="${appPath}/personal/information" target="_blank">个人中心</a></li>
 					<li>|</li>
 					<li><a href="javaScript:logout();">退出</a></li>
 				</c:if>

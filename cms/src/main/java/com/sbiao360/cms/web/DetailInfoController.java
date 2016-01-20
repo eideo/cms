@@ -1,7 +1,10 @@
 package com.sbiao360.cms.web;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +19,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.alibaba.fastjson.JSON;
+import com.sbiao360.cms.domain.IndexInfo;
 import com.sbiao360.cms.domain.PublishInfo;
 import com.sbiao360.cms.service.CustomerKeywordsService;
+import com.sbiao360.cms.service.IndexInfoService;
 import com.sbiao360.cms.service.PublishInfoService;
+import com.sbiao360.cms.zutil.StringUtil;
 
 @Controller
-public class DetailInfoController {
+public class DetailInfoController extends BaseController{
 
 	@Resource
 	private PublishInfoService publishInfoService;
@@ -29,6 +36,8 @@ public class DetailInfoController {
 	@Resource
 	private CustomerKeywordsService customerKeywordsService;
 
+	@Resource
+	private IndexInfoService indexInfoService;
 	/**
 	 * 查看详情
 	 * 
@@ -54,7 +63,7 @@ public class DetailInfoController {
 				publishInfo = publishInfoService.selectByZBGGPrimaryKey(idtype[1]);
 			}
 			else if(idtype[0].equals("cgxx")){
-				publishInfo = new PublishInfo();
+				publishInfo = publishInfoService.selectByCGGXXPrimaryKey(idtype[1]);
 			}
 		}
 		
@@ -84,45 +93,89 @@ public class DetailInfoController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value="/recomzbxx")
-	public void getRecomZBXX(HttpServletRequest request,
+	@RequestMapping(value="/getRecomInfo")
+	public void getRecomInfo(HttpServletRequest request,
 			HttpServletResponse response){
-		String title = request.getParameter("title");
-		cutXMXXTitle(title);
-		
-		
+		String id = request.getParameter("infoid");
+		String showType = request.getParameter("showType");
+		PublishInfo publishInfo = null;
+		List<IndexInfo> result = new ArrayList<>();
+		if(!id.contains("-")){
+			publishInfo = publishInfoService.selectByPrimaryKey(id);
+			String title= cutXMXXTitle(publishInfo.getTitle());
+			result = getRecomm(publishInfo,title,showType);
+		}else{
+			String []idtype = id.split("-");
+			//中标公示
+			if(idtype[0].equals("zbgs")){
+				publishInfo = publishInfoService.selectByZBGSPrimaryKey(idtype[1]);
+				String title= cutZBGSTitle(publishInfo.getTitle());
+				result = getRecomm(publishInfo,title,showType);
+			}
+			//招标公告
+			else if(idtype[0].equals("zbgg")){
+				publishInfo = publishInfoService.selectByZBGGPrimaryKey(idtype[1]);
+				String title= cutZBGGTitle(publishInfo.getTitle());
+				result = getRecomm(publishInfo,title,showType);
+			}
+			else if(idtype[0].equals("cgxx")){
+				publishInfo = new PublishInfo();
+			}
+		}
+		ajaxJson(JSON.toJSONString(result), response);
 	}
 	
-	/**
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	public void getRecomZBGS(HttpServletRequest request,
-			HttpServletResponse response){
+	public List<IndexInfo> getRecomm(PublishInfo publishInfo,String title,String showType){
 		
+		String typeSearch = "";
+		if(showType.equals("0")){
+			typeSearch=" table_name:XMXX";
+		}
+		else if(showType.equals("1")){
+			typeSearch += " (table_name:ZBXX -table_name2:ZBGS )";
+		}
+		else if(showType.equals("2")){
+			typeSearch += " (table_name:ZBXX AND table_name2:ZBGS )";
+		}
+		else if(showType.equals("3")){
+			typeSearch += " (table_name:ZFCG)";
+		}
+		
+		String areaName = publishInfo.getAreaName().indexOf(",")==0?publishInfo.getAreaName().substring(1).replaceAll(","," "):publishInfo.getAreaName().replaceAll(","," ");
+		String areaSearch = "((area_name:"+areaName+")^10000 or (-area_name:"+areaName+")^1)";
+		
+		String industryName = publishInfo.getIndustryName().indexOf(",")==0?publishInfo.getIndustryName().substring(1).replaceAll(","," "):publishInfo.getIndustryName().replaceAll(","," ");
+		String industrySearch = "((category:"+industryName.replace(" "," or  category:" )+")^1000 or (-category:"+industryName.replace(" "," or -category:" )+")^1)";
+		
+		String titleSearch = "titleForIndex:\""+title+"\"";
+		
+		
+		String searchString = titleSearch+" AND "+typeSearch+" AND "+areaSearch+" AND "+industrySearch;
+		
+		Map<String, Object> s = indexInfoService.queryIndexInfo(searchString, 0, 5);
+		List<IndexInfo> result = (List<IndexInfo>) s.get("result");
+		if(result.size()<5){
+			searchString = "titleForIndex:"+title+" AND "+typeSearch+" AND "+areaSearch+" AND "+industrySearch;
+			List<IndexInfo> reList = (List<IndexInfo>) indexInfoService.queryIndexInfo(searchString, 0, 5-result.size()).get("result");
+			result.addAll(reList);
+		}
+		for (IndexInfo indexInfo : result) {
+			indexInfo.setTitle(indexInfo.getTitle().replaceAll("<[^>]*>",""));
+		}
+		return result;
 	}
 	
-	/**
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	public void getRecomCGXX(HttpServletRequest request,
-			HttpServletResponse response){
-		
-	}
 	
-	private void cutXMXXTitle(String title){
+	private String cutXMXXTitle(String title){
 		title = title.replace("的", "").replace("项目", "").replace("工程", "").replace("（", "(").replace("）", ")");
 		while(title.indexOf("(")!=-1){
 			title =title.replace(title.substring(title.indexOf("("),title.indexOf(")")==-1?title.length():(title.indexOf(")")+1)), "");
 		}
 		title = title.replaceAll("[\\pP‘’“”]", "").replace("<","").replace(">", ""); 
-		List<Word> re = WordSegmenter.seg(title);
+		return title;
 	}
 	
-	private void cutZBGGTitle(String title){
+	private String cutZBGGTitle(String title){
 		String word = "评标、招标、变更、资格预审、补充、延期开标、延长报名时间、竞争性谈判、比选、单一来源采购";
 		String[] s = word.split("、");
 		for (String string : s) {
@@ -135,10 +188,10 @@ public class DetailInfoController {
 			title = title.substring(0,title.length()-1);
 		}
 		title = title.replaceAll("[\\pP‘’“”]", "").replace("<","").replace(">", ""); 
-		List<Word> re = WordSegmenter.seg(title);
+		return title;
 	}
 	
-	private void cutZBGSTitle(String title){
+	private String cutZBGSTitle(String title){
 		String word = "中标、评标、变更、补充、竞争性谈判、比选";
 		String[] s = word.split("、");
 		for (String string : s) {
@@ -151,6 +204,8 @@ public class DetailInfoController {
 			title = title.substring(0,title.length()-1);
 		}
 		title = title.replaceAll("[\\pP‘’“”]", "").replace("<","").replace(">", ""); 
-		List<Word> re = WordSegmenter.seg(title);
+		return title;
 	}
+	
+	
 }

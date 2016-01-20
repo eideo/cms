@@ -19,7 +19,7 @@
     <div class='searchBody'>
 
         <div class='inputBox'>        
-            <input type='text'  class='inputText' id='searchText' value='项目/单位名称'/>
+            <input type='text'  class='inputText' id='searchText' placeholder='项目/单位名称'/>
             <div class='btnCon'><div class='btn'></div></div>
             <div class='searchItem'>
                 <ul>
@@ -62,33 +62,56 @@
     </div>
     <div class='recomCon'>
         <div class="top">
-            其他人正在浏览
+            正在浏览的用户
             <i></i>
         </div>
         <div class="recom">
             <div id='marquee'>
                 <ul>
-                    <li>张小三 137***501 </li>
-                    <li>张小三137***501</li>
-                    <li>张小三137***501</li>
-                    <li>张小三137***501</li>
+                    <li>xxx 158***501</li>
+                    <li>xxx 137***446</li>
+                    <li>xxx 137***223</li>
+                    <li>xxx 159***712</li>
                 </ul>
             </div>
         </div>
     </div>
+        <div class="tip tip_project" style='display:none'>
+            <div class="tipWrap">
+                <i class='close'></i>
+                <div class="tipTitle">项目</div>
+                <div class="tipCon">
+                </div>
+                <div class='more'><a href='#' target="_blank">查看更多</a></div>
+            </div>
+        </div>
 
-    <div class="tip" style='display:none'>
-        <div class="tipWrap"><i class="close">x</i>
-            <div class="tipTitle" title="凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼/酒店与餐饮/交通">项目：凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼/酒店与餐饮/交通</div>
-            <div class="tipCon">
-                <ul>
-                <li class="info">地址：上海</li>
-                <li class="info">项目总额：20,700,000,000.00</li>
-                <li class="more">了解更多</li>
-                </ul>
+        <div class="tip tip_zhaobiao" style='display:none'>
+            <div class="tipWrap">
+                <i class='close'></i>
+                <div class="tipLink"></div>
+                <div class="tipTitle">招标</div>
+                <div class="tipCon">
+                    <ul>
+                    <li class="info">凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+
+       <div class="tip tip_zhongbiao" style='display:none'>
+            <div class="tipWrap">
+                <i class='close'></i>
+                <div class="tipLink"></div>
+                <div class="tipTitle">中标</div>
+                <div class="tipCon">
+                    <ul>
+                    <li class="info">凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 </div>
 
     <myScript>
@@ -136,8 +159,14 @@
                                 intro: '<div id="guideMsg"><h3>搜索结果</h3><p>试试鼠标悬浮或者点击结点，会有意外收获</p></div>',
                                 position: 'right'
                             },
-                            {
+                             {
                                 //第六步引导
+                                element: '#relationImg',
+                                intro: '<div id="guideMsg"><h3>搜索结果</h3><p>点击图形空白处或者线可拖拽</p></div>',
+                                position: 'left'
+                            },
+                            {
+                                //第七步引导
                                 element: '.recomCon',
                                 intro: '<div id="guideMsg"><h3>其他人关注</h3><p>您还可以看看其他人都查了些什么？</p></div>',
                                 position: 'left'

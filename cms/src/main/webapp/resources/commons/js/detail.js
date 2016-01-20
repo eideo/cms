@@ -15,7 +15,125 @@ define(function(require, exports, module) {
 		Close.closeLoginBox();
 
 		recommend();
+
+		getRecommended()
 	});
+
+	// 相关推荐ajaxsh数据读取
+	function getRecommended() {
+
+		var parameter =getUrlArgs();
+
+		// 项目
+
+		$.ajax({
+
+			url:path+'/getRecomInfo',
+			dataType:'json',
+			type:'post',
+			data:{
+				infoid:parameter,
+				showType:'0',
+			},
+			success:function(data) {
+
+				for (var i = 0; i < data.length; i++) {
+					var oLi = $('<li></li>').appendTo($('.xiangmu'));
+					$('<i></i>').appendTo(oLi);
+					$('<a></a>').attr('href',path+'/detail/'+data[i].id).attr('target','_blank').text(data[i].title).appendTo(oLi);
+
+				};
+
+			},
+			error: function() {
+
+				$.Message({
+					text:'请求异常',
+					type:"failure"
+				})
+				result =false;
+				return result;
+			}
+
+		})
+
+		// 招标
+
+		$.ajax({
+
+			url:path+'/getRecomInfo',
+			dataType:'json',
+			type:'post',
+			data:{
+				infoid:parameter,
+				showType:'1',
+			},
+			success:function(data) {
+
+				for (var i = 0; i < data.length; i++) {
+					var oLi = $('<li></li>').appendTo($('.zhaobiao'));
+					$('<i></i>').appendTo(oLi);
+					$('<a></a>').attr('href',path+'/detail/'+data[i].id).attr('target','_blank').text(data[i].title).appendTo(oLi);
+
+				};
+
+			},
+			error: function() {
+
+				$.Message({
+					text:'请求异常',
+					type:"failure"
+				})
+				result =false;
+				return result;
+			}
+
+		})
+
+		// 中标
+
+		$.ajax({
+
+			url:path+'/getRecomInfo',
+			dataType:'json',
+			type:'post',
+			data:{
+				infoid:parameter,
+				showType:'2',
+			},
+			success:function(data) {
+
+				for (var i = 0; i < data.length; i++) {
+					var oLi = $('<li></li>').appendTo($('.zhongbiao'));
+					$('<i></i>').appendTo(oLi);
+					$('<a></a>').attr('href',path+'/detail/'+data[i].id).attr('target','_blank').text(data[i].title).appendTo(oLi);
+
+				};
+
+			},
+			error: function() {
+
+				$.Message({
+					text:'请求异常',
+					type:"failure"
+				})
+				result =false;
+				return result;
+			}
+
+		})
+
+	}
+
+	// 获取url参数
+	function getUrlArgs() {
+
+		var url = window.location.href
+		var urlArr = url.split('/');
+		var args = urlArr[urlArr.length-1];
+		return args;
+
+	}
 
 	// 相关信息判断
 

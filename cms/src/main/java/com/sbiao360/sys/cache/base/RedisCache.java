@@ -68,7 +68,7 @@ public class RedisCache implements Cache{
         // TODO Auto-generated method stub  
         final String keyf = (String) key;  
         final Object valuef = value;  
-        final long liveTime = 86400;  
+//        final long liveTime = 86400;  
   
         redisTemplate.execute(new RedisCallback<Long>() {  
             public Long doInRedis(RedisConnection connection)  
@@ -76,9 +76,9 @@ public class RedisCache implements Cache{
                 byte[] keyb = keyf.getBytes();  
                 byte[] valueb = toByteArray(valuef);  
                 connection.set(keyb, valueb);  
-                if (liveTime > 0) {  
-                    connection.expire(keyb, liveTime);  
-                }  
+//                if (liveTime > 0) {  
+//                    connection.expire(keyb, liveTime);  
+//                }  
                 return 1L;  
             }  
         });  

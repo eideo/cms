@@ -324,6 +324,7 @@ public class RelationshipController extends BaseController{
 			Project project = relationService.getProjectById(dataId);
 			map.put("name", project.getProjectName());
 			map.put("alias", project.getProjectAlias());
+			map.put("sourceId", project.getProjectSourceId());
 			map.put("address",codeService.getPlaceName(StringUtil.indexOf(project.getAreaId(),"-")<0?"":project.getAreaId().split("-")[0].replace(",", "")));
 			 DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
 			map.put("total",project.getTotalInvest()==null?"":decimalFormat.format(project.getTotalInvest()));

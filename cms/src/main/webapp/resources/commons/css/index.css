@@ -200,6 +200,14 @@ body{
 	height:45px;
 	background:url(../images/logoIndex.png) no-repeat;
 	margin-top:16px;
+	position: relative;
+}
+h2 a{
+	position: absolute;
+	width: 170px;
+	height: 45px;
+	top: 0;
+	left: 0;
 }
 @media (min-width:1200px) {
 	.header_bg{

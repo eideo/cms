@@ -17,6 +17,7 @@ public class PublishInfoService {
 	@Resource
 	private PublishInfoDao publishInfoDao;
 	
+	@Cacheable(key="#id+'project'",value="commonCache")
 	public PublishInfo selectByPrimaryKey(String id){
 		return publishInfoDao.selectByPrimaryKey(id);
 	}
@@ -48,5 +49,9 @@ public class PublishInfoService {
 
 	public List<Map<String, Object>> selectGroupByMonth(Map<String, Object> params) {
 		return publishInfoDao.selectGroupByMonth(params);
+	}
+
+	public PublishInfo selectByCGGXXPrimaryKey(String id) {
+		return publishInfoDao.selectByCGGXXPrimaryKey(id);
 	}
 }

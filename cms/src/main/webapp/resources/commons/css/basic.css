@@ -103,6 +103,14 @@ text {
 		text-indent: -9999em;
 		float: left;
 		margin-top: 16px;
+		position: relative;
+	}
+	.logo a{
+		position: absolute;
+		width: 170px;
+		height: 45px;
+		top: 0;
+		left: 0;
 	}
 
 	.nav{
@@ -257,6 +265,14 @@ text {
 		text-indent: -9999em;
 		float: left;
 		margin: 10px 10px 0 0;
+		position: relative;
+	}
+	.logo a{
+		position: absolute;
+		width: 170px;
+		height: 45px;
+		top: 0;
+		left: 0;
 	}
 
 	.nav{
@@ -534,6 +550,6 @@ text {
 	display: none;
 }
 #gotop i{
-	background: url(../images/gotop.png) no-repeat 10px 15px;
+	background: url(../images/gotop.png) no-repeat 12px 15px;
 	display: block;
 }

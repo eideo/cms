@@ -432,5 +432,11 @@ public class PersonalController extends BaseController {
 		request.setAttribute("notSearch", "true");
 		return "findPwd";
 	}
+	
+	@RequestMapping({"/resetPwd"})
+	public String resetPwd(HttpServletRequest request, HttpServletResponse response){
+		request.setAttribute("notSearch", "true");
+		return "resetPwd";
+	}
 
 }

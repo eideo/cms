@@ -16,14 +16,14 @@
 			<c:forEach var="reportCarousel" items="${reportMainListCarousel}" varStatus="status">
 		    	<li>
 		    		<input id="reporturl_${reportCarousel.id}" type="hidden" value="${imgPath}/${reportCarousel.reportUrl}" />
-		    		<a href="javascript:;"><img src="${resPath}/resources/commons/images/report_img${status.index + 1}.png"></a>
+		    		<a href="javascript:reportView(${reportCarousel.id});" target="_blank"><img src="${resPath}/resources/commons/images/report_img${status.index + 1}.png"></a>
 		    		<div class="shadow"></div>
 		    		<div class="imgInfo">
 		    			<h6 id="info_${reportCarousel.id}">${reportCarousel.reportTitle}</h6>
 		    			<p class="cutParagraph">
 		    				${reportCarousel.reportAbstract}
 		    			</p>
-		    			<a href="javascript:reportView(${reportCarousel.id});">点击阅读</a>
+		    			<a href="javascript:reportView(${reportCarousel.id});" target="_blank">点击阅读</a>
 		    		</div>
 		    	</li>
 			</c:forEach>
@@ -67,11 +67,11 @@
 							<c:forEach var="reportMain" items="${reportMainList}">
 								<li class="clearfix">
 									<div  class="clearfix">
-										<a href="" class="leftImg">
+										<a href="${appPath}/reportdetail/${reportMain.id}" class="leftImg" target="_blank">
 											<img src="${resPath}/resources/commons/images/${reportMain.imageIndex}">
 										</a>
 										<div class="description">
-											<h5><a class="cutTitle" href="${appPath}/reportdetail/${reportMain.id}" id="info_${reportMain.id}" onclick="javascript:custBehavior(2, 11506, ${reportMain.id}, 1);" title="${reportMain.reportTitle}" >${reportMain.reportTitle}</a></h5>
+											<h5><a class="cutTitle" href="${appPath}/reportdetail/${reportMain.id}" id="info_${reportMain.id}" onclick="javascript:custBehavior(2, 11506, ${reportMain.id}, 1);" title="${reportMain.reportTitle}"  target="_blank">${reportMain.reportTitle}</a></h5>
 											<p>
 												<a class="trade">${reportMain.induxtryName}</a>
 												<i class="line"></i>
@@ -124,7 +124,7 @@
 			<h4>热门报告<i></i></h4>
 			<ul class="hot">
 				<c:forEach var="reportMainTop" items="${reportMainListTop10}">
-					<li class="cutTitle"><a href="${appPath}/reportdetail/${reportMainTop.id}" title="${reportMainTop.reportTitle}" onclick="javascript:custBehavior(2, 11506, ${reportMainTop.id}, 1);" >${reportMainTop.reportTitle}</a></li>
+					<li class="cutTitle"><a href="${appPath}/reportdetail/${reportMainTop.id}" title="${reportMainTop.reportTitle}" onclick="javascript:custBehavior(2, 11506, ${reportMainTop.id}, 1);"  target="_blank" >${reportMainTop.reportTitle}</a></li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -137,11 +137,11 @@
 	<script type="text/html" id="listTemplate">
 		<li class="clearfix">
 			<div  class="clearfix">
-				<a href="" class="leftImg">
+				<a href="${appPath}/reportdetail/{reportMain.id}" class="leftImg" target="_blank">
 					<img src="${resPath}/resources/commons/images/{reportMain.imageIndex}">
 				</a>
 				<div class="description">
-					<h5><a class="cutTitle" href="${appPath}/reportdetail/{reportMain.id}" id="info_{reportMain.id}" onclick="javascript:custBehavior(2, 11506, {reportMain.id}, 1);" >{reportMain.reportTitle}</a></h5>
+					<h5><a class="cutTitle" href="${appPath}/reportdetail/{reportMain.id}" id="info_{reportMain.id}" onclick="javascript:custBehavior(2, 11506, {reportMain.id}, 1);" target="_blank" >{reportMain.reportTitle}</a></h5>
 					<p>
 						<a class="trade">{reportMain.induxtryName}</a>
 						<i class="line"></i>

@@ -26,8 +26,10 @@ input
 {
     background: url(../images/icon1229.png) no-repeat -381px -322px;
 }
-@media screen and (min-width: 1200px)
-{
+.rankinglist a:visited{
+    color: #ccc;
+}
+@media screen and (min-width: 1200px){
     /*内容*/
     .content
     {
@@ -574,8 +576,7 @@ input
     }
 }
 
-@media screen and (max-width: 1200px)
-{
+@media screen and (max-width: 1200px){
     /*内容*/
     .content
     {

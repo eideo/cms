@@ -84,8 +84,8 @@ var usernameCkeck = function () {
 				},
 				success:function(str) {
 
+					console.log(str)
 					var json = eval("("+str+")");
-
 					if(json.status) {
 
 						result =  true;

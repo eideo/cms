@@ -231,7 +231,9 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<script type=\"text/html\" id=\"listTemplate\">\r\n");
       out.write("\t\t<li class=\"clearfix\">\r\n");
       out.write("\t\t\t<div  class=\"clearfix\">\r\n");
-      out.write("\t\t\t\t<a href=\"\" class=\"leftImg\">\r\n");
+      out.write("\t\t\t\t<a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/reportdetail/{reportMain.id}\" class=\"leftImg\" target=\"_blank\">\r\n");
       out.write("\t\t\t\t\t<img src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/images/{reportMain.imageIndex}\">\r\n");
@@ -239,7 +241,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t<div class=\"description\">\r\n");
       out.write("\t\t\t\t\t<h5><a class=\"cutTitle\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/reportdetail/{reportMain.id}\" id=\"info_{reportMain.id}\" onclick=\"javascript:custBehavior(2, 11506, {reportMain.id}, 1);\" >{reportMain.reportTitle}</a></h5>\r\n");
+      out.write("/reportdetail/{reportMain.id}\" id=\"info_{reportMain.id}\" onclick=\"javascript:custBehavior(2, 11506, {reportMain.id}, 1);\" target=\"_blank\" >{reportMain.reportTitle}</a></h5>\r\n");
       out.write("\t\t\t\t\t<p>\r\n");
       out.write("\t\t\t\t\t\t<a class=\"trade\">{reportMain.induxtryName}</a>\r\n");
       out.write("\t\t\t\t\t\t<i class=\"line\"></i>\r\n");
@@ -541,7 +543,9 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write('/');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportCarousel.reportUrl}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\" />\r\n");
-          out.write("\t\t    \t\t<a href=\"javascript:;\"><img src=\"");
+          out.write("\t\t    \t\t<a href=\"javascript:reportView(");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportCarousel.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write(");\" target=\"_blank\"><img src=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("/resources/commons/images/report_img");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${status.index + 1}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -561,7 +565,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("\t\t    \t\t\t</p>\r\n");
           out.write("\t\t    \t\t\t<a href=\"javascript:reportView(");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportCarousel.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write(");\">点击阅读</a>\r\n");
+          out.write(");\" target=\"_blank\">点击阅读</a>\r\n");
           out.write("\t\t    \t\t</div>\r\n");
           out.write("\t\t    \t</li>\r\n");
           out.write("\t\t\t");
@@ -667,7 +671,11 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write("\r\n");
           out.write("\t\t\t\t\t\t\t\t<li class=\"clearfix\">\r\n");
           out.write("\t\t\t\t\t\t\t\t\t<div  class=\"clearfix\">\r\n");
-          out.write("\t\t\t\t\t\t\t\t\t\t<a href=\"\" class=\"leftImg\">\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t<a href=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("/reportdetail/");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" class=\"leftImg\" target=\"_blank\">\r\n");
           out.write("\t\t\t\t\t\t\t\t\t\t\t<img src=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("/resources/commons/images/");
@@ -685,7 +693,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(", 1);\" title=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" >");
+          out.write("\"  target=\"_blank\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a></h5>\r\n");
           out.write("\t\t\t\t\t\t\t\t\t\t\t<p>\r\n");
@@ -805,7 +813,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\" onclick=\"javascript:custBehavior(2, 11506, ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write(", 1);\" >");
+          out.write(", 1);\"  target=\"_blank\" >");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a></li>\r\n");
           out.write("\t\t\t\t");

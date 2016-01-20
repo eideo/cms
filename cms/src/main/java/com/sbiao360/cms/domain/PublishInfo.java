@@ -25,6 +25,10 @@ public class PublishInfo implements Serializable{
 	private String infoType;
 	
 	private String projectName;
+	
+	private String areaName;
+	
+	private String industryName;
 
 	public String getTitle() {
 		return title;
@@ -88,6 +92,22 @@ public class PublishInfo implements Serializable{
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+	
+	public String getAreaName() {
+		return areaName;
+	}
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
+
+	public String getIndustryName() {
+		return industryName;
+	}
+
+	public void setIndustryName(String industryName) {
+		this.industryName = industryName;
 	}
 
 }

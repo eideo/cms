@@ -194,23 +194,27 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\t<div class=\"shadow_bg\">\n");
       out.write("\t\t<div class=\"header_bg clearfix\">\n");
-      out.write("\t\t    <h2></h2>\n");
+      out.write("\t\t    <h2>\n");
+      out.write("\t\t    \t<a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/homepage\"></a>\n");
+      out.write("\t\t    </h2>\n");
       out.write("\t\t\t<ul class=\"nav clearfix\">\n");
       out.write("\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/homepage\" class='buttonHover' id=\"index\">首页</a></li>\n");
+      out.write("/homepage\" class='buttonHover' id=\"index\" target=\"_blank\">首页</a></li>\n");
       out.write("\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/relation\" class='buttonHover'>关系网</a></li>\n");
+      out.write("/relation\" class='buttonHover' target=\"_blank\">关系网</a></li>\n");
       out.write("\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/industry\" class='buttonHover'>行业指数</a></li>\n");
+      out.write("/industry\" class='buttonHover' target=\"_blank\">行业指数</a></li>\n");
       out.write("\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/ranking\" class='buttonHover'>排行榜</a></li>\n");
+      out.write("/ranking\" class='buttonHover' target=\"_blank\">排行榜</a></li>\n");
       out.write("\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/report\" class='buttonHover'>行业报告</a></li>\n");
+      out.write("/report\" class='buttonHover' target=\"_blank\">行业报告</a></li>\n");
       out.write("\t\t\t</ul>\n");
       out.write("\t\t\t");
       if (_jspx_meth_c_if_0(_jspx_page_context))
@@ -441,13 +445,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("\t\t\t\t\t<li><a href=\"javascript:;\">欢迎您，");
+        out.write("\t\t\t\t\t<li><a href=\"javascript:;\" target=\"_blank\">欢迎您，");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${username }", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</a></li>\n");
         out.write("\t\t\t\t\t<li>|</li>\n");
         out.write("\t\t\t\t\t<li><a href=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("/personal/information\">个人中心</a></li>\n");
+        out.write("/personal/information\" target=\"_blank\">个人中心</a></li>\n");
         out.write("\t\t\t\t\t<li>|</li>\n");
         out.write("\t\t\t\t\t<li><a href=\"javaScript:logout();\">退出</a></li>\n");
         out.write("\t\t\t\t");

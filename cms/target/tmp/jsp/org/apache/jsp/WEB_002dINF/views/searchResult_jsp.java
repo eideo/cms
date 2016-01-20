@@ -1128,15 +1128,6 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\r\n");
       out.write("\t</ul>\r\n");
       out.write("</div>\r\n");
-      out.write("<!-- 错误提示框 -->\r\n");
-      out.write("<div class=\"errorMessage\">\r\n");
-      out.write("\t<h6>网页提示</h6>\r\n");
-      out.write("\t<p>未知错误，请求异常</p>\r\n");
-      out.write("\t<div class=\"clearfix\">\r\n");
-      out.write("\t\t<a class=\"cancel\">取消</a>\r\n");
-      out.write("\t\t<a class=\"ensure\">确定</a>\r\n");
-      out.write("\t</div>\r\n");
-      out.write("</div>\r\n");
       out.write("\r\n");
       out.write("<!-- 分页-->\r\n");
       out.write("<div class=\"page\">\r\n");
@@ -1172,10 +1163,10 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\t\t\t\t<h4 class=\"clearfix\">\r\n");
       out.write("\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/detail/{indexInfo.id}\" class=\"h\" id=\"info_{indexInfo.id}\" onclick=\"javascript:custBehaviorClick(2, {indexInfo.infoType}, '{indexInfo.id}', 1);\">{indexInfo.title}</a>\r\n");
+      out.write("/detail/{indexInfo.id}\" class=\"h\" id=\"info_{indexInfo.id}\" onclick=\"javascript:custBehaviorClick(2, {indexInfo.infoType}, '{indexInfo.id}', 1);\"  target=\"_blank\">{indexInfo.title}</a>\r\n");
       out.write("\t\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/relation{projectName}\" onclick=\"javascript:custBehaviorClick(2, '1', '{indexInfo.id}', 1);\" class=\"rpage\"></a>\r\n");
+      out.write("/relation{projectName}\" onclick=\"javascript:custBehaviorClick(2, '1', '{indexInfo.id}', 1);\" class=\"rpage\"  target=\"_blank\"></a>\r\n");
       out.write("\t\t\t\t</h4>\r\n");
       out.write("\t\t\t\t<p>\r\n");
       out.write("\t\t\t\t\t{indexInfo.description}\r\n");
@@ -1472,7 +1463,7 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${indexInfo.infoType}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write(", '");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${indexInfo.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("', 1);\">");
+          out.write("', 1);\" target=\"_blank\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${indexInfo.title}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a>\r\n");
           out.write("\t\t\t\t\t<a href=\"");
@@ -1482,7 +1473,7 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
             return true;
           out.write("\"  onclick=\"javascript:custBehaviorClick(2, '1', '");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${indexInfo.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("', 1);\" class=\"rpage\"></a>\r\n");
+          out.write("', 1);\" class=\"rpage\"  target=\"_blank\"></a>\r\n");
           out.write("\t\t\t\t</h4>\r\n");
           out.write("\t\t\t\t<p>\r\n");
           out.write("\t\t\t\t\t");
@@ -1583,6 +1574,7 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
       do {
         out.write("?name=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${indexInfo.projectName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("&&type=project");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

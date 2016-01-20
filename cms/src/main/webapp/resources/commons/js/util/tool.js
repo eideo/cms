@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-17 09:35:18
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-14 17:34:24
+ * @Last Modified time: 2016-01-18 15:58:57
  */
 
 'use strict';
@@ -28,7 +28,6 @@ define(function(require, exports, module) {
 	/*遮罩层*/
 	Tool.mask = function () {
 		
-		clearInterval(maskTimer)
 		var i = 0,
 			mask = $('<div></div>')
 			.addClass('mask')
@@ -36,13 +35,8 @@ define(function(require, exports, module) {
 
 		var maskTip = $('<div></div>')
 			.addClass('maskTip')
-			.html('<img src='+path+'/resources/commons/images/loading-2.gif'+'/>0秒请耐心等待')
+			.html('<img src='+path+'/resources/commons/images/search2.gif'+'/>')
 			.appendTo(mask)
-
-	    var maskTimer = setInterval(function(){
-			i++
-			maskTip.html('<img src='+path+'/resources/commons/images/loading-2.gif'+'/>'+i+'秒请耐心等待')
-		},1000)
 	}
 
 	Tool.removeMask = function() {

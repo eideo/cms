@@ -84,7 +84,7 @@ public class IndexInfoService {
 				}
 				List<String> areanames = rsp.getHighlighting().get(id+"").get("area_name");
 				String areaName = (areanames==null||areanames.isEmpty())?(doc.getFieldValue("area_name")==null?null:doc.getFieldValue("area_name").toString()):areanames.get(0);
-				if(StringUtil.isNotBlank(category)){
+				if(StringUtil.isNotBlank(areaName)){
 					areaName = areaName.replace("[", "").replace("]", "");
 				}
 				IndexInfo index = new IndexInfo();
@@ -107,6 +107,9 @@ public class IndexInfoService {
 				}else if(tableName.equals("ZBXX")){
 					type="招标";
 					infoType="11502";
+				}else if(tableName.equals("CGXX")){
+					type="采购";
+					infoType="11504";
 				}
 				index.setType(type);
 				index.setInfoType(infoType);

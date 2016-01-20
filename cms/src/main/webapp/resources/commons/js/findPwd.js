@@ -1,73 +1,82 @@
 'use strict';
-function getStyle(obj,sName){
-	return (obj.currentStyle||getComputedStyle(obj,false))[sName];
-}
-function startMove(obj,json,options){
-	options = options||{};
-	options.time=options.time||700;
-	options.type=options.type||'ease-out';
-	var start = {};
-	var dis = {};
-	for(var name in json){
-		start[name] = parseFloat(getStyle(obj,name));
-		if(isNaN(start[name])){
-			switch(name){
-				case 'top':
-					start[name]=obj.offsetTop;
-					break;
-				case 'left':
-					start[name]=obj.offsetLeft;
-					break;
-				case 'width':
-					start[name]=obj.offsetWidth;
-					break;
-				case 'height':
-					start[name]=obj.offsetHeight;
-					break;
-				case 'opacity':
-					start[name]=1;
-					break;
-				case 'borderWidth':
-					start[name]=0;
-					break;
-			}
-		}
-		dis[name]=json[name]-start[name];
-	}
-	var count = Math.floor(options.time/30);
-	var n =0;
-	clearInterval(obj.timer);
-	obj.timer = setInterval(function(){
-		n++;
-		for(var name in json){
-			switch(options.type){
-				case 'linear':
-					var cur = start[name]+dis[name]*n/count;
-					break;
-				case 'ease-in':
-					var a = n/count;
-					var cur = start[name]+dis[name]*Math.pow(a,3);
-					break;
-				case 'ease-out':
-					var a = 1-n/count;
-					var cur = start[name]+dis[name]*(1-Math.pow(a,3));
-					break;
-			}
-			if(name=='opacity'){
-				obj.style.opacity=cur;
-				obj.style.filter='alpha(opacity:'+cur*100+')';
-			}else{
-				obj.style[name]=cur+'px';
-			}
-		}
-		if(n==count){
-			clearInterval(obj.timer);
-			options.end&&options.end();
-		}
-	},30);
+$(function() {
+
+	tab();
+	verification('email',emailReg,'emailBox');
+	verification('phone',phoneReg,'phoneBox');
+})
+
+function tab() {
+
+	$('.sign span').click(function() {
+
+		$('.box').hide();
+		$('.box').eq($(this).index()).show();
+		$('.error').text('');
+	})
+
+	$('.emailBtn').click(function() {
+
+		$('.sign i').animate({"left":"0"});
+	})
+	$('.phoneBtn').click(function() {
+
+		$('.sign i').animate({"left":"110"});
+	})
 }
 
+var emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+var phoneReg = /^1[3|4|5|8][0-9]\d{8}$/;
+function verification(inputId,reg,box) {
 
+	$('#'+inputId).blur(function () {
+
+			var result =true;
+			console.log($('#'+inputId).val())
+			if(reg.test($('#'+inputId).val())){
+				
+				$.ajax({
+					url:path+'/checkUserName',
+					dataType:'text',
+					type: "post",
+					data:{
+
+						username:$('#'+inputId).val()
+					},
+					success: function(str) {
+
+						
+						var json = eval("("+str+")");
+						if(json.status) {
+
+							result =false;
+							$('.'+box+' .error').text('用户不存在,请重新填写');
+						}else {
+
+							$('.'+box+' .error').text('');
+							result =true;
+						}
+						return result;
+					},
+					error: function() {
+
+						$.Message({
+							text:'请求异常',
+							type:"failure"
+						})
+						result =false;
+						return result;
+					}
+				})
+			}else {
+
+				$('.'+box+' .error').text('格式不正确');
+				result =false;
+			}
+			return result;
+
+	})
+}
 
 
 

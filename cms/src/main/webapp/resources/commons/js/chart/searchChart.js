@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-25 14:05:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-15 16:28:28
+ * @Last Modified time: 2016-01-20 12:01:49
  */
 
 'use strict';
@@ -192,7 +192,20 @@ define(function(require, exports, module) {
 			.attr("clip-path", "url(#content-brokeArea" + date + ")")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
+
 		for (var j = 0; j < series.length; j++) {
+
+			var canDraw = false;
+
+			series[j].forEach(function (v) {
+
+				if (v.value !== 0 ) {
+
+					canDraw = true
+				}
+			})
+
+			if (canDraw) {
 
 			var pct = svg.select(".lineArea")
 				.append("path")
@@ -204,7 +217,7 @@ define(function(require, exports, module) {
 				.attr('stroke-width',2)
 				.attr('fill','none')
 				.attr("d", lineArea)
-				
+			}
 		}
 	}
 

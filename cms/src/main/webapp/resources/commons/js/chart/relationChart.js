@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-15 08:31:04
+ * @Last Modified time: 2016-01-20 11:39:42
  */
 
 'use strict';
@@ -26,6 +26,17 @@ define(function(require, exports, module) {
 		legend,
 		width,
 		height,
+		root,
+		circleSize = {
+			project:25,
+			company:20,
+			person:15
+		},
+		circleSize1 = {
+			project:20,
+			company:25,
+			person:15
+		},
 		imageScale = 0.25,
 		legendArray = ['项目', '单位', '人员'],
 		legendObj = {
@@ -74,6 +85,22 @@ define(function(require, exports, module) {
 		var type = type
 		var that = this
 
+		var borderColor = {
+			company:'#0d62b9',
+			project:'#f34046',
+			person:'#e9920e'
+		}
+		var backColor = {
+			project: '#fd5656',
+			company: '#006bc8',
+			person: '#f2a125'
+		}
+
+		var moreColr = {
+			project: '#ff8787',
+			company: '#0a8dff',
+			person: '#ffbe5a'
+		}
 		var typeChinese = ''
 
 		if (type === 'person') {
@@ -84,35 +111,58 @@ define(function(require, exports, module) {
 			typeChinese = '单位'
 		}
 
-		$('.tipCon').html('')
+		if ($('.tip_project').hide() ) {
 
-		$('.tipTitle').html(typeChinese + "：" + data.name)
+			$('.tip_project').show();
+		}
+
+		$('.tip_project').css('background',backColor[type]);
+		$('.tip_project .tipWrap .more')[0].id = type;
+		
+		$('.tip_project .tipTitle').css('borderColor',borderColor[type]);
+
+		$('.tip_project .tipCon').html('');
+
+		$('.tip_project .tipTitle').html(typeChinese)
 			.attr('title', data.name)
 			
 		if (type === "person") {
 
 			var ul = $('<ul></ul>')
-				.append('<li class="info">地址：' + data.address + '</li>')
-				.append('<li class="info"> 邮箱：' + data.email + '</li>')
-				.append('<li class="info">电话：' + data.cellphone + ' </li>')
-				.append('<li class="more">了解更多</li>')
-				.appendTo($('.tipCon'))
+				.append('<li class="info">姓 名：' + data.name + '</li>')
+				.append('<li class="info">电 话：' + data.cellphone + '</li>')
+				.appendTo($('.tip_project .tipCon'))
+
+			$('.tip_zhaobiao').hide()
+			$('.tip_zhongbiao').hide()
+
 		} else if (type === 'company') {
 
 			var ul = $('<ul></ul>')
-				.append('<li class="info">地址：' + data.address + '</li>')
-				.append('<li class="info"> 座机：' + data.phone + '</li>')
-				.append('<li class="more">了解更多</li>')
-				.appendTo($('.tipCon'))
+				.append('<li class="info">单位名称：' + data.name + '</li>')
+				.appendTo($('.tip_project .tipCon'))
+
+			$('.tip_zhaobiao').hide()
+			$('.tip_zhongbiao').hide()
+
 		} else if (type === 'project') {
 
 			var ul = $('<ul></ul>')
-				.append('<li class="info">地址：' + data.address + '</li>')
-				.append('<li class="info">项目总额：' + data.total + '</li>')
-				.append('<li class="more">了解更多</li>')
-				.appendTo($('.tipCon'))
+				.append('<li class="info">项目名称：' + data.name + '</li>')
+				.appendTo($('.tip_project .tipCon'))
 
+			if ($('.tip_zhaobiao').hide()) {
+
+				$('.tip_zhaobiao').slideDown(500)
+			}
+
+			if ($('.tip_zhongbiao').hide()) {
+
+				$('.tip_zhongbiao').slideDown(1000)
+			}
 		}
+
+		$('.tip_project #project').find('a').attr('href',path+'/detail/'+data.sourceId)
 	}
 
 	function redraw() {
@@ -210,7 +260,7 @@ define(function(require, exports, module) {
 
 	function mouseover(d) {
 
-		$('.tip').show()
+		$('.tip_project').show()
 		
 		var type = d['type'],
 			id = d['dataId'],
@@ -224,12 +274,20 @@ define(function(require, exports, module) {
 
 		var pos = d3.mouse(relativeDom)
 
+		d3.select(that).attr('storke','#fff')
+			.attr('stroke-width','2px')
+
+		$(this).attr('transform', 'scale(1.2)')
+
 		loadInformation(parm, d, pos)
 	}
 
 	function mouseout(d) {
 
-		//$(this).attr('transform', 'scale(1.0)')
+		d3.select(this).attr('storke','none')
+			.attr('stroke-width','2px')
+
+		$(this).attr('transform', 'scale(1.0)')
 	}
 
 	function toggleImageZoom(img) {
@@ -297,37 +355,20 @@ define(function(require, exports, module) {
 		enter.append('svg:circle')
 			.attr('r', function(d, i) {
 
-				var type = d['type']
+				var type = d['type'];
+				
+				if (root === 'project') {
+					
+					return circleSize[type]
 
-				if (type === 'project') {
-					return 25
-				} else if (type === 'company') {
-					return 20
-				} else if (type === 'person') {
-					return 15
-				}
+				} else if (root === 'company') {
+
+					return circleSize1[type]
+				}	
 			})
 			.attr('fill', function(d, i) {
 
 				return colorSet[d['type']]
-			})
-			.attr('stroke',function(d) {
-				var type = d['type']
-
-				if (type === 'project') {
-					return '#fff'
-				} else{
-					return
-				}
-			})
-			.attr('stroke-width',function(d) {
-				var type = d['type']
-
-				if (type === 'project') {
-					return '2px'
-				} else{
-					return '0px'
-				}
 			})
 			.on('mouseover', mouseover)
 			.on('mouseout', mouseout)
@@ -402,6 +443,7 @@ define(function(require, exports, module) {
 			width = document.querySelector(selector).getBoundingClientRect().width,
 			height = document.querySelector(selector).getBoundingClientRect().height,
 			imageScale = 0.25,
+			root = setting.root,
 			legendArray = ['项目', '单位', '人员'],
 			legendObj = {
 				project: '项目',
@@ -449,7 +491,7 @@ define(function(require, exports, module) {
 
 		modelgraph = series;
 
-		startNode = getNode("1");
+		startNode = getNode("0");
 		addViewNode(startNode);
 		refocus(startNode);
 

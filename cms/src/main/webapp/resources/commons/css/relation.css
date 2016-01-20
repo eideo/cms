@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-12-24 08:45:17
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-15 16:35:07
+* @Last Modified time: 2016-01-20 10:51:13
 */
 
 #relation
@@ -396,10 +396,6 @@ body
 {
     background: #ff9829;
 }
-.comRem ul li:hover
-{
-    background: #ff9829;
-}
 
 .perRem
 {
@@ -475,17 +471,13 @@ body
 {
     background: #ff9829;
 }
-.perRem ul li:hover
-{
-    background: #ff9829;
-}
 
 /*浏览提示*/
 .recomCon
 {
     position: absolute;
-    z-index: 9999;
-    top: 28px;
+    z-index: 1002;
+    top: 20px;
     right: 28px;
 
     -webkit-box-sizing: border-box;
@@ -499,18 +491,18 @@ body
 {
     font-size: 14px;
     font-weight: bold;
-    line-height: 40px;
+    line-height: 38px;
 
     position: relative;
 
     width: 100%;
-    height: 40px;
+    height: 38px;
 
     text-align: center;
-
-    color: #fff;
+    
+    color: #ffac2e;
     border-radius: 3px;
-    background: #ff9829;
+    border:1px solid #ffac2e;
 }
 .recomCon .top i
 {
@@ -523,7 +515,7 @@ body
 
     cursor: pointer;
 
-    background: url(../images/icon1229.png) -380px -321px no-repeat;
+    background: url(../images/icon1229.png) -379px -958px no-repeat;
 }
 
 .recomCon .top i.selected,
@@ -548,7 +540,7 @@ body
        -moz-box-sizing: border-box;
             box-sizing: border-box;
     height: 150px;
-
+    display: none;
     border: 1px solid #1b3468;
 }
 
@@ -600,42 +592,84 @@ body
 {
     position: absolute;
     z-index: 1002;
-    top: 262px;
-    right: 23px;
+    top: 75px;
+    right: 25px;
 
     display: block;
 
-    width: 200px;
+    width: 201px;
     height: auto;
-    min-height: 200px;
-    padding: 3px 3px 10px 3px;
 
     border: 1px solid #1f1263;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+            -o-border-radius: 2px;
     background: transparent;
-    background: rgba(0, 107, 200, 1.0) none repeat scroll 0 0 !important;
+    background: rgba(0, 107, 200, 1.0) none repeat scroll 0 0;
 
-         -o-border-radius: 5px;
     filter: Alpha(opacity=15);
 }
 
-/* .tip:before
-{
+.tip .close{
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
     position: absolute;
-    top: 10%;
-    left: -10px;
+    right:11px;
+    top:8px;
+    z-index:1005;
+    background: url(../images/icon1229.png) -426px -957px no-repeat;
+     -webkit-transition: all .3s;
+       -moz-transition: all .3s;
+         -o-transition: all .3s;
+            transition: all .3s;
+}
 
-    width: 0;
-    height: 0;
+.tip .close:hover{
+     -webkit-transform: rotate(180deg);
+       -moz-transform: rotate(180deg);
+         -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+}
 
-    content: '';
+.tip_project{
+    
+    top: 75px;
+}
 
-    border-top: 10px solid transparent;
-    border-right: 10px solid #006bc8;
-    border-bottom: 10px solid transparent;
-} */
+.tip_zhaobiao{
+
+    top:255px;
+    height:120px;
+    background: rgba(28, 156, 151, 1.0) none repeat scroll 0 0;
+}
+.tip_zhaobiao .tipLink{
+    position: absolute;
+    top:-24px;
+    width:100%;
+    height:40px;
+    background: url(../images/icon1229.png) 17px -940px no-repeat;
+    left:0px;
+}
+
+.tip_zhongbiao{
+
+    top:382px;
+    height:120px;
+    z-index:1002;
+    background: rgba(0, 173, 181, 1.0) none repeat scroll 0 0;
+}
+
+.tip_zhongbiao .tipLink{
+    position: absolute;
+    top:-24px;
+    width:100%;
+    height:40px;
+    background: url(../images/icon1229.png) 17px -995px no-repeat;
+    left:0px;
+}
 
 .tipWrap
 {
@@ -645,21 +679,6 @@ body
     height: 100%;
 }
 
-.tipWrap .close
-{
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    right: 0;
-
-    width: 20px;
-    height: 20px;
-
-    cursor: pointer;
-    text-align: center;
-
-    color: #fff;
-}
 .tipTitle
 {
     font-size: 16px;
@@ -671,7 +690,7 @@ body
     overflow: hidden;
 
     width: 90%;
-    height: 50px;
+    height: 49px;
     margin-left: 5%;
 
     text-align: left;
@@ -679,12 +698,22 @@ body
     text-overflow: ellipsis;
 
     color: #fff;
-    border-bottom: 1px solid #0a8dff;
+    border-bottom: 1px solid #0d62b9;
 
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
+.tip_zhaobiao .tipTitle{
+    border-color:#0c936f;
+}
+
+.tip_zhongbiao .tipTitle{
+    border-color:#00a3ab;
+}
+.tipCon{
+    min-height:44px;
+}
 .tipCon li
 {
     font-size: 12px;
@@ -697,24 +726,56 @@ body
 }
 .tipCon li:first-child
 {
-    margin-top: 15px;
+    margin-top: 12px;
 }
-.tipCon li.more
+.tipWrap .more
 {
     line-height: 35px;
 
-    width: 105px;
-    height: 35px;
+    width: 100px;
+    height: 32px;
     margin: 0 auto;
     margin-top: 10px;
-
+    margin-bottom:23px;
     cursor: pointer;
     text-align: center;
 
     opacity: .4;
-    color: #0a8dff !important;
+    color: #fff;
     border-radius: 2px;
-    background: #162557;
+    background: #0756a6;
+    -webkit-transition: all .3s;
+       -moz-transition: all .3s;
+         -o-transition: all .3s;
+            transition: all .3s;
+}
+.tipWrap a{
+    display:block;
+    width:100%;
+    height:100%;
+    opacity: .4;
+    color: #fff;
+    background: #0756a6;
+     -webkit-transition: all .3s;
+       -moz-transition: all .3s;
+         -o-transition: all .3s;
+            transition: all .3s;
+}
+
+.tipWrap #project:hover,.tipWrap #project a:hover{
+    background:#ff8787;
+    opacity: 1.0;
+    color: #fff !important
+}
+.tipWrap #company:hover,.tipWrap #company a:hover{
+    background:#0a8dff;
+    opacity: 1.0;
+    color: #fff !important
+}
+.tipWrap #person:hover,.tipWrap #person a:hover{
+    background:#ffbe5a;
+    opacity: 1.0;
+    color: #fff !important
 }
 
 /*缩放框*/
@@ -876,9 +937,25 @@ body
     background: url(../images/mClose.png) no-repeat;
 }
 
+/*dataArea*/
+.dataError{
+    width:505px;
+    height:290px;
+    position: relative;
+    margin:0 auto;
+    top:100px;
+}
 
-@media  screen and (max-width: 1440px) and (min-width:1025px)
-{
+.dataError i{
+    width:20px;
+    height:20px;
+    position: absolute;
+    right: 47px;
+    top: 3px;
+    cursor: pointer;
+}
+
+@media  screen and (max-width: 1440px) and (min-width:1025px){
     .tab .personSelect .list
     {
         overflow: hidden !important;
@@ -888,8 +965,7 @@ body
     }
 }
 
-@media  screen and (min-width: 1900px)
-{
+@media  screen and (min-width: 1900px){
     .tab .personSelect .list
     {
         overflow: hidden !important;
@@ -899,8 +975,7 @@ body
     }
 }
 
-@media  screen and (max-width: 1024px)
-{
+@media  screen and (max-width: 1024px){
     .sliderBody
     {
         width: 326px;
@@ -911,7 +986,7 @@ body
     }
     .searchBody .searchItem
     {
-        width: 250px;
+        width: 640px;
     }
     .chartCon
     {
@@ -932,7 +1007,7 @@ body
     }
     .searchBody .inputBox
     {
-        width: 200px;
+        width: 640px;
     }
     .tabCon
     {
@@ -994,54 +1069,10 @@ body
     {
         height: 224px;
     }
-
-    .recomCon
-    {
-        right: 20px;
-
-        width: 140px;
-        height: 156px;
-    }
-
-    .recomCon .recom
-    {
-        overflow: hidden;
-
-        height: 135px;
-    }
-
-    .recom #marquee
-    {
-        overflow: hidden;
-
-        width: 140px;
-        height: 90px;
-    }
-
-    .recomCon .recom .reTitle
-    {
-        line-height: 30px;
-
-        height: 30px;
-    }
-    .recomCon .recom li
-    {
-        line-height: 24px;
-
-        height: 24px;
-    }
-    .recomCon .top
-    {
-        text-align: left;
-        text-indent: 10px;
-    }
-    .recomCon .top i
-    {
-        right: 10px;
-    }
     .tip
     {
         width: 200px;
         height: auto;
+        top:235px;
     }
 }

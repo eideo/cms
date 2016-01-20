@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-15 16:35:50
+ * @Last Modified time: 2016-01-20 09:33:32
  */
 
 'use strict';
@@ -40,6 +40,7 @@ define(function(require, exports, module) {
 	var setting = {
 		selector: '.tree',
 		series: null,
+		root:"project",
 		legend: ['项目', '单位', '联系人'],
 		colorSet: {
 			project: '#ff1d20',
@@ -95,16 +96,20 @@ define(function(require, exports, module) {
 
 				if (data.linkList.length === 0) {
 
-					$.Message({
 
-						text: '没有相关数据！',
-						type: 'failure'
-					})
+					var $noData = $('<div></div>')
+						.addClass('dataError')
+						.html('<img src="'+path+'/resources/commons/images/forceSearchErroe.png'+'"/>')
+						.appendTo($('.tree'))
+
+					var $i = $('<i></i>').appendTo($noData)
 
 					return
 				}
 
+				setting.root = AjaxObj.rolesType
 				setting.series = series
+
 				RelationChart.init(setting)
 			},
 			error: function() {
@@ -171,13 +176,15 @@ define(function(require, exports, module) {
 			},
 			success: function(data) {
 
-
 				$('.searchItem').find('ul').html('')
 
 				if (data.length === 0) {
-
-					console.log("没有相关数据")
-
+/*
+					$.Message({
+						text:"没有相关数据",
+						type:'failure'
+					});
+*/
 					return
 				} else {
 
@@ -218,11 +225,8 @@ define(function(require, exports, module) {
 				var companyRoles = data.companyRoles,
 					personRoles = data.personRoles
 
-
-				AjaxObj.companyRoleArray.push(companyRoles[0]['role'])
-				AjaxObj.personRoleArray.push(personRoles[0]['role'])
-
 				var $liAll = $('<li class="item"></li>')
+					.addClass('selected')
 					.html('全部')
 					.appendTo($('.comRem ul'))
 
@@ -235,11 +239,6 @@ define(function(require, exports, module) {
 					var $li = $('<li class="item"></li>')
 						.html(item['role'])
 						.appendTo($('.comRem ul'))
-
-					if (index === 0) {
-
-						$li.addClass("selected")
-					}
 				})
 
 				personRoles.forEach(function(item, index) {
@@ -252,12 +251,12 @@ define(function(require, exports, module) {
 
 					if (index > 1) {
 
-						$li.addClass('hidden')
+						$li.addClass('hidden');
 					}
 
 					if (index === 0) {
 
-						$li.addClass("selected")
+						$li.addClass('selected');
 					}
 				})
 
@@ -396,10 +395,17 @@ define(function(require, exports, module) {
 
 			}
 		})
+
+		/*浏览展开*/
+		$('.recomCon .top').find('i').on('click', function(e) {
+
+			var display = $('.recom').css('display')
+			display === 'none' ? $('.recom').slideDown(500) : $('.recom').slideUp(500)
+			display === 'none' ? $(this).addClass('selected') : $(this).removeClass('selected')
+		})
 	}
 
 	function initRole() {
-
 
 		// 鼠标滑过事件
 		$('.tip .close').live('click', function(e) {
@@ -424,6 +430,8 @@ define(function(require, exports, module) {
 				ul = $(this).parent(),
 				firstLi = ul.find('li').get(0)
 
+			AjaxObj.rolesType = $(this).data('type');
+
 			if ($(this).hasClass('selected')) {
 
 				$(this).removeClass('selected')
@@ -446,6 +454,10 @@ define(function(require, exports, module) {
 				} else if (parent.hasClass('perRem')) {
 					AjaxObj.personRoleArray = []
 				}
+
+			} else {
+
+				parent.find('li').eq(0).removeClass('selected')
 			}
 
 			if (parent.hasClass('comRem')) {
@@ -496,6 +508,11 @@ define(function(require, exports, module) {
 			}
 		})
 
+
+		$('.dataError i').live('click',function() {
+
+			$('.dataError').remove()
+		})
 	}
 
 	$(function() {
@@ -518,7 +535,7 @@ define(function(require, exports, module) {
 				match;
 			ua = window.navigator.userAgent;
 			match = /;\s*MSIE (\d+).*?;/.exec(ua);
-			if (match && +match[1] < 10) {
+			if (match && +match[1] < 9) {
 				cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
 				if (cookie && cookie[1]) {
 					return;

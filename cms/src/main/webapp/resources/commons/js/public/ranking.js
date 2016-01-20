@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-01-04 15:01:07
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-12 10:52:44
+* @Last Modified time: 2016-01-19 14:48:20
 * @ 排行榜入口模块
 */
 
@@ -46,6 +46,8 @@ define(function(require, exports, module) {
 
 			$('#c_btn li').removeClass('active');
 			$('.part').hide();
+
+			$("html, body").scrollTop(0).animate({scrollTop: $(".ranking").offset().top-30});
 
 			$(this).addClass('active');
 			ajaxChangeData();
@@ -232,8 +234,11 @@ define(function(require, exports, module) {
 		rankType();
 		toggleClass('.more');
 		bindClickOnleft();
+
+		pageClick();
 		
-		$('#c_btn li').eq(0).click()
+		// $('#c_btn li').eq(0).click()
+		ajaxChangeData();
 
 		Chart.addChinaMap(mapSetting, function() {
 
@@ -286,16 +291,17 @@ define(function(require, exports, module) {
 			window.location.href = path + '/search?keyword=' + $(this).html()
 		})
 
-		goTop()
+		goTop();
 	})
 
 	function goTop() {
+		
 		$(window).scroll(function () {
 
 			if($(window).scrollTop() > 200) {
 
 				$('#gotop').show();
-				console.log($(window).scrollTop());
+				
 			}else {
 				$('#gotop').hide();
 			}	
@@ -311,6 +317,15 @@ define(function(require, exports, module) {
 
 			$('#gotop i').show();
 			$('#gotop span').hide();
+		})
+	}
+
+	// 点击页码返回结果列表顶部
+	function pageClick() {
+
+		$('.tcdPageCode').on("click", "a", function() {
+
+			$("html, body").scrollTop(0).animate({scrollTop: $(".ranking").offset().top-30});
 		})
 	}
 	module.exports = '';
