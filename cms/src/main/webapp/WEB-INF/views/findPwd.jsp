@@ -21,33 +21,37 @@
 			<div class="operationFrame">
 				<div class="email box">
 					<p>请输入注册邮箱地址</p>
-					<form action="" name="" method="post">
+					<form action="http://www.baidu.com" name="" method="post">
 						<div class="emailBox">
 							<input type="text" id="email" name="email" placeholder="请输入邮箱地址" />
 							<i class="error"></i>
 						</div>
-						<div class="codeBox clearfix">
+						<div class="codeBox emailCode clearfix">
 							<input type="text" id="code" name="code" placeholder="请输入验证码" />
-							<span></span>
+							<span>
+								<img src="${appPath}/common/makeCertPic.jsp" id="codeImg" onclick="reloadcode()" style="cursor: pointer;" alt="看不清楚,换一张">
+							</span>
+							<i class="error"></i>
 						</div>
 						<div class="submitBox">
-							<input type="submit" value="下一步" class="submit" />	
+							<input type="submit" value="下一步" class="submit" id="emailSubmit" />	
 						</div>	
 					</form>
 				</div>
 				<div class="phone box">
 					<p>请输入注册手机号码</p>
-					<form action="${appPath}/personal/resetPwd" name="" method="post">
+					<form action="${appPath}/resetPwd" name="" method="get">
 						<div class="phoneBox">
 							<input type="text" id="phone" name="phone" placeholder="请输入手机号码">
 							<i class="error"></i>
 						</div>
-						<div class="codeBox  clearfix">
+						<div class="codeBox phoneCode clearfix">
 							<input type="text" id="phoneCode" name="phoneCode" placeholder="请输入验证码">
 							<span class="codeBtn">获取验证码</span>
+							<i class="error"></i>
 						</div>
 						<div class="submitBox">
-							<input type="submit" value="下一步" class="submit">	
+							<input type="submit" value="下一步" class="submit" id="phoneSubmit">	
 						</div>	
 					</form>
 				</div>

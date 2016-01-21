@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-20 11:39:42
+ * @Last Modified time: 2016-01-21 11:14:19
  */
 
 'use strict';
@@ -452,7 +452,6 @@ define(function(require, exports, module) {
 			}
 
 		color = d3.scale.category20();
-
 
 		d3Cola = Cola.d3adaptor()
 			.linkDistance(80)

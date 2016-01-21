@@ -142,9 +142,9 @@
 						                  <div id="city_input" style="display:none " class="select_content"></div>
 						            </div>
 						        </div>
-							    <p>
+							    <div>
 							    	<input type="text" id="address" value="${memberinfo.address }" maxlength="200">
-							    </p>
+							    </div>
 							    <b class="checkError"></b>
 							</div>
 							<div class="company_box">

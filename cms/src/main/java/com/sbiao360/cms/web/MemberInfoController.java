@@ -1,5 +1,8 @@
 package com.sbiao360.cms.web;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,6 +10,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,6 +37,11 @@ public class MemberInfoController extends BaseController{
 	
 	@Resource
 	private SmsSendService smsSendService;
+	
+	@Resource
+	private RedisTemplate<String, Object> redisTemplate01;
+
+	private MemberInfo memberInfo;
 	
 	
 	/**
@@ -207,6 +219,91 @@ public class MemberInfoController extends BaseController{
 		else
 			ajaxJson("{status:"+false+"}", response);
 	}
+	@RequestMapping({"/findPwd"})
+	public String findPwd(HttpServletRequest request, HttpServletResponse response){
+		request.setAttribute("notSearch", "true");
+		return "findPwd";
+	}
 	
-	
+	@RequestMapping({"/resetPwd"})
+	public String resetPwd(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String phone = request.getParameter("phone");
+		String phoneCode = request.getParameter("phoneCode");
+		String sysNum = (String)request.getSession().getAttribute("mobileMessage");
+		if(!(StringUtil.isNotBlank(sysNum)&&phoneCode.equals(sysNum))){
+			throw new Exception("验证码不正确！非法操作");
+		}
+		memberInfo = new MemberInfo();
+		memberInfo.setLoginId(phone);
+		memberInfo.setCustEmail(phone);
+		memberInfo.setMobilePhone(phone);
+		memberInfo.setCompanyName(phone);
+		memberInfo = memberInfoService.getMemberByPhone(memberInfo);
+		String pd = java.util.UUID.randomUUID().toString().replace("-","").toUpperCase();
+		redisTemplate01.execute(new RedisCallback<Long>() {  
+            public Long doInRedis(RedisConnection connection)  
+                    throws DataAccessException {  
+                byte[] keyb = ("checkpass"+pd).getBytes();  
+                byte[] valueb = memberInfo.getId().getBytes();  
+                connection.set(keyb, valueb);  
+                connection.expire(keyb, 300);  
+                return 1L;  
+            }  
+        });
+		request.setAttribute("uuid",pd);
+		request.setAttribute("notSearch", "true");
+		return "resetPwd";
+	}
+	@RequestMapping({"updatePass"})
+	public void updatePass(HttpServletRequest request, HttpServletResponse response){
+		String pass = request.getParameter("password");
+		String uuid = request.getParameter("uuid");
+		Object object = null;  
+        object = redisTemplate01.execute(new RedisCallback<Object>() {  
+            public Object doInRedis(RedisConnection connection)  
+                    throws DataAccessException {  
+  
+                byte[] key = ("checkpass"+uuid).getBytes();  
+                byte[] value = connection.get(key);  
+                if (value == null) {  
+                    return null;  
+                }  
+                return toObject(value);  
+  
+            }  
+        }); 
+        if(object==null){
+        	 ajaxJson("{status:\"true\"}", response);
+        }
+        MemberInfo memberInfo = new MemberInfo();
+        memberInfo.setId((String) object);
+        PwdStuff mBean = new PwdStuff();
+        memberInfo.setLoginPassword(mBean.convertPassword(pass));
+        memberInfoService.updatePass(memberInfo);
+        ajaxJson("{status:\"true\"}", response);
+	}
+	 /** 
+     * 描述 : <byte[]转Object>. <br> 
+     * <p> 
+     * <使用方法说明> 
+     * </p> 
+     *  
+     * @param bytes 
+     * @return 
+     */  
+    private Object toObject(byte[] bytes) {  
+        Object obj = null;  
+        try {  
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);  
+            ObjectInputStream ois = new ObjectInputStream(bis);  
+            obj = ois.readObject();  
+            ois.close();  
+            bis.close();  
+        } catch (IOException ex) {  
+            ex.printStackTrace();  
+        } catch (ClassNotFoundException ex) {  
+            ex.printStackTrace();  
+        }  
+        return obj;  
+    }  
 }

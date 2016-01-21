@@ -66,7 +66,7 @@
 			<div class="op_password">
 				<input id="remember" type="checkbox"></input>
 				<label for="remember">记住密码</label>
-				<a href="javascript:;" class="update">忘记密码</a>
+				<a href="${appPath}/findPwd" class="update">忘记密码</a>
 				<span>|</span>
 				<a href="${appPath}/register" class="register">免费注册</a>
 			</div>

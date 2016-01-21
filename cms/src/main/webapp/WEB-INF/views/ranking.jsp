@@ -195,17 +195,19 @@
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="page_bg">
-	<div class="page">
-		<form id="pageForm">
-			<div class="paging">
-				<div class="tcdPageCode"></div>
-			</div>
-		</form>
+	<div class="page_bg">
+		<div class="page">
+			<form id="pageForm">
+				<div class="paging">
+					<div class="tcdPageCode"></div>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
+
+
 <a id="gotop">
 	<i></i>
 	<span>顶部</span>

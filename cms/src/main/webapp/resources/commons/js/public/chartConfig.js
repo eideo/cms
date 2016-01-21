@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-01-05 09:03:27
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-05 10:26:39
+ * @Last Modified time: 2016-01-20 17:18:52
  */
 
 'use strict';
@@ -74,7 +74,7 @@ define(function(require, exports, module) {
 			name: '采购',
 			value: 28
 		}],
-		colorset: ['#ffbe60', '#ffe268', '#cdda52', '#ff8949', '#ffbe60'],
+		colorset: ['#ffc247', '#ff8e29', '#b6c712', '#ff8949', '#ffbe60'],
 		margin: {
 			left: 60,
 			top: 55,

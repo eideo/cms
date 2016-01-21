@@ -30,7 +30,7 @@
  	 	<result column="AVATAR_PATH" property="avatarPath" jdbcType="VARCHAR"/>
 	 </resultMap>
 	 
-	 <sql id="columns">cust_id,cust_Province,cust_City,cust_Birthday,lostpass_Question,lostpass_Answer,login_Id,login_Passwd,sex,company_Name,address,zip_code,cust_Email,phone,fax,register_Date,cust_Name,cust_Status,mobile_Phone,isAdmin,belong,dept_id,user_Type,AVATAR_PATH</sql>
+	 <sql id="columns">id,cust_id,cust_Province,cust_City,cust_Birthday,lostpass_Question,lostpass_Answer,login_Id,login_Passwd,sex,company_Name,address,zip_code,cust_Email,phone,fax,register_Date,cust_Name,cust_Status,mobile_Phone,isAdmin,belong,dept_id,user_Type,AVATAR_PATH</sql>
 	 <insert id="insertMemberInfo" parameterType="memberInfo">
 	 	insert into CMS_MEMBER_INFO (<include refid="columns"></include>)
 	 	 values (
@@ -89,6 +89,11 @@
 		update CMS_MEMBER_INFO 
 		set 
 		AVATAR_PATH = #{avatarPath,jdbcType=VARCHAR} 
+		where ID = #{id,jdbcType=BIGINT} 
+	</update>
+	<update id="updatePass" parameterType="memberInfo">
+		update CMS_MEMBER_INFO 
+		set LOGIN_PASSWD=#{loginPassword,jdbcType=VARCHAR}
 		where ID = #{id,jdbcType=BIGINT} 
 	</update>
 </mapper>

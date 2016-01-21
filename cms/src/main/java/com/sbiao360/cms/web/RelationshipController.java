@@ -21,6 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.solr.common.util.Hash;
 import org.jasig.cas.client.util.AssertionHolder;
 import org.jasig.cas.client.validation.Assertion;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +36,20 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sbiao360.cms.domain.Company;
 import com.sbiao360.cms.domain.CustBehavior;
+import com.sbiao360.cms.domain.IndexInfo;
+import com.sbiao360.cms.domain.MemberInfo;
 import com.sbiao360.cms.domain.Project;
 import com.sbiao360.cms.domain.ProjectCompany;
 import com.sbiao360.cms.domain.ProjectContacts;
+import com.sbiao360.cms.domain.PublishInfo;
 import com.sbiao360.cms.service.CodeService;
 import com.sbiao360.cms.service.CustomerBehaviorService;
 import com.sbiao360.cms.service.CustomerKeywordsService;
+import com.sbiao360.cms.service.IndexInfoService;
+import com.sbiao360.cms.service.MemberInfoService;
+import com.sbiao360.cms.service.PublishInfoService;
 import com.sbiao360.cms.service.RelationService;
+import com.sbiao360.cms.zutil.CutTitle;
 import com.sbiao360.cms.zutil.DateTime;
 import com.sbiao360.cms.zutil.IpTool;
 import com.sbiao360.cms.zutil.StringUtil;
@@ -59,6 +72,17 @@ public class RelationshipController extends BaseController{
 	@Resource
 	private CustomerKeywordsService customerKeywordsService;
 	
+	@Resource
+	private MemberInfoService memberInfoService;
+	
+	@Resource
+	private RedisTemplate<String, Object> redisTemplate01;
+	
+	@Resource
+	private IndexInfoService indexInfoService;
+	
+	@Resource
+	private PublishInfoService publishInfoService;
 	/**
 	 * 获取关系网初始化数据
 	 * @param request
@@ -456,6 +480,7 @@ public class RelationshipController extends BaseController{
 		}else{
 			custBehavior.setUserId((long) 0);
 		}
+		setUserSearchWord(str,custBehavior.getUserId()+"");
 		custBehavior.setActionDate(new Date());
 		custBehavior.setIp(IpTool.setIP(ip));
 		custBehavior.setActionType((short) 6);
@@ -463,5 +488,94 @@ public class RelationshipController extends BaseController{
 		custBehavior.setKeywords(str);
 		custBehavior.setInfoValid((short) 1);
 		customerKeywordsService.insertKeyWords(custBehavior);
+	}
+	
+	@RequestMapping({"getSameSearchPerson"})
+	public void getSameSearchPerson(HttpServletRequest request,HttpServletResponse response){
+		String name = request.getParameter("name");
+		String id = getUserSearchWord(name);
+		Map<String,Object> re = new HashMap<>();
+		if(id==null||"0".equals(id)){
+			re.put("status", "false");
+		}else{
+			MemberInfo mem = memberInfoService.getByPrimaryKey(Long.parseLong(id));
+			re.put("status", "true");
+			re.put("username", mem.getCustName());
+			re.put("phone", mem.getMobilePhone());
+		}
+		ajaxJson(JSON.toJSONString(re), response);
+	}
+	
+	private void setUserSearchWord(String str,String id){
+		redisTemplate01.execute(new RedisCallback<Long>() {  
+            public Long doInRedis(RedisConnection connection)  
+                    throws DataAccessException {  
+                byte[] keyb = (str+"relationSearch").getBytes();  
+                byte[] valueb = id.getBytes();  
+                connection.set(keyb, valueb);  
+                connection.expire(keyb, 1800);  
+                return 1L;  
+            }  
+        });  ;
+	}
+	
+	@Cacheable(value="commonCache",key="#str+'relationSearch'")
+	private String getUserSearchWord(String str){
+		return null;
+	}
+	
+	@RequestMapping({"getRelevantInfo"})
+	public void getRelevantInfo(HttpServletRequest request,HttpServletResponse response){
+		String id = request.getParameter("id");
+		String name = request.getParameter("id");
+		PublishInfo p = publishInfoService.selectByProjectKey(id);
+		String title = CutTitle.cutXMXXTitle(name);
+		List<IndexInfo> listZBXX = getRecomm(p, title, "1");
+		List<IndexInfo> listZBGS = getRecomm(p, title, "2");
+		Map<String,List<IndexInfo>> re = new HashMap<>();
+		re.put("zbxx", listZBXX);
+		re.put("zbgs", listZBGS);
+		ajaxJson(JSON.toJSONString(re), response);
+	}
+	
+	public List<IndexInfo> getRecomm(PublishInfo publishInfo,String title,String showType){
+		
+		String typeSearch = "";
+		if(showType.equals("0")){
+			typeSearch=" table_name:XMXX";
+		}
+		else if(showType.equals("1")){
+			typeSearch += " (table_name:ZBXX -table_name2:ZBGS )";
+		}
+		else if(showType.equals("2")){
+			typeSearch += " (table_name:ZBXX AND table_name2:ZBGS )";
+		}
+		else if(showType.equals("3")){
+			typeSearch += " (table_name:ZFCG)";
+		}
+		
+		String areaName = publishInfo.getAreaName().indexOf(",")==0?publishInfo.getAreaName().substring(1).replaceAll(","," "):publishInfo.getAreaName().replaceAll(","," ");
+		String areaSearch = "((area_name:"+areaName+")^10000 or (-area_name:"+areaName+")^1)";
+		
+		String industryName = publishInfo.getIndustryName().indexOf(",")==0?publishInfo.getIndustryName().substring(1).replaceAll(","," "):publishInfo.getIndustryName().replaceAll(","," ");
+		String industrySearch = "((category:"+industryName.replace(" "," or  category:" )+")^1000 or (-category:"+industryName.replace(" "," or -category:" )+")^1)";
+		
+		String titleSearch = "titleForIndex:\""+title+"\"";
+		
+		
+		String searchString = titleSearch+" AND "+typeSearch+" AND "+areaSearch+" AND "+industrySearch;
+		
+		Map<String, Object> s = indexInfoService.queryIndexInfo(searchString, 0, 1);
+		List<IndexInfo> result = (List<IndexInfo>) s.get("result");
+		if(result.size()<1){
+			searchString = "titleForIndex:"+title+" AND "+typeSearch+" AND "+areaSearch+" AND "+industrySearch;
+			List<IndexInfo> reList = (List<IndexInfo>) indexInfoService.queryIndexInfo(searchString, 0, 1).get("result");
+			result.addAll(reList);
+		}
+		for (IndexInfo indexInfo : result) {
+			indexInfo.setTitle(indexInfo.getTitle().replaceAll("<[^>]*>",""));
+			indexInfo.setDescription(indexInfo.getDescription().replaceAll("<[^>]*>",""));
+		}
+		return result;
 	}
 }

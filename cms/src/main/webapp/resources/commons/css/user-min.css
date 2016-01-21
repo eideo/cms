@@ -498,15 +498,9 @@
 .paging{
 	width: 720px;	
 }
-.tcdPageCode{color: #5e5e5e;	display:table;margin:0 auto;padding-top:40px;padding-bottom:40px;}
-.tcdPageCode a{display: inline-block;color: #5e5e5e;display: inline-block;height: 25px; line-height: 25px;width:46px;height:26px;border: 1px solid #ddd; margin: 0 2px;border-radius: 4px;line-height:26px;text-align:center;}
-.tcdPageCode a:hover{background:#47aaff;color:#fff;}
-.tcdPageCode span.current{display: inline-block;height: 26px;line-height: 25px;width:46px;margin: 0 2px;color: #fff;background-color: #47aaff; border: 1px solid #47aaff;border-radius: 2px;text-align:center;}
-.tcdPageCode span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 2px;vertical-align: middle;}
-
 /*����*/
 .balance{
-	width: 720px;
+	width: 740px;
 	height: 40px;
 	margin-top: 30px;
 	background: #eaf5ff;
@@ -515,7 +509,7 @@
 	line-height: 40px;
 	position: fixed;
 	bottom: 0;
-	left: 162px;
+/*	left: 162px;*/
 }
 div.xi{
 	position: static;

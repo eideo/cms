@@ -21,4 +21,16 @@ public class MemberInfoService {
 	public boolean checkMember(MemberInfo memberInfo){
 		return memberInfoDao.checkMember(memberInfo);
 	}
+	
+	public MemberInfo getMemberByPhone(MemberInfo memberInfo){
+		return memberInfoDao.getMemberByPhone(memberInfo);
+	}
+	
+	public void updatePass(MemberInfo memberInfo){
+		memberInfoDao.updatePass(memberInfo);
+	}
+
+	public MemberInfo getByPrimaryKey(Long id) {
+		return memberInfoDao.getByPrimaryKey(id);
+	}
 }

@@ -1280,7 +1280,9 @@ public final class searchResult_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\t\t\t<div class=\"op_password\">\r\n");
       out.write("\t\t\t\t<input id=\"remember\" type=\"checkbox\"></input>\r\n");
       out.write("\t\t\t\t<label for=\"remember\">记住密码</label>\r\n");
-      out.write("\t\t\t\t<a href=\"javascript:;\" class=\"update\">忘记密码</a>\r\n");
+      out.write("\t\t\t\t<a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/findPwd\" class=\"update\">忘记密码</a>\r\n");
       out.write("\t\t\t\t<span>|</span>\r\n");
       out.write("\t\t\t\t<a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));

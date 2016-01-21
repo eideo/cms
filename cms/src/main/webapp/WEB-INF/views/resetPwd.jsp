@@ -17,6 +17,7 @@
 				<div class="email box">
 					<p>请输入新密码</p>
 					<form action="">
+						<input type="hidden" name="uuid" value="${uuid}">
 						<div class="passwordBox">
 							<input type="password" id="password" name="password" placeholder="请输入新密码">
 							<i class="error"></i>

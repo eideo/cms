@@ -2,6 +2,8 @@
 var option = null;
 $(function(){
 
+	console.log($('.content').offset().left)
+
 	tabHover();
 	
 	// 更换头像
@@ -22,25 +24,6 @@ $(function(){
 	// 购物车悬浮框
 	fixedBar();
 
-	// 安全设置
-	// 确认提交按钮
-	// $('.update_box button').mouseover(function(){
-	// 	$('.update_box button').removeClass('on');
-	// 	$(this).addClass('on');
-	// }).mouseout(function(){
-	// 	$(this).removeClass('on');
-	// });
-	// 修改切换
-	// $('.re_box a').click(function(){
-	// 	var oLi=$(this).parent().parent();
-	// 	if(oLi.find('.update_box').css('display')=='none'){
-	// 		$(this).text('取消修改');
-	// 		oLi.find('.update_box').show();
-	// 	}else{
-	// 		$(this).text('修改');
-	// 		oLi.find('.update_box').hide();
-	// 	}
-	// });
 
 	// 关注按钮
 	userAttention();
@@ -203,6 +186,8 @@ function checkList() {
 
 function fixedBar() {
 
+	var oLeft = $('.content').offset().left;
+
 	$(window).scroll(function() {
 
 		if($(window).scrollTop()>100) {
@@ -211,6 +196,7 @@ function fixedBar() {
 		}else {
 
 			$('.balance').css('position','fixed');
+			$('.balance').css('left',oLeft);
 		}
 	});
 }
@@ -722,6 +708,9 @@ function informationSubmit(userId) {
 
 		$('.sex_box b').text('请您选择性别').show();               
 		return false;
+	}else {
+
+		$('.sex_box b').text('')
 	}
 	
 	if(mobilePhone == '') {
@@ -913,6 +902,7 @@ function previewImage(file) {
   {
     var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
     file.select();
+    file.blur();
     var src = document.selection.createRange().text;
     div.innerHTML = '<img id=imghead>';
     var img = document.getElementById('imghead');

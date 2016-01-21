@@ -47,9 +47,11 @@ define(function(require, exports, module) {
 		$('.searchBox').focus(function() {
 
 			$(this).addClass('active');
+			$('.searchBtn').addClass('on');
 		}).blur(function() {
 
 			$(this).removeClass('active');
+			$('.searchBtn').removeClass('on');
 		})
 
 		$('.prompt').on("mouseover", function() {

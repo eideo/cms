@@ -2,563 +2,557 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-20 09:33:32
+ * @Last Modified time: 2016-01-21 11:04:23
  */
 
 'use strict';
 
 define(function(require, exports, module) {
 
-	var nicescroll = require('niceScroll')
+    var nicescroll = require('niceScroll')
+
+    var Slider = require('../../js/lib/slider')
 
-	var Slider = require('../../js/lib/slider')
+    var Scale = require('../../js/lib/scale')
+
+    var Debounce = require('../../js/util/debounce')
 
-	var Scale = require('../../js/lib/scale')
+    var kxdbmarquee = require('kxdbmarquee')
+
+    var AjaxObj = {
+        type: 0,
+        smallName: '',
+        name: '',
+        companyRoleArray: [],
+        personRoleArray: [],
+        startDate: '201312',
+        endDate: '201511',
+        rolesName: '',
+        rolesType: 'company',
+        industryId: '2108',
+        canSearch: false
+    }
 
-	var Debounce = require('../../js/util/debounce')
+    var RelationChart = require('../../js/chart/relationChart')
 
-	var kxdbmarquee = require('kxdbmarquee')
-
-	var AjaxObj = {
-		type: 0,
-		smallName: '',
-		name: '',
-		companyRoleArray: [],
-		personRoleArray: [],
-		startDate: '201312',
-		endDate: '201511',
-		rolesName: '',
-		rolesType: 'company',
-		industryId: '2108',
-		canSearch: false
-	}
+    var Tool = require('../../js/util/tool')
 
-	var RelationChart = require('../../js/chart/relationChart')
+    var setting = {
+        selector: '.tree',
+        series: null,
+        root: "project",
+        legend: ['项目', '单位', '联系人'],
+        colorSet: {
+            project: '#ff1d20',
+            company: '#239deb',
+            person: '#ff9a00'
+        },
+        normal: {
+            project: '#eb5864',
+            company: '#ff8a0f',
+            person: '#4aa0d4'
+        }
+    }
 
-	var Tool = require('../../js/util/tool')
+    var Event = require('../../js/util/event')
 
-	var setting = {
-		selector: '.tree',
-		series: null,
-		root:"project",
-		legend: ['项目', '单位', '联系人'],
-		colorSet: {
-			project: '#ff1d20',
-			company: '#239deb',
-			person: '#ff9a00'
-		},
-		normal: {
-			project: '#eb5864',
-			company: '#ff8a0f',
-			person: '#4aa0d4'
-		}
-	}
+    function getRelation(callback) {
 
-	var Event = require('../../js/util/event')
+        Tool.mask();
 
-	function getRelation(callback) {
+        var argComRole = AjaxObj.companyRoleArray.join(','),
+            argPerRole = AjaxObj.personRoleArray.join(',')
 
-		Tool.mask();
+        if (argComRole === '全部') {
 
-		var argComRole = AjaxObj.companyRoleArray.join(','),
-			argPerRole = AjaxObj.personRoleArray.join(',')
+            argComRole = ''
+        }
 
-		if (argComRole === '全部') {
+        if (argPerRole === '全部') {
 
-			argComRole = ''
-		}
+            argPerRole = ''
+        }
 
-		if (argPerRole === '全部') {
+        $.ajax({
+            url: path + '/getRelation',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                startDate: AjaxObj.startDate,
+                endDate: AjaxObj.endDate,
+                type: 0,
+                name: AjaxObj.name,
+                companyRole: argComRole,
+                personRole: argPerRole
+            },
+            success: function(data) {
 
-			argPerRole = ''
-		}
+                Tool.removeMask()
 
-		$.ajax({
-			url: path + '/getRelation',
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				startDate: AjaxObj.startDate,
-				endDate: AjaxObj.endDate,
-				type: 0,
-				name: AjaxObj.name,
-				companyRole: argComRole,
-				personRole: argPerRole
-			},
-			success: function(data) {
+                var series = {
+                    nodes: data.objectList,
+                    links: data.linkList
+                }
 
-				Tool.removeMask()
+                if (data.linkList.length === 0) {
 
-				var series = {
-					nodes: data.objectList,
-					links: data.linkList
-				}
 
-				if (data.linkList.length === 0) {
+                    var $noData = $('<div></div>')
+                        .addClass('dataError')
+                        .html('<img src="' + path + '/resources/commons/images/forceSearchErroe.png' + '"/>')
+                        .appendTo($('.tree'))
 
+                    var $i = $('<i></i>').appendTo($noData)
 
-					var $noData = $('<div></div>')
-						.addClass('dataError')
-						.html('<img src="'+path+'/resources/commons/images/forceSearchErroe.png'+'"/>')
-						.appendTo($('.tree'))
+                    return
+                }
 
-					var $i = $('<i></i>').appendTo($noData)
+                console.log('------------------------110',AjaxObj.rolesType)
+                setting.root = AjaxObj.rolesType
+                setting.series = series
 
-					return
-				}
+                RelationChart.init(setting)
+            },
+            error: function() {
 
-				setting.root = AjaxObj.rolesType
-				setting.series = series
+                return "error";
+            }
+        })
+    }
 
-				RelationChart.init(setting)
-			},
-			error: function() {
+    function loadUrlDate(callback) {
 
-				return "error";
-			}
-		})
-	}
+        var url = window.location.href,
+            args
 
-	function loadUrlDate(callback) {
+        if (url === path + '/relation') {
 
-		var url = window.location.href,
-			args
+            return
+        } else {
 
-		if (url === path + '/relation') {
+            args = Tool.getUrlArgs(document.getElementById('getUrlArgs'))
 
-			return
-		} else {
+            AjaxObj.name = decodeURIComponent(args['name'])
+            AjaxObj.id = args['id']
+            AjaxObj.rolesType = args['type']
+            AjaxObj.canSearch = true
 
-			args = Tool.getUrlArgs(document.getElementById('getUrlArgs'))
+            if (args['industryId']) {
 
-			AjaxObj.name = decodeURIComponent(args['name'])
-			AjaxObj.id = args['id']
-			AjaxObj.rolesType = args['type']
-			AjaxObj.canSearch = true
+                AjaxObj.industryId = args['industryId']
+                getRecommProject(function() {
 
-			if (args['industryId']) {
+                    $(".searchBody .inputText")
+                        .val(AjaxObj.name)
+                        .data('cValue', AjaxObj.name)
 
-				AjaxObj.industryId = args['industryId']
-				getRecommProject(function() {
+                    getRelationRoles(function() {
 
-					$(".searchBody .inputText")
-						.val(AjaxObj.name)
-						.data('cValue', AjaxObj.name)
+                        getRelation()
+                    })
+                })
 
-					getRelationRoles(function() {
+                return
+            }
 
-						getRelation()
-					})
-				})
+            $(".searchBody .inputText")
+                .val(AjaxObj.name)
+                .data('cValue', AjaxObj.name)
 
-				return
-			}
+            getRelationRoles(function() {
 
-			$(".searchBody .inputText")
-				.val(AjaxObj.name)
-				.data('cValue', AjaxObj.name)
+                getRelation()
+            })
+        }
+    }
 
-			getRelationRoles(function() {
+    function getList(callback) {
 
-				getRelation()
-			})
-		}
-	}
+        $.ajax({
+            url: path + '/relationSuggest',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'name': AjaxObj.smallName,
+            },
+            success: function(data) {
 
-	function getList(callback) {
+                $('.searchItem').find('ul').html('')
 
-		$.ajax({
-			url: path + '/relationSuggest',
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				'name': AjaxObj.smallName,
-			},
-			success: function(data) {
+                if (data.length === 0) {
+ 
+                    return
+                } else {
 
-				$('.searchItem').find('ul').html('')
+                    for (var i = 0; i < data.length; i++) {
 
-				if (data.length === 0) {
-/*
-					$.Message({
-						text:"没有相关数据",
-						type:'failure'
-					});
-*/
-					return
-				} else {
+                        var li = $('<li></li>')
+                            .addClass('rItem')
+                            .html(data[i].name)
+                            .data('type', data[i].type)
 
-					for (var i = 0; i < data.length; i++) {
+                        $('.searchItem').find('ul').append(li)
+                    }
+                }
+            }
+        })
+    }
 
-						var li = $('<li></li>')
-							.addClass('rItem')
-							.html(data[i].name)
-							.data('type', data[i].type)
+    function getRelationRoles(callback) {
 
-						$('.searchItem').find('ul').append(li)
-					}
-				}
-			}
-		})
-	}
+        $.ajax({
+            url: path + '/getRelationRoles',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name: AjaxObj.name,
+                type: AjaxObj.rolesType
+            },
+            success: function(data) {
 
-	function getRelationRoles(callback) {
+                if (!data) {
 
-		$.ajax({
-			url: path + '/getRelationRoles',
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				name: AjaxObj.name,
-				type: AjaxObj.rolesType
-			},
-			success: function(data) {
+                    return
+                }
 
-				if (!data) {
+                $('.comRem ul').html('')
+                $('.perRem ul').html('')
 
-					return
-				}
+                var companyRoles = data.companyRoles,
+                    personRoles = data.personRoles
 
-				$('.comRem ul').html('')
-				$('.perRem ul').html('')
+                var $liAll = $('<li class="item"></li>')
+                    .addClass('selected')
+                    .html('全部')
+                    .appendTo($('.comRem ul'))
 
-				var companyRoles = data.companyRoles,
-					personRoles = data.personRoles
+                var $liAll2 = $('<li class="item"></li>')
+                    .html('全部')
+                    .appendTo($('.perRem ul'))
 
-				var $liAll = $('<li class="item"></li>')
-					.addClass('selected')
-					.html('全部')
-					.appendTo($('.comRem ul'))
+                companyRoles.forEach(function(item, index) {
 
-				var $liAll2 = $('<li class="item"></li>')
-					.html('全部')
-					.appendTo($('.perRem ul'))
+                    var $li = $('<li class="item"></li>')
+                        .html(item['role'])
+                        .appendTo($('.comRem ul'))
+                })
 
-				companyRoles.forEach(function(item, index) {
+                personRoles.forEach(function(item, index) {
 
-					var $li = $('<li class="item"></li>')
-						.html(item['role'])
-						.appendTo($('.comRem ul'))
-				})
+                    var role = item['role'];
 
-				personRoles.forEach(function(item, index) {
+                    var $li = $('<li class="item"></li>')
+                        .html(role)
+                        .appendTo($('.perRem ul'))
 
-					var role = item['role'];
+                    if (index > 1) {
 
-					var $li = $('<li class="item"></li>')
-						.html(role)
-						.appendTo($('.perRem ul'))
+                        $li.addClass('hidden');
+                    }
 
-					if (index > 1) {
+                    if (index === 0) {
 
-						$li.addClass('hidden');
-					}
+                        $li.addClass('selected');
+                    }
+                })
 
-					if (index === 0) {
+                if (personRoles.length > 3) {
 
-						$li.addClass('selected');
-					}
-				})
+                    var $more = $('<i class="more"></i>').appendTo($('.perRem'))
+                }
 
-				if (personRoles.length > 3) {
+                if (companyRoles.length > 3) {
 
-					var $more = $('<i class="more"></i>').appendTo($('.perRem'))
-				}
+                    var $more = $('<i class="more"></i>').appendTo($('.comRem'))
+                }
 
-				if (companyRoles.length > 3) {
+                if (callback && callback()) {
 
-					var $more = $('<i class="more"></i>').appendTo($('.comRem'))
-				}
+                    callback()
+                }
+            }
+        })
+    }
 
-				if (callback && callback()) {
+    function getRecommProject(callback) {
+        $.ajax({
+            url: path + '/getRecommProject',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                industryId: AjaxObj.industryId
+            },
+            success: function(data) {
 
-					callback()
-				}
-			}
-		})
-	}
+                AjaxObj.name = data.projectName
+                AjaxObj.rolesType = 'project'
+                if (callback && callback()) {
 
-	function getRecommProject(callback) {
-		$.ajax({
-			url: path + '/getRecommProject',
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				industryId: AjaxObj.industryId
-			},
-			success: function(data) {
+                    callback()
+                }
+            }
+        })
+    }
 
-				AjaxObj.name = data.projectName
-				AjaxObj.rolesType = 'project'
-				if (callback && callback()) {
+    function initSlider() {
 
-					callback()
-				}
-			}
-		})
-	}
+        var sliderOption = {
+            selector: 'slider',
+            handle: 'handle',
+            range: null,
+            value: 154,
+            dom: '.timeShow'
+        }
 
-	function initSlider() {
+        var scaleOption = {
+            selector: 'scale',
+            handle: 'scaleHandle',
+            range: null,
+            value: 10
+        }
 
-		var sliderOption = {
-			selector: 'slider',
-			handle: 'handle',
-			range: null,
-			value: 154,
-			dom: '.timeShow'
-		}
+        $("#marquee").kxbdMarquee({
+            direction: "up",
+            isEqual: false,
+            scrollDelay: 50
+        })
+    }
 
-		var scaleOption = {
-			selector: 'scale',
-			handle: 'scaleHandle',
-			range: null,
-			value: 10
-		}
+    function initFocus() {
 
-		$("#marquee").kxbdMarquee({
-			direction: "up",
-			isEqual: false,
-			scrollDelay: 50
-		})
-	}
+        $('.searchBody .inputText').on('focus', function(e) {
 
-	function initFocus() {
+            var val = $(this).attr('value')
+            $(this).addClass('selected')
+        })
 
-		$('.searchBody .inputText').on('focus', function(e) {
+        $(".searchBody .inputText").bind('input', function() {
 
-			var val = $(this).attr('value')
-			$(this).addClass('selected')
-		})
+            AjaxObj.smallName = $(this).val()
 
-		$(".searchBody .inputText").bind('input', function() {
+            $(this).data('cValue', $(this).val())
 
-			AjaxObj.smallName = $(this).val()
+            $('.searchItem').slideDown()
 
-			$(this).data('cValue', $(this).val())
+            Debounce.lightThrottle(getList)
+        })
 
-			$('.searchItem').slideDown()
+        $('.searchBody .searchItem li').live('click', function(e) {
 
-			Debounce.lightThrottle(getList)
-		})
+            var e = e || window.event,
+                word = $(this).html(),
+                type = $(this).data('type')
 
-		$('.searchBody .searchItem li').live('click', function(e) {
+            $(".searchBody .inputText").data('cValue', word)
+            $('.searchBody .inputText').val(word)
 
-			var e = e || window.event,
-				word = $(this).html(),
-				type = $(this).data('type')
+            $('.searchItem').slideUp()
 
-			$(".searchBody .inputText").data('cValue', word)
-			$('.searchBody .inputText').val(word)
+            AjaxObj.name = word
+            AjaxObj.rolesType = type
+            AjaxObj.canSearch = true
 
-			$('.searchItem').slideUp()
+            getRelationRoles()
+        })
 
-			AjaxObj.name = word
-			AjaxObj.rolesType = type
-			AjaxObj.canSearch = true
+        $('.searchBody .inputText').on('blur', function(e) {
 
-			getRelationRoles()
-		})
+            var val = $(this).attr('value'),
+                cValue = $(this).data('cValue')
 
-		$('.searchBody .inputText').on('blur', function(e) {
+            if (cValue === '') {
 
-			var val = $(this).attr('value'),
-				cValue = $(this).data('cValue')
+                $(this).val('项目/单位名称')
+            } else {
+                $(this).val(cValue)
+            }
 
-			if (cValue === '') {
+            $('.searchItem').slideUp()
+            $(this).removeClass('selected')
+        })
 
-				$(this).val('项目/单位名称')
-			} else {
-				$(this).val(cValue)
-			}
 
-			$('.searchItem').slideUp()
-			$(this).removeClass('selected')
-		})
+        $('.searchBody .btnCon').on('click', function(e) {
 
+            var inputValue = $('.searchBody .inputText').val()
 
-		$('.searchBody .btnCon').on('click', function(e) {
+            if (inputValue === '' || inputValue === '项目/单位名称') {
 
-			var inputValue = $('.searchBody .inputText').val()
+                $('.searchBody .inputText').addClass('selected')
 
-			if (inputValue === '' || inputValue === '项目/单位名称') {
+                return
+            } else {
 
-				$('.searchBody .inputText').addClass('selected')
+                if (AjaxObj.canSearch) {
 
-				return
-			} else {
+                    Tool.mask()
+                    getRelation()
+                }
 
-				if (AjaxObj.canSearch) {
+            }
+        })
 
-					Tool.mask()
-					getRelation()
-				}
+        /*浏览展开*/
+        $('.recomCon .top').find('i').on('click', function(e) {
 
-			}
-		})
+            var display = $('.recom').css('display')
+            display === 'none' ? $('.recom').slideDown(500) : $('.recom').slideUp(500)
+            display === 'none' ? $(this).addClass('selected') : $(this).removeClass('selected')
+        })
+    }
 
-		/*浏览展开*/
-		$('.recomCon .top').find('i').on('click', function(e) {
+    function initRole() {
 
-			var display = $('.recom').css('display')
-			display === 'none' ? $('.recom').slideDown(500) : $('.recom').slideUp(500)
-			display === 'none' ? $(this).addClass('selected') : $(this).removeClass('selected')
-		})
-	}
+        // 鼠标滑过事件
+        $('.tip .close').live('click', function(e) {
 
-	function initRole() {
+            $(this).parent().parent().remove()
+        })
 
-		// 鼠标滑过事件
-		$('.tip .close').live('click', function(e) {
+        $(".recomCon").draggable({
+            containment: 'parent'
+        });
+        $('.tip').draggable({
+            containment: "parent"
+        });
 
-			$(this).parent().parent().remove()
-		})
+        $('.comRem ul li,.perRem ul li').live('click', function(e) {
 
-		$(".recomCon").draggable({
-			containment: "parent"
-		});
-		$('.tip').draggable({
-			containment: "parent"
-		});
+            var parent = $(this).parent().parent(),
+                word = $(this).html(),
+                comIndex,
+                perIndex,
+                thisIndex = $(this).index(),
+                ul = $(this).parent(),
+                firstLi = ul.find('li').get(0)
 
-		$('.comRem ul li,.perRem ul li').live('click', function(e) {
+            if ($(this).hasClass('selected')) {
 
-			var parent = $(this).parent().parent(),
-				word = $(this).html(),
-				comIndex,
-				perIndex,
-				thisIndex = $(this).index(),
-				ul = $(this).parent(),
-				firstLi = ul.find('li').get(0)
+                $(this).removeClass('selected')
+            } else {
 
-			AjaxObj.rolesType = $(this).data('type');
+                if (thisIndex > 2) {
+                    $(this).insertAfter(firstLi)
+                }
+                $(this).addClass('selected')
+            }
 
-			if ($(this).hasClass('selected')) {
+            if (thisIndex === 0) {
 
-				$(this).removeClass('selected')
-			} else {
+                $(this).siblings().removeClass('selected')
 
-				if (thisIndex > 2) {
-					$(this).insertAfter(firstLi)
-				}
-				$(this).addClass('selected')
-			}
+                if (parent.hasClass('comRem')) {
 
-			if (thisIndex === 0) {
+                    AjaxObj.companyRoleArray = []
 
-				$(this).siblings().removeClass('selected')
+                } else if (parent.hasClass('perRem')) {
+                    AjaxObj.personRoleArray = []
+                }
 
-				if (parent.hasClass('comRem')) {
+            } else {
 
-					AjaxObj.companyRoleArray = []
+                parent.find('li').eq(0).removeClass('selected')
+            }
 
-				} else if (parent.hasClass('perRem')) {
-					AjaxObj.personRoleArray = []
-				}
+            if (parent.hasClass('comRem')) {
 
-			} else {
+                comIndex = AjaxObj.companyRoleArray.indexOf(word)
 
-				parent.find('li').eq(0).removeClass('selected')
-			}
+                if (comIndex === -1) {
 
-			if (parent.hasClass('comRem')) {
+                    AjaxObj.companyRoleArray.push(word)
+                } else {
+                    AjaxObj.companyRoleArray.splice(comIndex, 1)
+                }
 
-				comIndex = AjaxObj.companyRoleArray.indexOf(word)
+            } else if (parent.hasClass('perRem')) {
 
-				if (comIndex === -1) {
+                perIndex = AjaxObj.personRoleArray.indexOf(word)
 
-					AjaxObj.companyRoleArray.push(word)
-				} else {
-					AjaxObj.companyRoleArray.splice(comIndex, 1)
-				}
+                if (perIndex === -1) {
 
-			} else if (parent.hasClass('perRem')) {
+                    AjaxObj.personRoleArray.push(word)
+                } else {
+                    AjaxObj.personRoleArray.splice(perIndex, 1)
+                }
+            }
 
-				perIndex = AjaxObj.personRoleArray.indexOf(word)
+            if (AjaxObj.canSearch) {
 
-				if (perIndex === -1) {
+                Debounce.lightThrottle(getRelation)
 
-					AjaxObj.personRoleArray.push(word)
-				} else {
-					AjaxObj.personRoleArray.splice(perIndex, 1)
-				}
-			}
+            } else {
 
-			if (AjaxObj.canSearch) {
+                $('.searchBody .inputText').addClass('selected')
 
-				Debounce.lightThrottle(getRelation)
+                return
+            }
+        })
 
-			} else {
+        $('.perRem .more,.conRem .more').live('click', function() {
 
-				$('.searchBody .inputText').addClass('selected')
+            var parent = $(this).parent().find('ul'),
+                height = parent.height()
 
-				return
-			}
-		})
+            if (parent.height() === 32) {
 
-		$('.perRem .more,.conRem .more').live('click', function() {
+                parent.find('li').removeClass('hidden')
+            } else {
+                parent.find('li:gt(2)').addClass('hidden')
+            }
+        })
 
-			var parent = $(this).parent().find('ul'),
-				height = parent.height()
 
-			if (parent.height() === 32) {
+        $('.dataError i').live('click', function() {
 
-				parent.find('li').removeClass('hidden')
-			} else {
-				parent.find('li:gt(2)').addClass('hidden')
-			}
-		})
+            $('.dataError').remove()
+        })
+    }
 
+    $(function() {
 
-		$('.dataError i').live('click',function() {
+        initSlider()
+        loadUrlDate()
+        initFocus()
+        initRole()
 
-			$('.dataError').remove()
-		})
-	}
+        Event.listen('timeChange', function(parm) {
 
-	$(function() {
+            AjaxObj.startDate = parm[0]
+            AjaxObj.endDate = parm[1]
+        })
 
-		initSlider()
-		loadUrlDate()
-		initFocus()
-		initRole()
+        // 浏览器版本检测
+        ! function() {
+            var cookie,
+                ua,
+                match;
+            ua = window.navigator.userAgent;
+            match = /;\s*MSIE (\d+).*?;/.exec(ua);
+            if (match && +match[1] < 9) {
+                cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
+                if (cookie && cookie[1]) {
+                    return;
+                }
+                $("body").prepend([
+                    "<div id='compatible' class='compatible-contianer'>",
+                    "<p class='cpt-ct'><i></i>您的浏览器版本过低。为保证最佳浏览体验，<a href='/static/html/browser.html'>请点此更新高版本浏览器</a></p>",
+                    "<div class='cpt-handle'><a href='javascript:;' class='cpt-agin'>以后再说</a><a href='javascript:;' class='cpt-close'><i></i></a>",
+                    "</div>"
+                ].join(""));
 
-		Event.listen('timeChange', function(parm) {
+                $("#compatible .cpt-agin").click(function() {
+                    var d = new Date();
+                    d.setTime(d.getTime() + 30 * 24 * 3600 * 1000);
+                    document.cookie = "ic=1; expires=" + d.toGMTString() + "; path=/";
+                    $("#compatible").remove();
+                });
+                $("#compatible .cpt-close").click(function() {
+                    $("#compatible").remove();
+                });
+            }
+        }();
+    })
 
-			AjaxObj.startDate = parm[0]
-			AjaxObj.endDate = parm[1]
-		})
-
-		// 浏览器版本检测
-		! function() {
-			var cookie,
-				ua,
-				match;
-			ua = window.navigator.userAgent;
-			match = /;\s*MSIE (\d+).*?;/.exec(ua);
-			if (match && +match[1] < 9) {
-				cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
-				if (cookie && cookie[1]) {
-					return;
-				}
-				$("body").prepend([
-					"<div id='compatible' class='compatible-contianer'>",
-					"<p class='cpt-ct'><i></i>您的浏览器版本过低。为保证最佳浏览体验，<a href='/static/html/browser.html'>请点此更新高版本浏览器</a></p>",
-					"<div class='cpt-handle'><a href='javascript:;' class='cpt-agin'>以后再说</a><a href='javascript:;' class='cpt-close'><i></i></a>",
-					"</div>"
-				].join(""));
-
-				$("#compatible .cpt-agin").click(function() {
-					var d = new Date();
-					d.setTime(d.getTime() + 30 * 24 * 3600 * 1000);
-					document.cookie = "ic=1; expires=" + d.toGMTString() + "; path=/";
-					$("#compatible").remove();
-				});
-				$("#compatible .cpt-close").click(function() {
-					$("#compatible").remove();
-				});
-			}
-		}();
-	})
-
-	module.exports = 'relation'
+    module.exports = 'relation'
 })

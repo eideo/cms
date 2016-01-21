@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-13 16:38:49
+ * @Last Modified time: 2016-01-21 09:59:40
  */
 
 define(function(require, exports, module) {
@@ -68,7 +68,7 @@ define(function(require, exports, module) {
 	}
 
 	function initYearZoom() {
-		console.log(Interaction.rangeStartTime,Interaction.rangeEndTime)
+		
 		// 滑动块初始化
 		var dataZoomObj = {
 			selector: 'timeRange',

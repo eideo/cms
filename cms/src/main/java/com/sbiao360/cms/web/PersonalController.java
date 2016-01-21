@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jasig.cas.client.util.AssertionHolder;
 import org.jasig.cas.client.validation.Assertion;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +27,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.sbiao360.cms.domain.MemberInfo;
 import com.sbiao360.cms.domain.PersonalCustBehavior;
 import com.sbiao360.cms.service.PersonalService;
+import com.sbiao360.cms.zutil.StringUtil;
 import com.sbiao360.fd.ext.EntityStorer;
 import com.sbiao360.fd.ext.FdfsStoreEntity;
 
@@ -37,7 +42,7 @@ public class PersonalController extends BaseController {
 
 	@Resource
 	private PersonalService personalService;
-
+	
 	private EntityStorer audioStorer;
 
 	@Resource(name = "audioStorer")
@@ -427,16 +432,6 @@ public class PersonalController extends BaseController {
 		ajaxJson(result.toJSONString(), response);
 	}
 	
-	@RequestMapping({"/findPwd"})
-	public String findPwd(HttpServletRequest request, HttpServletResponse response){
-		request.setAttribute("notSearch", "true");
-		return "findPwd";
-	}
 	
-	@RequestMapping({"/resetPwd"})
-	public String resetPwd(HttpServletRequest request, HttpServletResponse response){
-		request.setAttribute("notSearch", "true");
-		return "resetPwd";
-	}
 
 }

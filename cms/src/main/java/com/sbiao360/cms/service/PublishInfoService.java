@@ -51,7 +51,12 @@ public class PublishInfoService {
 		return publishInfoDao.selectGroupByMonth(params);
 	}
 
-	public PublishInfo selectByCGGXXPrimaryKey(String id) {
-		return publishInfoDao.selectByCGGXXPrimaryKey(id);
+	public PublishInfo selectByCGXXPrimaryKey(String id) {
+		return publishInfoDao.selectByCGXXPrimaryKey(id);
 	}
+	public PublishInfo selectByProjectKey(String id) {
+		return publishInfoDao.selectByProjectKey(id);
+	}
+	
+	
 }

@@ -47,10 +47,11 @@ define(function(require, exports, module) {
 			$('#c_btn li').removeClass('active');
 			$('.part').hide();
 
-			$("html, body").scrollTop(0).animate({scrollTop: $(".ranking").offset().top-30});
-
 			$(this).addClass('active');
 			ajaxChangeData();
+
+			console.log($("#c_btn").offset().top);
+			$("html, body").scrollTop(0).animate({scrollTop: $("#c_btn").offset().top});
 		})
 
 		// li移入背景变色
