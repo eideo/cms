@@ -75,8 +75,6 @@ public class RelationshipController extends BaseController{
 	@Resource
 	private MemberInfoService memberInfoService;
 	
-	@Resource
-	private RedisTemplate<String, Object> redisTemplate01;
 	
 	@Resource
 	private IndexInfoService indexInfoService;
@@ -172,9 +170,13 @@ public class RelationshipController extends BaseController{
 			String uniqId = map.get("uniqId");
 			allKey.add(type+dataId);
 			if(type.equals("company")){
+				int l=0;
 				//取出根单位的项目
 				List<Project> listProject = relationService.selectProjectFromCompany(map.get("name"),companyRole,params);
 				for (Project project : listProject) {
+					if(l==100){
+						break;
+					}
 					if(allKey.contains("project"+project.getId())){
 						continue;
 					}else{
@@ -190,10 +192,15 @@ public class RelationshipController extends BaseController{
 					mapLink.put("source", uniqId);
 					mapLink.put("target",mapChild.get("uniqId") );
 					linkList.add(mapLink);
+					l++;
 				}
 				//取出根单位的人
 				List<ProjectContacts> listContacts = relationService.selectProjectContacts(map.get("name"),personRole);
+				int i=0;
 				for (ProjectContacts contacts : listContacts) {
+					if(i==100){
+						break;
+					}
 					if(allKey.contains("person"+contacts.getContactsId())){
 						continue;
 					}else{
@@ -209,11 +216,16 @@ public class RelationshipController extends BaseController{
 					mapLink.put("source", uniqId);
 					mapLink.put("target",mapChild.get("uniqId") );
 					linkList.add(mapLink);
+					i++;
 				}
 			}else if(type.equals("project")){
 				//取出根项目的所有单位
 				List<ProjectCompany> listCompanys = relationService.selectProjectCompany(dataId,companyRole);
+				int i=0;
 				for (ProjectCompany company : listCompanys) {
+					if(i==100){
+						break;
+					}
 					if(allKey.contains("company"+company.getCompanyId())){
 						continue;
 					}else{
@@ -229,11 +241,16 @@ public class RelationshipController extends BaseController{
 					mapLink.put("source", uniqId);
 					mapLink.put("target",mapChild.get("uniqId") );
 					linkList.add(mapLink);
+					i++;
 				}
 			}else{
 				//取出人的所有单位
 				List<ProjectCompany> listCompanys =  relationService.getCompanyByContact(dataId, companyRole);
+				int i=0;
 				for (ProjectCompany company : listCompanys) {
+					if(i==100){
+						break;
+					}
 					if(allKey.contains("company"+company.getCompanyId())){
 						continue;
 					}else{
@@ -249,6 +266,7 @@ public class RelationshipController extends BaseController{
 					mapLink.put("source", uniqId);
 					mapLink.put("target",mapChild.get("uniqId") );
 					linkList.add(mapLink);
+					i++;
 				}
 			}
 		}
@@ -480,7 +498,7 @@ public class RelationshipController extends BaseController{
 		}else{
 			custBehavior.setUserId((long) 0);
 		}
-		setUserSearchWord(str,custBehavior.getUserId()+"");
+		customerKeywordsService.setUserSearchWord(str,custBehavior.getUserId()+"");
 		custBehavior.setActionDate(new Date());
 		custBehavior.setIp(IpTool.setIP(ip));
 		custBehavior.setActionType((short) 6);
@@ -493,7 +511,7 @@ public class RelationshipController extends BaseController{
 	@RequestMapping({"getSameSearchPerson"})
 	public void getSameSearchPerson(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
-		String id = getUserSearchWord(name);
+		String id = customerKeywordsService.getUserSearchWord(URLEncoder.encode(name));
 		Map<String,Object> re = new HashMap<>();
 		if(id==null||"0".equals(id)){
 			re.put("status", "false");
@@ -506,28 +524,13 @@ public class RelationshipController extends BaseController{
 		ajaxJson(JSON.toJSONString(re), response);
 	}
 	
-	private void setUserSearchWord(String str,String id){
-		redisTemplate01.execute(new RedisCallback<Long>() {  
-            public Long doInRedis(RedisConnection connection)  
-                    throws DataAccessException {  
-                byte[] keyb = (str+"relationSearch").getBytes();  
-                byte[] valueb = id.getBytes();  
-                connection.set(keyb, valueb);  
-                connection.expire(keyb, 1800);  
-                return 1L;  
-            }  
-        });  ;
-	}
 	
-	@Cacheable(value="commonCache",key="#str+'relationSearch'")
-	private String getUserSearchWord(String str){
-		return null;
-	}
+	
 	
 	@RequestMapping({"getRelevantInfo"})
 	public void getRelevantInfo(HttpServletRequest request,HttpServletResponse response){
 		String id = request.getParameter("id");
-		String name = request.getParameter("id");
+		String name = request.getParameter("name");
 		PublishInfo p = publishInfoService.selectByProjectKey(id);
 		String title = CutTitle.cutXMXXTitle(name);
 		List<IndexInfo> listZBXX = getRecomm(p, title, "1");

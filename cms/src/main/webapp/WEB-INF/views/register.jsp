@@ -5,14 +5,14 @@
 	<title>用户注册</title>
 	<%@include file="/common/base.jsp"%>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/register.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/register.css?v=${projectversion}">
 	</myCss>
 	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/move.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/ajax.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/register.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/cookie.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/move.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/ajax.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/register.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/cookie.js?v=${projectversion}"></script>
 	</myScript>
 </head>
 <body>

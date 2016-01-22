@@ -21,6 +21,13 @@ $(function() {
 	pageClick();
 
 	goTop()
+
+	$('.cutTitle a').live('click',function() {
+
+		$(this).css('color','#ccc')
+
+		$('.hot .cutTitle').css('color','#ccc')
+	})
 });
 
 function goTop() {

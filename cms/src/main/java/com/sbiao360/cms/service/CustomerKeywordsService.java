@@ -1,10 +1,18 @@
 package com.sbiao360.cms.service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -24,6 +32,9 @@ public class CustomerKeywordsService {
 	
 	@Resource
 	private CustomerBehaviorDao customerBehaviorDao;
+
+	@Resource
+	private RedisTemplate<String, Object> redisTemplate01;
 
 	/**
 	 * 获取前5热词
@@ -86,5 +97,48 @@ public class CustomerKeywordsService {
 	public void insertKeywordsException(KeywordsException exception) {
 		customerKeywordsDao.insertKeywordsException(exception);
 	}
+	
+	@Cacheable(value="commonCache",key="#str+'relationSearch'")
+	public String getUserSearchWord(String str){
+		return null;
+	}
+	
+	public void setUserSearchWord(String str,String id){
+		redisTemplate01.execute(new RedisCallback<Long>() {  
+            public Long doInRedis(RedisConnection connection)  
+                    throws DataAccessException {  
+                byte[] keyb = (URLEncoder.encode(str)+"relationSearch").getBytes();  
+                byte[] valueb = toByteArray(id);  
+                connection.set(keyb, valueb);  
+                connection.expire(keyb, 1800);  
+                return 1L;  
+            }  
+        });  ;
+	}
+	
+	/** 
+     * 描述 : <Object转byte[]>. <br> 
+     * <p> 
+     * <使用方法说明> 
+     * </p> 
+     *  
+     * @param obj 
+     * @return 
+     */  
+    private byte[] toByteArray(Object obj) {  
+        byte[] bytes = null;  
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();  
+        try {  
+            ObjectOutputStream oos = new ObjectOutputStream(bos);  
+            oos.writeObject(obj);  
+            oos.flush();  
+            bytes = bos.toByteArray();  
+            oos.close();  
+            bos.close();  
+        } catch (IOException ex) {  
+            ex.printStackTrace();  
+        }  
+        return bytes;  
+    }  
 	
 }

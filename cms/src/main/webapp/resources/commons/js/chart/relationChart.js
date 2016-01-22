@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-21 11:14:19
+ * @Last Modified time: 2016-01-22 10:35:37
  */
 
 'use strict';
@@ -80,6 +80,27 @@ define(function(require, exports, module) {
 		})
 	}
 
+	// 获得相关招中标信息
+	function getRelevantInfo(name,id,callback) {
+
+		$.ajax({
+            url: path + '/getRelevantInfo',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name:name,
+                id:id
+            },
+            success: function(data) {
+
+                if (callback) {
+
+                	callback(data)
+                }
+            }
+        })
+	}
+
 	function showInfoByType(type, data, pos, d) {
 
 		var type = type
@@ -97,9 +118,9 @@ define(function(require, exports, module) {
 		}
 
 		var moreColr = {
-			project: '#ff8787',
+			project: '#d63c41',
 			company: '#0a8dff',
-			person: '#ffbe5a'
+			person: '#cc861a'
 		}
 		var typeChinese = ''
 
@@ -151,6 +172,51 @@ define(function(require, exports, module) {
 				.append('<li class="info">项目名称：' + data.name + '</li>')
 				.appendTo($('.tip_project .tipCon'))
 
+			getRelevantInfo(d['name'],d['dataId'],function(data) {
+
+				var zbxx = data.zbxx,
+					zbgs = data.zbgs,
+					zbTitle,
+					gsTitle,
+					zbCon = $('.tip_zhaobiao .tipCon ul li').eq(0),
+					gsCon = $('.tip_zhongbiao .tipCon ul li').eq(0)
+			
+				gsCon.css('text-align','left');
+				zbCon.css('text-align','left');
+
+				if (zbxx.length === 0) {
+
+					zbTitle = '暂无信息'
+					zbCon.css('text-align','center')
+				} else {
+
+					zbTitle = zbxx[0]['title']
+
+					if (zbTitle.length > 28) {
+
+						zbTitle = zbTitle.substr(0,28)
+					}
+				}
+
+				if (zbgs.length === 0) {
+
+					gsTitle = '暂无信息'
+					gsCon.css('text-align','center')
+				} else {
+
+					gsTitle = zbgs[0]['title']
+
+					if (gsTitle.length >28) {
+
+						gsTitle = gsTitle.substr(0,28)
+					}
+			
+				}
+
+				zbCon.html(zbTitle)
+				gsCon.html(gsTitle)
+			})
+
 			if ($('.tip_zhaobiao').hide()) {
 
 				$('.tip_zhaobiao').slideDown(500)
@@ -160,6 +226,8 @@ define(function(require, exports, module) {
 
 				$('.tip_zhongbiao').slideDown(1000)
 			}
+
+
 		}
 
 		$('.tip_project #project').find('a').attr('href',path+'/detail/'+data.sourceId)
@@ -274,9 +342,6 @@ define(function(require, exports, module) {
 
 		var pos = d3.mouse(relativeDom)
 
-		d3.select(that).attr('storke','#fff')
-			.attr('stroke-width','2px')
-
 		$(this).attr('transform', 'scale(1.2)')
 
 		loadInformation(parm, d, pos)
@@ -284,13 +349,11 @@ define(function(require, exports, module) {
 
 	function mouseout(d) {
 
-		d3.select(this).attr('storke','none')
-			.attr('stroke-width','2px')
-
 		$(this).attr('transform', 'scale(1.0)')
 	}
 
 	function toggleImageZoom(img) {
+
 		var scale = 1;
 		d3.select(img).each(function(d) {
 			if (Math.abs(img.width.baseVal.value - d.width) < 1) scale /= imageScale;

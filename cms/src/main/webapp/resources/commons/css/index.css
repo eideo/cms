@@ -51,7 +51,7 @@ body{
 	position:fixed;
 }
 .imgArr .imgRelation{
-	background: url(../images/imgRelation28.png) no-repeat center;
+	background: url(../images/imgRelation28.jpg) no-repeat center;
 	background-size:100% 100%;
 }
 .imgArr .imgRanking{
@@ -105,7 +105,7 @@ body{
 	width:614px;
 	background:#fff;
 	border:1px solid #ebebeb;
-	top:43px;
+	top:44px;
 	left:0px;
 	z-index:40;
 	display:none;
@@ -149,15 +149,24 @@ body{
     -webkit-transition: .5s;
     -o-transition: .5s;
 }
+
+.search button.on{
+	background: url(../images/icon1229.png) no-repeat -351px -1000px #47aaff;
+}
+.search button:hover{
+	background: url(../images/icon1229.png) no-repeat -351px -1000px #47aaff;
+}
 .search button {
-	width: 30px;
-	height: 30px;
+	width: 80px;
+	height: 45px;
 	border: none;
-	background: url(../images/icon1229.png) no-repeat -127px -535px;
-	top:10px;
-	right:10px;
+	background: url(../images/icon1229.png) no-repeat -351px -1051px;
+	top:0px;
+	right:0px;
 	position: absolute;
 	cursor:pointer;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .search-words {
@@ -231,6 +240,12 @@ h2 a{
 	.header_bg .nav li{
 		float: left;
 		margin-left: 0;
+	}
+	.shadow_bg{
+		line-height: 30px;
+	}
+	.header_bg .user-info{
+		margin-top: 24px;
 	}
 }
 

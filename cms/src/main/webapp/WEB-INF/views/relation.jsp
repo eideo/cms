@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <title>关系网展示页</title>
     <mycss>
-        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=1.0.1-20160113">
-        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/util.css?v=1.0.1-20160113">
-        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/relation.css?v=1.0.1-20160113">
-        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/intro.css?v=1.0.1-20160113">
+        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/util.css?v=${projectversion}">
+        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/relation.css?v=${projectversion}">
+        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/intro.css?v=${projectversion}">
         
     </mycss>
 </head>
@@ -116,11 +116,11 @@
 
     <myScript>
       
-        <script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=1.0.1-20160113"></script>
-        <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=1.0.1-20160113"></script>
-        <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=1.0.1-20160113"></script>
-        <script type="text/javascript" src="${resPath}/resources/commons/js/relationCookie.js?v=1.0.1-20160113"></script>
-        <script type="text/javascript" src="${resPath}/resources/commons/js/intro.js?v=1.0.1-20160113"></script>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=${projectversion}"></script>
+        <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
+        <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
+        <script type="text/javascript" src="${resPath}/resources/commons/js/relationCookie.js?v=${projectversion}"></script>
+        <script type="text/javascript" src="${resPath}/resources/commons/js/intro.js?v=${projectversion}"></script>
         <script type="text/javascript">
          // 入口模块
          seajs.use("${resPath}/resources/commons/js/public/relation")
@@ -167,7 +167,7 @@
                             },
                             {
                                 //第七步引导
-                                element: '.recomCon',
+                                element: '.top',
                                 intro: '<div id="guideMsg"><h3>其他人关注</h3><p>您还可以看看其他人都查了些什么？</p></div>',
                                 position: 'left'
                             } 

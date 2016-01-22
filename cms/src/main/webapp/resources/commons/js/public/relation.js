@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-21 11:04:23
+ * @Last Modified time: 2016-01-22 17:14:15
  */
 
 'use strict';
@@ -107,7 +107,6 @@ define(function(require, exports, module) {
                     return
                 }
 
-                console.log('------------------------110',AjaxObj.rolesType)
                 setting.root = AjaxObj.rolesType
                 setting.series = series
 
@@ -125,10 +124,11 @@ define(function(require, exports, module) {
         var url = window.location.href,
             args
 
-        if (url === path + '/relation') {
+        if (url === path + '/relation' || url.split('/')[3] === 'relation') {
 
             return
         } else {
+
 
             args = Tool.getUrlArgs(document.getElementById('getUrlArgs'))
 
@@ -294,6 +294,36 @@ define(function(require, exports, module) {
         })
     }
 
+    // 获取正在查询当前关键词的人的信息
+    function getSameSearchPerson(callback) {
+
+         $.ajax({
+            url: path + '/getSameSearchPerson',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name:AjaxObj.name
+            },
+            success: function(data) {
+                
+                var username;
+
+                if (data.status === "true") {
+
+                    if (data.username === undefined) {
+
+                        username = 'xxx'
+                    } else {
+                        username = data.username;
+                    }
+
+                    $('#marquee ul li').html(username + '  ' +data.phone)
+
+                }
+            }
+        })
+    }
+
     function initSlider() {
 
         var sliderOption = {
@@ -353,6 +383,7 @@ define(function(require, exports, module) {
             AjaxObj.canSearch = true
 
             getRelationRoles()
+            getSameSearchPerson()
         })
 
         $('.searchBody .inputText').on('blur', function(e) {
@@ -364,7 +395,7 @@ define(function(require, exports, module) {
 
                 $(this).val('项目/单位名称')
             } else {
-                $(this).val(cValue)
+                //$(this).val(cValue)
             }
 
             $('.searchItem').slideUp()
@@ -515,7 +546,7 @@ define(function(require, exports, module) {
         loadUrlDate()
         initFocus()
         initRole()
-
+        
         Event.listen('timeChange', function(parm) {
 
             AjaxObj.startDate = parm[0]

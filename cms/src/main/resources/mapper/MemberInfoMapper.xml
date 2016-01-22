@@ -30,7 +30,7 @@
  	 	<result column="AVATAR_PATH" property="avatarPath" jdbcType="VARCHAR"/>
 	 </resultMap>
 	 
-	 <sql id="columns">id,cust_id,cust_Province,cust_City,cust_Birthday,lostpass_Question,lostpass_Answer,login_Id,login_Passwd,sex,company_Name,address,zip_code,cust_Email,phone,fax,register_Date,cust_Name,cust_Status,mobile_Phone,isAdmin,belong,dept_id,user_Type,AVATAR_PATH</sql>
+	 <sql id="columns">cust_id,cust_Province,cust_City,cust_Birthday,lostpass_Question,lostpass_Answer,login_Id,login_Passwd,sex,company_Name,address,zip_code,cust_Email,phone,fax,register_Date,cust_Name,cust_Status,mobile_Phone,isAdmin,belong,dept_id,user_Type,AVATAR_PATH</sql>
 	 <insert id="insertMemberInfo" parameterType="memberInfo">
 	 	insert into CMS_MEMBER_INFO (<include refid="columns"></include>)
 	 	 values (
@@ -61,12 +61,12 @@
 	 	 );
 	 </insert>
 	 <select id="checkMember" resultMap="MemberInfoResult" parameterType="memberInfo">
-	 	select <include refid="columns"></include> from CMS_MEMBER_INFO where login_Id=#{loginId} or mobile_Phone=#{mobilePhone} or cust_Email=#{custEmail} or company_Name=#{companyName}
+	 	select id,<include refid="columns"></include> from CMS_MEMBER_INFO where login_Id=#{loginId} or mobile_Phone=#{mobilePhone} or cust_Email=#{custEmail} or company_Name=#{companyName}
 	 </select>
 
 	<select id="getByPrimaryKey" resultMap="MemberInfoResult" parameterType="java.lang.Long">
 		select 
-		<include refid="columns" />
+		id,<include refid="columns" />
 		from CMS_MEMBER_INFO 
 		where ID = #{id,jdbcType=BIGINT} 
 	</select>

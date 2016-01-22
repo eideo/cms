@@ -154,6 +154,7 @@
 			GROUP BY
 				t.INFO_ID) b 
 			on c.PROJECT_ID= b.id
+			where c.COMPANY_NAME is null and c.COMPANY_NAME !=''
 			 GROUP BY c.COMPANY_NAME ORDER BY countNow DESC 
 			<choose>
 				<when test="num != null and num != ''">
@@ -275,7 +276,7 @@
 			ORDER BY
 				NUM DESC, PROJECT_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
-			left join CMS_PROJECT y on y.ID = x.PROJECT_ID where y.PUBLISH_DATE&lt;=#{endDate}
+			join CMS_PROJECT y on y.ID = x.PROJECT_ID where y.PUBLISH_DATE&lt;=#{endDate}
 			AND y.PUBLISH_DATE&gt;=#{startDate}
 			<if test="industry!=null">
 			AND y.industry1_id like CONCAT('%',#{industry},'%')
@@ -308,7 +309,7 @@
 			ORDER BY
 				NUM DESC, cp.COMPANY_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
-			left join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
+			join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
 			order by z.countNow desc limit 0, 100 
 	</select>
 	
@@ -334,7 +335,7 @@
 			ORDER BY
 				NUM DESC, PROJECT_ID ASC
 			limit 0, 100) a, (SELECT @row_number := 0) as t) x
-			left join CMS_PROJECT y on y.ID = x.PROJECT_ID where 1=1
+			join CMS_PROJECT y on y.ID = x.PROJECT_ID where 1=1
 			<if test="industry!=null">
 			AND y.industry1_id like CONCAT('%',#{industry},'%')
 			</if>
@@ -373,7 +374,7 @@
 					ORDER BY
 						NUM DESC, cp.COMPANY_ID ASC
 					limit 0, ${num}) a, (SELECT @row_number := 0) as t) x
-					left join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
+					join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
 					order by z.countNow desc limit 0, ${num} 
 			</when>
 			<otherwise>
@@ -403,7 +404,7 @@
 					ORDER BY
 						NUM DESC, cp.COMPANY_ID ASC
 					limit 0, 100) a, (SELECT @row_number := 0) as t) x
-					left join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
+					join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
 					order by z.countNow desc limit 0, 100 
 			</otherwise>
 		</choose>

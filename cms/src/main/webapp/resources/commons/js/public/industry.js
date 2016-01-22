@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-21 09:59:40
+ * @Last Modified time: 2016-01-22 16:12:39
  */
 
 define(function(require, exports, module) {
@@ -121,6 +121,8 @@ define(function(require, exports, module) {
 			dataType: "json",
 			success: function(data) {
 
+				data = data.splice(0,15)
+			
 				ChartConfig.leftBarSetting.series = data
 				ChartConfig.leftBarSetting.industryClicked = Interaction.industryClicked
 				

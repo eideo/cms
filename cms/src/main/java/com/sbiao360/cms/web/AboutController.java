@@ -27,4 +27,19 @@ public class AboutController {
 		return "about";
 		
 	}
+	
+	/**
+	 * 建设中
+	 * @param request
+	 * @param response
+	 * @return 
+	 * 		String 
+	 * @author 廖得宇
+	 * 	2016年1月4日
+	 */
+	@RequestMapping({"construction"})
+	public String toConstruction(HttpServletRequest request,HttpServletResponse response){
+		return "construction";
+		
+	}
 }

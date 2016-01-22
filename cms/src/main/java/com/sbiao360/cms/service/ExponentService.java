@@ -125,7 +125,7 @@ public class ExponentService {
 		int a = 0;
 		for (int i=0;i<list.size();i++) {
 			Map<String, Object> map  = list.get(i);
-			int value = ((BigDecimal) map.get("value")).intValue();
+			int value = ((BigDecimal) map.get("value")).intValue()*403;
 			String time = ((Integer) map.get("time"))+"";
 			int m =0;
 			if(!lastTime.equals("")){
@@ -182,7 +182,7 @@ public class ExponentService {
 			Map<String, Object> map  = list.get(i);
 			int value = ((BigDecimal) map.get("value")).intValue();
 			int time = (Integer) map.get("time");
-			value = (int) (0.7*(1+Math.sin((time%100)*Math.PI/24))*value);
+			value = (int) (0.7*(1+Math.sin((time%100)*Math.PI/24))*value*403);
 			int m =0;
 			if(!lastTime.equals("")){
 				int lastInt = Integer.parseInt(lastTime);

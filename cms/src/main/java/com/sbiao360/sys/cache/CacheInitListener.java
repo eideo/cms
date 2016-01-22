@@ -41,8 +41,8 @@ public class CacheInitListener implements InitializingBean {
 		List<KeywordsDict> listKeywords = customerKeywordsService.getHotKeyWordsList();
 		cache.put("hotwords", listKeywords);
 //		putPlaceCodeList();
-		Timer timer = new Timer(); 
-	    timer.schedule(getMapTimer(), 800,800);
+//		Timer timer = new Timer(); 
+//	    timer.schedule(getMapTimer(), 800,800);
 	}
 	
 	private void putPlaceCodeList(){

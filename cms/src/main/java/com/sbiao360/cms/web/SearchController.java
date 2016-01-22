@@ -456,8 +456,8 @@ public class SearchController extends BaseController{
 	private String getSearchString(Map<String,String[]> map,String ip){
 		String str = map.get("keyword")!=null?map.get("keyword")[0]:"";
 		List<String> escapedKw = new ArrayList<String>();
+		
 		if(StringUtil.isBlank(str)){
-			escapedKw.add("(titleForIndex:*)");
 		}else{
 			insertCustBehavior(str,ip);
 			String searchStr = ClientUtils.escapeQueryChars(str);
@@ -504,7 +504,7 @@ public class SearchController extends BaseController{
 			escapedKw.add(" "+datequery);
 		}
 		
-		String searchString="";
+		String searchString="-titleForIndex:测试 -titleForIndex:lyltest0814";
 		for(String s:escapedKw){
 			searchString+="".equals(searchString)?s:" AND"+s;
 		}
@@ -596,7 +596,6 @@ public class SearchController extends BaseController{
 		String str = map.get("keywords")!=null?map.get("keywords")[0]:"";
 		List<String> escapedKw = new ArrayList<String>();
 		if(StringUtil.isBlank(str)){
-			escapedKw.add("(titleForIndex:*)");
 		}else{
 			String searchStr = ClientUtils.escapeQueryChars(str);
 			escapedKw.add("(titleForIndex:\""+searchStr+"\" description:\""+searchStr+"\" titleForIndex:"+searchStr+" description:"+searchStr+")");
@@ -642,7 +641,7 @@ public class SearchController extends BaseController{
 			escapedKw.add(" "+datequery);
 		}
 		
-		String searchString="";
+		String searchString="-titleForIndex:测试 -titleForIndex:lyltest0814";
 		for(String s:escapedKw){
 			searchString+="".equals(searchString)?s:" AND"+s;
 		}

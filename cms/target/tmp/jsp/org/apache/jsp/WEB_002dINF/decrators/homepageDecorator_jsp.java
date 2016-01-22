@@ -104,7 +104,9 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\";\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage\");\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage\");\r\n");
-      out.write("\tvar casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage\");\r\n");
+      out.write("\tvar casPath =encodeURI(\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\");\r\n");
       out.write("\tvar casBase = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casBase}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
@@ -143,7 +145,9 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\t<sitemesh:write property='body'/>\r\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/basic.css\">\r\n");
+      out.write("/resources/commons/css/basic.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("\t<sitemesh:write property='myScript'/>\r\n");
       out.write("</body>\r\n");
       out.write("</html> ");
@@ -226,7 +230,7 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
     _jspx_th_c_set_3.setPageContext(_jspx_page_context);
     _jspx_th_c_set_3.setParent(null);
     _jspx_th_c_set_3.setVar("casPath");
-    _jspx_th_c_set_3.setValue(new String("http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage"));
+    _jspx_th_c_set_3.setValue(new String("http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"));
     int _jspx_eval_c_set_3 = _jspx_th_c_set_3.doStartTag();
     if (_jspx_th_c_set_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
@@ -245,7 +249,7 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
     _jspx_th_c_set_4.setPageContext(_jspx_page_context);
     _jspx_th_c_set_4.setParent(null);
     _jspx_th_c_set_4.setVar("casBase");
-    _jspx_th_c_set_4.setValue(new String("http://101.200.0.81/cas"));
+    _jspx_th_c_set_4.setValue(new String("http://192.168.8.241/cas"));
     int _jspx_eval_c_set_4 = _jspx_th_c_set_4.doStartTag();
     if (_jspx_th_c_set_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_4);
@@ -264,7 +268,7 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
     _jspx_th_c_set_5.setPageContext(_jspx_page_context);
     _jspx_th_c_set_5.setParent(null);
     _jspx_th_c_set_5.setVar("imgPath");
-    _jspx_th_c_set_5.setValue(new String("http://101.200.0.81"));
+    _jspx_th_c_set_5.setValue(new String("http://192.168.8.241"));
     int _jspx_eval_c_set_5 = _jspx_th_c_set_5.doStartTag();
     if (_jspx_th_c_set_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_5);

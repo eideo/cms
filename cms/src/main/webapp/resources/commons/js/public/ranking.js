@@ -1,22 +1,27 @@
 /* 
-* @Author: zhanganchun
-* @Date:   2016-01-04 15:01:07
-* @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-19 14:48:20
-* @ 排行榜入口模块
-*/
+ * @Author: zhanganchun
+ * @Date:   2016-01-04 15:01:07
+ * @Last Modified by:   zhanganchun
+ * @Last Modified time: 2016-01-22 14:15:36
+ * @ 排行榜入口模块
+ */
 
 'use strict';
+
 define(function(require, exports, module) {
 
-	var positionAll = require('../../js/tagCloud')
-	var createPage = require('createPage')
+	var positionAll = require('../../js/tagCloud');
+
+	var createPage = require('createPage');
 
 	var hot = true;
+
 	var asc = true;
+
 	var tagIndex = 0;
 
 	var Chart = require('../../js/chart/chart');
+
 	var mapSetting = {
 		selector: '#map',
 		margin: {
@@ -32,6 +37,7 @@ define(function(require, exports, module) {
 	var mapReload = function(callback) {
 
 		Chart.addChinaMap('#map', function() {
+
 			if (callback) {
 
 				callback()
@@ -45,13 +51,16 @@ define(function(require, exports, module) {
 		$('#c_btn li').click(function() {
 
 			$('#c_btn li').removeClass('active');
+
 			$('.part').hide();
 
 			$(this).addClass('active');
+
 			ajaxChangeData();
 
-			console.log($("#c_btn").offset().top);
-			$("html, body").scrollTop(0).animate({scrollTop: $("#c_btn").offset().top});
+			$("html, body").scrollTop(0).animate({
+				scrollTop: $("#c_btn").offset().top
+			});
 		})
 
 		// li移入背景变色
@@ -83,14 +92,14 @@ define(function(require, exports, module) {
 
 	function toggleThis(parm) {
 
-		$(parm+' a').click(function() {
+		$(parm + ' a').click(function() {
 
-			if($(this).hasClass('active')){
+			if ($(this).hasClass('active')) {
 
 				$(this).removeClass('active')
-			}else{
+			} else {
 
-				$(parm+' a').removeClass('active');
+				$(parm + ' a').removeClass('active');
 				$(this).addClass('active');
 			}
 
@@ -112,56 +121,74 @@ define(function(require, exports, module) {
 		data.type = $("#c_btn .active").attr("type");
 
 		if ($(".areaType .active").attr("id")) {
+
 			data.areaCode = $(".areaType .active").attr("id");
 		}
 
 		if ($(".trade .active").attr("code")) {
+
 			data.industry = $(".trade .active").attr("code");
 		}
 
 		if ($(".time .active").attr("code")) {
+
 			data.circle = $(".time .active").attr("code");
 		}
 
 		if (hot) {
+
 			data.sort = 1;
 		} else {
+
 			data.sort = 0;
 		}
 
 		if (asc) {
+
 			data.asc = 1;
 		} else {
+
 			data.asc = 0;
 		}
 
 		ajaxAsync("post", path + "/getRanking", data, "json", function(datas) {
 
 			if (datas.status) {
+
 				$(".part" + data.type + " .rankinglist").html("");
 
 				var datalength = datas.rankingDatas.length < 20 ? datas.rankingDatas.length : 20;
+
 				window.allRankingDatas = datas.rankingDatas;
+
 				for (var i = 0; i < datalength; i++) {
+
 					var indexData = datas.rankingDatas[i];
 					var html = $("#partTemp" + data.type).html();
+
 					while (html.indexOf("{num}") != -1) {
+
 						html = html.replace("{num}", i + 1);
 					}
+
 					for (var key in indexData) {
+
 						while (html.indexOf("{" + key + "}") != -1) {
+
 							html = html.replace("{" + key + "}", indexData[key]);
 						}
 					}
+
 					html = exeStr(html);
 					$(".part" + data.type + " .rankinglist").append(html);
 				}
+
 				$(".part" + data.type).show();
 				$(".tcdPageCode").createPage({
 					pageCount: datas.num,
 					current: 1,
 					backFn: function(p) {
-						
+
 						changePage(p);
 					}
 				});
@@ -169,51 +196,72 @@ define(function(require, exports, module) {
 
 		}, function(data) {
 
-			//alert("非常抱歉，服务器发生错误，请联系管理员解决！");
 		});
 	}
 
 	function changePage(p) {
 
 		if (typeof allRankingDatas == "string") {
+
 			allRankingDatas = eval('(' + allRankingDatas + ')');
 		}
+
 		var last = allRankingDatas.length > p * 20 ? p * 20 : allRankingDatas.length;
+
 		var type = $("#c_btn .active").attr("type");
+
 		$(".part" + type + " .rankinglist").html("");
+
 		for (var i = (p - 1) * 20; i < last; i++) {
+
 			var indexData = allRankingDatas[i];
 			var html = $("#partTemp" + type).html();
+
 			while (html.indexOf("{num}") != -1) {
+
 				html = html.replace("{num}", i + 1);
 			}
 			for (var key in indexData) {
+
 				while (html.indexOf("{" + key + "}") != -1) {
+
 					html = html.replace("{" + key + "}", indexData[key]);
 				}
 			}
+
 			html = exeStr(html);
 			$(".part" + type + " .rankinglist").append(html);
 		}
 	}
 
 	function exeStr(html) {
+
 		while (html.indexOf("-[") != -1) {
+
 			var exeStr = html.substring(html.indexOf("-[") + 2, html.indexOf("]-"));
+
 			var value = "";
+
 			if (exeStr.indexOf(":") == 0) {
+
 				var exe = exeStr.split(":");
 				value = eval(exe[1]);
 			} else {
+
 				var exeStrArr = exeStr.split(";");
+
 				for (var i = 0; i < exeStrArr.length; i++) {
+
 					var exe = exeStrArr[i].split(":");
+
 					if (eval(exe[0])) {
+
 						value = exe[1];
 						break;
 					}
 				}
 			}
+
 			html = html.replace("-[" + exeStr + "]-", value);
 		}
 		return html;
@@ -229,6 +277,45 @@ define(function(require, exports, module) {
 		}
 	}
 
+	function goTop() {
+
+		$(window).scroll(function() {
+
+			if ($(window).scrollTop() > 200) {
+
+				$('#gotop').show();
+
+			} else {
+				$('#gotop').hide();
+			}
+		})
+		$('#gotop').click(function() {
+
+			$('body,html').animate({
+				scrollTop: 0
+			}, 300);
+		}).mouseover(function() {
+
+			$('#gotop i').hide();
+			$('#gotop span').show();
+		}).mouseout(function() {
+
+			$('#gotop i').show();
+			$('#gotop span').hide();
+		})
+	}
+
+	// 点击页码返回结果列表顶部
+	function pageClick() {
+
+		$('.tcdPageCode').on("click", "a", function() {
+
+			$("html, body").scrollTop(0).animate({
+				scrollTop: $(".ranking").offset().top - 30
+			});
+		})
+	}
+	
 	$(function() {
 
 		positionAll();
@@ -237,7 +324,7 @@ define(function(require, exports, module) {
 		bindClickOnleft();
 
 		pageClick();
-		
+
 		// $('#c_btn li').eq(0).click()
 		ajaxChangeData();
 
@@ -287,47 +374,21 @@ define(function(require, exports, module) {
 			window.location.href = path + '/search?keyword=' + word
 		})
 
-		$('.words a').on('click',function() {
+		$('.words a').on('click', function() {
 
 			window.location.href = path + '/search?keyword=' + $(this).html()
+		})
+
+
+		$('.linkResult a').live('click', function() {
+
+			console.log($(this))
+			$(this).css('color', '#333')
 		})
 
 		goTop();
 	})
 
-	function goTop() {
-		
-		$(window).scroll(function () {
 
-			if($(window).scrollTop() > 200) {
-
-				$('#gotop').show();
-				
-			}else {
-				$('#gotop').hide();
-			}	
-		})
-		$('#gotop').click(function () {
-
-			$('body,html').animate({scrollTop:0},300);
-		}).mouseover(function() {
-
-			$('#gotop i').hide();
-			$('#gotop span').show();
-		}).mouseout(function() {
-
-			$('#gotop i').show();
-			$('#gotop span').hide();
-		})
-	}
-
-	// 点击页码返回结果列表顶部
-	function pageClick() {
-
-		$('.tcdPageCode').on("click", "a", function() {
-
-			$("html, body").scrollTop(0).animate({scrollTop: $(".ranking").offset().top-30});
-		})
-	}
 	module.exports = '';
 })

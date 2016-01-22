@@ -9,7 +9,7 @@
     <meta name="keywords" content="采购与招标、关系网、排行榜、行业指数、行业报告 " />
     <meta name="description" content="数据对话,一触即发" />
 	<link rel="icon" href="${resPath}/resources/commons/images/top_icon_03.png" mce_href="${resPath}/resources/commons/images/top_icon_03.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css">
+	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 	<sitemesh:write property='myCss'/>
 	<%@include file="/common/base.jsp"%>
 </head>
@@ -88,11 +88,11 @@
 	</div>
 </div>
 </c:if>
-	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js?v=${projectversion}"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js?v=${projectversion}"></script>
 	<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
 	<!--<script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>-->
-	<script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js?v=${projectversion}"></script>
 	<sitemesh:write property='myScript'/>
 </body>
 </html> 

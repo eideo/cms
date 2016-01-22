@@ -7,10 +7,10 @@
 	<meta charset="UTF-8">
 	<title>搜索详情</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/detail.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/detail.css?v=${projectversion}">
 	</myCss>
 	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
 	</myScript>
 </head>
 <body>
@@ -46,7 +46,7 @@
 		<div class="detail">
 			${publishInfo.description}
 		</div>
-		<a class="img" href="<c:if test="${infoType=='xmxx'}">${appPath }/relation?name=${publishInfo.projectName}</c:if><c:if test="${infoType!='xmxx'}">javaScript:void(0);</c:if>"><img src="${resPath}/resources/commons/images/de_img.png"></a>
+		<a class="img" href="<c:if test="${infoType=='xmxx'}">${appPath }/relation?name=${publishInfo.projectName}</c:if><c:if test="${infoType!='xmxx'}">javaScript:void(0);</c:if>" target="_blank"><img src="${resPath}/resources/commons/images/de_img.png"></a>
 	</div>
 </div>
 

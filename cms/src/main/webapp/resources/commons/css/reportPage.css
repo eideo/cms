@@ -455,9 +455,9 @@
 	.hot li a:hover{
 		color: #0a8dff;
 	}
-	.hot li a:visited{
+/*	.hot li a:visited{
 		color: #ccc;
-	}
+	}*/
 }
 
 @media screen and (max-width: 1200px){
@@ -654,9 +654,9 @@
 	.hot li a:hover{
 		color: #0a8dff;
 	}
-	.hot li a:visited{
+/*	.hot li a:visited{
 		color: #ccc;
-	}
+	}*/
 	
 }
 

@@ -75,17 +75,17 @@ define(function(require, exports, module) {
 
 			$('.searchBox').val($(this).text());
 			ajaxSearch();
-			searchJump(".chartCon",0);
+			searchJump(".chartCon", 0);
 		});
 
-		var searchInput=document.getElementById('searchBox');
+		var searchInput = document.getElementById('searchBox');
 
-		searchInput.oninput=function(){
+		searchInput.oninput = function() {
 
-			if(this.value !='') {
+			if (this.value != '') {
 
 				$('.search i').show();
-			}else {
+			} else {
 
 				$('.search i').hide();
 			}
@@ -169,6 +169,80 @@ define(function(require, exports, module) {
 
 	}
 
+	function initChart(data) {
+
+		var dataArea = data[0].dataArea,
+			dataIndustry = data[0].dataIndustry,
+			dataTimeo = data[0].dataTimeo,
+			tagSeries = [],
+			arcSeries = [],
+			tempArray1 = [],
+			tempArray2 = [],
+			tempArray3 = [],
+			leftSeries = []
+
+		if (dataArea.length !== 0) {
+
+			dataArea.forEach(function(item) {
+
+				var temp = [item['area'], item['nums']];
+				tagSeries.push(temp);
+			})
+
+			tagSetting.series = tagSeries
+			SearchChart.rect(tagSetting)
+		}
+
+		if (dataIndustry.length !== 0) {
+
+			dataIndustry.forEach(function(item) {
+				var temp1 = {
+					name: item['industry'],
+					weight: 1,
+					value: item['nums']
+				}
+
+				arcSeries.push(temp1)
+			})
+
+			arcSetting.series = arcSeries
+			SearchChart.pieCircle(arcSetting)
+		}
+
+		if (dataTimeo.length !== 0) {
+
+
+			dataTimeo.forEach(function(item) {
+
+				var bid = {
+					time: item['time'],
+					value: item['bid']
+				}
+
+				var project = {
+					time: item['time'],
+					value: item['project']
+				}
+
+				var tender = {
+					time: item['time'],
+					value: item['tender']
+				}
+
+				tempArray1.push(project)
+				tempArray2.push(tender)
+				tempArray3.push(bid)
+			})
+
+			leftSeries.push(tempArray1)
+			leftSeries.push(tempArray2)
+			leftSeries.push(tempArray3)
+
+			leftSetting.series = leftSeries
+			SearchChart.brokeArea(leftSetting)
+		}
+	}
+
 	// 获取图表部分的数据，刷新图表
 	function getData() {
 
@@ -190,7 +264,6 @@ define(function(require, exports, module) {
 		for (var sj = 0; sj < term1Spans.length; sj++) {
 
 			typeArray.push(term1Spans.eq(sj).text())
-
 		}
 
 		if (term2Spans.length < 5) {
@@ -204,13 +277,11 @@ define(function(require, exports, module) {
 			for (var si = term2Spans.length; si > term2Spans.length - 6; si--) {
 
 				cityArray.push(term2Spans.eq(si).text())
-
 			}
 		}
 
-
 		for (var sk = 0; sk < term3Spans.length; sk++) {
-			
+
 			tradeArray.push(term3Spans.eq(sk).text())
 		}
 
@@ -221,104 +292,35 @@ define(function(require, exports, module) {
 		var parmStart = $('.innerTime .start').text(),
 			parmEnd = $('.innerTime .end').text()
 
-			timeStart = parmStart.substr(0, 4) + parmStart.substr(5, 2)
-			timeEnd = parmEnd.substr(0, 4) + parmEnd.substr(5, 2)
+		timeStart = parmStart.substr(0, 4) + parmStart.substr(5, 2)
+		timeEnd = parmEnd.substr(0, 4) + parmEnd.substr(5, 2)
 
 
-			$.ajax({
-				url: path + '/getsearchstatistics',
-				data: {
-					'type': typeString,
-					'keywords': word,
-					'area': cityString,
-					'industry': tradeString,
-					'startDate': timeStart,
-					'endDate': timeEnd
-				},
-				type: "POST",
-				dataType: "json",
-				success: function(data) {
-					
-					var dataArea = data[0].dataArea,
-						dataIndustry = data[0].dataIndustry,
-						dataTimeo = data[0].dataTimeo,
-						tagSeries = [],
-						arcSeries = [],
-						tempArray1 = [],
-						tempArray2 = [],
-						tempArray3 = [],
-						leftSeries = []
+		$.ajax({
+			url: path + '/getsearchstatistics',
+			data: {
+				'type': typeString,
+				'keywords': word,
+				'area': cityString,
+				'industry': tradeString,
+				'startDate': timeStart,
+				'endDate': timeEnd
+			},
+			type: "POST",
+			dataType: "json",
+			success: function(data) {
 
-					if (dataArea.length !==0 ) {
+				initChart(data)	
+			},
+			error: function() {
 
-						dataArea.forEach(function(item) {
+				$.Message({
+					text: '请求异常',
+					type: "failure"
+				})
 
-							var temp = [item['area'], item['nums']];
-							tagSeries.push(temp);
-						})
-
-						tagSetting.series = tagSeries
-						SearchChart.rect(tagSetting)
-					}
-					
-					if (dataIndustry.length !==0 ) {
-
-						dataIndustry.forEach(function(item) {
-							var temp1 = {
-								name: item['industry'],
-								weight: 1,
-								value: item['nums']
-							}
-
-							arcSeries.push(temp1)
-						})
-
-						arcSetting.series = arcSeries
-						SearchChart.pieCircle(arcSetting)
-					}
-
-					if (dataTimeo.length !==0 ) {
-
-					
-						dataTimeo.forEach(function(item) {
-
-							var bid = {
-								time: item['time'],
-								value: item['bid']
-							}
-
-							var project = {
-								time: item['time'],
-								value: item['project']
-							}
-
-							var tender = {
-								time: item['time'],
-								value: item['tender']
-							}
-
-							tempArray1.push(project)
-							tempArray2.push(tender)
-							tempArray3.push(bid)
-						})
-
-						leftSeries.push(tempArray1)
-						leftSeries.push(tempArray2)
-						leftSeries.push(tempArray3)
-
-						leftSetting.series = leftSeries
-						SearchChart.brokeArea(leftSetting)
-					}			
-				},
-				error: function() {
-
-					$.Message({
-						text:'请求异常',
-						type:"failure"
-					})
-					
-				}
-			})
+			}
+		})
 	}
 	// 搜索ajax
 
@@ -326,8 +328,7 @@ define(function(require, exports, module) {
 
 		if (!p) {
 
-			getData();
-			refreshLikewords();
+			refreshLikewords();	
 		}
 
 		//获取搜索条件、
@@ -382,18 +383,16 @@ define(function(require, exports, module) {
 
 				if (datas.listIndex.length === 0) {
 
-					$.Message({
-						text:"没有相关数据",
-						type:"failure"
-					})
-
-					var imgError = path+'/resources/commons/images/searchError.png';
-
-					$('#list').html('<img src="'+path+'/resources/commons/images/searchError.png'+'" style="margin:100px auto"/>')
+					$('.chartCon').hide();
+					var imgError = path + '/resources/commons/images/searchError.png';
+					$('#list').html('<img src="' + path + '/resources/commons/images/searchError.png' + '" style="margin:100px auto"/>')
 					$(".tcdPageCode").hide()
-				}else {
+				} else {
 
-					$(".tcdPageCode").show();
+					$('.chartCon').show();
+					$(".tcdPageCode").show()
+
+					getData();
 				}
 
 
@@ -403,7 +402,7 @@ define(function(require, exports, module) {
 					var html = $("#listTemp").html();
 					if (indexData.projectName) {
 
-						html = html.replace("{projectName}", "?name=" + indexData.projectName);
+						html = html.replace("{projectName}", "?name=" + indexData.projectName+"&&type=project");
 					} else {
 
 						html = html.replace("{projectName}", "");
@@ -415,10 +414,12 @@ define(function(require, exports, module) {
 							html = html.replace("{indexInfo." + key + "}", indexData[key]);
 						}
 					}
-					removeLink();
-
+					
 					$(".resultList").append(html);
 				}
+
+				removeLink();
+
 				if (!p) {
 
 					$("#num_span").text(datas.count);
@@ -466,10 +467,10 @@ define(function(require, exports, module) {
 
 			$.Message({
 
-				text:'非常抱歉，服务器发生错误',
-				type:'failure'
-			})
-			//alert("非常抱歉，服务器发生错误，请联系管理员解决！");
+					text: '非常抱歉，服务器发生错误',
+					type: 'failure'
+				})
+				//alert("非常抱歉，服务器发生错误，请联系管理员解决！");
 		});
 	}
 
@@ -485,7 +486,7 @@ define(function(require, exports, module) {
 			$('.Checktime').hide();
 
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 			checkLimit();
 		})
 
@@ -497,7 +498,7 @@ define(function(require, exports, module) {
 			$('.term1').hide();
 
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 			checkLimit();
 		})
 		$('#anyRegion').on("click", function() {
@@ -508,7 +509,7 @@ define(function(require, exports, module) {
 			$('.term2').hide();
 
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 			checkLimit();
 		})
 		$('#anyIndustry').on("click", function() {
@@ -519,7 +520,7 @@ define(function(require, exports, module) {
 			$('.term3').hide();
 
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 			checkLimit();
 		})
 
@@ -540,19 +541,19 @@ define(function(require, exports, module) {
 
 		$('#tradeBox .more').click(function() {
 
-			if ($(".liHidden").css("display") == "none") {
+				if ($(".liHidden").css("display") == "none") {
 
-				$(".liHidden").show();
-				$(this).addClass('active');
-				$(this).find('em').addClass('active');
-			} else {
+					$(".liHidden").show();
+					$(this).addClass('active');
+					$(this).find('em').addClass('active');
+				} else {
 
-				$(".liHidden").hide();
-				$(this).removeClass('active');
-				$(this).find('em').removeClass('active');
-			}
-		})
-		// 行业二级菜单
+					$(".liHidden").hide();
+					$(this).removeClass('active');
+					$(this).find('em').removeClass('active');
+				}
+			})
+			// 行业二级菜单
 		$('#dtrade li').mouseover(function() {
 
 			$(this).find('p').show();
@@ -622,8 +623,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'最多同时选择5个地区',
-						type:'failure'
+						text: '最多同时选择5个地区',
+						type: 'failure'
 					})
 					return;
 				}
@@ -679,8 +680,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'最多同时选择5个地区',
-						type:'failure'
+						text: '最多同时选择5个地区',
+						type: 'failure'
 					})
 					return;
 				}
@@ -766,7 +767,7 @@ define(function(require, exports, module) {
 			}
 
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 		})
 
 		//点击二级行业，添加搜索条件
@@ -806,8 +807,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'最多同时选择5个行业',
-						type:'failure'
+						text: '最多同时选择5个行业',
+						type: 'failure'
 					})
 					return;
 				}
@@ -891,7 +892,7 @@ define(function(require, exports, module) {
 				$('.term3').show();
 			}
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 		})
 
 		//点击一级行业
@@ -920,10 +921,10 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'最多同时选择5个行业',
-						type:'failure'
+						text: '最多同时选择5个行业',
+						type: 'failure'
 					})
-					
+
 					return;
 				}
 
@@ -983,7 +984,7 @@ define(function(require, exports, module) {
 			$('#opTime li:contains("' + text + '")').removeClass("active");
 			$(this).remove();
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 
 			if ($('.Checktime span').length == 0) {
 
@@ -1050,7 +1051,7 @@ define(function(require, exports, module) {
 			$('#opType li:contains("' + text + '")').removeClass("active");
 			$(this).remove();
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 
 			if ($('.term1 span').length == 0) {
 
@@ -1077,7 +1078,7 @@ define(function(require, exports, module) {
 		$('.searchTerms').on("click", "li", function() {
 
 			ajaxSearch();
-			searchJump(".hr",0);
+			searchJump(".hr", 0);
 		});
 
 
@@ -1085,7 +1086,7 @@ define(function(require, exports, module) {
 		$('.searchBtn').click(function() {
 
 			ajaxSearch();
-			searchJump(".chartCon",0);
+			searchJump(".chartCon", 0);
 		})
 
 		// 按回车键搜索
@@ -1095,7 +1096,7 @@ define(function(require, exports, module) {
 			if (ev.keyCode == 13) {
 
 				ajaxSearch();
-				searchJump(".chartCon",0);
+				searchJump(".chartCon", 0);
 			}
 		}
 	}
@@ -1131,8 +1132,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'请求异常！',
-						type:'failure'
+						text: '请求异常！',
+						type: 'failure'
 					})
 				}
 			} else {
@@ -1155,8 +1156,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'请求异常！',
-						type:'failure'
+						text: '请求异常！',
+						type: 'failure'
 					})
 				}
 			}
@@ -1189,8 +1190,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'请求异常！',
-						type:'failure'
+						text: '请求异常！',
+						type: 'failure'
 					})
 				}
 			} else {
@@ -1213,8 +1214,8 @@ define(function(require, exports, module) {
 
 					$.Message({
 
-						text:'请求异常！',
-						type:'failure'
+						text: '请求异常！',
+						type: 'failure'
 					})
 				}
 			}
@@ -1236,61 +1237,65 @@ define(function(require, exports, module) {
 
 	// 招中标关系网不能跳转链接
 	function removeLink() {
-		$('.bid').each(function(){
+		$('.bid').each(function() {
 
 			var type = $(this).text();
-			if(type === "招标" || type === "中标"){
+			if (type === "招标" || type === "中标" || type === "采购") {
 
 				$(this).parent().parent().parent().find('.rpage').addClass('rno');
 				$(this).parent().parent().parent().find('.rpage').removeAttr('href');
-			}	
+			}
 		})
 	}
 
 	// 搜索锚点
-	function searchJump(oClass,distance) {
+	function searchJump(oClass, distance) {
 
-			$("html, body").scrollTop(0).animate({scrollTop: $(oClass).offset().top+distance});
+		$("html, body").scrollTop(0).animate({
+			scrollTop: $(oClass).offset().top + distance
+		});
 	}
 
 	// url传递默认条件
-	function urlOption(){
+	function urlOption() {
 
-		var urlParameter =Tool.getUrlArgs(document.getElementById('getUrlArgs'));
+		var urlParameter = Tool.getUrlArgs(document.getElementById('getUrlArgs'));
 
-		if(urlParameter['industryId']){
+		if (urlParameter['industryId']) {
 
 			$('.termBox').show();
 			$('.term3').show();
 			$('#anyIndustry').removeClass('active');
-			var pid= urlParameter['industryId'];
+			var pid = urlParameter['industryId'];
 
-			if(pid==2113||pid==2114||pid==2115){
+			if (pid == 2113 || pid == 2114 || pid == 2115) {
 
 				$('.liHidden').show();
 				$('#more').addClass('active');
 			}
 
-			var theSpan=$("'.trade li[id='"+pid+"']'").find('span');
+			var theSpan = $("'.trade li[id='" + pid + "']'").find('span');
 			theSpan.addClass('active');
-			$('<span></span>').attr('rid',pid).appendTo('#term3').text(theSpan.text());
+			$('<span></span>').attr('rid', pid).appendTo('#term3').text(theSpan.text());
 		}
 
 	}
 
 	function goTop() {
-		$(window).scroll(function () {
+		$(window).scroll(function() {
 
-			if($(window).scrollTop() > 200) {
+			if ($(window).scrollTop() > 200) {
 
 				$('#gotop').show();
-			}else {
+			} else {
 				$('#gotop').hide();
-			}	
+			}
 		})
-		$('#gotop').click(function () {
+		$('#gotop').click(function() {
 
-			$('body,html').animate({scrollTop:0},300);
+			$('body,html').animate({
+				scrollTop: 0
+			}, 300);
 		}).mouseover(function() {
 
 			$('#gotop i').hide();
@@ -1307,7 +1312,9 @@ define(function(require, exports, module) {
 
 		$('.tcdPageCode').on("click", "a", function() {
 
-			$("html, body").scrollTop(0).animate({scrollTop: $(".result").offset().top-30});
+			$("html, body").scrollTop(0).animate({
+				scrollTop: $(".result").offset().top - 30
+			});
 		})
 	}
 

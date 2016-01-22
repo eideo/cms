@@ -5,8 +5,8 @@
 	<meta charset="UTF-8">
 	<title>网站导航</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/Aboutbasic.css?v=1.0.1-20151229">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/copyright.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/Aboutbasic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/copyright.css?v=${projectversion}">
 	</myCss>
 </head>
 <body>
@@ -269,7 +269,7 @@
 	</div>
 	<myScript>
 		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/jquery-1.7.2.min.js"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/copyright.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/copyright.js?v=${projectversion}"></script>
 		<script type="text/javascript">
 		$(function(){
 			$(window.location.hash).click();

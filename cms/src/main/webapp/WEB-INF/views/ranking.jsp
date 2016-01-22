@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>排行榜</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ranking.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ranking.css?v=${projectversion}">
 	</myCss>
 
 </head>
@@ -259,10 +259,10 @@
 </script>
 
 	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
 		<script type="text/javascript">
 		// 入口模块
 		seajs.use("${resPath}/resources/commons/js/public/ranking")

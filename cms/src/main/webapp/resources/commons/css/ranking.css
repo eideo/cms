@@ -28,9 +28,9 @@ input
 {
     background: url(../images/icon1229.png) no-repeat -381px -322px;
 }
-.rankinglist a:visited{
-    color: #ccc;
-}
+/*.rankinglist a:visited{
+    color: #5e5e5e;
+}*/
 @media screen and (min-width: 1200px){
     /*内容*/
     .content

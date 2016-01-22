@@ -3,8 +3,8 @@
 <head>
     <title>首页</title>  
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=1.0.1-20151229">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/index.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/index.css?v=${projectversion}">
 	</myCss>
 </head>
 <body> 
@@ -72,7 +72,9 @@
 			</c:if>
 			<ul class="user-info clearfix">
 				<c:if test="${not empty username}">
-					<li><a href="javascript:;" target="_blank">欢迎您，${username }</a></li>
+					<li class="username">
+						<a href="javascript:;" target="_blank">欢迎您，${username }</a>
+					</li>
 					<li>|</li>
 					<li><a href="${appPath}/personal/information" target="_blank">个人中心</a></li>
 					<li>|</li>
@@ -108,8 +110,8 @@
 		</div>
 	<myScript>
 	    <script src="${resPath}/resources/commons/js/jquery-1.7.2.min.js"></script>
-	     <script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
-		 <script src="${resPath}/resources/commons/js/index.js?v=1.0.1-20151229"></script>
+	     <script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+		 <script src="${resPath}/resources/commons/js/index.js?v=${projectversion}"></script>
 	</myScript>
 		
 </body>

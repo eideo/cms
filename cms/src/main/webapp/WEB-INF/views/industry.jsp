@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<title>行业指数</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=1.0.1-20151229">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/industry.css?v=1.0.1-20151229">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/lib/calendar.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/industry.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/lib/calendar.css?v=${projectversion}">
 	</myCss>
 </head>
 <body>
@@ -194,8 +194,8 @@
 			var startDate="${startDate}";
 			var endDate="${endDate}";
 		</script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
 		<script type="text/javascript">
 		// 入口模块
 		seajs.use("${resPath}/resources/commons/js/public/industry")

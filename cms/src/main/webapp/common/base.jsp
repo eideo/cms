@@ -8,10 +8,10 @@
 <%-- <c:set var="resPath" value="http://101.200.0.81/cms"/> --%>
  <c:set var="resPath" value="http://192.168.8.122:8080"/>
  <%--  <c:set var="casPath" value="http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage"/>--%>
-  <c:set var="casPath" value="http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage"/>
+  <c:set var="casPath" value="http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"/>
 <%--  <c:set var="casPath" value="http://192.168.8.133:9080/login?service=http://192.168.8.129:8080/homepage"/>--%>
-  <c:set var="casBase" value="http://101.200.0.81/cas"/>
-<c:set var="imgPath" value="http://101.200.0.81" />
+  <c:set var="casBase" value="http://192.168.8.241/cas"/>
+<c:set var="imgPath" value="http://192.168.8.241" />
 
 <!-- [if Ite IE8]>
 <script type="text/javascript" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>
@@ -22,7 +22,7 @@
 	var path = "${resPath}";
 	//var casPath =encodeURI("http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage");
 	//var casPath =encodeURI("http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage");
-	var casPath =encodeURI("http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage");
+	var casPath =encodeURI("${casPath}");
 	var casBase = "${casBase}";
 	function logout(){
 		$.ajax({

@@ -740,9 +740,9 @@
 	.hot li a:hover{
 		color: #0a8dff;
 	}
-	.hot li a:visited{
+/*	.hot li a:visited{
 		color: #ccc;
-	}
+	}*/
 	/*·ÖÒ³*/
 	.paging{
 		width: 890px;	
@@ -1238,9 +1238,9 @@
 	.hot li a:hover{
 		color: #0a8dff;
 	}
-	.hot li a:visited{
+/*	.hot li a:visited{
 		color: #ccc;
-	}
+	}*/
 	/*·ÖÒ³*/
 	.paging{
 		width: 680px;	

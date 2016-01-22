@@ -5,8 +5,8 @@
 	<meta charset="UTF-8">
 	<title>行业报告</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=1.0.1-20151229">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=${projectversion}">
 	</myCss>
 </head>
 <body>
@@ -174,10 +174,10 @@
 		</li>
 	</script>
 	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=${projectversion}"></script>
 		<script type="text/javascript">
 			var resPath = "${resPath}";
 			$(".tcdPageCode").createPage({

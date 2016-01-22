@@ -102,4 +102,12 @@ $(function() {
 
 	imgArr();
 	searchHint();
+
+	$('#seachInput').mouseover(function() {
+
+		$('.search button').addClass('on');
+	}).mouseout(function() {
+
+	$('.search button').removeClass('on');
+	})
 })

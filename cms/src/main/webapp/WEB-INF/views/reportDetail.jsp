@@ -6,14 +6,14 @@
 	<meta charset="UTF-8">
 	<title>行业报告详情页</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=1.0.1-20151229">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/reportPage.css?v=1.0.1-20151229">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/reportPage.css?v=${projectversion}">
 	</myCss>
 	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/reportPage.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=1.0.1-20151229"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=1.0.1-20151229"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/reportPage.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
 		<script type="text/javascript">
 			var resPath = "${resPath}";
 		</script>

@@ -1,8 +1,10 @@
 package com.sbiao360.cms.web;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,6 +12,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jasig.cas.client.util.AssertionHolder;
+import org.jasig.cas.client.validation.Assertion;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -244,7 +248,7 @@ public class MemberInfoController extends BaseController{
             public Long doInRedis(RedisConnection connection)  
                     throws DataAccessException {  
                 byte[] keyb = ("checkpass"+pd).getBytes();  
-                byte[] valueb = memberInfo.getId().getBytes();  
+                byte[] valueb = toByteArray(memberInfo.getId());  
                 connection.set(keyb, valueb);  
                 connection.expire(keyb, 300);  
                 return 1L;  
@@ -254,6 +258,12 @@ public class MemberInfoController extends BaseController{
 		request.setAttribute("notSearch", "true");
 		return "resetPwd";
 	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping({"updatePass"})
 	public void updatePass(HttpServletRequest request, HttpServletResponse response){
 		String pass = request.getParameter("password");
@@ -272,8 +282,13 @@ public class MemberInfoController extends BaseController{
   
             }  
         }); 
-        if(object==null){
-        	 ajaxJson("{status:\"true\"}", response);
+        Assertion assertion = AssertionHolder.getAssertion();
+        String nowid = ""; 
+		if(assertion!=null){
+			nowid = (String) assertion.getPrincipal().getAttributes().get("id");
+		}
+        if(object==null||object.equals(nowid)||"".equals(nowid)){
+        	 ajaxJson("{status:\"false\"}", response);
         }
         MemberInfo memberInfo = new MemberInfo();
         memberInfo.setId((String) object);
@@ -282,6 +297,7 @@ public class MemberInfoController extends BaseController{
         memberInfoService.updatePass(memberInfo);
         ajaxJson("{status:\"true\"}", response);
 	}
+	
 	 /** 
      * 描述 : <byte[]转Object>. <br> 
      * <p> 
@@ -305,5 +321,31 @@ public class MemberInfoController extends BaseController{
             ex.printStackTrace();  
         }  
         return obj;  
+    }  
+    
+
+    /** 
+     * 描述 : <Object转byte[]>. <br> 
+     * <p> 
+     * <使用方法说明> 
+     * </p> 
+     *  
+     * @param obj 
+     * @return 
+     */  
+    private byte[] toByteArray(Object obj) {  
+        byte[] bytes = null;  
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();  
+        try {  
+            ObjectOutputStream oos = new ObjectOutputStream(bos);  
+            oos.writeObject(obj);  
+            oos.flush();  
+            bytes = bos.toByteArray();  
+            oos.close();  
+            bos.close();  
+        } catch (IOException ex) {  
+            ex.printStackTrace();  
+        }  
+        return bytes;  
     }  
 }

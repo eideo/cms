@@ -27,7 +27,7 @@
         <init-param>    
             <param-name>casServerLoginUrl</param-name>    
            <!--  <param-value>http://101.200.0.81:8080/cas/login</param-value>   -->  
-            <param-value>http://101.200.0.81/cas/login</param-value>    
+            <param-value>http://192.168.8.241/cas/login</param-value>    
             <!--这里的server是服务端的IP -->    
         </init-param>    
         <init-param>    
@@ -51,7 +51,7 @@
         <init-param>    
             <param-name>casServerUrlPrefix</param-name>    
              <!--  <param-value>http://101.200.0.81:8080/cas</param-value>   -->
-            <param-value>http://101.200.0.81/cas</param-value>    
+            <param-value>http://192.168.8.241/cas</param-value>    
         </init-param>    
         <init-param>    
             <param-name>serverName</param-name>    

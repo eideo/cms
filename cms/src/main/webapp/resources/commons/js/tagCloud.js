@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-10 15:54:04
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-12 10:50:12
+ * @Last Modified time: 2016-01-22 14:42:48
  */
 
 
@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 	var lasta = 1;
 	var lastb = 1;
 	var distr = true;
-	var tspeed = 5;
+	var tspeed = 1;
 	var size = 200;
 
 	var mouseX = 0;
@@ -52,11 +52,11 @@ define(function(require, exports, module) {
 		positionAll();
 
 		oDiv.onmouseover = function() {
-			active = true;
+			active = false;
 		};
 
 		oDiv.onmouseout = function() {
-			active = false;
+			active = true;
 		};
 
 		oDiv.onmousemove = function(ev) {
@@ -69,7 +69,7 @@ define(function(require, exports, module) {
 			mouseY /= 5;
 		};
 
-		setInterval(update, 30);
+		setInterval(update, 50);
 	});
 
 	function update() {

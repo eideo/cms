@@ -8,6 +8,8 @@ $(function() {
 	emailSubmit();
 
 	phoneSubmit();
+
+	passwordSubmit();
 })
 
 function tab() {
@@ -21,18 +23,19 @@ function tab() {
 
 	$('.emailBtn').click(function() {
 
-		$('.sign i').animate({"left":"0"});
+		$('.sign i').animate({"left":"110"});
 	})
 	$('.phoneBtn').click(function() {
 
-		$('.sign i').animate({"left":"110"});
+		$('.sign i').animate({"left":"0"});
 	})
 }
 
 var emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
 var phoneReg = /^1[3|4|5|8][0-9]\d{8}$/;
+var passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
 
-// 用户名验证
+// 验证
 function verification() {
 
 	$('#email').blur(function () {
@@ -57,6 +60,17 @@ function verification() {
 
 	    phoneCodeVerification();
 	});
+
+	$('#password').blur(function () {
+
+		passwordVerification();
+	})
+
+	$('#repassword').blur(function () {
+
+		repasswordVerification();
+	})
+
 }
 
 function userVerification(inputId,reg,box) {
@@ -162,6 +176,45 @@ function codeVerification() {
 	return result;
 }
 
+function passwordVerification() {
+
+	var result = true;
+
+	if($('#password').val() == '') {
+
+		$('.passwordBox .error').text('用户名不能为空');
+		result = false
+	}else {
+
+		if(passwordReg.test($('#password').val())) {
+
+			$('.passwordBox .error').text('');
+			result = true;
+		}else {
+
+			$('.passwordBox .error').text('密码格式不正确');
+			result = false;
+		}
+	}
+	return result;
+}
+
+function repasswordVerification() {
+
+	var result =true;
+	if($('#repassword').val() != $('#password').val()) {
+
+		$('.rePasswordBox .error').text('两次输入密码不一致');
+		result = false
+	}else {
+
+		$('.rePasswordBox .error').text('');
+		result =true;
+	}
+	console.log(result);
+	return result
+
+}
 // 提交验证
 
 function emailSubmit() {
@@ -198,6 +251,24 @@ function phoneSubmit() {
 	})
 }
 
+function passwordSubmit() {
+
+	$('#changeBtn').click(function() {
+
+		console.log(passwordVerification());
+		if(!passwordVerification()) {
+
+			return false
+		}
+
+		console.log(repasswordVerification());
+		if(!repasswordVerification()){
+
+			return false
+		}
+		setPassword();		
+	})
+}
 // 获取短信验证码
 function getPhoneCode() {
 
@@ -256,7 +327,10 @@ function phoneCodeVerification() {
 			},
 			error:function(e) {
 
-				alert('错误:'+e);
+				$.Message({
+					text:'请求异常',
+					type:"failure"
+				})
 				result = false;
 			}
 		});
@@ -268,4 +342,32 @@ function phoneCodeVerification() {
 
 
 // 修改密码
+function setPassword() {
+
+	$.ajax({
+		url:path+'/updatePass',
+		dataType:'text',
+		async:false,
+		type:'post',
+		data:{
+			password:$('#repassword').val(),
+			uuid:$('#uuid').val()
+		},
+		success:function (data) {
+			$.Message({
+				text:'修改成功'
+			})
+
+			location.href = casPath;
+		},
+		error:function() {
+
+			$.Message({
+				text:'请求异常',
+				type:"failure"
+			})
+		}
+	})
+}
+
 

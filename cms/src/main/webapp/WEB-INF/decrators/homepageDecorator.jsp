@@ -15,7 +15,7 @@
 </head>
 <body>
 	<sitemesh:write property='body'/>
-	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css">
+	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 	<sitemesh:write property='myScript'/>
 </body>
 </html> 

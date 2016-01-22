@@ -56,7 +56,7 @@ public class ExponentController extends BaseController{
 		}
 		Map<String, Object> map = exponentService.getDateRange();
 		request.setAttribute("notSearch", "true");
-		request.setAttribute("startDate", map.get("startDate"));
+		request.setAttribute("startDate", "2012-01-01");
 		Date d = new Date();
 		d.setDate(0);
 		request.setAttribute("endDate", DateTime.toDate("yyyy-MM-dd",d));
