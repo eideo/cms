@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-13 11:47:12
+ * @Last Modified time: 2016-01-25 14:48:29
  */
 
 'use strict';
@@ -1176,7 +1176,7 @@ define(function(require, exports, module) {
 			.attr("class", "content")
 			.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-		d3.json(path + '/resources/json/china.json', function(data) {
+		$.getJSON(path + '/resources/json/china.json', function(data) {
 
 			var json = data
 			//绘制中国地图

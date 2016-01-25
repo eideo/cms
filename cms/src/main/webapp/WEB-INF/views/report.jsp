@@ -7,6 +7,7 @@
 	<myCss>
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=${projectversion}">
+		<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
 	</myCss>
 </head>
 <body>
@@ -189,10 +190,6 @@
 		    });
 		</script>
 	</myScript>
-	<script>
-	window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};
-	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-	</script>
 	<%@include file="dialogLogin/loginDialog.jsp"%>
 </body>
 </html>

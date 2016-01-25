@@ -109,11 +109,6 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!-- [if Ite IE8]>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
-      out.write("<![endif]-->\r\n");
-      out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -156,6 +151,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("/resources/commons/css/report.css?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">\r\n");
+      out.write("\t\t<script src=\"//cdn.bootcss.com/respond.js/1.4.2/respond.js\"></script>\r\n");
       out.write("\t</myCss>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
@@ -317,10 +313,6 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t    });\r\n");
       out.write("\t\t</script>\r\n");
       out.write("\t</myScript>\r\n");
-      out.write("\t<script>\r\n");
-      out.write("\twindow._bd_share_config={\"common\":{\"bdSnsKey\":{},\"bdText\":\"\",\"bdMini\":\"2\",\"bdPic\":\"\",\"bdStyle\":\"0\",\"bdSize\":\"16\"},\"share\":{}};\r\n");
-      out.write("\twith(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];\r\n");
-      out.write("\t</script>\r\n");
       out.write("\t");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");

@@ -1100,9 +1100,10 @@
 			</li>
 </script>
 
-	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
-	</myScript>
+<myScript>
+<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+</myScript>
 <%@include file="dialogLogin/loginDialog.jsp"%>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>

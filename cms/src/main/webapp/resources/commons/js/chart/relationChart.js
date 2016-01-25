@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-12-22 09:10:01
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-22 10:35:37
+ * @Last Modified time: 2016-01-25 17:20:50
  */
 
 'use strict';
@@ -132,9 +132,9 @@ define(function(require, exports, module) {
 			typeChinese = '单位'
 		}
 
-		if ($('.tip_project').hide() ) {
+		if ($('.tipWrapper').css('display') === 'none') {
 
-			$('.tip_project').show();
+			$('.tipWrapper').show();
 		}
 
 		$('.tip_project').css('background',backColor[type]);
@@ -168,8 +168,14 @@ define(function(require, exports, module) {
 
 		} else if (type === 'project') {
 
+			var xmName = data.name
+			if (xmName.length >28) {
+
+				xmName = xmName.substr(0,28)
+			}
+
 			var ul = $('<ul></ul>')
-				.append('<li class="info">项目名称：' + data.name + '</li>')
+				.append('<li class="info">' + xmName + '</li>')
 				.appendTo($('.tip_project .tipCon'))
 
 			getRelevantInfo(d['name'],d['dataId'],function(data) {
@@ -177,9 +183,11 @@ define(function(require, exports, module) {
 				var zbxx = data.zbxx,
 					zbgs = data.zbgs,
 					zbTitle,
+					zbId,
+					gsId,
 					gsTitle,
-					zbCon = $('.tip_zhaobiao .tipCon ul li').eq(0),
-					gsCon = $('.tip_zhongbiao .tipCon ul li').eq(0)
+					zbCon = $('.tip_zhaobiao .tipCon ul'),
+					gsCon = $('.tip_zhongbiao .tipCon ul')
 			
 				gsCon.css('text-align','left');
 				zbCon.css('text-align','left');
@@ -191,7 +199,7 @@ define(function(require, exports, module) {
 				} else {
 
 					zbTitle = zbxx[0]['title']
-
+					zbId = zbxx[0]['id']
 					if (zbTitle.length > 28) {
 
 						zbTitle = zbTitle.substr(0,28)
@@ -202,9 +210,11 @@ define(function(require, exports, module) {
 
 					gsTitle = '暂无信息'
 					gsCon.css('text-align','center')
+
 				} else {
 
 					gsTitle = zbgs[0]['title']
+					gsId = zbgs[0]['id']
 
 					if (gsTitle.length >28) {
 
@@ -213,8 +223,8 @@ define(function(require, exports, module) {
 			
 				}
 
-				zbCon.html(zbTitle)
-				gsCon.html(gsTitle)
+				zbCon.html("<a href='"+path+"/detail/"+zbId+"' target='_blank'><li>"+zbTitle+"</li></a>")
+				gsCon.html("<a href='"+path+"/detail/"+gsId+"' target='_blank'><li>"+gsTitle+"</li></a>")
 			})
 
 			if ($('.tip_zhaobiao').hide()) {

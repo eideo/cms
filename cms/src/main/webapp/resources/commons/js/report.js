@@ -94,8 +94,13 @@ function searchHint() {
 
 	$('.searchBtn').on("click", function() {
 
-		searchReport();
-		$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+		if($('.searchBox').val() == ''){
+			$('.searchBox').focus();
+		}else {
+
+			searchReport();
+			$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+		}
 	});
 
 	// 按回车键搜索

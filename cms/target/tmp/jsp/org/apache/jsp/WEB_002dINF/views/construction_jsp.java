@@ -93,11 +93,6 @@ public final class construction_jsp extends org.apache.jasper.runtime.HttpJspBas
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!-- [if Ite IE8]>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
-      out.write("<![endif]-->\r\n");
-      out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -162,12 +157,7 @@ public final class construction_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("<myScript>   \r\n");
       out.write("<script type=\"text/javascript\" src=\"http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></script>\r\n");
-      out.write("<script type=\"text/javascript\">\r\n");
-      out.write("    $(function() {\r\n");
-      out.write("       $('.search').hide(); \r\n");
-      out.write("    })\r\n");
-      out.write("</script>    \r\n");
+      out.write("\"></script>    \r\n");
       out.write("</myScript>\r\n");
       out.write("</body>\r\n");
       out.write("</html>");

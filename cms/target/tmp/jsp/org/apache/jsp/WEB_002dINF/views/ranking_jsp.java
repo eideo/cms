@@ -99,11 +99,6 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!-- [if Ite IE8]>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
-      out.write("<![endif]-->\r\n");
-      out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -403,6 +398,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</script>\r\n");
       out.write("\r\n");
       out.write("\t<myScript>\r\n");
+      out.write("\t\t<script src=\"//cdn.bootcss.com/d3/3.5.12/d3.js\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/custBehavior.js?v=");

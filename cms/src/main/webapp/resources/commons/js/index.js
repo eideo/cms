@@ -13,6 +13,7 @@ function imgArr() {
 	var index = $('.on').index()
 
 	$('.imgBox ol li').click(function() {
+
 		tab($(this).index() - 1);
 	})
 
@@ -109,5 +110,10 @@ $(function() {
 	}).mouseout(function() {
 
 	$('.search button').removeClass('on');
+	})
+
+	$('.search button').click(function() {
+
+		$('#seachInput').focus();
 	})
 })

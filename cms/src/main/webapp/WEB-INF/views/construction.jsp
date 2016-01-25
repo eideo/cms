@@ -27,12 +27,7 @@
     </div>
 </div>
 <myScript>   
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=${projectversion}"></script>
-<script type="text/javascript">
-    $(function() {
-       $('.search').hide(); 
-    })
-</script>    
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=${projectversion}"></script>    
 </myScript>
 </body>
 </html>

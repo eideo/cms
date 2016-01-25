@@ -116,11 +116,6 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!-- [if Ite IE8]>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
-      out.write("<![endif]-->\r\n");
-      out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -212,8 +207,6 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("/resources/commons/js/lib/message.js?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"></script>\r\n");
-      out.write("\t<script src=\"//cdn.bootcss.com/d3/3.5.12/d3.js\"></script>\r\n");
-      out.write("\t<!--<script type=\"text/javascript\" src=\"http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js\"></script>-->\r\n");
       out.write("\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/ajaxCommon.js?v=");
@@ -438,11 +431,6 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
         out.write("\" placeholder=\"请输入您要搜索的内容\">\r\n");
         out.write("\t\t\t\t<input type=\"button\" class=\"searchBtn\">\r\n");
         out.write("\t\t\t\t<ul class=\"prompt\">\r\n");
-        out.write("\t\t\t\t\t<li>提示1</li>\r\n");
-        out.write("\t\t\t\t\t<li>提示2</li>\r\n");
-        out.write("\t\t\t\t\t<li>提示3</li>\r\n");
-        out.write("\t\t\t\t\t<li>提示4</li>\r\n");
-        out.write("\t\t\t\t\t<li>提示5</li>\r\n");
         out.write("\t\t\t\t</ul>\r\n");
         out.write("\t\t\t\t<i></i>\r\n");
         out.write("\t\t\t</div>\r\n");

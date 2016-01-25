@@ -190,6 +190,7 @@
 	</div>
 </div>
 	<myScript>
+		<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
 		<script type="text/javascript" >
 			var startDate="${startDate}";
 			var endDate="${endDate}";

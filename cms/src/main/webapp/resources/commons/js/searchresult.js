@@ -31,7 +31,7 @@ define(function(require, exports, module) {
 		searchHint();
 
 		// 获取图表数据
-		getData();
+		//getData();
 
 		// url传递默认条件
 		urlOption();
@@ -414,7 +414,9 @@ define(function(require, exports, module) {
 							html = html.replace("{indexInfo." + key + "}", indexData[key]);
 						}
 					}
-					
+					while(html.indexOf("{indexInfo.")!=-1){
+						html = html.replace(/{indexInfo[^}]+}/g,"");
+					}
 					$(".resultList").append(html);
 				}
 
@@ -1084,7 +1086,6 @@ define(function(require, exports, module) {
 
 		//点击搜索按钮发送AJAX
 		$('.searchBtn').click(function() {
-
 			ajaxSearch();
 			searchJump(".chartCon", 0);
 		})
@@ -1251,9 +1252,13 @@ define(function(require, exports, module) {
 	// 搜索锚点
 	function searchJump(oClass, distance) {
 
-		$("html, body").scrollTop(0).animate({
-			scrollTop: $(oClass).offset().top + distance
-		});
+		var oTop = $(oClass).offset().top;
+		if($(document).scrollTop() != oTop){
+			$("html, body").scrollTop(0).animate({
+
+				scrollTop: oTop + distance
+			});
+		}
 	}
 
 	// url传递默认条件

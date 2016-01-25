@@ -59,7 +59,6 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\r');
       out.write('\n');
       out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -93,14 +92,21 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!-- [if Ite IE8]>\r\n");
       out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
+      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
+      out.write("<![endif]-->\r\n");
+      out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage\");\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage\");\r\n");
-      out.write("\tvar casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage\");\r\n");
+      out.write("\tvar casPath =encodeURI(\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\");\r\n");
       out.write("\tvar casBase = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casBase}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
@@ -126,10 +132,14 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<myCss>\r\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/Aboutbasic.css?v=1.0.1-20151229\">\r\n");
+      out.write("/resources/commons/css/Aboutbasic.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/copyright.css?v=1.0.1-20151229\">\r\n");
+      out.write("/resources/commons/css/copyright.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("\t</myCss>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
@@ -424,7 +434,9 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("/resources/commons/js/lib/jquery-1.7.2.min.js\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/copyright.js?v=1.0.1-20151229\"></script>\r\n");
+      out.write("/resources/commons/js/copyright.js?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\">\r\n");
       out.write("\t\t$(function(){\r\n");
       out.write("\t\t\t$(window.location.hash).click();\r\n");
@@ -512,7 +524,7 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_set_3.setPageContext(_jspx_page_context);
     _jspx_th_c_set_3.setParent(null);
     _jspx_th_c_set_3.setVar("casPath");
-    _jspx_th_c_set_3.setValue(new String("http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage"));
+    _jspx_th_c_set_3.setValue(new String("http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"));
     int _jspx_eval_c_set_3 = _jspx_th_c_set_3.doStartTag();
     if (_jspx_th_c_set_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
@@ -531,7 +543,7 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_set_4.setPageContext(_jspx_page_context);
     _jspx_th_c_set_4.setParent(null);
     _jspx_th_c_set_4.setVar("casBase");
-    _jspx_th_c_set_4.setValue(new String("http://101.200.0.81/cas"));
+    _jspx_th_c_set_4.setValue(new String("http://192.168.8.241/cas"));
     int _jspx_eval_c_set_4 = _jspx_th_c_set_4.doStartTag();
     if (_jspx_th_c_set_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_4);
@@ -550,7 +562,7 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_set_5.setPageContext(_jspx_page_context);
     _jspx_th_c_set_5.setParent(null);
     _jspx_th_c_set_5.setVar("imgPath");
-    _jspx_th_c_set_5.setValue(new String("http://101.200.0.81"));
+    _jspx_th_c_set_5.setValue(new String("http://192.168.8.241"));
     int _jspx_eval_c_set_5 = _jspx_th_c_set_5.doStartTag();
     if (_jspx_th_c_set_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_5);

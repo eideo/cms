@@ -13,11 +13,6 @@
   <c:set var="casBase" value="http://192.168.8.241/cas"/>
 <c:set var="imgPath" value="http://192.168.8.241" />
 
-<!-- [if Ite IE8]>
-<script type="text/javascript" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>
-<script type="text/javascript" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>
-<![endif]-->
-
 <script type="text/javascript">
 	var path = "${resPath}";
 	//var casPath =encodeURI("http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage");

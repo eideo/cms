@@ -58,9 +58,11 @@ define(function(require, exports, module) {
 
 			ajaxChangeData();
 
-			$("html, body").scrollTop(0).animate({
-				scrollTop: $("#c_btn").offset().top
-			});
+
+			if($(document).scrollTop() != 712){
+
+				$("html, body").scrollTop(0).animate({scrollTop: $("#c_btn").offset().top});
+			}
 		})
 
 		// li移入背景变色

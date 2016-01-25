@@ -405,6 +405,7 @@ text
         width: 1000px;
         height: 60px;
         margin: 0 auto;
+        position: relative;
     }
     .logo
     {
@@ -434,7 +435,7 @@ text
     {
         float: left;
 
-        margin: 10px 0 0 20px;
+        margin: 10px 20px 0 20px;
     }
     .nav li
     {

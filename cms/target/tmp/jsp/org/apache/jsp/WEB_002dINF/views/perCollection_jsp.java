@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class perCollection_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -12,9 +12,8 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants = new java.util.ArrayList<String>(1);
     _jspx_dependants.add("/common/base.jsp");
-    _jspx_dependants.add("/WEB-INF/views/dialogLogin/loginDialog.jsp");
   }
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
@@ -137,16 +136,22 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("<html lang=\"en\">\r\n");
       out.write("<head>\r\n");
       out.write("\t<meta charset=\"UTF-8\">\r\n");
-      out.write("\t<title>行业报告详情页</title>\r\n");
+      out.write("\t<meta name=\"renderer\" content=\"ie-comp\">\r\n");
+      out.write("\t<title>个人中心</title>\r\n");
       out.write("\t<myCss>\r\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/css/basic.css?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">\r\n");
-      out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
+      out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (max-width: 1200px)\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/reportPage.css?v=");
+      out.write("/resources/commons/css/user-min.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
+      out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (min-width: 1200px)\" href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/resources/commons/css/user.css?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">\r\n");
       out.write("\t</myCss>\r\n");
@@ -158,12 +163,7 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/reportPage.js?v=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></script>\r\n");
-      out.write("\t\t<script type=\"text/javascript\" src=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/popwin.js?v=");
+      out.write("/resources/commons/js/paging/page.js?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
@@ -171,201 +171,172 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("/resources/commons/js/custBehavior.js?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"></script>\r\n");
-      out.write("\t\t<script type=\"text/javascript\">\r\n");
-      out.write("\t\t\tvar resPath = \"");
+      out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\";\r\n");
+      out.write("/resources/commons/js/user.js?v=1.0.1-20151231\"></script>\r\n");
+      out.write("\t\t<script type=\"text/javascript\">\r\n");
+      out.write("\t\t\t$(\".tcdPageCode\").createPage({\r\n");
+      out.write("\t\t        pageCount : ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${totalPage}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(",\r\n");
+      out.write("\t\t        current : ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${currentPage}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(",\r\n");
+      out.write("\t\t        backFn : function(p) {\r\n");
+      out.write("\t\t        \tajaxCustBehaviorList(p);\r\n");
+      out.write("\t\t        }\r\n");
+      out.write("\t\t    });\r\n");
       out.write("\t\t</script>\r\n");
       out.write("\t</myScript>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
-      out.write("\t<div class=\"bg\">\r\n");
-      out.write("\t\r\n");
-      out.write("\t<!-- 详情 -->\r\n");
-      out.write("\t<div class=\"list clearfix\">\r\n");
-      out.write("\t\t<div class=\"reportList\">\r\n");
-      out.write("\t\t\t<div class=\"reportInfo clearfix\">\r\n");
-      out.write("\t\t\t\t<a href=\"javascript:;\" class=\"reportImg\">\r\n");
-      out.write("\t\t\t\t\t<img src=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/images/report_cover.png\">\r\n");
-      out.write("\t\t\t\t</a>\r\n");
-      out.write("\t\t\t\t<div class=\"reportDe clearfix\">\r\n");
-      out.write("\t\t\t\t\t<h5 class=\"title cutTitle\" title=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" id=\"info_");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write('"');
-      out.write('>');
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</h5>\r\n");
-      out.write("\t\t\t\t\t<div class=\"bookInfo clearfix\">\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"price clearfix\"><i>报告单价</i><span>￥");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportTprice}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</span></div>\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"industry clearfix\"><i>所属行业：</i><span>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.induxtryName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</span></div>\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"rePage clearfix\"><i>报告页数：</i><span class=\"cha\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportPages}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</span></div>\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"words clearfix\"><i>报告字数：</i><span class=\"cha\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportWords}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</span></div>\t\r\n");
-      out.write("\t\t\t\t\t</div>\r\n");
-      out.write("\t\t\t\t\t<div class=\"trading clearfix\">\r\n");
-      out.write("\t\t\t\t\t\t<a href=\"javascript:;\" class=\"buy\" reporturl=\"");
+      out.write("\t<!-- 页面位置 -->\r\n");
+      out.write("\t<div class=\"message_top\">\r\n");
+      out.write("\t\t<ul class=\"clearfix\">\r\n");
+      out.write("\t\t\t<li><a href=\"javascript:;\">CMS首页</a></li>\r\n");
+      out.write("\t\t\t<li class=\"symbol\">></li>\r\n");
+      out.write("\t\t\t<li><a href=\"javascript:;\">个人中心</a></li>\r\n");
+      out.write("\t\t\t<li class=\"symbol\">></li>\r\n");
+      out.write("\t\t\t<li><a href=\"javascript:;\" class=\"location\">我的收藏</a></li>\r\n");
+      out.write("\t\t</ul>\r\n");
+      out.write("\t\t<i></i>\r\n");
+      out.write("\t</div>\r\n");
+      out.write("\r\n");
+      out.write("\t<!-- 主要内容 -->\r\n");
+      out.write("\t<div class=\"main clearfix\">\r\n");
+      out.write("\t\t<div class=\"sign\">\r\n");
+      out.write("\t\t\t<div class=\"user_box\">\r\n");
+      out.write("\t\t\t\t<div class=\"face clearfix\">\r\n");
+      out.write("\t\t\t\t\t<div class=\"img\">\r\n");
+      out.write("\t\t\t\t\t\t<img id=\"avatarShow\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${imgPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write('/');
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportUrl}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" reportid=\"info_");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">支付查看</a>\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"attentions\">已有<span class=\"cha\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportAttentions}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</span>人关注</div>\r\n");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${avatarPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" onerror=\"errorAvatar(this);\">\r\n");
       out.write("\t\t\t\t\t</div>\r\n");
-      out.write("\t\t\t\t\t<div class=\"operation navBox clearfix\"  id=\"report_detail\">\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"ap\" actiontype=\"3\" infotype=\"11506\" infoid=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" >\r\n");
-      out.write("\t\t\t\t\t\t\t<i class=\"attention\"></i>\r\n");
-      out.write("\t\t\t\t\t\t\t<span>关注</span>\r\n");
-      out.write("\t\t\t\t\t\t\t<span class=\"re\">已关注</span>\r\n");
-      out.write("\t\t\t\t\t\t</div>\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"cp\" actiontype=\"4\" infotype=\"11506\" infoid=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" >\r\n");
-      out.write("\t\t\t\t\t\t\t<i class=\"collection\"></i>\r\n");
-      out.write("\t\t\t\t\t\t\t<span>收藏</span>\r\n");
-      out.write("\t\t\t\t\t\t\t<span class=\"re\">已收藏</span>\r\n");
-      out.write("\t\t\t\t\t\t</div>\r\n");
-      out.write("\t\t\t\t\t\t<div class=\"sp\">\r\n");
-      out.write("\t\t\t\t\t\t\t<a href=\"javascript:;\" class=\"share\">分享</a>\r\n");
-      out.write("\t\t\t\t\t\t\t<div class=\"shareBtn bdsharebuttonbox\">\r\n");
-      out.write("\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"javascript:custBehaviorShare(5, 11506, '");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("', 'QQ空间');\" class=\"bds_qzone\" data-cmd=\"qzone\" title=\"分享到QQ空间\"></a>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"javascript:custBehaviorShare(5, 11506, '");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("', '新浪微博');\" class=\"bds_tsina\" data-cmd=\"tsina\" title=\"分享到新浪微博\"></a>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<a href=\"#\" onclick=\"javascript:custBehaviorShare(5, 11506, '");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("', '微信');\" class=\"bds_weixin\" data-cmd=\"weixin\" title=\"分享到微信\"></a>\r\n");
-      out.write("\t\t\t\t\t\t\t</div>\r\n");
-      out.write("\t\t\t\t\t\t\t<em></em>\r\n");
+      out.write("\t\t\t\t\t<div class=\"user_info\">\r\n");
+      out.write("\t\t\t\t\t\t<h3>");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custName }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("<i></i></h3>\r\n");
+      out.write("\t\t\t\t\t\t<p>\r\n");
+      out.write("\t\t\t\t\t\t\t<span>我的积分</span>\r\n");
+      out.write("\t\t\t\t\t\t\t<span>100000</span>\r\n");
+      out.write("\t\t\t\t\t\t</p>\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"vip_box clearfix\">\r\n");
+      out.write("\t\t\t\t\t\t\t<div class=\"vip\">VIP</div>\r\n");
+      out.write("\t\t\t\t\t\t\t<div class=\"rechange\">账户充值</div>\r\n");
       out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t\t</div>\r\n");
       out.write("\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t<div class=\"safety\">\r\n");
+      out.write("\t\t\t\t\t<span>安全设置</span>\r\n");
+      out.write("\t\t\t\t\t<span class=\"scale\"><i></i></span>\r\n");
+      out.write("\t\t\t\t\t<span class=\"grade\">低</span>\r\n");
+      out.write("\t\t\t\t\t<a href=\"javascript:;\">提升 ></a>\r\n");
+      out.write("\t\t\t\t</div>\r\n");
       out.write("\t\t\t</div>\r\n");
-      out.write("\t\t\t<div class=\"catalog\">\r\n");
-      out.write("\t\t\t\t<h4 >报告目录<i></i></h4>\r\n");
-      out.write("\t\t\t\t");
+      out.write("\t\t\t<div class=\"personal_center\">\r\n");
+      out.write("\t\t\t\t<h4>\r\n");
+      out.write("\t\t\t\t\t<i></i>\r\n");
+      out.write("\t\t\t\t\t<span>个人中心</span>\r\n");
+      out.write("\t\t\t\t</h4 >\r\n");
+      out.write("\t\t\t\t<ul>\r\n");
+      out.write("\t\t\t\t\t<li class=\"ban\"><a>我的订单</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/personal/information\">个人信息</a></li>\r\n");
+      out.write("\t\t\t\t\t<li class=\"ban\"><a>安全设置</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/personal/attention\">我的关注</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/personal/collection\" class=\"active\">我的收藏</a></li>\r\n");
+      out.write("\t\t\t\t\t<li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/personal/footprint\">我的足迹</a></li>\r\n");
+      out.write("\t\t\t\t</ul>\r\n");
+      out.write("\t\t\t</div>\r\n");
+      out.write("\t\t\t<div class=\"asset_center\">\r\n");
+      out.write("\t\t\t\t<h4>\r\n");
+      out.write("\t\t\t\t\t<i></i>\r\n");
+      out.write("\t\t\t\t\t<span>个人资产</span>\r\n");
+      out.write("\t\t\t\t</h4 >\r\n");
+      out.write("\t\t\t\t<ul>\r\n");
+      out.write("\t\t\t\t\t<li class=\"ban\"><a>我的积分</a></li>\r\n");
+      out.write("\t\t\t\t\t<li class=\"ban\"><a>账户充值</a></li>\r\n");
+      out.write("\t\t\t\t</ul>\r\n");
+      out.write("\t\t\t</div>\r\n");
+      out.write("\t\t</div>\r\n");
+      out.write("\t\t<div class=\"content\">\r\n");
+      out.write("\t\t\t<div class=\"personalBox\">\r\n");
+      out.write("\t\t\t\t<div class=\"section my_attention common_operation\" style=\"display:block;\">\r\n");
+      out.write("\t\t\t\t\t<h2>我的收藏<i></i></h2>\r\n");
+      out.write("\t\t\t\t\t<div class=\"title clearfix\">\r\n");
+      out.write("\t\t\t\t\t\t<span class=\"project\">\r\n");
+      out.write("\t\t\t\t\t\t\t<i></i>\r\n");
+      out.write("\t\t\t\t\t\t\t<span>列表分类</span>\r\n");
+      out.write("\t\t\t\t\t\t\t<input id=\"action_type\" type=\"hidden\" value=\"4\" />\r\n");
+      out.write("\t\t\t\t\t\t\t<input id=\"info_type\" type=\"hidden\" value=\"\" />\r\n");
+      out.write("\t\t\t\t\t\t\t<ul class=\"tab_n title_tab\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t<b></b>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"all_type\">列表分类</li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"xiangmu_type\" onclick=\"javascript:getByInfoType('11501');\">项目\r\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"zhaobiao_type\" onclick=\"javascript:getByInfoType('11502');\">招标\r\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"zhongbiao_type\" onclick=\"javascript:getByInfoType('11503');\">中标\r\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t\t<li class=\"report_type\">行业报告\r\n");
+      out.write("\t\t\t\t\t\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t</ul>\r\n");
+      out.write("\t\t\t\t\t\t</span>\r\n");
+      out.write("\t\t\t\t\t\t<span class=\"operation\">操作</span>\r\n");
+      out.write("\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t\t<ul class=\"collection_list cart_list\" id=\"custBehaviorList\">\r\n");
+      out.write("\t\t\t\t\t\t");
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t\t\t</div>\r\n");
-      out.write("\t\t</div>\r\n");
-      out.write("\t\t<div class=\"hotList\">\r\n");
-      out.write("\t\t\t<h4>热门报告<i></i></h4>\r\n");
-      out.write("\t\t\t<ul class=\"hot\">\r\n");
-      out.write("\t\t\t\t");
-      if (_jspx_meth_c_forEach_2(_jspx_page_context))
-        return;
-      out.write("\r\n");
-      out.write("\t\t\t</ul>\r\n");
+      out.write("\t\t\t\t\t</ul>\r\n");
+      out.write("\t\t\t\t\t<!-- 分页 -->\r\n");
+      out.write("\t\t\t\t\t<div class=\"page_bg\">\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"page\">\r\n");
+      out.write("\t\t\t\t\t\t\t<form id=\"pageForm\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t<div class=\"paging\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t\t<div class=\"tcdPageCode\"></div>\r\n");
+      out.write("\t\t\t\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t\t\t\t</form>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t\t<!-- 批量 -->\r\n");
+      out.write("\t\t\t\t\t<div class=\"balance clearfix\">\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"balance_select\">\r\n");
+      out.write("\t\t\t\t\t\t\t<span class=\"selectall\"><i></i>全选</span>\r\n");
+      out.write("\t\t\t\t\t\t\t<span class=\"removeall hover\" onclick=\"javascript:deleteAll();\">删除</span>\r\n");
+      out.write("\t\t\t\t\t\t\t<span class=\"remove_Invalid hover\"  onclick=\"javascript:deleteInvalid();\">删除失效信息</span>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t</div>\r\n");
+      out.write("\t\t\t</div>\t\t\r\n");
       out.write("\t\t</div>\r\n");
       out.write("\t</div>\r\n");
-      out.write("\t<script>\r\n");
-      out.write("\twindow._bd_share_config={\"common\":{\"bdSnsKey\":{},\"bdText\":\"欢迎进入中国采购与招标网新平台，感兴趣可以点击下面链接体验……\",\"bdMini\":\"2\",\"bdPic\":\"\",\"bdStyle\":\"0\",\"bdSize\":\"16\"},\"share\":{}};\r\n");
-      out.write("\twith(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];\r\n");
-      out.write("\t</script>\r\n");
-      out.write("\t<!-- \t2015-12-01 by liyang -->\r\n");
-      out.write("\t<!-- 下面是登录框 -->\r\n");
-      out.write("\t");
       out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
-      out.write("\t <script type=\"text/html\" id=\"headerTemp\">\r\n");
-      out.write("\t\t \t<li><a href=\"javascript:;\">欢迎您，{username}</a></li>\r\n");
-      out.write("\t\t\t<li>|</li>\r\n");
-      out.write("\t\t\t<li><a href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/personal/information\">个人中心</a></li>\r\n");
-      out.write("\t\t\t<li>|</li>\r\n");
-      out.write("\t\t\t<li><a href=\"javaScript:logout();\">退出</a></li>\r\n");
+      out.write("\t<script type=\"text/html\" id=\"custBehaviorListTemplate\">\r\n");
+      out.write("\t\t<li class=\"{custBehavior.styleClassLi}\" id=\"{custBehavior.id}\" inType=\"{custBehavior.infoType}\" infoId=\"{custBehavior.infoId}\">\r\n");
+      out.write("\t\t\t{custBehavior.styleClassBorder}\r\n");
+      out.write("\t\t\t<span class=\"name\">\r\n");
+      out.write("\t\t\t\t{custBehavior.styleClassCheck}\r\n");
+      out.write("\t\t\t\t<a href=\"\" class=\"infoLink\" target=\"_blank\">{custBehavior.subInfoName}</a>\r\n");
+      out.write("\t\t\t\t<b>{custBehavior.infoTypeCn}</b>\r\n");
+      out.write("\t\t\t\t<br>\r\n");
+      out.write("\t\t\t\t<span class=\"cutTitle\">{custBehavior.subIntroduction}</span>\r\n");
+      out.write("\t\t\t</span>\r\n");
+      out.write("\t\t\t<div class=\"operation\">\r\n");
+      out.write("\t\t\t\t<a href=\"javascript:;\" class=\"remove\" onclick=\"javascript:deleteCustBehavior({custBehavior.id});\"><i></i>删除</a>\r\n");
+      out.write("\t\t\t</div>\t\r\n");
+      out.write("\t\t</li>\r\n");
       out.write("\t</script>\r\n");
-      out.write("\t<script type=\"text/javascript\">\r\n");
-      out.write("\t\t\tvar username = \"\";\r\n");
-      out.write("\t\t \tfunction ajaxLogin(){\r\n");
-      out.write("\t \t\t\t$.ajax({\r\n");
-      out.write("\t \t\t\t\ttype:\"post\",\r\n");
-      out.write("\t \t\t\t\tasync:true,\r\n");
-      out.write("\t \t\t\t\turl:casBase+'/ajaxlogin',\r\n");
-      out.write("\t \t\t\t\tdata:{user:$(\"#username\").val(),passwd:$(\"#password\").val(),service:path+'/toLoginIframe'},\r\n");
-      out.write("\t \t\t\t\tdataType:\"jsonp\",\r\n");
-      out.write("\t \t\t\t\tjsonp:'jsoncallback',\r\n");
-      out.write("\t \t\t\t\tsuccess:function(a){\r\n");
-      out.write("\t \t\t\t\t\tif(a.result){\r\n");
-      out.write("\t \t\t\t\t\t\tajaxSetUser(path+\"/toLoginIframe?ticket=\"+a.st);\r\n");
-      out.write("\t \t\t\t\t\t\t$('.close').click();\r\n");
-      out.write("\t \t\t\t\t\t}else{\r\n");
-      out.write("\t \t\t\t\t\t\t//提示错误信息\r\n");
-      out.write("\t \t\t\t\t\t\talert(a.message);\r\n");
-      out.write("\t \t\t\t\t\t}\r\n");
-      out.write("\t \t\t\t\t}\r\n");
-      out.write("\t \t\t\t});\r\n");
-      out.write("\t \t\t\treturn false;\r\n");
-      out.write("\t\t \t }\r\n");
-      out.write("\t\t\t function ajaxSetUser(str){\r\n");
-      out.write("\t\t\t\tvar iframe = document.createElement(\"iframe\"); \r\n");
-      out.write("\t\t\t\tiframe.src = str; \r\n");
-      out.write("\r\n");
-      out.write("\t\t\t\tif (iframe.attachEvent){ \r\n");
-      out.write("\t\t\t\t\tiframe.attachEvent(\"onload\", function(){ \r\n");
-      out.write("\t\t\t\t\t\tvar html = $(\"#headerTemp\").html().replace(\"{username}\",username);\r\n");
-      out.write("\t\t\t\t\t\t$(\".user-info\").html(html);\r\n");
-      out.write("\t\t\t\t\t\tdocument.body.removeChild(iframe);\r\n");
-      out.write("\t\t\t\t\t}); \r\n");
-      out.write("\t\t\t\t} else { \r\n");
-      out.write("\t\t\t\t\tiframe.onload = function(){ \r\n");
-      out.write("\t\t\t\t\t\tvar html = $(\"#headerTemp\").html().replace(\"{username}\",username);\r\n");
-      out.write("\t\t\t\t\t\t$(\".user-info\").html(html);\r\n");
-      out.write("\t\t\t\t\t\tdocument.body.removeChild(iframe);\r\n");
-      out.write("\t\t\t\t\t};\r\n");
-      out.write("\t\t\t\t}\r\n");
-      out.write("\t\t\t\tdocument.body.appendChild(iframe);\r\n");
-      out.write("\t\t\t }\r\n");
-      out.write("\t</script>\r\n");
-      out.write("<!-- \t2015-12-01 by liyang -->\r\n");
-      out.write("<!-- 下面是登录框 -->\r\n");
-      out.write("\t<form onsubmit=\"return ajaxLogin();\">\r\n");
-      out.write("\t\t<div class=\"login_box\">\r\n");
-      out.write("\t\t    <i class=\"close\"></i>\r\n");
-      out.write("\t\t    <div class=\"loginTitle\">登录</div>\r\n");
-      out.write("\t\t\t<div class=\"userbox\">\r\n");
-      out.write("\t\t\t\t<input type=\"text\" id=\"username\" placeholder=\"邮箱/手机号\">\r\n");
-      out.write("\t\t\t\t<i></i>\r\n");
-      out.write("\t\t\t</div>\r\n");
-      out.write("\t\t\t<div class=\"passwordbox\">\r\n");
-      out.write("\t\t\t\t<input type=\"password\" id=\"password\" placeholder=\"密码\">\r\n");
-      out.write("\t\t\t\t<i></i>\r\n");
-      out.write("\t\t\t</div>\r\n");
-      out.write("\t\t\t<div class=\"op_password\">\r\n");
-      out.write("\t\t\t\t<input id=\"remember\" type=\"checkbox\"></input>\r\n");
-      out.write("\t\t\t\t<label for=\"remember\">记住密码</label>\r\n");
-      out.write("\t\t\t\t<a href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/findPwd\" class=\"update\">忘记密码</a>\r\n");
-      out.write("\t\t\t\t<span>|</span>\r\n");
-      out.write("\t\t\t\t<a href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/register\" class=\"register\">免费注册</a>\r\n");
-      out.write("\t\t\t</div>\r\n");
-      out.write("\t\t\t<input type=\"submit\" value=\"立即登录\" class=\"button\">\r\n");
-      out.write("\t\t</div>\r\n");
-      out.write("\t</form>\r\n");
-      out.write("\t<div class=\"shadow_all\"></div>");
-      out.write("\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {
@@ -507,15 +478,15 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
     if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t");
         if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t");
         if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t");
+        out.write("\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -537,17 +508,16 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
     org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
     _jspx_th_c_when_0.setPageContext(_jspx_page_context);
     _jspx_th_c_when_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
-    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${!empty reportMain.reportDirectoryList}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${!empty custBehaviorList}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_when_0 = _jspx_th_c_when_0.doStartTag();
     if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t<h5>目录</h5>\r\n");
-        out.write("\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_forEach_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_when_0, _jspx_page_context))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -569,29 +539,48 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
     _jspx_th_c_forEach_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_when_0);
-    _jspx_th_c_forEach_0.setVar("reportDirectoryOne");
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMain.reportDirectoryList}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setVar("custBehavior");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehaviorList}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
     try {
       int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t\t\t\t\t<div class=\"reCatalog\">\r\n");
-          out.write("\t\t\t\t\t\t\t    <div class=\"li\">\r\n");
-          out.write("\t\t\t\t\t\t\t    \t<i></i>\r\n");
-          out.write("\t\t\t\t\t\t\t    \t<a href=\"javascript:;\" >");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportDirectoryOne.dirConext}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</a>\r\n");
-          out.write("\t\t\t\t\t\t\t    </div>\r\n");
-          out.write("\t\t\t\t\t\t\t\t<div class=\"hidden\">\r\n");
-          out.write("\t\t\t\t\t\t\t\t\t");
-          if (_jspx_meth_c_forEach_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
-            return true;
+          out.write("\t\t\t\t\t\t\t\t\t<li class=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.styleClassLi}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" id=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" inType=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoType}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" infoId=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.styleClassBorder}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\r\n");
-          out.write("\t\t\t\t\t\t\t\t</div>\r\n");
-          out.write("\t\t\t\t\t\t\t</div>\r\n");
-          out.write("\t\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t\t\t<span class=\"name\">\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t\t");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.styleClassCheck}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t\t<a href=\"\" class=\"infoLink\" target=\"_blank\">信息名称：");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.subInfoName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</a>\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t\t<b>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoTypeCn}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</b>\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t\t<br>\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t\t<span class=\"cutTitle\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.subIntroduction}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</span>\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t</span>\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t<div class=\"operation\">\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:;\" class=\"remove\" onclick=\"javascript:deleteCustBehavior(");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write(");\"><i></i>删除</a>\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t\t</div>\t\r\n");
+          out.write("\t\t\t\t\t\t\t\t\t</li>\r\n");
+          out.write("\t\t\t\t\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -611,45 +600,6 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
     return false;
   }
 
-  private boolean _jspx_meth_c_forEach_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_forEach_1.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
-    _jspx_th_c_forEach_1.setVar("reportDirectoryTwo");
-    _jspx_th_c_forEach_1.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportDirectoryOne.reportDirectoryList}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    int[] _jspx_push_body_count_c_forEach_1 = new int[] { 0 };
-    try {
-      int _jspx_eval_c_forEach_1 = _jspx_th_c_forEach_1.doStartTag();
-      if (_jspx_eval_c_forEach_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write("\r\n");
-          out.write("\t\t\t\t\t\t\t\t\t\t<p><a href=\"javascript:;\" >");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportDirectoryTwo.dirConext}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</a></p>\r\n");
-          out.write("\t\t\t\t\t\t\t\t\t");
-          int evalDoAfterBody = _jspx_th_c_forEach_1.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_forEach_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_forEach_1[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_c_forEach_1.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_c_forEach_1.doFinally();
-      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_1);
-    }
-    return false;
-  }
-
   private boolean _jspx_meth_c_otherwise_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_choose_0, PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
@@ -662,7 +612,8 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t没有符合条件的记录\r\n");
+        out.write("\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -673,51 +624,6 @@ public final class reportDetail_jsp extends org.apache.jasper.runtime.HttpJspBas
       return true;
     }
     _jspx_tagPool_c_otherwise.reuse(_jspx_th_c_otherwise_0);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_forEach_2(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_forEach_2.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_2.setParent(null);
-    _jspx_th_c_forEach_2.setVar("reportMainTop");
-    _jspx_th_c_forEach_2.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainListTop10}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    int[] _jspx_push_body_count_c_forEach_2 = new int[] { 0 };
-    try {
-      int _jspx_eval_c_forEach_2 = _jspx_th_c_forEach_2.doStartTag();
-      if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write("\r\n");
-          out.write("\t\t\t\t\t<li class=\"cutTitle\"><a href=\"");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("/reportdetail/");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" title=\"");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" >");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</a></li>\r\n");
-          out.write("\t\t\t\t");
-          int evalDoAfterBody = _jspx_th_c_forEach_2.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_forEach_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_forEach_2[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_c_forEach_2.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_c_forEach_2.doFinally();
-      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_2);
-    }
     return false;
   }
 }

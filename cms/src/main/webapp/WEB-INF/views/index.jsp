@@ -11,35 +11,35 @@
 		<div class="imgBox">
 		<ul class="imgArr clearfix">
 			<li style="display:block;">
-				<a href="${resPath }/relation" target="_blank" class="imgRelation"></a>
+				<a href="${resPath }/relation" target="_blank" class="imgRelation img"></a>
 				<div class="imgInfo">
-					<h3>关系网</h3>
-					<h4>BIDING RELATIONSHIP</h4>
-					<p>专招投标行业的朋友圈，挖掘潜在合作可能</p>
+					<h3><a href="${appPath}/relation" target="_blank">关系网</a></h3>
+					<h4><a href="${appPath}/relation" target="_blank">BIDING RELATIONSHIP</a></h4>
+					<p><a href="${appPath}/relation" target="_blank">专招投标行业的朋友圈，挖掘潜在合作可能</a></p>
 				</div>
 			</li>
 			<li>
-				<a href="${resPath }/industry" target="_blank" class="imgIndustry"></a>
+				<a href="${resPath }/industry" target="_blank" class="imgIndustry img"></a>
 				<div class="imgInfo">
-					<h3>行业指数</h3>
-					<h4>INDUSTRY INDEX</h4>
-					<p>多维度，统观行业发展趋势和变化规律</p>
+					<h3><a href="${appPath}/industry" target="_blank">行业指数</a></h3>
+					<h4><a href="${appPath}/industry" target="_blank">INDUSTRY INDEX</a></h4>
+					<p><a href="${appPath}/industry" target="_blank">多维度，统观行业发展趋势和变化规律</a></p>
 				</div>
 			</li>
 			<li>
-				<a href="${appPath }/ranking" target="_blank" class="imgRanking"></a>
+				<a href="${appPath }/ranking" target="_blank" class="imgRanking img"></a>
 				<div class="imgInfo">
-					<h3>排行榜</h3>
-					<h4>INDUSTRY DATE LIST</h4>
-					<p>实时反映工程项目关注度，热点单位跟踪，全面展示项目进度</p>
+					<h3><a href="${appPath}/ranking" target="_blank">排行榜</a></h3>
+					<h4><a href="${appPath}/ranking" target="_blank">INDUSTRY DATE LIST</a></h4>
+					<p><a href="${appPath}/ranking" target="_blank">实时反映工程项目关注度，热点单位跟踪，全面展示项目进度</a></p>
 				</div>
 			</li>
 			<li>
-				<a href="${appPath }/report" target="_blank" class="imgReport"></a>
+				<a href="${appPath }/report" target="_blank" class="imgReport img"></a>
 				<div class="imgInfo">
-					<h3>行业报告</h3>
-					<h4>INDUSTRY REPORT</h4>
-					<p>专业权威的行业分析，十多年项目数据，为企业战略规划和市场定位提供咨询服务</p>
+					<h3><a href="${appPath}/report" target="_blank">行业报告</a></h3>
+					<h4><a href="${appPath}/report" target="_blank">INDUSTRY REPORT</a></h4>
+					<p><a href="${appPath}/report" target="_blank">专业权威的行业分析，十多年项目数据，为企业战略规划和市场定位提供咨询服务</a></p>
 				</div>
 			</li>
 		</ul>

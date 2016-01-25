@@ -52,11 +52,6 @@
 				<input type="text" class="searchBox" id="searchBox"  value="${keyword}" placeholder="请输入您要搜索的内容">
 				<input type="button" class="searchBtn">
 				<ul class="prompt">
-					<li>提示1</li>
-					<li>提示2</li>
-					<li>提示3</li>
-					<li>提示4</li>
-					<li>提示5</li>
 				</ul>
 				<i></i>
 			</div>
@@ -90,8 +85,6 @@
 </c:if>
 	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js?v=${projectversion}"></script>
-	<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
-	<!--<script type="text/javascript" src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>-->
 	<script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js?v=${projectversion}"></script>
 	<sitemesh:write property='myScript'/>
 </body>

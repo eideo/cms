@@ -255,7 +255,7 @@
 	/*搜索框*/
 	.search{
 		margin-top: 28px;
-		width: 240px;
+		width: 250px;
 		height:30px;
 		float:right;
 		position: relative;
@@ -266,7 +266,7 @@
 		cursor: pointer;
 		position: absolute;
 		top: 2px;
-		right: 22px;
+		right: 30px;
 		background: url(../images/icon1229.png) no-repeat -423px -989px;
 	}
 	.searchBox:hover{
@@ -304,7 +304,7 @@
 		background: url(../images/icon1229.png) no-repeat -123px -531px #fff;
 		cursor: pointer;
 		position: absolute;
-		right: -9px;
+		right: 1px;
 		top:1px;
 		border-left: 1px solid #ccc;
 	}
@@ -924,14 +924,14 @@
 }
 
 @media screen and (max-width:1200px){
-	.nav{margin-left:10px;}
+/*	.nav{margin-left:10px;}*/
 	/*搜索框*/
 	.search{
-		margin-top: 15px;
-		width: 210px;
+		width: 220px;
 		height:30px;
-		float:right;
-		position: relative;
+		position: absolute;
+		right: 0;
+		top: 15px;
 	}
 	.search i{
 		width: 26px;
@@ -939,7 +939,7 @@
 		cursor: pointer;
 		position: absolute;
 		top: 2px;
-		right: 22px;
+		right: 30px;
 		background: url(../images/icon1229.png) no-repeat -423px -989px;
 	}
 	.searchBox:hover{
@@ -974,7 +974,7 @@
 		background: url(../images/icon1229.png) no-repeat -123px -531px #fff;
 		cursor: pointer;
 		position: absolute;
-		right: -9px;
+		right: 1px;
 		top:1px;
 		border-left: 1px solid #ccc;
 	}

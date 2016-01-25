@@ -74,7 +74,6 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write('\r');
       out.write('\n');
       out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -115,7 +114,9 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\";\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage\");\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage\");\r\n");
-      out.write("\tvar casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage\");\r\n");
+      out.write("\tvar casPath =encodeURI(\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\");\r\n");
       out.write("\tvar casBase = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casBase}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
@@ -143,21 +144,31 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\t<myCss>\r\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/basic.css?v=1.0.1-20151229\">\r\n");
+      out.write("/resources/commons/css/basic.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (max-width: 1200px)\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/user-min.css?v=1.0.1-20151229\">\r\n");
+      out.write("/resources/commons/css/user-min.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" media=\"screen and (min-width: 1200px)\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/user.css?v=1.0.1-20151229\">\r\n");
+      out.write("/resources/commons/css/user.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
       out.write("\t</myCss>\r\n");
       out.write("\t<myScript>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/jquery-1.7.2.min.js?v=1.0.1-20151229\"></script>\r\n");
+      out.write("/resources/commons/js/jquery-1.7.2.min.js?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/custBehavior.js?v=1.0.1-20151229\"></script>\r\n");
+      out.write("/resources/commons/js/custBehavior.js?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"></script>\r\n");
       out.write("\t\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/user.js?v=1.0.1-20151231\"></script>\r\n");
@@ -176,6 +187,7 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\t\t\t<li class=\"symbol\">></li>\r\n");
       out.write("\t\t\t<li><a href=\"javascript:;\" class=\"location\">我的足迹</a></li>\r\n");
       out.write("\t\t</ul>\r\n");
+      out.write("\t\t<i></i>\r\n");
       out.write("\t</div>\r\n");
       out.write("\r\n");
       out.write("\t<!-- 主要内容 -->\r\n");
@@ -382,7 +394,7 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
     _jspx_th_c_set_3.setPageContext(_jspx_page_context);
     _jspx_th_c_set_3.setParent(null);
     _jspx_th_c_set_3.setVar("casPath");
-    _jspx_th_c_set_3.setValue(new String("http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage"));
+    _jspx_th_c_set_3.setValue(new String("http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"));
     int _jspx_eval_c_set_3 = _jspx_th_c_set_3.doStartTag();
     if (_jspx_th_c_set_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
@@ -401,7 +413,7 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
     _jspx_th_c_set_4.setPageContext(_jspx_page_context);
     _jspx_th_c_set_4.setParent(null);
     _jspx_th_c_set_4.setVar("casBase");
-    _jspx_th_c_set_4.setValue(new String("http://101.200.0.81/cas"));
+    _jspx_th_c_set_4.setValue(new String("http://192.168.8.241/cas"));
     int _jspx_eval_c_set_4 = _jspx_th_c_set_4.doStartTag();
     if (_jspx_th_c_set_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_4);
@@ -420,7 +432,7 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
     _jspx_th_c_set_5.setPageContext(_jspx_page_context);
     _jspx_th_c_set_5.setParent(null);
     _jspx_th_c_set_5.setVar("imgPath");
-    _jspx_th_c_set_5.setValue(new String("http://101.200.0.81"));
+    _jspx_th_c_set_5.setValue(new String("http://192.168.8.241"));
     int _jspx_eval_c_set_5 = _jspx_th_c_set_5.doStartTag();
     if (_jspx_th_c_set_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_5);
@@ -921,7 +933,11 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
     if (_jspx_eval_c_when_5 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"zhaobiao\">\r\n");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"zhaobiao\" inType=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoType}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("\" infoId=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoId}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("\">\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"f_border\"></i>\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"f_remove\" id=\"remove_");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -929,13 +945,13 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write(");\"></i>\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"f_title\">\r\n");
-        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:;\" class=\"name\">信息名称：");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:;\" class=\"name cutTitle infoLink\"  target=\"_blank\">信息名称：");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.subInfoName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</a>\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoTypeCn}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</span>\r\n");
-        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p>\r\n");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"cutParagraph\">\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.subIntroduction}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\r\n");
@@ -1018,7 +1034,7 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write(");\"></i>\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"f_title\">\r\n");
-        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:;\" class=\"name\">信息名称：");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:;\" class=\"name cutTitle\">信息名称：");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.subInfoName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n");
@@ -1026,7 +1042,7 @@ public final class perFootprint_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.infoTypeCn}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</span>\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"failure_icon\">失效</span>\r\n");
-        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p>\r\n");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p  class=\"cutParagraph\">\r\n");
         out.write("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${custBehavior.subIntroduction}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\r\n");

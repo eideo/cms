@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-09 17:30:30
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-13 11:03:55
+ * @Last Modified time: 2016-01-25 14:47:59
  */
 
 'use strict';
@@ -627,7 +627,7 @@ define(function(require, exports, module) {
             .attr('in','SourceGraphic')
             .attr('stdDeviation','1')
 
-        d3.json(path + '/resources/json/china.json', function(data) {
+        $.getJSON(path + '/resources/json/china.json', function(data) {
 
             var json = data
 

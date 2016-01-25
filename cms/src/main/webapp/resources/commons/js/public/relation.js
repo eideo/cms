@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-22 17:14:15
+ * @Last Modified time: 2016-01-25 17:21:16
  */
 
 'use strict';
@@ -437,13 +437,13 @@ define(function(require, exports, module) {
         // 鼠标滑过事件
         $('.tip .close').live('click', function(e) {
 
-            $(this).parent().parent().remove()
+            $(this).parent().parent().parent().parent().hide()
         })
 
         $(".recomCon").draggable({
             containment: 'parent'
         });
-        $('.tip').draggable({
+        $('.tipWrapper').draggable({
             containment: "parent"
         });
 

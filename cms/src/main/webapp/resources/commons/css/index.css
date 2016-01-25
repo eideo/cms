@@ -44,7 +44,7 @@ body{
 .imgBox ol li.on{
 	background: #f90;
 }
-.imgArr a{
+.imgArr .img{
 	display: block;
 	width: 100%;
 	height:100%;
@@ -75,19 +75,24 @@ body{
 	margin-left: -425px;
 	text-align:center;
 	color:#a8a4a1;
-/* 	display: none; */
 }
 .imgInfo h3{
-	font-size: 56px;
-	margin-bottom: 30px;
+	margin-bottom: 30px;	
+}
+.imgInfo h3 a{
 	color:#fff;
+	font-size: 56px;
 }
 .imgInfo h4{
 	margin-bottom: 20px;
-	font-size: 50px;
 }
-.imgInfo p{
+.imgInfo h4 a{
+	font-size: 50px;
+	color: #a8a4a1;
+}
+.imgInfo p a{
 	font-size: 18px;
+	color: #a8a4a1;
 }
 
 
@@ -262,11 +267,11 @@ h2 a{
 }
 .option a{
 	display: inline-block;
-	width:50px;
-	height:26px;
+	width:78px;
+	height:36px;
 	border:1px solid #afafaf;
 	margin-top:20px;
-	line-height:26px;
+	line-height:36px;
 	text-align:center;
 	color:#afafaf;
 	font-size: 14px;

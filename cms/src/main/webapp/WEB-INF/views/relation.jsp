@@ -76,46 +76,48 @@
             </div>
         </div>
     </div>
-        <div class="tip tip_project" style='display:none'>
-            <div class="tipWrap">
-                <i class='close'></i>
-                <div class="tipTitle">项目</div>
-                <div class="tipCon">
-                </div>
-                <div class='more'><a href='#' target="_blank">查看更多</a></div>
-            </div>
-        </div>
 
-        <div class="tip tip_zhaobiao" style='display:none'>
-            <div class="tipWrap">
-                <i class='close'></i>
-                <div class="tipLink"></div>
-                <div class="tipTitle">招标</div>
-                <div class="tipCon">
-                    <ul>
-                    <li class="info">凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼</li>
-                    </ul>
+    <div class='tipWrapper'>
+        <div class='tipWrapCon'>
+            <div class="tip tip_project" style='display:none'>
+                <div class="tipWrap">
+                    <i class='close'></i>
+                    <div class="tipTitle">项目</div>
+                    <div class="tipCon">
+                    </div>
+                    <div class='more'><a href='#' target="_blank">查看更多</a></div>
                 </div>
             </div>
-        </div>
 
-       <div class="tip tip_zhongbiao" style='display:none'>
-            <div class="tipWrap">
-                <i class='close'></i>
-                <div class="tipLink"></div>
-                <div class="tipTitle">中标</div>
-                <div class="tipCon">
-                    <ul>
-                    <li class="info">凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼</li>
-                    </ul>
+            <div class="tip tip_zhaobiao" style='display:none'>
+                <div class="tipWrap">
+                    <div class="tipLink"></div>
+                    <div class="tipTitle">招标</div>
+                    <div class="tipCon">
+                        <ul>
+                        <li class="info">凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip tip_zhongbiao" style='display:none'>
+                <div class="tipWrap">
+                    <div class="tipLink"></div>
+                    <div class="tipTitle">中标</div>
+                    <div class="tipCon">
+                        <ul>
+                        <li class="info">凯悦国际酒店管理集团(北京)有限责任公司商业及零售/办公楼</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
+    </div>
 </div>
 
     <myScript>
-      
+       <script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
         <script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=${projectversion}"></script>
         <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
         <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
