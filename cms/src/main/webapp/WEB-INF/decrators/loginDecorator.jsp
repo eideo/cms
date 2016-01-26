@@ -39,17 +39,17 @@
 		<div class="footer-bg">
 			<div class="footer clearfix">
 				<ul class="clearfix">
-					<li><a href="${resPath }/htmlTemp/nav.html#about" target="_blank">关于我们</a></li>
+					<li><a href="${resPath }/about#about" target="_blank">关于我们</a></li>
 					<li>|</li>
-					<li><a href="${resPath }/htmlTemp/nav.html#nav" target="_blank">网站导航</a></li>
+					<li><a href="${resPath }/about#nav" target="_blank">网站导航</a></li>
 					<li>|</li>
-					<li><a href="${resPath }/htmlTemp/nav.html#copyright" target="_blank">版权所有</a></li>
+					<li><a href="${resPath }/about#copyright" target="_blank">版权所有</a></li>
 					<li>|</li>
-					<li><a href="${resPath }/htmlTemp/nav.html#link" target="_blank">友情链接</a></li>
+					<li><a href="${resPath }/about#link" target="_blank">友情链接</a></li>
 					<li>|</li>
-					<li><a href="${resPath }/htmlTemp/nav.html#contact" target="_blank">联系我们</a></li>
+					<li><a href="${resPath }/about#contact" target="_blank">联系我们</a></li>
 					<li>|</li>
-					<li><a href="${resPath }/htmlTemp/nav.html#zhaopin" target="_blank">招聘信息</a></li>
+					<li><a href="${resPath }/about#zhaopin" target="_blank">招聘信息</a></li>
 				</ul>
 				<p>©2001-2015 中国采购与招标网 京ICP证070104号</p>
 			</div>

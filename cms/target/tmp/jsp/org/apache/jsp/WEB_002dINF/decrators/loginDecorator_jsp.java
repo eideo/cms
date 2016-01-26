@@ -93,18 +93,15 @@ public final class loginDecorator_jsp extends org.apache.jasper.runtime.HttpJspB
         return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("<!-- [if Ite IE8]>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js'></script>\r\n");
-      out.write("<script type=\"text/javascript\" src='http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js'></script>\r\n");
-      out.write("<![endif]-->\r\n");
-      out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage\");\r\n");
       out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage\");\r\n");
-      out.write("\tvar casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage\");\r\n");
+      out.write("\tvar casPath =encodeURI(\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\");\r\n");
       out.write("\tvar casBase = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casBase}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
@@ -179,27 +176,27 @@ public final class loginDecorator_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\t\t\t\t<ul class=\"clearfix\">\r\n");
       out.write("\t\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/htmlTemp/nav.html#about\" target=\"_blank\">关于我们</a></li>\r\n");
+      out.write("/about#about\" target=\"_blank\">关于我们</a></li>\r\n");
       out.write("\t\t\t\t\t<li>|</li>\r\n");
       out.write("\t\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/htmlTemp/nav.html#nav\" target=\"_blank\">网站导航</a></li>\r\n");
+      out.write("/about#nav\" target=\"_blank\">网站导航</a></li>\r\n");
       out.write("\t\t\t\t\t<li>|</li>\r\n");
       out.write("\t\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/htmlTemp/nav.html#copyright\" target=\"_blank\">版权所有</a></li>\r\n");
+      out.write("/about#copyright\" target=\"_blank\">版权所有</a></li>\r\n");
       out.write("\t\t\t\t\t<li>|</li>\r\n");
       out.write("\t\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/htmlTemp/nav.html#link\" target=\"_blank\">友情链接</a></li>\r\n");
+      out.write("/about#link\" target=\"_blank\">友情链接</a></li>\r\n");
       out.write("\t\t\t\t\t<li>|</li>\r\n");
       out.write("\t\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/htmlTemp/nav.html#contact\" target=\"_blank\">联系我们</a></li>\r\n");
+      out.write("/about#contact\" target=\"_blank\">联系我们</a></li>\r\n");
       out.write("\t\t\t\t\t<li>|</li>\r\n");
       out.write("\t\t\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/htmlTemp/nav.html#zhaopin\" target=\"_blank\">招聘信息</a></li>\r\n");
+      out.write("/about#zhaopin\" target=\"_blank\">招聘信息</a></li>\r\n");
       out.write("\t\t\t\t</ul>\r\n");
       out.write("\t\t\t\t<p>©2001-2015 中国采购与招标网 京ICP证070104号</p>\r\n");
       out.write("\t\t\t</div>\r\n");
@@ -287,7 +284,7 @@ public final class loginDecorator_jsp extends org.apache.jasper.runtime.HttpJspB
     _jspx_th_c_set_3.setPageContext(_jspx_page_context);
     _jspx_th_c_set_3.setParent(null);
     _jspx_th_c_set_3.setVar("casPath");
-    _jspx_th_c_set_3.setValue(new String("http://101.200.0.81/cas/login?service=http://192.168.8.122:8080/homepage"));
+    _jspx_th_c_set_3.setValue(new String("http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"));
     int _jspx_eval_c_set_3 = _jspx_th_c_set_3.doStartTag();
     if (_jspx_th_c_set_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
@@ -306,7 +303,7 @@ public final class loginDecorator_jsp extends org.apache.jasper.runtime.HttpJspB
     _jspx_th_c_set_4.setPageContext(_jspx_page_context);
     _jspx_th_c_set_4.setParent(null);
     _jspx_th_c_set_4.setVar("casBase");
-    _jspx_th_c_set_4.setValue(new String("http://101.200.0.81/cas"));
+    _jspx_th_c_set_4.setValue(new String("http://192.168.8.241/cas"));
     int _jspx_eval_c_set_4 = _jspx_th_c_set_4.doStartTag();
     if (_jspx_th_c_set_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_4);
@@ -325,7 +322,7 @@ public final class loginDecorator_jsp extends org.apache.jasper.runtime.HttpJspB
     _jspx_th_c_set_5.setPageContext(_jspx_page_context);
     _jspx_th_c_set_5.setParent(null);
     _jspx_th_c_set_5.setVar("imgPath");
-    _jspx_th_c_set_5.setValue(new String("http://101.200.0.81"));
+    _jspx_th_c_set_5.setValue(new String("http://192.168.8.241"));
     int _jspx_eval_c_set_5 = _jspx_th_c_set_5.doStartTag();
     if (_jspx_th_c_set_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_5);

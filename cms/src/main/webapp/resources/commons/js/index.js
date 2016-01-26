@@ -99,6 +99,7 @@ function getSuggest(val) {
 
 }
 
+
 $(function() {
 
 	imgArr();

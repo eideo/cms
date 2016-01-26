@@ -61,7 +61,7 @@ define(function(require, exports, module) {
 
 			if($(document).scrollTop() != 712){
 
-				$("html, body").scrollTop(0).animate({scrollTop: $("#c_btn").offset().top});
+				$("html, body").animate({scrollTop: $("#c_btn").offset().top});
 			}
 		})
 
