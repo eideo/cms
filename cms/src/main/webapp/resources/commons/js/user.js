@@ -2,8 +2,6 @@
 var option = null;
 $(function(){
 
-	console.log($('.content').offset().left)
-
 	tabHover();
 	
 	// 更换头像
@@ -23,7 +21,6 @@ $(function(){
 	
 	// 购物车悬浮框
 	fixedBar();
-
 
 	// 关注按钮
 	userAttention();

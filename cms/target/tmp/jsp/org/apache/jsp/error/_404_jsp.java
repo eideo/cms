@@ -83,15 +83,14 @@ public final class _404_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write("  ");
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_4(_jspx_page_context))
         return;
       out.write('\r');
       out.write('\n');
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
-      out.write("\r\n");
       out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
@@ -118,7 +117,7 @@ public final class _404_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t}\r\n");
       out.write("\t\t});\r\n");
       out.write("\t}\r\n");
-      out.write("\t</script>\r\n");
+      out.write("</script>\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n");
       out.write("<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n");

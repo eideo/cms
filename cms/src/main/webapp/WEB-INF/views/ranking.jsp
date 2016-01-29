@@ -7,9 +7,12 @@
 	<meta charset="UTF-8">
 	<title>排行榜</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ranking.css?v=${projectversion}">
+	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ranking.css?v=${projectversion}">
 	</myCss>
-
+	<!--[if lt IE9]>
+	<script src="${resPath}/resources/commons/js/html5shiv.min.js"></script>
+	<script src="${resPath}/resources/commons/js/respond.js"></script>
+	<![endif]-->
 </head>
 <body>
 

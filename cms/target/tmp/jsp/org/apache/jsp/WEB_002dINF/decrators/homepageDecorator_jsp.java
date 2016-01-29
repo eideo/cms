@@ -57,7 +57,7 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
+      out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -83,15 +83,14 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
         return;
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write("  ");
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_4(_jspx_page_context))
         return;
       out.write('\r');
       out.write('\n');
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
-      out.write("\r\n");
       out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
@@ -118,14 +117,13 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\t\t\t}\r\n");
       out.write("\t\t});\r\n");
       out.write("\t}\r\n");
-      out.write("\t</script>\r\n");
+      out.write("</script>\r\n");
       out.write("\r\n");
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("\t<title>首页</title>\r\n");
       out.write("\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n");
-      out.write("\t<meta http-equiv=\"X-UA-Compatible\" content=\"edge\" />\r\n");
-      out.write("\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=EmulateIE7\"/> \r\n");
+      out.write("\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\r\n");
       out.write("    <meta name=\"keywords\" content=\"采购与招标、关系网、排行榜、行业指数、行业报告 \" />\r\n");
       out.write("    <meta name=\"description\" content=\"数据对话,一触即发\" />\r\n");
       out.write("\t<link rel=\"icon\" href=\"");

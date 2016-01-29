@@ -83,15 +83,14 @@ public final class industry_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write("  ");
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_4(_jspx_page_context))
         return;
       out.write('\r');
       out.write('\n');
       if (_jspx_meth_c_set_5(_jspx_page_context))
         return;
-      out.write("\r\n");
       out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
       out.write("\tvar path = \"");
@@ -118,7 +117,11 @@ public final class industry_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t}\r\n");
       out.write("\t\t});\r\n");
       out.write("\t}\r\n");
-      out.write("\t</script>\r\n");
+      out.write("</script>\r\n");
+      out.write("<!--[if Ite IE8]>\r\n");
+      out.write("<script src=\"http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js\"></script>\r\n");
+      out.write("<script src=\"http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js\"></script>\r\n");
+      out.write("<![endif]-->");
       out.write("\r\n");
       out.write(" \r\n");
       out.write("<html lang=\"en\">\r\n");
