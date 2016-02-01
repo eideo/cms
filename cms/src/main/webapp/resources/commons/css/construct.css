@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-01-22 15:24:16
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-01-25 15:28:54
+* @Last Modified time: 2016-02-01 09:34:39
 */
 .search{
 	display: none
@@ -86,7 +86,8 @@
 
     width: 175px;
     height: 110px;
-
+    z-index: 1002;
+    
     -webkit-animation: carmove 15s linear .1s infinite;
        -moz-animation: carmove 15s linear .1s infinite;
          -o-animation: carmove 15s linear .1s infinite;

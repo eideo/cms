@@ -743,7 +743,8 @@ text
     height: 50px;
 
     cursor: pointer;
-
+    z-index: 1030;
+    
     background: #47aaff;
 }
 #gotop i,

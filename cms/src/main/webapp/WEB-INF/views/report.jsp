@@ -130,10 +130,11 @@
 			</ul>
 		</div>
 	</div>
-	<a id="gotop">
+
+	<div id="gotop">
 		<i></i>
 		<span>顶部</span>
-	</a>
+	</div>
 
 	<script type="text/html" id="listTemplate">
 		<li class="clearfix">
@@ -174,22 +175,22 @@
 			</div>
 		</li>
 	</script>
-	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=${projectversion}"></script>
-		<script type="text/javascript">
-			var resPath = "${resPath}";
-			$(".tcdPageCode").createPage({
-		        pageCount : ${totalPage},
-		        current : ${currentPage},
-		        backFn : function(p) {
-		        	ajaxReport(p);
-		        }
-		    });
-		</script>
-	</myScript>
-	<%@include file="dialogLogin/loginDialog.jsp"%>
+<myScript>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=${projectversion}"></script>
+	<script type="text/javascript">
+		var resPath = "${resPath}";
+		$(".tcdPageCode").createPage({
+		    pageCount : ${totalPage},
+		    current : ${currentPage},
+		    backFn : function(p) {
+		        ajaxReport(p);
+		   	}
+		});
+	</script>
+</myScript>
+<%@include file="dialogLogin/loginDialog.jsp"%>
 </body>
 </html>

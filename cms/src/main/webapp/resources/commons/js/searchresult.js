@@ -26,7 +26,6 @@ define(function(require, exports, module) {
 		// 关闭登录框
 		Close.closeLoginBox();
 
-
 		//	搜索框交互
 		searchHint();
 
@@ -38,9 +37,38 @@ define(function(require, exports, module) {
 
 		pageClick();
 
-		goTop();
+		$(window).scroll(function() {
+			toTop()
+		})
+
+		$('#gotop').click(function() {
+
+			$('body,html').animate({
+				scrollTop: 0
+			}, 300);
+		}).mouseover(function() {
+
+			$('#gotop i').hide();
+			$('#gotop span').show();
+		}).mouseout(function() {
+
+			$('#gotop i').show();
+			$('#gotop span').hide();
+		})
 
 	})
+
+
+	function toTop() {
+
+		var h = $(window).height();
+		var t = $(document).scrollTop();
+		if (t >= 768) {
+			$('#gotop').show();
+		} else {
+			$('#gotop').hide();
+		}
+	}
 
 	function searchHint() {
 
@@ -1243,8 +1271,11 @@ define(function(require, exports, module) {
 			var type = $(this).text();
 			if (type === "招标" || type === "中标" || type === "采购") {
 
-				$(this).parent().parent().parent().find('.rpage').addClass('rno');
-				$(this).parent().parent().parent().find('.rpage').removeAttr('href');
+				/*window.location.href = path +"/construction"*/
+				/*$(this).parent().parent().parent().find('.rpage').addClass('rno');
+				$(this).parent().parent().parent().find('.rpage').removeAttr('href');*/
+
+				$(this).parent().parent().parent().find('.rpage').attr("href",path+"/construction")
 			}
 		})
 	}
@@ -1287,6 +1318,7 @@ define(function(require, exports, module) {
 	}
 
 	function goTop() {
+
 		$(window).scroll(function() {
 
 			if ($(window).scrollTop() > 200) {
@@ -1296,6 +1328,7 @@ define(function(require, exports, module) {
 				$('#gotop').hide();
 			}
 		})
+		
 		$('#gotop').click(function() {
 
 			$('body,html').animate({

@@ -24,7 +24,7 @@ h3{
 	font-weight: bold;
 	font-size: 18px;
 	color: #333;
-	border-bottom: 2px solid #47aaff;
+	border-bottom: 2px solid #ebebeb;
 	padding-bottom: 10px;
 }
 .findBox{
@@ -118,6 +118,7 @@ h3{
 	line-height: 42px;
 	font-size: 14px;
 	border-radius: 2px;
+	cursor: pointer;
 }
 .submit{
 	width: 450px;

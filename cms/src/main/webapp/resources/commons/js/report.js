@@ -1,61 +1,17 @@
 'use strict';
-$(function() {
 
-	//	搜索框交互
-	searchHint();
+function toTop() {
 
-	// 轮播图
-	imgArr();
-
-	//	关闭登录框
-	closeLoginBox();
-
-	// 行业分类
-	tradeClass();
-
-	// 行业报告列表关注收藏分享
-	userBehavior();
-
-	urlOption();
-
-	pageClick();
-
-	goTop()
-
-	$('.cutTitle a').live('click',function() {
-
-		$(this).css('color','#ccc')
-
-		$('.hot .cutTitle').css('color','#ccc')
-	})
-});
-
-function goTop() {
-	$(window).scroll(function () {
-
-		if($(window).scrollTop() > 200) {
-
-			$('#gotop').show();
-			
-		}else {
-			$('#gotop').hide();
-		}	
-	})
-	$('#gotop').click(function () {
-
-		$('body,html').animate({scrollTop:0},300);
-	}).mouseover(function() {
-
-		$('#gotop i').hide();
-		$('#gotop span').show();
-	}).mouseout(function() {
-
-		$('#gotop i').show();
-		$('#gotop span').hide();
-	})
+	var h = $(window).height();
+	var t = $(document).scrollTop();
+	if (t >= 768) {
+		$('#gotop').show();
+	} else {
+		$('#gotop').hide();
+	}
 }
-// 搜索框交互
 
+// 搜索框交互
 function searchHint() {
 
 	$('.searchBox').focus(function() {
@@ -89,17 +45,21 @@ function searchHint() {
 
 		$('.searchBox').val(this.innerHTML);
 		searchReport();
-		$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+		$("html, body").scrollTop(0).animate({
+			scrollTop: $(".s_nav").offset().top - 30
+		});
 	});
 
 	$('.searchBtn').on("click", function() {
 
-		if($('.searchBox').val() == ''){
+		if ($('.searchBox').val() == '') {
 			$('.searchBox').focus();
-		}else {
+		} else {
 
 			searchReport();
-			$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+			$("html, body").scrollTop(0).animate({
+				scrollTop: $(".s_nav").offset().top - 30
+			});
 		}
 	});
 
@@ -110,18 +70,20 @@ function searchHint() {
 		if (ev.keyCode == 13) {
 
 			searchReport();
-			$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+			$("html, body").scrollTop(0).animate({
+				scrollTop: $(".s_nav").offset().top - 30
+			});
 		}
 	}
 
-	var searchInput=document.getElementById('searchBox');
+	var searchInput = document.getElementById('searchBox');
 
-	searchInput.oninput=function(){
+	searchInput.oninput = function() {
 
-		if(this.value !='') {
+		if (this.value != '') {
 
 			$('.search i').show();
-		}else {
+		} else {
 
 			$('.search i').hide();
 		}
@@ -470,12 +432,12 @@ function searchReport(p) {
 
 				if (data.reportMainList.length === 0) {
 
-					var imgError = path+'/resources/commons/images/searchError.png';
+					var imgError = path + '/resources/commons/images/searchError.png';
 
-					$('#reportMainList').html('<img src="'+path+'/resources/commons/images/searchError.png'+'" style="margin:100px auto"/>')
+					$('#reportMainList').html('<img src="' + path + '/resources/commons/images/searchError.png' + '" style="margin:100px auto"/>')
 					$(".tcdPageCode").hide()
 				}
-				
+
 				for (var i = 0; i < data.reportMainList.length; i++) {
 
 					var reportMain = data.reportMainList[i];
@@ -543,9 +505,9 @@ function ajaxReport(p) {
 
 				if (data.reportMainList.length === 0) {
 
-					var imgError = path+'/resources/commons/images/searchError.png';
+					var imgError = path + '/resources/commons/images/searchError.png';
 
-					$('#reportMainList').html('<img src="'+path+'/resources/commons/images/searchError.png'+'" style="margin:100px auto"/>')
+					$('#reportMainList').html('<img src="' + path + '/resources/commons/images/searchError.png' + '" style="margin:100px auto"/>')
 					$(".tcdPageCode").hide()
 				}
 				for (var i = 0; i < data.reportMainList.length; i++) {
@@ -595,14 +557,15 @@ function getUrlArgs() {
 
 	var url = window.location.href
 	var urlArr = url.split('/');
-	var args = urlArr[urlArr.length-1];
+	var args = urlArr[urlArr.length - 1];
 	return args;
 
 }
+
 function urlOption() {
 
 	var pid = getUrlArgs();
-	var theIndustry=$("'.term li[rid='"+pid+"']'");
+	var theIndustry = $("'.term li[rid='" + pid + "']'");
 
 	theIndustry.addClass('active');
 	theIndustry.find('a').addClass('active');
@@ -614,6 +577,60 @@ function pageClick() {
 
 	$('.tcdPageCode').on("click", "a", function() {
 
-		$("html, body").scrollTop(0).animate({scrollTop: $(".s_nav").offset().top-30});
+		$("html, body").scrollTop(0).animate({
+			scrollTop: $(".s_nav").offset().top - 30
+		});
 	})
 }
+
+
+
+$(function() {
+
+
+	$(window).scroll(function() {
+		toTop()
+	})
+
+	// 搜索框交互
+	searchHint();
+
+	// 轮播图
+	imgArr();
+
+	// 关闭登录框
+	closeLoginBox();
+
+	// 行业分类
+	tradeClass();
+
+	// 行业报告列表关注收藏分享
+	userBehavior();
+
+	urlOption();
+
+	pageClick();
+
+	$('.cutTitle a').live('click', function() {
+
+		$(this).css('color', '#ccc')
+
+		$('.hot .cutTitle').css('color', '#ccc')
+	})
+
+	$('#gotop').click(function() {
+
+		$('body,html').animate({
+			scrollTop: 0
+		}, 300);
+	}).mouseover(function() {
+
+		$('#gotop i').hide();
+		$('#gotop span').show();
+	}).mouseout(function() {
+
+		$('#gotop i').show();
+		$('#gotop span').hide();
+	})
+
+});

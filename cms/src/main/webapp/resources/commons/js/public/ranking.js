@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-01-04 15:01:07
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-22 14:15:36
+ * @Last Modified time: 2016-02-01 10:07:11
  * @ 排行榜入口模块
  */
 
@@ -318,6 +318,17 @@ define(function(require, exports, module) {
 		})
 	}
 	
+	function toTop() {
+
+        var h = $(window).height();
+        var t = $(document).scrollTop();
+        if (t >= 768) {
+            $('#gotop').show();
+        } else {
+            $('#gotop').hide();
+        }
+    }
+
 	$(function() {
 
 		positionAll();
@@ -333,7 +344,8 @@ define(function(require, exports, module) {
 		Chart.addChinaMap(mapSetting, function() {
 
 			var parent = d3.select('#map').select('.content'),
-				dataset = []
+				dataset = [],
+				wordCache = {};
 
 			function getMapData() {
 
@@ -343,14 +355,25 @@ define(function(require, exports, module) {
 					dataType: "json",
 					success: function(data) {
 
-						if (data.areaName === '') {
+						if (data.hotWord.length > 4) {
+
+							data.hotWord = data.hotWord.substr(0,4) +"...";
+						}
+
+						if (data.areaName === '' || wordCache[data.areaName] === data.hotWord) {
 
 							return
+
+						} else {
+
+							wordCache[data.areaName] = data.hotWord;
 						}
+
+						console.log('------20160201缓存',wordCache)
 
 						dataset = [data.areaName, data.hotWord]
 
-						initHotWord(data.hotWord)
+						initHotWord(data.hotWord,data.areaName)
 
 						var width = document.querySelector(mapSetting.selector).getBoundingClientRect().width,
 							height = document.querySelector(mapSetting.selector).getBoundingClientRect().height
@@ -388,7 +411,25 @@ define(function(require, exports, module) {
 			$(this).css('color', '#333')
 		})
 
-		goTop();
+		$(window).scroll(function() {
+			
+            toTop()
+        })
+
+        $('#gotop').click(function() {
+
+            $('body,html').animate({
+                scrollTop: 0
+            }, 300);
+        }).mouseover(function() {
+
+            $('#gotop i').hide();
+            $('#gotop span').show();
+        }).mouseout(function() {
+
+            $('#gotop i').show();
+            $('#gotop span').hide();
+        })
 	})
 
 

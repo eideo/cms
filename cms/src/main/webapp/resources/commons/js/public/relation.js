@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-25 17:21:16
+ * @Last Modified time: 2016-02-01 11:56:03
  */
 
 'use strict';
@@ -416,6 +416,8 @@ define(function(require, exports, module) {
 
                 if (AjaxObj.canSearch) {
 
+                    $('.recom').slideUp();
+                    
                     Tool.mask()
                     getRelation()
                 }
@@ -539,6 +541,9 @@ define(function(require, exports, module) {
             $('.dataError').remove()
         })
     }
+
+
+
 
     $(function() {
 

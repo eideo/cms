@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-25 14:48:29
+ * @Last Modified time: 2016-02-01 10:09:09
  */
 
 'use strict';
@@ -147,11 +147,11 @@ define(function(require, exports, module) {
 			})
 			.on('mouseover',function(d,i) {
 
-				d3.select(this).attr('opacity',0.7)
+				d3.select(this).attr('opacity',1.0)
 			})
 			.on('mouseout',function(d) {
 
-				d3.select(this).attr('opacity',1.0)
+				d3.select(this).attr('opacity',0.8)
 			})
 			.attr('x', function(d, i) {
 
@@ -175,6 +175,7 @@ define(function(require, exports, module) {
 
 				return yScale(d['type'])
 			})
+			.attr('opacity',0.8)
 			.attr('width', function(d) {
 
 				return xScale(d['value'])

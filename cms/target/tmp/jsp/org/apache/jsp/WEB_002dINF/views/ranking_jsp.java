@@ -130,7 +130,7 @@ public final class ranking_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<meta charset=\"UTF-8\">\r\n");
       out.write("\t<title>排行榜</title>\r\n");
       out.write("\t<myCss>\r\n");
-      out.write("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
+      out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/css/ranking.css?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));

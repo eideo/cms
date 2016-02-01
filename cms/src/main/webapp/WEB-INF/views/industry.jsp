@@ -189,6 +189,12 @@
 		</div>
 	</div>
 </div>
+
+	<div id="gotop">
+		<i></i>
+		<span>顶部</span>
+	</div>
+	
 	<myScript>
 		<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
 		<script type="text/javascript" >

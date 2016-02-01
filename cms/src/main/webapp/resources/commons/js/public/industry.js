@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-22 16:12:39
+ * @Last Modified time: 2016-01-29 16:00:18
  */
 
 define(function(require, exports, module) {
@@ -370,7 +370,19 @@ define(function(require, exports, module) {
 		})
 	}
 
+	 function toTop() {
+
+        var h = $(window).height();
+        var t = $(document).scrollTop();
+        if (t >= 768) {
+            $('#gotop').show();
+        } else {
+            $('#gotop').hide();
+        }
+    }
+
 	$(function() {
+
 
 		Interaction.getFullDate = getFullDate
 		Interaction.getLeftDate = getLeftBar
@@ -464,6 +476,26 @@ define(function(require, exports, module) {
 			e.preventDefault()
 			e.stopPropagation()
 		})
+
+		$(window).scroll(function() {
+			
+            toTop()
+        })
+
+        $('#gotop').click(function() {
+
+            $('body,html').animate({
+                scrollTop: 0
+            }, 300);
+        }).mouseover(function() {
+
+            $('#gotop i').hide();
+            $('#gotop span').show();
+        }).mouseout(function() {
+
+            $('#gotop i').show();
+            $('#gotop span').hide();
+        })
 	})
 
 	module.exports = ''

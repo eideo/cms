@@ -15,7 +15,7 @@
 		<div class="findBox">
 			<div class="sign">
 				<span class="phoneBtn">短信找回</span>
-				<span class="emailBtn">邮箱找回</span>
+				<!-- <span class="emailBtn">邮箱找回</span> -->
 				<i></i>	
 			</div>
 			<div class="operationFrame">
