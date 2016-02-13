@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-29 16:00:18
+ * @Last Modified time: 2016-02-02 14:34:28
  */
 
 define(function(require, exports, module) {
@@ -405,12 +405,16 @@ define(function(require, exports, module) {
 				canClick = $(this).data('canClick'),
 				index = $(this).parent().index()
 
-			if (!canClick) {
+			d3.selectAll('#chart1 .texts .leftBarText').style('fill', function(d,i) {
 
-				return
-			}
+				if (d.value < 10) {
 
-			d3.selectAll('#chart1 .leftBarText').style('fill', '#333')
+					return 'rgb(199, 189, 189)'
+				} else {
+
+					return "#333"
+				}
+			})
 			d3.select('#chart1 .texts g:nth-child(' + (index + 1) + ')').select('.leftBarText').style('fill', color)
 
 			Interaction.type = type
@@ -442,7 +446,17 @@ define(function(require, exports, module) {
 				return
 			}
 
-			d3.selectAll('#chart1 .texts .leftBarText').style('fill', '#333')
+			d3.selectAll('#chart1 .texts .leftBarText').style('fill', function(d,i) {
+
+				if (d.value < 10) {
+
+					return 'rgb(199, 189, 189)'
+				} else {
+
+					return "#333"
+				}
+			})
+
 			d3.select($(this)[0]).style('fill', color)
 
 			Interaction.type = html

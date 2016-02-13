@@ -6,31 +6,85 @@ body{
 	background: #fff;
 }
 .content{
-	width: 1000px;
-	height: 550px;
-	margin: 50px auto;
+	width: 1200px;
+	height: 430px;
+	margin:0 auto;
+	margin-top:74px;
 	background: #fff;
-	padding-top: 50px;
 }
-.operationFrame .error{
+
+.content .top{
+	height:79px;
+	position: relative;
+	border-bottom:1px solid #ebebeb;
+	position: relative;
+}
+
+.content .top span{
+	position: absolute;
+	display:inline-block;
+	top:-40px;
+	right:0px;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+	z-index:1002;
+}
+.content .top span a{
+	color: #47aaff;
+}
+
+.content .flagCon{
+
+}
+
+.content .flagCon .flagTitle{
+	height:70px;
+	line-height:70px;
+
+}
+.flagCon .error{
 	position: absolute;
 	bottom: -20px;
-	left: 20px;
-	color: red;
+	color: #ff5a5a;
+	padding-left:20px;
+	background:url(../images/mFailure.png) no-repeat left top;
+	background-size:16px 16px;
 }
-h3{
-	width: 800px;
-	margin: 0 auto;
+.flagCon .success{
+	position: absolute;
+	bottom: -20px;
+	color: #7dbd00;
+	padding-left:20px;
+	background:url(../images/mSuccess.png) no-repeat left top;
+	background-size:16px 16px;
+}
+
+.content .h3con{
+	width:450px;
+	margin:0 auto;
+	position: relative;
+	overflow: hidden;
+}
+.content h3{
+	width: 88px;
+	text-align: center;
+	margin-top:56px;
 	font-weight: bold;
-	font-size: 18px;
-	color: #333;
-	border-bottom: 2px solid #ebebeb;
-	padding-bottom: 10px;
+	font-size: 16px;
+	color: #47aaff;
+	border-bottom:2px solid #47aaff;
 }
 .findBox{
 	width: 450px;
-	margin: 100px auto;
+	margin:0 auto;
 }
+
+.resetBox{
+	width: 450px;
+	margin:0 auto;
+}
+
 .findBox .sign{
 	margin: 30px auto;
 	font-size: 16px;
@@ -56,12 +110,12 @@ h3{
 	margin-left: 15px;
 	color: #47aaff;
 }
-.findBox p{
+.resetBox p,.findBox p{
 	font-size: 14px;
 	font-weight: bold;
 }
 .emailBox,.phoneBox{
-	margin: 26px 0 30px 0;
+	margin: 0px 0 30px 0;
 	position: relative;
 }
 .email{
@@ -71,12 +125,16 @@ h3{
 	position: relative;
 	margin-bottom: 30px;
 }
+
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;overflow:hidden;}
+
 #email,#phone{
 	width: 450px;
 	height: 42px;
 	border: 1px solid #d7d7d7;
 	border-radius: 2px;
 	padding-left: 20px;
+	background:#fff;
 }
 #code{
 	width: 328px;
@@ -140,17 +198,37 @@ h3{
 	border: 1px solid #d7d7d7;
 	border-radius: 2px;
 	padding-left: 20px;
-	margin-bottom: 30px
 }
 
-#password{
-	margin-top: 26px;
+#repassword{
+	margin-top: 30px
+}
+
+.submitBox{
+	margin-top:30px;
 }
 .passwordBox,.rePasswordBox{
 	position: relative;
 }
-.passwordBox .error,.rePasswordBox .error{
-	position: absolute;
-	bottom: 8px;
-	left: 20px;
+
+/*email*/
+.emailCon{
+	width: 450px;
+    margin: 0 auto;
+}
+.emailCon .flagTitle{
+    font-size: 14px;
+	font-weight: bold;
+}
+.emailCon .desc{
+    font-size: 14px;
+    height:30px;
+    line-height:30px;
+	color:#888888;
+}
+.emailCon .emailName{
+    font-size: 14px;
+    color:#47aaff;
+	 height:30px;
+    line-height:30px;
 }

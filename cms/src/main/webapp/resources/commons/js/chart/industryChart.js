@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:38
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-01 10:09:09
+ * @Last Modified time: 2016-02-02 14:19:01
  */
 
 'use strict';
@@ -130,13 +130,14 @@ define(function(require, exports, module) {
 
 				$(this).data('type', d['type'])
 				$(this).data('id', d['id'])
-				$(this).data('color',colorset[i])
-
+				
 				if (d['value'] < 10) {
 
+					$(this).data('color','rgb(199, 189, 189)')
 					$(this).data('canClick',false)
 				} else {
 
+					$(this).data('color',colorset[i])
 					$(this).data('canClick',true)
 				}
 				return 'leftBarRect'
@@ -164,7 +165,7 @@ define(function(require, exports, module) {
 			})
 			.attr('cursor', 'pointer')
 			.attr('width', function(d, i) {
-
+ 
 				return xScale(0)
 			})
 			.attr('height', 20)
@@ -176,9 +177,20 @@ define(function(require, exports, module) {
 				return yScale(d['type'])
 			})
 			.attr('opacity',0.8)
-			.attr('width', function(d) {
+			.attr('width', function(d,i) {
 
-				return xScale(d['value'])
+				if (d['value'] < 10) {
+					
+					d3.select('svg').append("image")
+					.attr('transform', 'translate(' + (xScale(0) + margin.left) + ',' + yScale(d['type']) + ')')
+					.attr('width', 63)
+					.attr('height', 20)
+					.attr('xlink:href', path + '/resources/commons/images/nodata.png')
+
+				} else {
+
+					return xScale(d['value'])
+				}
 			})
 
 		var nodetext = texts.selectAll('g')
@@ -212,13 +224,16 @@ define(function(require, exports, module) {
 
 				$(this).data('type', d['type'])
 				$(this).data('id', d['id'])
-				$(this).data('color',colorset[i])
-
+				
 				if (d['value'] < 10) {
 
 					$(this).data('canClick',false)
+					d3.select(this).style('fill',"rgb(199, 189, 189)")
+					$(this).data('color','rgb(199, 189, 189)')
+
 				} else {
 
+					$(this).data('color',colorset[i])
 					$(this).data('canClick',true)
 				}
 				

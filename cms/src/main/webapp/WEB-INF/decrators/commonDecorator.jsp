@@ -38,14 +38,14 @@
 	<div class="main-nav clearfix">
 		<h1 class="logo">
 			关系网
-			<a href="${appPath }/homepage" target="_blank"></a>
+			<a href="${appPath }/homepage"></a>
 		</h1>
 		<ul class="nav clearfix">
-			<li><a href="${appPath }/homepage" target="_blank" id="index" class='buttonHover'>首页</a></li>
-			<li><a href="${appPath }/relation" target="_blank" id="relation" class='buttonHover'>关系网</a></li>
-			<li><a href="${appPath }/industry" target="_blank" id="industry" class='buttonHover'>行业指数</a></li>
-			<li><a href="${appPath }/ranking" target="_blank" id="ranking" class='buttonHover'>排行榜</a></li>
-			<li><a href="${appPath }/report" target="_blank" id="report" class='buttonHover'>行业报告</a></li>
+			<li><a href="${appPath }/homepage"  id="index" class='buttonHover'>首页</a></li>
+			<li><a href="${appPath }/relation"  id="relation" class='buttonHover'>关系网</a></li>
+			<li><a href="${appPath }/industry"  id="industry" class='buttonHover'>行业指数</a></li>
+			<li><a href="${appPath }/ranking"  id="ranking" class='buttonHover'>排行榜</a></li>
+			<li><a href="${appPath }/report" id="report" class='buttonHover'>行业报告</a></li>
 		</ul>
 		<c:if test="${notSearch==null}">
 			<div class="search">
