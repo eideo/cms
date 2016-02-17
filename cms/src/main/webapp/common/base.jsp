@@ -6,9 +6,9 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:set var="appPath" value="http://192.168.8.122:8080" />
 <%-- <c:set var="resPath" value="http://101.200.0.81/cms"/> --%>
- <c:set var="resPath" value="http://192.168.8.122:8080"/>
- <%--  <c:set var="casPath" value="http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage"/>--%>
-  <c:set var="casPath" value="http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"/>
+<c:set var="resPath" value="http://192.168.8.122:8080"/>
+<%--  <c:set var="casPath" value="http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage"/>--%>
+<c:set var="casPath" value="http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"/>
 <%--  <c:set var="casPath" value="http://192.168.8.133:9080/login?service=http://192.168.8.129:8080/homepage"/>--%>
 <c:set var="casBase" value="http://192.168.8.241/cas"/>
 <c:set var="imgPath" value="http://192.168.8.241" />

@@ -2,61 +2,161 @@
  * @Author: zhanganchun
  * @Date:   2016-02-01 16:39:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-02 17:17:01
+ * @Last Modified time: 2016-02-17 09:44:45
  */
 
 'use strict';
 
+var emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
+	phoneReg = /^1[3|4|5|8][0-9]\d{8}$/,
+	passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
+
+var pswFlag = {
+	phone: false,
+	email: false,
+	code: false,
+	password: false,
+	emailCode: false,
+	resetpassword: false,
+	phoneName:'',
+	phoneCodeName:'',
+	uuid: ''
+}
+
+var emailAndPhone = function() {
+
+	$('#emailTab').on('click', function(e) {
+
+		$(this).find('input').attr('checked', true)
+		$('#phoneTab').find('input').attr('checked', false)
+		$('.emailBox').show()
+
+		if ($('.phoneBox').css('display') === 'block') {
+			$('.phoneBox').hide()
+		}
+		if ($('.validBox').css('display') === 'block') {
+			$('.validBox').hide()
+		}
+
+		if ($('.reSendCode').css('display') === 'block') {
+			$('.reSendCode').hide()
+		}
+		$('.error').hide()
+	})
+
+	$('#phoneTab').on('click', function(e) {
+
+		$(this).find('input').attr('checked', true)
+		$('#emailTab').find('input').attr('checked', false)
+
+		if ($('.emailBox').css('display') === 'block') {
+			$('.emailBox').hide()
+		}
+		if ($('.validBox').css('display') === 'block') {
+			$('.validBox').hide()
+		}
+		if ($('.reSendCode').css('display') === 'block') {
+			$('.reSendCode').hide()
+		}
+		$('.phoneBox').show()
+		$('.error').hide()
+	})
+}
+
+var sendEmail = function() {
+
+	$.ajax({
+		url: path + '/mail/sendPassResetMail',
+		async: false,
+		dataType: 'text',
+		type: "post",
+		data: {
+			to: $('#email').val()
+		},
+		success: function(str) {
+
+			var json = eval("(" + str + ")");
+
+			if (json.success) {
+
+				$('.flagCon').hide()
+				$('.successCon').show()
+			} else {
+
+			}
+		},
+		error: function() {
+			$.Message({
+				text: '请求异常',
+				type: "failure"
+			})
+		}
+	})
+}
+
+var controlState = function() {
+
+	clearInterval(interval);
+
+	var minitus = 30;
+	var interval = setInterval(function() {
+
+		$('.reSendCode #reSend').html(minitus + '秒后可重发');
+		$('.validBtn').css('background','#cccccc')
+		minitus --;
+
+		if (minitus === -1) {
+
+			clearInterval(interval)
+			$('.validBtn').css('background','#47aaff')
+			$('.reSendCode #reSend').html('重新发送')
+		}
+	},1000)
+}
+
+var getUUID = function() {
+
+	$.ajax({
+		url: path + '/phoneResetCheck',
+		async: false,
+		dataType: 'text',
+		type: "post",
+		data: {
+			phone: pswFlag.phoneName,
+			phoneCode:pswFlag.phoneCodeName
+		},
+		success: function(str) {
+
+			var json = eval("(" + str + ")");
+			if (json.status) {
+
+				window.location.href = path+"/resetPwd?uuid="+json.uuid
+			} else {
+
+			}
+		},
+		error: function() {
+			$.Message({
+				text: '请求异常',
+				type: "failure"
+			})
+		}
+	})
+}
+
 $(function() {
-
-	var emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-		phoneReg = /^1[3|4|5|8][0-9]\d{8}$/,
-		passwordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
-
-	var pswFlag = {
-		username: false,
-		code: false,
-		password: false,
-		emailCode: false,
-		resetpassword: false,
-		uuid:''
-	}
-
-	checkFromEmail()
 
 	function setInfo(context, flag, text) {
 
-		var $dom = $(context + " i")
+		var $dom = $(context + " .error")
 
-		if ($dom.hasClass('error')) {
-			$dom.removeClass('error')
-		}
-		if ($dom.hasClass('success')) {
-			$dom.removeClass('success')
-		}
+		if (flag) {
 
-		if (flag === true) {
-
-			$dom.addClass("success").text(text);
-
+			$(context + " .flagState").show()
+			$('.error').hide()
 		} else {
 
-			$dom.addClass("error").text(text);
-		}
-	}
-
-	function checkFromEmail() {
-
-		//findPwd?from=email&&uuid=3253
-		var url = window.location.href.split('?')[1],
-			uuid;
-		
-		if (url) {
-
-			pswFlag.uuid = uuid = url.split('&&')[1].split('=')[1];
-
-			$('.content .findBox').css('display', 'none')
-			$('.content .resetBox').css('display', 'block')
+			$dom.show().text(text);
 		}
 	}
 
@@ -72,94 +172,10 @@ $(function() {
 		reloadcode()
 	})
 
-	/*
-	  urlArgs: 接口名
-	  type:http类型
-	  data:参数
-	  urlArgs,type,data,dataType,sucessTrue,successFalse,error
-	 */
-	function myAjaxVaild(option) {
-
-		$.ajax({
-			url: path + '/' + option.urlArgs,
-			async: false,
-			dataType: option.dataType,
-			type: option.type,
-			data: option.data,
-			success: function(str) {
-
-				var json = eval("(" + str + ")");
-
-				if (json.status) {
-
-					pswFlag.phone = false;
-
-					setInfo('.phoneBox', false, '用户不存在,请重新填写');
-
-				} else {
-
-					setInfo('.phoneBox', true, '用户名输入正确');
-
-					pswFlag.phone = true;
-				}
-			},
-			error: function() {
-
-				$.Message({
-					text: '请求异常',
-					type: "failure"
-				})
-
-				pswFlag.phone = false;
-			}
-		})
-	}
-
-	/*进入修改密码之前的确认*/
-	$('.submitBox #phoneSubmit').on('click', function(e) {
-
-		var $phoneInput = $('#phone'),
-			$phoneCode = $('#phoneCode');
-
-		if ($phoneInput.val() === '') {
-
-			setInfo('.phoneBox', false, "手机号不能为空");
-		}
-
-		if ($phoneCode.val() === '') {
-
-			setInfo('.codeBox', false, "验证码不能为空");
-		}
-
-		if (pswFlag.username && pswFlag.emailCode) {
-
-			$('.content .findBox').css('display', 'none')
-
-			$('.content .emailCon').css('display', 'block')
-		}
-
-		if (pswFlag.username && pswFlag.code) {
-
-			console.log('---开始修改密码')
-
-			$('.content .findBox').css('display', 'none')
-
-			$('.content .resetBox').css('display', 'block')
-		}
-	})
-
-	/*手机号输入*/
-	$('#phone').on('input', function(e) {
-
-		$('.phoneBox .info').text('')
-	})
-
-	/*手机号或者邮箱验证，发请求*/
+	/*手机号验证，发请求*/
 	$('#phone').on('blur', function(e) {
 
-		var valueFlag = phoneReg.test($(this).val()) || emailReg.test($(this).val()),
-			phoneCode = $('.codeBox .phoneCode .clearfix'),
-			emailCode = $('.codeBox .emailCode .clearfix');
+		var valueFlag = phoneReg.test($(this).val())
 
 		if (!valueFlag) {
 
@@ -167,93 +183,42 @@ $(function() {
 
 		} else {
 
-			if ($('#c2').css('display') === 'block') {
+			$.ajax({
+				url: path + '/checkUserName',
+				async: false,
+				dataType: 'text',
+				type: "post",
+				data: {
 
-				$('#c2').css('display','none')
-				$('#c1').css('display','block')
-			}
+					username: $('#phone').val()
+				},
+				success: function(str) {
 
-			if ( phoneReg.test($(this).val()) ) {
+					var json = eval("(" + str + ")");
+					if (json.status) {
 
-				$.ajax({
-					url: path + '/checkUserName',
-					async: false,
-					dataType: 'text',
-					type: "post",
-					data: {
+						pswFlag.phone = false;
+						setInfo('.phoneBox', false, '用户不存在,请重新填写');
+					} else {
 
-						phone: $('#phone').val()
-					},
-					success: function(str) {
-
-						var json = eval("(" + str + ")");
-						if (json.status) {
-
-							pswFlag.username = false;
-							setInfo('.phoneBox', false, '用户不存在,请重新填写');
-						} else {
-
-							setInfo('.phoneBox', true, '用户名输入正确');
-							pswFlag.username = true;
-						}
-					},
-					error: function() {
-						$.Message({
-							text: '请求异常',
-							type: "failure"
-						})
-						pswFlag.username = false;
+						setInfo('.phoneBox', true, '用户名输入正确');
+						pswFlag.phone = true;
+						pswFlag.phoneName = $('#phone').val()
 					}
-				})
-
-			} else if (emailReg.test($(this).val())) {
-
-				console.log('-------验证邮箱是否存在')
-
-				if ($('#c1').css('display') === 'block') {
-
-					$('#c1').css('display','none')
-					$('#c2').css('display','block')
+				},
+				error: function() {
+					$.Message({
+						text: '请求异常',
+						type: "failure"
+					})
+					pswFlag.phone = false;
 				}
-
-				$.ajax({
-					url: path + '/checkUserName',
-					async: false,
-					dataType: 'text',
-					type: "post",
-					data: {
-
-						email: $('#phone').val()
-					},
-					success: function(str) {
-
-						var json = eval("(" + str + ")");
-						if (json.status) {
-
-							pswFlag.username = false;
-							setInfo('.phoneBox', false, '用户不存在,请重新填写');
-						} else {
-
-							setInfo('.phoneBox', true, '用户名输入正确');
-							pswFlag.username = true;
-						}
-					},
-					error: function() {
-						$.Message({
-							text: '请求异常',
-							type: "failure"
-						})
-
-						pswFlag.username = false;
-					}
-				})
-			}
+			})
 		}
-
 	})
 
 	// 获取验证码
-	$('.codeBox .codeBtn').on('click', function() {
+	$('.phoneBox .sendBtn,#reSend').on('click', function() {
 
 		if (pswFlag.phone) {
 
@@ -264,7 +229,7 @@ $(function() {
 				type: "post",
 				data: {
 
-					mobile: $('#phone').val()
+					mobile: $('#phone').val() || pswFlag.phoneName
 				},
 				success: function(data) {
 
@@ -272,10 +237,11 @@ $(function() {
 
 					if (json.status) {
 
-						$.Message({
-							text: '已经发送验证码',
-							type: "success"
-						})
+						$('.phoneBox').hide()
+						$('.validBox').show()
+						$('.reSendCode').show()
+
+						controlState()
 
 					} else {
 
@@ -299,13 +265,12 @@ $(function() {
 	})
 
 	/*验证码输入*/
-	$('#phoneCode').on('input', function(e) {
+	$('.validBox .validBtn').on('click', function(e) {
 
-		$('.codeBox .info').text('')
 
-		var length = $(this).val().length;
+		var length = $('#phoneCode').val().length;
 
-		if (!isNaN($(this).val()) && length === 4 && pswFlag.phone) {
+		if (!isNaN($('#phoneCode').val()) && length === 4 && pswFlag.phone) {
 
 			$.ajax({
 
@@ -322,84 +287,83 @@ $(function() {
 
 					if (json.status) {
 
-						setInfo('.codeBox', true, "验证码正确");
 						pswFlag.code = true;
+						pswFlag.phoneCodeName = $('#phoneCode').val()
+						
+						getUUID()
+						
 					} else {
 
-						setInfo('.codeBox', false, "验证码错误");
-						pswFlag.code = false;
+						$('.flagCon').hide()
+						$('.failCon').show()
+
+						pswFlag.code = false;	
 					}
 				},
 				error: function() {
 
-					$.Message({
-						text: '请求异常',
-						type: "failure"
-					})
 				}
 			})
 		}
 	})
 
 	/*第一次输入密码*/
-	$('#password').on('blur', function(e) {
+	$('#psw').on('blur', function(e) {
 
-		var value = $('#password').val(),
-			reValue = $('#repassword').val();
+		var value = $('#psw').val(),
+			reValue = $('#rePsw').val();
 
 		if (value === '') {
 
-			setInfo('.passwordBox', false, '密码不能为空！');
+			setInfo('.pswBox', false, '密码不能为空！');
 
 		} else {
 
-			if (!passwordReg.test(value)) {
-
-				setInfo('.passwordBox', false, '密码格式不正确');
-
-			} else if (reValue !== '' && value !== reValue) {
-
-				setInfo('.passwordBox', false, '两次密码输入不一致');
-
-			} else {
+			if (passwordReg.test(value)) {
 
 				pswFlag.password = true
-				setInfo('.passwordBox', true, '密码输入正确');
+				setInfo('.pswBox', true, '密码输入正确');
+			} else {
 
+				pswFlag.password = false
+				setInfo('.pswBox', false, '密码格式不正确');
 			}
 		}
 	})
 
 	/*再次确认密码*/
-	$('#repassword').on('blur', function(e) {
+	$('#rePsw').on('blur', function(e) {
 
-		var value = $('#password').val(),
-			reValue = $('#repassword').val();
+		var value = $('#psw').val(),
+			reValue = $('#rePsw').val();
 
 		if (reValue === '') {
 
-			setInfo('.rePasswordBox', false, '密码不能为空！');
+			setInfo('.rePswBox', false, '密码不能为空！');
 
 		} else {
 
 			if (!passwordReg.test(reValue)) {
 
-				setInfo('.rePasswordBox', false, '密码格式不正确');
+				setInfo('.rePswBox', false, '密码格式不正确');
 
 			} else if (value !== '' && value !== reValue) {
 
-				setInfo('.rePasswordBox', false, '两次密码输入不一致');
+				setInfo('.rePswBox', false, '两次密码输入不一致');
 
 			} else {
 
 				pswFlag.resetpassword = true
-				setInfo('.rePasswordBox', true, '密码输入正确');
+				setInfo('.rePswBox', true, '密码输入正确');
 			}
 		}
 	})
 
 	/*修改密码*/
 	$('.submitBox #changeBtn').on('click', function(e) {
+
+		var url = window.location.href,
+			uuid = url.split('?')[1].split('=')[1]
 
 		if (pswFlag.password && pswFlag.resetpassword) {
 
@@ -409,18 +373,23 @@ $(function() {
 				async: false,
 				type: 'post',
 				data: {
-					password: $('#repassword').val(),
-					uuid: $('#phone').val() || pswFlag.uuid
+					password: $('#rePsw').val(),
+					uuid: uuid
 				},
 				success: function(data) {
-					$.Message({
-						text: '修改成功,请直接去登录',
-						type: "success"
-					})
 
+					$('.resetCon').hide()
+					$('.stateCon').show()
+
+					$('.tabCon .step2').removeClass('selected').addClass('dVaild')
+					$('.tabCon .step3').addClass('selected')
+
+					$('.tabCon .step2').find('i').removeClass('active').addClass('vaild')
+					$('.tabCon .step3').find('i').addClass('active')
+					
 					setTimeout(function() {
 						location.href = casPath;
-					}, 2000)
+					}, 5000)
 				},
 				error: function() {
 
@@ -434,14 +403,14 @@ $(function() {
 		} else {
 
 			$.Message({
-				text: '请检查密码是否一致',
+				text: '请检查密码是否填写',
 				type: "failure"
 			})
 		}
 	})
 
-	/*验证码校验*/
-	$('#code').on('blur',function(e) {
+	/*邮箱验证码校验，已作废*/
+	$('.validBox validBtn1').on('click', function(e) {
 
 		if ($('#code').val() == '') {
 
@@ -449,6 +418,7 @@ $(function() {
 			pswFlag.emailCode = false;
 
 		} else {
+
 			$.ajax({
 
 				url: path + '/getCertCodeStatus',
@@ -484,10 +454,55 @@ $(function() {
 		}
 	})
 
-	/*发送邮件*/
-	$('.submitBox #sendEmail').on('click',function(e) {
+	/*邮箱输入*/
+	$('#email').on('blur', function(e) {
 
-		console.log('---发送邮件')
+		var valueFlag = emailReg.test($(this).val())
+
+		if (!valueFlag) {
+
+			setInfo('.emialBox', false, "输入不正确，请重新输入");
+
+		} else {
+
+			$.ajax({
+				url: path + '/checkUserName',
+				async: false,
+				dataType: 'text',
+				type: "post",
+				data: {
+
+					username: $('#email').val()
+				},
+				success: function(str) {
+
+					var json = eval("(" + str + ")");
+					if (json.status) {
+
+						pswFlag.email = false;
+						setInfo('.emailBox', false, '邮箱不存在,请重新填写');
+					} else {
+
+						$('.emailBox .flagState').show()
+						if ($('.emailBox .error').css('display') === 'block') {$('.emailBox .error').hide()}
+						pswFlag.email = true;
+					}
+				},
+				error: function() {
+					$.Message({
+						text: '请求异常',
+						type: "failure"
+					})
+					pswFlag.email = false;
+				}
+			})
+		}
 	})
 
+	$('.emailBox .sendBtn').on('click', function(e) {
+
+		sendEmail()
+	})
+
+	emailAndPhone()
 })

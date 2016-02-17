@@ -61,7 +61,13 @@
 	 	 );
 	 </insert>
 	 <select id="checkMember" resultMap="MemberInfoResult" parameterType="memberInfo">
-	 	select id,<include refid="columns"></include> from CMS_MEMBER_INFO where login_Id=#{loginId} or mobile_Phone=#{mobilePhone} or cust_Email=#{custEmail} or company_Name=#{companyName}
+	 	select id,<include refid="columns"></include> from CMS_MEMBER_INFO 
+	 	<where>
+	 		<if test="loginId!=null"> or login_Id=#{loginId}</if>
+	 		<if test="mobilePhone!=null"> or mobile_Phone=#{mobilePhone}</if>
+	 		<if test="custEmail!=null"> or cust_Email=#{custEmail}</if>
+	 		<if test="companyName!=null">  or company_Name=#{companyName}</if>
+	 	</where>
 	 </select>
 
 	<select id="getByPrimaryKey" resultMap="MemberInfoResult" parameterType="java.lang.Long">

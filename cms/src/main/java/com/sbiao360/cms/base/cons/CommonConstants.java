@@ -23,6 +23,6 @@ public class CommonConstants {
 	public static final String SMS_TARGETS = "http://202.85.219.219:9700/cblcn/duanxin.changshachanglan/index3_guoxin2";
 
 	// 邮件发送接口的发件人
-	public static final String MAIL_FROM = "yujw@chinabidding.com.cn";
+	public static final String MAIL_FROM = "liaody@chinabidding.com.cn";
 
 }

@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-30 17:36:46
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-02 14:34:28
+ * @Last Modified time: 2016-02-17 16:05:30
  */
 
 define(function(require, exports, module) {
@@ -299,12 +299,27 @@ define(function(require, exports, module) {
 			var id = $(this).data('id'),
 				name = $(this).html(),
 				eName = encodeURIComponent(name)
-			window.location.href = path + '/relation?name='+eName+'&&id='+id+'&&type=company'
+
+			$.ajax({
+				url: path + '/checkLoginStatus',
+				type: "get",
+				dataType: "text",
+				success: function(str) {
+
+					var data = eval("(" + str + ")")
+
+					if (data.status === "false") {
+						$('.login_box').show();
+	                    $('.shadow_all').show();
+                	} else {
+                		window.location.href = path + '/relation?name='+eName+'&&id='+id+'&&type=company'
+                	}
+				}
+			})
+
+			//window.location.href = path + '/relation?name='+eName+'&&id='+id+'&&type=company'
 		})
 
-		$('.left .list .more').on('click', function() {
-			window.location.href = '/relation'
-		})
 	}
 
 	function loadReportTop5() {
@@ -314,6 +329,7 @@ define(function(require, exports, module) {
 		})
 
 		var induxtry = Interaction.id
+
 		$.ajax({
 			url: path + '/report/getListTop5',
 			data: {
@@ -361,6 +377,11 @@ define(function(require, exports, module) {
 			}
 		})
 
+		$('.close').click(function() {
+
+			$('.login_box').hide();
+			$('.shadow_all').hide();
+		});
 		// 事件
 		$('.bTitle').live('click', function(e) {
 

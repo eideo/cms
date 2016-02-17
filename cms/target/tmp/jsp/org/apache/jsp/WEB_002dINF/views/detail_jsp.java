@@ -78,14 +78,14 @@ public final class detail_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write(" ");
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_2(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write(" ");
-      out.write("\r\n");
-      out.write("  ");
+      out.write('\r');
+      out.write('\n');
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_3(_jspx_page_context))
         return;
       out.write('\r');

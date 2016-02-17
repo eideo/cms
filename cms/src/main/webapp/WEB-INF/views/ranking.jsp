@@ -28,21 +28,21 @@
 						<a class="a1" href="javascript:;">热门关键词</a>
 					</h4>
 					<div class="words" id="words">
-						<a href="javascript:;" target="_blank">铁路</a>
-						<a href="javascript:;" target="_blank">橡胶</a>
-						<a href="javascript:;" target="_blank">接地</a>
-						<a href="javascript:;" target="_blank">综合</a>
-						<a href="javascript:;" target="_blank">钢筋</a>
-						<a href="javascript:;" target="_blank">施工</a>
-						<a href="javascript:;" target="_blank">钢材</a>
-						<a href="javascript:;" target="_blank">工程</a>
-						<a href="javascript:;" target="_blank">真空</a>
-						<a href="javascript:;" target="_blank">断路器</a>
-						<a href="javascript:;" target="_blank">系统</a>
-						<a href="javascript:;" target="_blank">水泥</a>
-						<a href="javascript:;" target="_blank">广州</a>
-						<a href="javascript:;" target="_blank">铁路货车</a>
-						<a href="javascript:;" target="_blank">招标</a>
+						<a href="javascript:;" target="_blank" title="铁路">铁路</a>
+						<a href="javascript:;" target="_blank" title="橡胶">橡胶</a>
+						<a href="javascript:;" target="_blank" title="接地">接地</a>
+						<a href="javascript:;" target="_blank" title="综合">综合</a>
+						<a href="javascript:;" target="_blank" title="钢筋">钢筋</a>
+						<a href="javascript:;" target="_blank" title="施工">施工</a>
+						<a href="javascript:;" target="_blank" title="钢材">钢材</a>
+						<a href="javascript:;" target="_blank" title="工程">工程</a>
+						<a href="javascript:;" target="_blank" title="真空">真空</a>
+						<a href="javascript:;" target="_blank" title="断路器">断路器</a>
+						<a href="javascript:;" target="_blank" title="系统">系统</a>
+						<a href="javascript:;" target="_blank" title="水泥">水泥</a>
+						<a href="javascript:;" target="_blank" title="广州">广州</a>
+						<a href="javascript:;" target="_blank" title="铁路货车">铁路货车</a>
+						<a href="javascript:;" target="_blank" title="招标">招标</a>
 					</div>
 				</div>
 			</div>

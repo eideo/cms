@@ -181,5 +181,6 @@
             });
         </script>
     </myScript>
+    <%@include file="dialogLogin/loginDialog.jsp"%>
 </body>
 </html>

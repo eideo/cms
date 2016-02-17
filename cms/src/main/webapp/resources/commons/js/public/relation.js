@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-01 11:56:03
+ * @Last Modified time: 2016-02-17 16:10:22
  */
 
 'use strict';
@@ -352,8 +352,23 @@ define(function(require, exports, module) {
 
         $('.searchBody .inputText').on('focus', function(e) {
 
-            var val = $(this).attr('value')
-            $(this).addClass('selected')
+             var val = $(this).attr('value')
+             $(this).addClass('selected')
+            $.ajax({
+                url: path + '/checkLoginStatus',
+                type: "get",
+                dataType: "text",
+                success: function(str) {
+
+                    var data = eval("(" + str + ")")
+                    if (data.status === 'false') {
+                        
+                        $('.login_box').show();
+                        $('.shadow_all').show();
+                        return 
+                    }
+                }
+            })
         })
 
         $(".searchBody .inputText").bind('input', function() {
@@ -367,6 +382,12 @@ define(function(require, exports, module) {
             Debounce.lightThrottle(getList)
         })
 
+        $('.close').click(function() {
+
+            $('.login_box').hide();
+            $('.shadow_all').hide();
+        });
+
         $('.searchBody .searchItem li').live('click', function(e) {
 
             var e = e || window.event,
@@ -377,6 +398,7 @@ define(function(require, exports, module) {
             $('.searchBody .inputText').val(word)
 
             $('.searchItem').slideUp()
+
 
             AjaxObj.name = word
             AjaxObj.rolesType = type

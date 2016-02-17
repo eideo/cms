@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 	 <script type="text/html" id="headerTemp">
-		 	<li><a href="javascript:;">欢迎您，{username}</a></li>
+		 	<li style="color:#fff">欢迎您，{username}</li>
 			<li>|</li>
 			<li><a href="${appPath}/personal/information">个人中心</a></li>
 			<li>|</li>
@@ -10,6 +10,8 @@
 	<script type="text/javascript">
 			var username = "";
 		 	function ajaxLogin(){
+		 		$('.userbox span').hide();
+		 		$('.passwordbox span').hide()
 	 			$.ajax({
 	 				type:"post",
 	 				async:true,
@@ -18,12 +20,17 @@
 	 				dataType:"jsonp",
 	 				jsonp:'jsoncallback',
 	 				success:function(a){
+
 	 					if(a.result){
+
 	 						ajaxSetUser(path+"/toLoginIframe?ticket="+a.st);
 	 						$('.close').click();
+	 						$('.login_box').hide()
+			 				$('.shadow_all').hide()
 	 					}else{
-	 						//提示错误信息
-	 						alert(a.message);
+
+	 						if (a.message === '用户名不存在') {$('.userbox span').show()}
+	 						if (a.message === '密码错误') {$('.passwordbox span').show()}
 	 					}
 	 				}
 	 			});
@@ -58,10 +65,12 @@
 			<div class="userbox">
 				<input type="text" id="username" placeholder="邮箱/手机号">
 				<i></i>
+				<span class='error'>用户名不存在!</span>
 			</div>
 			<div class="passwordbox">
 				<input type="password" id="password" placeholder="密码">
 				<i></i>
+				<span class='error'>密码错误!</span>
 			</div>
 			<div class="op_password">
 				<input id="remember" type="checkbox"></input>

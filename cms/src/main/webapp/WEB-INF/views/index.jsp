@@ -4,14 +4,17 @@
 <title>首页</title>  
 <myCss>
 <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/style.css?v=${projectversion}">
 <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/index.css?v=${projectversion}">
 </myCss>
-<!--[if IE 6]>
-<script src="${resPath}/resources/commons/js/DD_belatedPNG.js" type="text/javascript"></script>
-<script type="text/javascript">DD_belatedPNG.fix('*');</script>
-<![endif]-->
-<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
-<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js"></script>
+	<!--[if IE 6]>
+	<script src="${resPath}/resources/commons/js/DD_belatedPNG.js" type="text/javascript"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<!--[if lt IE 9]>
+	<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js"></script>
+	<![endif]-->
 </head>
 <body>
 

@@ -87,14 +87,14 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write(" ");
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_2(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write(" ");
-      out.write("\r\n");
-      out.write("  ");
+      out.write('\r');
+      out.write('\n');
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_3(_jspx_page_context))
         return;
       out.write('\r');
@@ -150,7 +150,6 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("/resources/commons/css/report.css?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">\r\n");
-      out.write("\t\t<script src=\"//cdn.bootcss.com/respond.js/1.4.2/respond.js\"></script>\r\n");
       out.write("\t</myCss>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
@@ -316,7 +315,7 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("\t <script type=\"text/html\" id=\"headerTemp\">\r\n");
-      out.write("\t\t \t<li><a href=\"javascript:;\">欢迎您，{username}</a></li>\r\n");
+      out.write("\t\t \t<li style=\"color:#fff\">欢迎您，{username}</li>\r\n");
       out.write("\t\t\t<li>|</li>\r\n");
       out.write("\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -327,6 +326,8 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<script type=\"text/javascript\">\r\n");
       out.write("\t\t\tvar username = \"\";\r\n");
       out.write("\t\t \tfunction ajaxLogin(){\r\n");
+      out.write("\t\t \t\t$('.userbox span').hide();\r\n");
+      out.write("\t\t \t\t$('.passwordbox span').hide()\r\n");
       out.write("\t \t\t\t$.ajax({\r\n");
       out.write("\t \t\t\t\ttype:\"post\",\r\n");
       out.write("\t \t\t\t\tasync:true,\r\n");
@@ -335,12 +336,17 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t \t\t\t\tdataType:\"jsonp\",\r\n");
       out.write("\t \t\t\t\tjsonp:'jsoncallback',\r\n");
       out.write("\t \t\t\t\tsuccess:function(a){\r\n");
+      out.write("\r\n");
       out.write("\t \t\t\t\t\tif(a.result){\r\n");
+      out.write("\r\n");
       out.write("\t \t\t\t\t\t\tajaxSetUser(path+\"/toLoginIframe?ticket=\"+a.st);\r\n");
       out.write("\t \t\t\t\t\t\t$('.close').click();\r\n");
+      out.write("\t \t\t\t\t\t\t$('.login_box').hide()\r\n");
+      out.write("\t\t\t \t\t\t\t$('.shadow_all').hide()\r\n");
       out.write("\t \t\t\t\t\t}else{\r\n");
-      out.write("\t \t\t\t\t\t\t//提示错误信息\r\n");
-      out.write("\t \t\t\t\t\t\talert(a.message);\r\n");
+      out.write("\r\n");
+      out.write("\t \t\t\t\t\t\tif (a.message === '用户名不存在') {$('.userbox span').show()}\r\n");
+      out.write("\t \t\t\t\t\t\tif (a.message === '密码错误') {$('.passwordbox span').show()}\r\n");
       out.write("\t \t\t\t\t\t}\r\n");
       out.write("\t \t\t\t\t}\r\n");
       out.write("\t \t\t\t});\r\n");
@@ -375,10 +381,12 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t<div class=\"userbox\">\r\n");
       out.write("\t\t\t\t<input type=\"text\" id=\"username\" placeholder=\"邮箱/手机号\">\r\n");
       out.write("\t\t\t\t<i></i>\r\n");
+      out.write("\t\t\t\t<span class='error'>用户名不存在!</span>\r\n");
       out.write("\t\t\t</div>\r\n");
       out.write("\t\t\t<div class=\"passwordbox\">\r\n");
       out.write("\t\t\t\t<input type=\"password\" id=\"password\" placeholder=\"密码\">\r\n");
       out.write("\t\t\t\t<i></i>\r\n");
+      out.write("\t\t\t\t<span class='error'>密码错误!</span>\r\n");
       out.write("\t\t\t</div>\r\n");
       out.write("\t\t\t<div class=\"op_password\">\r\n");
       out.write("\t\t\t\t<input id=\"remember\" type=\"checkbox\"></input>\r\n");

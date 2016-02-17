@@ -7,7 +7,6 @@
 	<myCss>
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=${projectversion}">
-		<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
 	</myCss>
 </head>
 <body>

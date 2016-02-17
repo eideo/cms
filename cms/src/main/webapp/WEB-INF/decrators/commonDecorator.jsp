@@ -10,8 +10,51 @@
     <meta name="description" content="数据对话,一触即发" />
 	<link rel="icon" href="${resPath}/resources/commons/images/top_icon_03.png" mce_href="${resPath}/resources/commons/images/top_icon_03.png" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/style.css?v=${projectversion}">
 	<sitemesh:write property='myCss'/>
 	<%@include file="/common/base.jsp"%>
+	<!--[if IE 6]>
+	<script src="${resPath}/resources/commons/js/DD_belatedPNG.js" type="text/javascript"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<!--[if lt IE 9]>
+	<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+
+        // 浏览器版本检测
+        ! function() {
+            var cookie,
+                ua,
+                match;
+            ua = window.navigator.userAgent;
+            match = /;\s*MSIE (\d+).*?;/.exec(ua);
+            if (match && +match[1] < 9) {
+                cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
+                if (cookie && cookie[1]) {
+                    return;
+                }
+                $("body").prepend([
+                    "<div id='compatible' class='compatible-contianer'>",
+                    "<p class='cpt-ct'><i></i>您的浏览器版本过低。为保证最佳浏览体验，<a href='/static/html/browser.html'>请点此更新高版本浏览器</a></p>",
+                    "<div class='cpt-handle'><a href='javascript:;' class='cpt-agin'>以后再说</a><a href='javascript:;' class='cpt-close'><i></i></a>",
+                    "</div>"
+                ].join(""));
+
+                $("#compatible .cpt-agin").click(function() {
+                    var d = new Date();
+                    d.setTime(d.getTime() + 30 * 24 * 3600 * 1000);
+                    document.cookie = "ic=1; expires=" + d.toGMTString() + "; path=/";
+                    $("#compatible").remove();
+                });
+                $("#compatible .cpt-close").click(function() {
+                    $("#compatible").remove();
+                });
+            }
+        }();
+
+	</script>
 </head>
 <body>
 <!--顶部导航 -->
@@ -33,7 +76,7 @@
 		</ul>
 	</div>
 </div>
-	<!-- 主导航111	 -->
+<!-- 主导航-->
 <div class='navWrapper'>
 	<div class="main-nav clearfix">
 		<h1 class="logo">
@@ -60,7 +103,6 @@
 </div>
 <!-- 导航下划线 -->
 <div class="hr"></div>
-
 <sitemesh:write property='body'/>
 <c:if test="${notFooter==null}">
 <!-- 底部信息 -->
@@ -83,9 +125,9 @@
 	</div>
 </div>
 </c:if>
-	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js?v=${projectversion}"></script>
-	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js?v=${projectversion}"></script>
-	<script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js?v=${projectversion}"></script>
-	<sitemesh:write property='myScript'/>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js?v=${projectversion}"></script>
+<sitemesh:write property='myScript'/>
 </body>
 </html> 

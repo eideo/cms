@@ -20,6 +20,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbiao360.cms.domain.MemberInfo;
 import com.sbiao360.cms.service.MemberInfoService;
@@ -223,14 +224,54 @@ public class MemberInfoController extends BaseController{
 		else
 			ajaxJson("{status:"+false+"}", response);
 	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping({"/findPwd"})
 	public String findPwd(HttpServletRequest request, HttpServletResponse response){
 		request.setAttribute("notSearch", "true");
 		return "findPwd";
 	}
 	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping({"/resetPwd"})
-	public String resetPwd(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String resetPwd(@RequestParam(value = "uuid", required = true) String uuid,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		Object object = null;  
+        object = redisTemplate01.execute(new RedisCallback<Object>() {  
+            public Object doInRedis(RedisConnection connection)  
+                    throws DataAccessException { 
+  
+                byte[] key = ("checkpass"+uuid).getBytes();  
+                byte[] value = connection.get(key);  
+                if (value == null) {  
+                    return null;  
+                }  
+                return toObject(value);  
+  
+            }  
+        }); 
+        if(object==null){
+        	return "";
+        }
+		request.setAttribute("uuid",uuid);
+		request.setAttribute("notSearch", "true");
+		return "resetPwd";
+	}
+	
+	
+	@RequestMapping("/phoneResetCheck")
+	public void phoneResetCheck(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String phone = request.getParameter("phone");
 		String phoneCode = request.getParameter("phoneCode");
 		String sysNum = (String)request.getSession().getAttribute("mobileMessage");
@@ -243,6 +284,10 @@ public class MemberInfoController extends BaseController{
 		memberInfo.setMobilePhone(phone);
 		memberInfo.setCompanyName(phone);
 		memberInfo = memberInfoService.getMemberByPhone(memberInfo);
+		if(memberInfo==null){
+			 ajaxJson("{status:\"false\"}", response);
+			 return;
+		}
 		String pd = java.util.UUID.randomUUID().toString().replace("-","").toUpperCase();
 		redisTemplate01.execute(new RedisCallback<Long>() {  
             public Long doInRedis(RedisConnection connection)  
@@ -254,10 +299,40 @@ public class MemberInfoController extends BaseController{
                 return 1L;  
             }  
         });
+		ajaxJson("{status:\"true\",uuid:\""+pd+"\"}", response);
+	}
+	
+	/**
+	 * 
+	 * @param pd
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping({"/resetpwdmail"})
+	public String resetPwdByMail(@RequestParam(value = "pd", required = true) String pd,HttpServletRequest request, HttpServletResponse response){
+		Object object = null;  
+        object = redisTemplate01.execute(new RedisCallback<Object>() {  
+            public Object doInRedis(RedisConnection connection)  
+                    throws DataAccessException { 
+  
+                byte[] key = ("checkpass"+pd).getBytes();  
+                byte[] value = connection.get(key);  
+                if (value == null) {  
+                    return null;  
+                }  
+                return toObject(value);  
+  
+            }  
+        }); 
+        if(object==null){
+        	return "";
+        }
 		request.setAttribute("uuid",pd);
 		request.setAttribute("notSearch", "true");
 		return "resetPwd";
 	}
+	
 	
 	/**
 	 * 
@@ -271,7 +346,7 @@ public class MemberInfoController extends BaseController{
 		Object object = null;  
         object = redisTemplate01.execute(new RedisCallback<Object>() {  
             public Object doInRedis(RedisConnection connection)  
-                    throws DataAccessException {  
+                    throws DataAccessException { 
   
                 byte[] key = ("checkpass"+uuid).getBytes();  
                 byte[] value = connection.get(key);  
@@ -289,13 +364,30 @@ public class MemberInfoController extends BaseController{
 		}
         if(object==null||object.equals(nowid)||"".equals(nowid)){
         	 ajaxJson("{status:\"false\"}", response);
+        	 return;
         }
-        MemberInfo memberInfo = new MemberInfo();
+        MemberInfo memberInfo = new MemberInfo(); 
         memberInfo.setId((String) object);
         PwdStuff mBean = new PwdStuff();
         memberInfo.setLoginPassword(mBean.convertPassword(pass));
         memberInfoService.updatePass(memberInfo);
         ajaxJson("{status:\"true\"}", response);
+	}
+	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping({"checkLoginStatus"})
+	public void checkLoginStatus(HttpServletRequest request, HttpServletResponse response){
+		Assertion assertion = AssertionHolder.getAssertion();
+		if(assertion==null){
+			ajaxJson("{status:\"false\"}", response);
+		}else{
+			ajaxJson("{status:\"true\"}", response);
+		}
 	}
 	
 	 /** 

@@ -71,14 +71,14 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
         return;
       out.write('\r');
       out.write('\n');
-      out.write("\r\n");
-      out.write(" ");
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_2(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write(" ");
-      out.write("\r\n");
-      out.write("  ");
+      out.write('\r');
+      out.write('\n');
+      out.write('\r');
+      out.write('\n');
       if (_jspx_meth_c_set_3(_jspx_page_context))
         return;
       out.write('\r');
@@ -123,7 +123,7 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("<head>\r\n");
       out.write("\t<title>首页</title>\r\n");
       out.write("\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n");
-      out.write("\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\r\n");
+      out.write("\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge,chrome=1\">\r\n");
       out.write("    <meta name=\"keywords\" content=\"采购与招标、关系网、排行榜、行业指数、行业报告 \" />\r\n");
       out.write("    <meta name=\"description\" content=\"数据对话,一触即发\" />\r\n");
       out.write("\t<link rel=\"icon\" href=\"");
@@ -139,6 +139,11 @@ public final class homepageDecorator_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/css/basic.css?v=");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
+      out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/resources/commons/css/style.css?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">\r\n");
       out.write("\t<sitemesh:write property='myScript'/>\r\n");

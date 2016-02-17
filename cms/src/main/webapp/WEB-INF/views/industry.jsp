@@ -208,5 +208,6 @@
 		seajs.use("${resPath}/resources/commons/js/public/industry")
 		</script>
 	</myScript>
+	<%@include file="dialogLogin/loginDialog.jsp"%>
 </body>
 </html>

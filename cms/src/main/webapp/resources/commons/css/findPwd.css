@@ -10,225 +10,470 @@ body{
 	height: 430px;
 	margin:0 auto;
 	margin-top:74px;
+	margin-bottom:74px;
 	background: #fff;
 }
 
-.content .top{
-	height:79px;
-	position: relative;
+/*tab*/
+
+.tabWrapper{
+	
+	width:100%;
+	height:80px;
 	border-bottom:1px solid #ebebeb;
 	position: relative;
 }
 
-.content .top span{
+.tabCon{
+	width:570px;
+	height:80px;
+	margin:0 auto;
+	position: relative;
+}
+
+.tabWrapper #login{
+	position: absolute;
+	right:10px;
+	top:-30px;
+	font-size:14px;
+}
+.tabWrapper #login a{
+	color:#47aaff;
+}
+.tabCon .step{
+	width:190px;
+	margin-top:43px;
+	height:36px;
+	float:left;
+	font-size:16px;
+	text-align: center;
+	line-height:36px;
+	*line-height:36px;
+	_line-height:36px;
+	position: relative;
+	color: #cccccc;
+}
+
+.tabCon .dVaild{
+	border-bottom:2px solid #add7ff;
+	color: #add7ff
+}
+.tabCon .step1 i.active{
 	position: absolute;
 	display:inline-block;
-	top:-40px;
-	right:0px;
-	height:40px;
-	line-height:40px;
-	font-size:14px;
-	z-index:1002;
-}
-.content .top span a{
-	color: #47aaff;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -17px no-repeat;
 }
 
-.content .flagCon{
-
-}
-
-.content .flagCon .flagTitle{
-	height:70px;
-	line-height:70px;
-
-}
-.flagCon .error{
+.tabCon .step1 i.vaild{
 	position: absolute;
-	bottom: -20px;
-	color: #ff5a5a;
-	padding-left:20px;
-	background:url(../images/mFailure.png) no-repeat left top;
-	background-size:16px 16px;
-}
-.flagCon .success{
-	position: absolute;
-	bottom: -20px;
-	color: #7dbd00;
-	padding-left:20px;
-	background:url(../images/mSuccess.png) no-repeat left top;
-	background-size:16px 16px;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -77px no-repeat;
 }
 
-.content .h3con{
+.tabCon .step2 i{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -57px -17px no-repeat;
+}
+
+.tabCon .step2 i.active{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -47px no-repeat;
+}
+.tabCon .step2 i.vaild{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -52px -77px no-repeat;
+}
+.tabCon .step3 i{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -97px -17px no-repeat;
+}
+
+.tabCon .step3 i.active{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -55px -47px no-repeat;
+}
+.tabCon .step3 i.vaild{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -77px no-repeat;
+}
+.tabCon .selected{
+	font-size:16px;
+	color:#47aaff;
+	border-bottom:2px solid #47aaff;
+}
+
+
+/*flagCon*/
+
+.flagCon{
 	width:450px;
 	margin:0 auto;
 	position: relative;
-	overflow: hidden;
-}
-.content h3{
-	width: 88px;
-	text-align: center;
-	margin-top:56px;
-	font-weight: bold;
-	font-size: 16px;
-	color: #47aaff;
-	border-bottom:2px solid #47aaff;
-}
-.findBox{
-	width: 450px;
-	margin:0 auto;
+	zoom:1;
 }
 
-.resetBox{
-	width: 450px;
-	margin:0 auto;
-}
-
-.findBox .sign{
-	margin: 30px auto;
-	font-size: 16px;
-	border-bottom: 2px solid #e2e2e2;
-	line-height: 36px;
+.flagCon #phoneTab{
+	margin-top:30px;
+	font-size:14px;
+	height:26px;
+	line-height:26px;
 	position: relative;
-}
-.findBox .sign span{
-	display: inline-block;
+	padding-left:20px;
 	cursor: pointer;
-	color: #47aaff;
 }
-.sign i{
+.flagCon #phoneTab #phoneCheck{
 	position: absolute;
-	width: 95px;
-	height: 7px;
-	background: url(../images/registerh3.png) no-repeat;
-	bottom: -7px;
-	left: 0;
+	left:0px;
+	top:6px;
+	width:14px;
+	height:14px;
 }
-.findBox .sign .phoneBtn{
-	margin-right: 45px;
-	margin-left: 15px;
-	color: #47aaff;
+
+.flagCon #emailTab{
+	margin-top:12px;
+	font-size:14px;
+	height:26px;
+	line-height:26px;
+	position: relative;
+	padding-left:20px;
+	cursor: pointer;
 }
-.resetBox p,.findBox p{
-	font-size: 14px;
-	font-weight: bold;
+
+.flagCon #emailTab #emailCheck{
+	position: absolute;
+	left:0px;
+	top:6px;
+	width:14px;
+	height:14px;
 }
-.emailBox,.phoneBox{
-	margin: 0px 0 30px 0;
+
+/*phoneBox*/
+
+.phoneBox{
+	margin-top:20px;
 	position: relative;
 }
-.email{
+.phoneBox #phone{
+	
+	width:318px;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	float: left;
+}
+
+.phoneBox .sendBtn{
+	width:110px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	float: right;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+	display: inline-block;
+}
+
+.emailBox .flagState,.phoneBox .flagState{
+	position: absolute;
+	width:16px;
+	height:16px;
+	top:14px;
+	right:140px;
+	background: url(../images/resetPw.png) -161px -121px no-repeat;
 	display: none;
 }
-.codeBox{
+
+.phoneBox .error,.emailBox .error{
+	position: absolute;
+	left:0px;
+	top:46px;
+	color: #ff5a5a;
+	padding-left:20px;
+	background:url(../images/pswError.png) no-repeat;
+	background-size:16px 16px;
+	display: none;
+}
+.emailBox{
+	margin-top:20px;
 	position: relative;
-	margin-bottom: 30px;
+}
+.emailBox #email{
+	
+	width:318px;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	float: left;
 }
 
-input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;overflow:hidden;}
+.emailBox .sendBtn{
+	width:110px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	float: right;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+}
 
-#email,#phone{
-	width: 450px;
-	height: 42px;
-	border: 1px solid #d7d7d7;
-	border-radius: 2px;
-	padding-left: 20px;
-	background:#fff;
-}
-#code{
-	width: 328px;
-	height: 42px;
-	padding-left: 20px;
-	border: 1px solid #d7d7d7;
-	border-radius: 2px;
-	float: left;
+.validBox{
+	margin-top:20px;
 	position: relative;
 }
-#phoneCode{
-	width: 328px;
-	height: 42px;
-	padding-left: 20px;
-	border: 1px solid #d7d7d7;
-	border-radius: 2px;
-	position: relative;
+.validBox #phoneCode{
+	
+	width:318px;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
 	float: left;
 }
-.codeBox span{
-	width: 96px;
-	height: 42px;
-	margin-left: 20px;
-	text-align: center;
-	 line-height: 42px; 
+
+.validBox .validBtn{
+	width:110px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
 	color: #fff;
-	font-size: 14px;
-	border-radius: 2px;
-	float: left;
+	float: right;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
 }
-.codeBox .codeBtn{
-	width: 96px;
-	height: 42px;
-	display: inline-block;
-	margin-left: 20px;
-	background: #47aaff;
-	color: #fff;
-	text-align: center;
-	line-height: 42px;
-	font-size: 14px;
-	border-radius: 2px;
+
+.reSendCode{
+	margin-top:20px;
+
+}
+.reSendCode #reSend{
+	color: #47aaff;
 	cursor: pointer;
 }
-.submit{
-	width: 450px;
-	height: 42px;
-	border: none;
-	background: #47aaff;
-	color: #fff;
-	font-size: 16px;
-	text-align: center;
-	line-height: 42px;
-	border-radius: 2px;
-	cursor: pointer;
+/*resetCon*/
+.resetCon{
+	width:450px;
+	margin:0 auto;
 }
 
-/*重置密码页*/
-#password,#repassword{
-	width: 450px;
-	height: 42px;
-	border: 1px solid #d7d7d7;
-	border-radius: 2px;
-	padding-left: 20px;
+.resetTitle{
+	font-size:14px;
+	font-weight: bold;
+	height: 70px;
+	line-height:70px;
+	*line-height:70px;
+	_line-height:70px;
 }
-
-#repassword{
-	margin-top: 30px
+.pswBox{
+	position: relative;
+}
+.rePswBox{
+	margin-top:30px;
+	position: relative;
+}
+.pswBox #psw,.rePswBox #rePsw{
+	
+	width:100%;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
 }
 
 .submitBox{
 	margin-top:30px;
 }
-.passwordBox,.rePasswordBox{
-	position: relative;
+
+.submitBox #changeBtn{
+	
+	width:150px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	border:none;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+}
+.resetCon .error{
+	position: absolute;
+	left:0px;
+	top:46px;
+	color: #ff5a5a;
+	padding-left:20px;
+	background:url(../images/pswError.png) no-repeat;
+	background-size:16px 16px;
+	display:none;
+}
+.resetCon .flagState{
+	position: absolute;
+	width:16px;
+	height:16px;
+	top:14px;
+	right:10px;
+	background: url(../images/resetPw.png) -161px -121px no-repeat;
+	display: none;
 }
 
-/*email*/
-.emailCon{
-	width: 450px;
-    margin: 0 auto;
+
+/*stateCon*/
+.stateCon{
+	width:450px;
+	margin:0 auto;
 }
-.emailCon .flagTitle{
-    font-size: 14px;
+
+.stateBox{
+	margin:96px 0px 0px 100px;
+	position: relative;
+}
+.stateBox p{
+	font-size:20px;
 	font-weight: bold;
 }
-.emailCon .desc{
-    font-size: 14px;
-    height:30px;
-    line-height:30px;
-	color:#888888;
+.stateBox i{
+	position: absolute;
+	width:35px;
+	height:35px;
+	background: url(../images/resetPw.png) -11px -111px no-repeat;
+	left: -47px;
+    top: -3px;
 }
-.emailCon .emailName{
-    font-size: 14px;
-    color:#47aaff;
-	 height:30px;
-    line-height:30px;
+
+/*failCon*/
+.failCon{
+	width:450px;
+	margin:0 auto;
+}
+.failCon .other{
+	margin-top:60px;
+}
+.failCon .other #reload{
+	color: #47aaff;
+	cursor: pointer;
+}
+.failBox{
+	margin:96px 0px 0px 100px;
+	position: relative;
+}
+.failBox p{
+	font-size:20px;
+	font-weight: bold;
+}
+.failBox i{
+	position: absolute;
+	width:35px;
+	height:35px;
+	background: url(../images/resetPw.png) -71px -111px no-repeat;
+	left: -47px;
+    top: -3px;
+}
+
+/*successCon*/
+.successCon{
+	width:450px;
+	margin:0 auto;
+}
+.successCon .other{
+	margin-top:60px;
+}
+.successCon .other #reload{
+	color: #47aaff;
+	cursor: pointer;
+}
+.successBox{
+	margin:96px 0px 0px 100px;
+	position: relative;
+}
+.successBox p{
+	font-size:20px;
+	font-weight: bold;
+}
+.successBox i{
+	position: absolute;
+	width:35px;
+	height:35px;
+	background: url(../images/resetPw.png) -11px -111px no-repeat;
+	left: -47px;
+    top: -3px;
+}
+@media  screen and (max-width: 1900px){
+
+   .content{
+		width:1200px;
+	}
+}
+
+@media  screen and (max-width: 1024px){
+	.content{
+		width:960px;
+	}
 }

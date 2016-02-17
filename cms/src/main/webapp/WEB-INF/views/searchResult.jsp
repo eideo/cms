@@ -1069,7 +1069,7 @@
 				<div class="clearfix">
 					<div class="s_label clearfix">
 						<a class="ind">{indexInfo.category}</a>
-						<a class="add">{indexInfo.areaName}</a>
+						{indexInfo.areaName}
 						<a class="bid">{indexInfo.type}</a>
 					</div>
 					<div class="info clearfix">
@@ -1103,8 +1103,6 @@
 <myScript>
 <script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
-</myScript>
-<%@include file="dialogLogin/loginDialog.jsp"%>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
 <script type="text/javascript">
@@ -1112,5 +1110,7 @@
 	// 入口模块
 	seajs.use("${resPath}/resources/commons/js/searchresult");
 </script>
+</myScript>
+<%@include file="dialogLogin/loginDialog.jsp"%>
 </body>
 </html>

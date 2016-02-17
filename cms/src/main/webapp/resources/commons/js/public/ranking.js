@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-01-04 15:01:07
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-01 10:07:11
+ * @Last Modified time: 2016-02-15 09:20:06
  * @ 排行榜入口模块
  */
 
@@ -34,42 +34,34 @@ define(function(require, exports, module) {
 		colorset: ['#6ebeff', '#fff']
 	}
 
-	var mapReload = function(callback) {
-
-		Chart.addChinaMap('#map', function() {
-
-			if (callback) {
-
-				callback()
-			}
-		})
-	}
-
 	// 排行榜分类切换
-	function rankType() {
+	var rankType = function() {
 
 		$('#c_btn li').click(function() {
-
-			$('#c_btn li').removeClass('active');
-
+			
 			$('.part').hide();
 
-			$(this).addClass('active');
+			$(this).addClass('active').siblings().removeClass('active');
 
 			ajaxChangeData();
+			
+			if ($(document).scrollTop() != 712) {
 
-
-			if($(document).scrollTop() != 712){
-
-				$("html, body").animate({scrollTop: $("#c_btn").offset().top});
+				$("html, body").animate({
+					scrollTop: $("#c_btn").offset().top
+				},0);
 			}
 		})
 
 		// li移入背景变色
-		$('.part li').mouseover(function() {
+		$('.part ul li').live('mouseover',function(){
 
-			$('.part li').css('background', '#fff');
 			$(this).css('background', '#f6f6f6');
+		})
+
+		$('.part ul li').live('mouseout',function() {
+
+			$(this).css('background', '#fff')
 		})
 	}
 
@@ -99,9 +91,11 @@ define(function(require, exports, module) {
 			if ($(this).hasClass('active')) {
 
 				$(this).removeClass('active')
+
 			} else {
 
 				$(parm + ' a').removeClass('active');
+
 				$(this).addClass('active');
 			}
 
@@ -269,9 +263,9 @@ define(function(require, exports, module) {
 		return html;
 	}
 
-	function initHotWord(parm) {
+	function initHotWord(parm, parm2) {
 
-		$('.words a').eq(tagIndex++).html(parm);
+		$('.words a').eq(tagIndex++).html(parm).attr('title', parm2);
 
 		if (tagIndex > 14) {
 
@@ -279,18 +273,108 @@ define(function(require, exports, module) {
 		}
 	}
 
-	function goTop() {
+	// 点击页码返回结果列表顶部
+	function pageClick() {
+
+		$('.tcdPageCode').on("click", "a", function() {
+
+			$("html, body").scrollTop(0).animate({
+				scrollTop: $(".ranking").offset().top - 30
+			}, 0);
+		})
+	}
+
+	function toTop() {
+
+		var h = $(window).height();
+		var t = $(document).scrollTop();
+		if (t >= 768) {
+			$('#gotop').show();
+		} else {
+			$('#gotop').hide();
+		}
+	}
+
+	$(function() {
+
+		positionAll();
+
+		rankType();
+
+		toggleClass('.more');
+
+		bindClickOnleft();
+
+		pageClick();
+
+		ajaxChangeData();
+
+		Chart.addChinaMap(mapSetting, function() {
+
+			var parent = d3.select('#map').select('.content'),
+				dataset = [],
+				wordCache = {};
+
+			function getMapData() {
+
+				$.get(path + "/customerBehavior/getHotword", function(data) {
+
+					var trueWord = data.hotWord;
+
+					if (data.hotWord.length > 4) {
+
+						data.hotWord = data.hotWord.substr(0, 4) + "...";
+					}
+
+					if (data.areaName === '' || wordCache[data.areaName] === data.hotWord) {
+
+						return
+
+					} else {
+
+						wordCache[data.areaName] = data.hotWord;
+					}
+
+					dataset = [data.areaName, data.hotWord]
+					initHotWord(data.hotWord, trueWord)
+
+					var width = document.querySelector(mapSetting.selector).getBoundingClientRect().width,
+						height = document.querySelector(mapSetting.selector).getBoundingClientRect().height
+
+					Chart.addCircle(parent, width, height, dataset)
+				})
+			}
+
+			var intervel = setInterval(function() {
+
+				getMapData()		
+			}, 1200)
+		})
+
+		$('.tip').live('click', function(e) {
+
+			var e = e || window.event,
+				word = $(this).html()
+
+			window.location.href = path + '/search?keyword=' + word
+		})
+
+		$('.words a').on('click', function() {
+
+			window.location.href = path + '/search?keyword=' + $(this).attr('title')
+		})
+
+
+		$('.linkResult a').live('click', function() {
+
+			$(this).css('color', '#333')
+		})
 
 		$(window).scroll(function() {
 
-			if ($(window).scrollTop() > 200) {
-
-				$('#gotop').show();
-
-			} else {
-				$('#gotop').hide();
-			}
+			toTop()
 		})
+
 		$('#gotop').click(function() {
 
 			$('body,html').animate({
@@ -305,133 +389,8 @@ define(function(require, exports, module) {
 			$('#gotop i').show();
 			$('#gotop span').hide();
 		})
-	}
-
-	// 点击页码返回结果列表顶部
-	function pageClick() {
-
-		$('.tcdPageCode').on("click", "a", function() {
-
-			$("html, body").scrollTop(0).animate({
-				scrollTop: $(".ranking").offset().top - 30
-			});
-		})
-	}
-	
-	function toTop() {
-
-        var h = $(window).height();
-        var t = $(document).scrollTop();
-        if (t >= 768) {
-            $('#gotop').show();
-        } else {
-            $('#gotop').hide();
-        }
-    }
-
-	$(function() {
-
-		positionAll();
-		rankType();
-		toggleClass('.more');
-		bindClickOnleft();
-
-		pageClick();
-
-		// $('#c_btn li').eq(0).click()
-		ajaxChangeData();
-
-		Chart.addChinaMap(mapSetting, function() {
-
-			var parent = d3.select('#map').select('.content'),
-				dataset = [],
-				wordCache = {};
-
-			function getMapData() {
-
-				$.ajax({
-					url: path + "/customerBehavior/getHotword",
-					type: "GET",
-					dataType: "json",
-					success: function(data) {
-
-						if (data.hotWord.length > 4) {
-
-							data.hotWord = data.hotWord.substr(0,4) +"...";
-						}
-
-						if (data.areaName === '' || wordCache[data.areaName] === data.hotWord) {
-
-							return
-
-						} else {
-
-							wordCache[data.areaName] = data.hotWord;
-						}
-
-						console.log('------20160201缓存',wordCache)
-
-						dataset = [data.areaName, data.hotWord]
-
-						initHotWord(data.hotWord,data.areaName)
-
-						var width = document.querySelector(mapSetting.selector).getBoundingClientRect().width,
-							height = document.querySelector(mapSetting.selector).getBoundingClientRect().height
-
-						Chart.addCircle(parent, width, height, dataset)
-					},
-					error: function() {
-						return "error";
-					}
-				})
-			}
-
-			var intervel = setInterval(function() {
-				getMapData()
-			}, 1200)
-		})
-
-		$('.tip').live('click', function(e) {
-
-			var e = e || window.event,
-				word = $(this).html()
-
-			window.location.href = path + '/search?keyword=' + word
-		})
-
-		$('.words a').on('click', function() {
-
-			window.location.href = path + '/search?keyword=' + $(this).html()
-		})
-
-
-		$('.linkResult a').live('click', function() {
-
-			console.log($(this))
-			$(this).css('color', '#333')
-		})
-
-		$(window).scroll(function() {
-			
-            toTop()
-        })
-
-        $('#gotop').click(function() {
-
-            $('body,html').animate({
-                scrollTop: 0
-            }, 300);
-        }).mouseover(function() {
-
-            $('#gotop i').hide();
-            $('#gotop span').show();
-        }).mouseout(function() {
-
-            $('#gotop i').show();
-            $('#gotop span').hide();
-        })
 	})
 
 
-	module.exports = '';
+	module.exports = 'ranking';
 })

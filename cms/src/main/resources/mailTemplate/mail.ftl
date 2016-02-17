@@ -52,13 +52,13 @@
 		}
 		
 		.letter_bg .code {
-			width: 240px;
-			height: 32px;
+			min-width: 240px;
+			min-height: 32px;
 			background: #47aaff;
 			color: #fff;
 			line-height: 32px;
 			font-size: 14px;
-			text-align: center;
+			text-align: left;
 			margin-bottom: 12px;
 		}
 		
