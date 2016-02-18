@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-02-01 16:39:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-17 09:44:45
+ * @Last Modified time: 2016-02-18 15:46:17
  */
 
 'use strict';
@@ -374,7 +374,7 @@ $(function() {
 				type: 'post',
 				data: {
 					password: $('#rePsw').val(),
-					uuid: uuid
+					uuid: $('#uuid').val()
 				},
 				success: function(data) {
 
@@ -386,10 +386,10 @@ $(function() {
 
 					$('.tabCon .step2').find('i').removeClass('active').addClass('vaild')
 					$('.tabCon .step3').find('i').addClass('active')
-					
+					/*
 					setTimeout(function() {
 						location.href = casPath;
-					}, 5000)
+					}, 5000000)*/
 				},
 				error: function() {
 

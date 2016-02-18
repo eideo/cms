@@ -5,9 +5,7 @@
 	<meta charset="UTF-8">
 	<title>行业报告</title>
 	<myCss>
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=${projectversion}">
-		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/lib/pagination.css?v=${projectversion}">
 	</myCss>
 	<!--[if IE 6]>
 	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ie6hack.css?v=${projectversion}">

@@ -1,5 +1,15 @@
 'use strict';
 
+function toTop() {
+
+	var h = $(window).height();
+	var t = $(document).scrollTop();
+	if (t >= 268) {
+		$('#gotop').show();
+	} else {
+		$('#gotop').hide();
+	}
+}
 $(function(){
 //	关闭登录框
 	$('.close').click(function(){
@@ -7,6 +17,24 @@ $(function(){
 		$('.shadow_all').hide();
 	})
 	
+	$(window).scroll(function() {
+		toTop()
+	})
+	
+	$('#gotop').click(function() {
+
+		$('body,html').animate({
+			scrollTop: 0
+		}, 300);
+	}).mouseover(function() {
+
+		$('#gotop i').hide();
+		$('#gotop span').show();
+	}).mouseout(function() {
+
+		$('#gotop i').show();
+		$('#gotop span').hide();
+	})
 	// 购买样式
 	$('.buy').mouseover(function(){
 		$(this).css('background','#ff4949');

@@ -7,17 +7,9 @@
 	<title>行业报告详情页</title>
 	<myCss>
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/style.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/reportPage.css?v=${projectversion}">
 	</myCss>
-	<myScript>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/reportPage.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
-		<script type="text/javascript">
-			var resPath = "${resPath}";
-		</script>
-	</myScript>
 </head>
 <body>
 	<div class="bg">
@@ -97,6 +89,10 @@
 			</ul>
 		</div>
 	</div>
+	<div id="gotop">
+		<i></i>
+		<span>顶部</span>
+	</div>
 	<script>
 	window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"欢迎进入中国采购与招标网新平台，感兴趣可以点击下面链接体验……","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};
 	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
@@ -104,5 +100,14 @@
 	<!-- 	2015-12-01 by liyang -->
 	<!-- 下面是登录框 -->
 	<%@include file="dialogLogin/loginDialog.jsp"%>
+	<myScript>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/jquery-1.7.2.min.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/reportPage.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
+		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+		<script type="text/javascript">
+			var resPath = "${resPath}";
+		</script>
+	</myScript>
 </body>
 </html>

@@ -4,7 +4,7 @@ function toTop() {
 
 	var h = $(window).height();
 	var t = $(document).scrollTop();
-	if (t >= 768) {
+	if (t >= 268) {
 		$('#gotop').show();
 	} else {
 		$('#gotop').hide();
@@ -475,6 +475,10 @@ function searchReport(p) {
 function getByInduxtry(value) {
 	if (value != 0) {
 		$("#induxtry_id").val(value);
+
+		$('body,html').animate({
+			scrollTop: 450
+		}, 0);
 	} else {
 		$("#induxtry_id").val("");
 	}
@@ -518,6 +522,7 @@ function ajaxReport(p) {
 						while (html.indexOf("{reportMain." + key + "}") != -1) {
 							html = html.replace("{reportMain." + key + "}", reportMain[key]);
 						}
+					
 					}
 					$("#reportMainList").append(html);
 				}
