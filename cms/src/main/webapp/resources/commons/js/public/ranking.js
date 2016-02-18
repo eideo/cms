@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-01-04 15:01:07
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-15 09:20:06
+ * @Last Modified time: 2016-02-18 11:07:01
  * @ 排行榜入口模块
  */
 
@@ -11,8 +11,6 @@
 define(function(require, exports, module) {
 
 	var positionAll = require('../../js/tagCloud');
-
-	var createPage = require('createPage');
 
 	var hot = true;
 

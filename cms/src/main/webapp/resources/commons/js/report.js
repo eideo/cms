@@ -67,7 +67,7 @@ function searchHint() {
 	document.onkeydown = function(e) {
 
 		var ev = document.all ? window.event : e;
-		
+
 		if (ev.keyCode == 13) {
 
 			searchReport();
@@ -95,7 +95,6 @@ function searchHint() {
 		$('.searchBox').val('');
 		$(this).hide();
 	})
-
 }
 
 function closeLoginBox() {
@@ -137,7 +136,6 @@ function tradeClass() {
 }
 
 // 用户行为
-
 function userBehavior() {
 
 	// 关注按钮
@@ -254,9 +252,7 @@ function userBehavior() {
 	});
 }
 
-
 // 轮播图
-
 function imgArr() {
 
 	var oBox = document.getElementById('box');
@@ -412,6 +408,7 @@ function getSuggestReport(keywords) {
 function searchReport(p) {
 	var currentPage = 1;
 	if (p) {
+
 		currentPage = p;
 	}
 	var searchWords = $(".searchBox").val();
@@ -436,7 +433,9 @@ function searchReport(p) {
 					var imgError = path + '/resources/commons/images/searchError.png';
 
 					$('#reportMainList').html('<img src="' + path + '/resources/commons/images/searchError.png' + '" style="margin:100px auto"/>')
-					$(".tcdPageCode").hide()
+					$(".paging").hide()
+				} else {
+					$(".paging").show()
 				}
 
 				for (var i = 0; i < data.reportMainList.length; i++) {
@@ -488,7 +487,6 @@ function ajaxReport(p) {
 		currentPage = p;
 	}
 	var induxtry = $("#induxtry_id").val();
-	// alert("currentPage = " + currentPage + ", induxtry = " + induxtry);
 	var url = path + "/report/ajaxReport";
 	$.ajax({
 		url: url,
@@ -509,7 +507,9 @@ function ajaxReport(p) {
 					var imgError = path + '/resources/commons/images/searchError.png';
 
 					$('#reportMainList').html('<img src="' + path + '/resources/commons/images/searchError.png' + '" style="margin:100px auto"/>')
-					$(".tcdPageCode").hide()
+					$(".paging").hide()
+				}else {
+					$(".paging").show()
 				}
 				for (var i = 0; i < data.reportMainList.length; i++) {
 					var reportMain = data.reportMainList[i];
@@ -580,14 +580,12 @@ function pageClick() {
 
 		$("html, body").scrollTop(0).animate({
 			scrollTop: $(".s_nav").offset().top - 30
-		});
+		}, 0);
 	})
 }
 
 
-
 $(function() {
-
 
 	$(window).scroll(function() {
 		toTop()
@@ -633,5 +631,4 @@ $(function() {
 		$('#gotop i').show();
 		$('#gotop span').hide();
 	})
-
 });

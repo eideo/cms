@@ -204,6 +204,11 @@
 			<form id="pageForm">
 				<div class="paging">
 					<div class="tcdPageCode"></div>
+					<div class="searchPage">
+						<span class="page-sum">共<strong class="allPage">2</strong>页</span>
+						<span class="page-go">跳转到<input type="text" id="pageTo">页</span>
+						<a href="javascript:;" class="page-btn">GO</a>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -261,16 +266,17 @@
 					</li>
 </script>
 
-	<myScript>
-		<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
-		<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
-		<script type="text/javascript">
-		// 入口模块
-		seajs.use("${resPath}/resources/commons/js/public/ranking")
-		</script>
-	</myScript>
+<myScript>
+<script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/lib/jquery.pagination.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
+<script type="text/javascript">
+	// 入口模块
+	seajs.use("${resPath}/resources/commons/js/public/ranking")
+</script>
+</myScript>
 </body>
 </html>

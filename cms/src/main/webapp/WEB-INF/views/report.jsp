@@ -7,7 +7,11 @@
 	<myCss>
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/lib/pagination.css?v=${projectversion}">
 	</myCss>
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ie6hack.css?v=${projectversion}">
+	<![endif]-->
 </head>
 <body>
 	<!-- 轮播图 -->
@@ -114,7 +118,14 @@
 					<div class="page">
 						<form id="pageForm">
 							<div class="paging">
-								<div class="tcdPageCode"></div>
+								<div class="tcdPageCode">
+									
+								</div>
+								<div class="searchPage">
+									<span class="page-sum">共<strong class="allPage">2</strong>页</span>
+									<span class="page-go">跳转到<input type="text" id="pageTo">页</span>
+									<a href="javascript:;" class="page-btn">GO</a>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -177,6 +188,7 @@
 <myScript>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
+	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/jquery.pagination.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=${projectversion}"></script>
 	<script type="text/javascript">

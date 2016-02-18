@@ -69,14 +69,18 @@ define(function(require, exports, module) {
 					obj.remove('.nextPage');
 					obj.append('<span class="disabled">下一页</span>');
 				}})();
+
+			    /*共有多少页*/
+				$('.searchPage .allPage').html(args.pageCount)
+				/*obj.parent().append('<div class="searchPage">');
+				$('.searchPage').append('<span class="page-sum">共<strong class="allPage">' + args.pageCount + '</strong>页</span>');
+				$('.searchPage').append('<span class="page-go">跳转到<input type="text" id="pageTo">页</span>');
+				$('.searchPage').append('<a href="javascript:;" class="page-btn">GO</a>')*/
 			},
 			//绑定事件
 			bindEvent:function(obj,args){
 				return (function(){
-					obj.off("click","a.tcdNumber");
-					obj.off("click","a.prevPage");
-					obj.off("click","a.nextPage");
-					obj.parent().off("click",".sure");
+
 					obj.on("click","a.tcdNumber",function(){
 						var current = parseInt($(this).text());
 						ms.fillHtml(obj,{"current":current,"pageCount":args.pageCount});
@@ -110,10 +114,39 @@ define(function(require, exports, module) {
 							args.backFn(current);
 						}
 					});
+					obj.on('click','a.page-btn',function() {
+
+						var current = $('#pageTo').val() || 1;
+						ms.fillHtml(obj, {
+							"current": current,
+							"pageCount": args.pageCount
+						});
+						if (typeof(args.backFn) == "function") {
+							args.backFn(current);
+						}
+					})
+
+					obj.parent().on('click','.page-btn',function() {
+
+						var current = $('#pageTo').val();
+
+						if (parseInt(current) > parseInt(args.pageCount)) {
+
+							return 
+						}
+
+						ms.fillHtml(obj, {
+							"current": parseInt(current),
+							"pageCount": args.pageCount
+						});
+						if (typeof(args.backFn) == "function") {
+							args.backFn(parseInt(current));
+						}
+					})
 				})();
 			}
 		}
-		$.fn.createPage = function(options){
+		$.fn.createPage = function(options) {
 			var args = $.extend({
 				pageCount : 10,
 				current : 1,
@@ -121,6 +154,7 @@ define(function(require, exports, module) {
 			},options);
 			ms.init(this,args);
 		}
+
 	})(jQuery);
 
 })

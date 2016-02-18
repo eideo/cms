@@ -6,6 +6,7 @@
 	<title>搜索结果</title>
 	<myCss>
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/style.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/searchresult.css?v=${projectversion}">
 	</myCss>
 
@@ -1033,12 +1034,13 @@
 <div class="page">
 	<form id="pageForm">
 		<div class="paging">
-			<!-- 
-			<input type="button" value="确定" class="sure">
-			<p><i>跳转</i><input type="text" name="" class="span"><i>页</i></p>	
-			 -->
-				<div class="tcdPageCode">
-	 			</div>
+			<div class="tcdPageCode">
+	 		</div>
+	 		<div class="searchPage">
+				<span class="page-sum">共<strong class="allPage">2</strong>页</span>
+				<span class="page-go">跳转到<input type="text" id="pageTo">页</span>
+				<a href="javascript:;" class="page-btn">GO</a>
+			</div>
 		</div>
 	</form>
 </div>
@@ -1103,6 +1105,7 @@
 <myScript>
 <script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
 <script type="text/javascript">

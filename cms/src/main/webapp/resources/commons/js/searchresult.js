@@ -2,14 +2,14 @@
  * @Author: zhanganchun
  * @Date:   2016-01-04 15:01:07
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-17 15:04:56
+ * @Last Modified time: 2016-02-18 12:01:58
  */
 
 "use strict";
 define(function(require, exports, module) {
 
-/*	var $ = require('jquery')*/
-    var createPage = require('./lib/page');
+/*	var $ = require('jquery')
+    var createPage = require('./lib/page');*/
     var Close = require('./lib/common');
     var ajax = require('./public/ajax');
     var SearchChart = require('./chart/searchChart');
@@ -370,11 +370,11 @@ define(function(require, exports, module) {
                     $('.chartCon').hide();
                     var imgError = path + '/resources/commons/images/searchError.png';
                     $('#list').html('<img src="' + path + '/resources/commons/images/searchError.png' + '" style="margin:100px auto"/>')
-                    $(".tcdPageCode").hide()
+                    $(".paging").hide()
                 } else {
 
                     $('.chartCon').show();
-                    $(".tcdPageCode").show()
+                    $(".paging").show()
 
                     getData();
                 }
@@ -1277,7 +1277,7 @@ define(function(require, exports, module) {
     // 点击页码返回结果列表顶部
     function pageClick() {
 
-        $('.tcdPageCode').on("click", "a", function() {
+        $('.tcdPageCode,.searchPage').on("click", "a", function() {
 
             $("html, body").scrollTop(0).animate({
                 scrollTop: $(".result").offset().top - 30
