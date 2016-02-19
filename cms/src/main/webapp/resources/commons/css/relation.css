@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-12-24 08:45:17
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-02-17 10:27:54
+* @Last Modified time: 2016-02-19 11:22:02
 */
 #relation{color:#fff;background:#ff9829;}
 body{font-family:'微软雅黑',Arial;width:100%;height:100%;}
@@ -27,7 +27,7 @@ body{font-family:'微软雅黑',Arial;width:100%;height:100%;}
     .slider .timeShow{font-size:16px;line-height:30px;position:absolute;top:-38px;left:235px;width:142px;height:30px;text-align:center;color:#fff;}
     .searchBody{position:absolute;left:50%;display:inline-block;width:auto;height:38px;margin-top:30px;margin-left:-320px;}
     .searchBody .inputBox{position:relative;float:left;width:640px;}
-    .searchBody .inputText{width:100%;height:38px;padding:0;-webkit-transition:all 1.0s;-moz-transition:all 1.0s;-o-transition:all 1.0s;transition:all 1.0s;text-indent:10px;color:#b8b8b8;border:1px solid #5d5d5d;outline:none!important;background:#424242;}
+    .searchBody .inputText{width:100%;height:38px;line-height:38px;*line-height:38px;_line-height:38px;padding:0;-webkit-transition:all 1.0s;-moz-transition:all 1.0s;-o-transition:all 1.0s;transition:all 1.0s;text-indent:10px;color:#b8b8b8;border:1px solid #5d5d5d;outline:none!important;background:#424242;}
 
     /* .searchBody .inputText:hover{
 

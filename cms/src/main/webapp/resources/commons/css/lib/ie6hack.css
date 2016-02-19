@@ -2,7 +2,16 @@
 * @Author: zhanganchun
 * @Date:   2016-02-18 09:04:28
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-02-18 09:05:00
+* @Last Modified time: 2016-02-19 10:59:32
 */
-
-.login_box{position:absolute;}
+.login_box { position: absolute; }
+.hot { overflow: hidden;}
+.page_bg { position: relative; }
+.list h4 i { display: none; }
+.s_nav .h2 { width: 180px; height: 136px; overflow: hidden; }
+.tcdPageCode{_zoom:1;_display:inline;float: left;margin-top:-20px;}
+.tcdPageCode span,.tcdPageCode span.current,.tcdPageCode span.selected,.tcdPageCode a{float: left}
+.searchPage{_zoom:1;_display:inline;float: right;margin-top:20px;}
+.searchBtn{top:2px;background:#47aaff;color:#47aaff;}
+/*截取取消*/
+.cutTitle{_width:270px;}

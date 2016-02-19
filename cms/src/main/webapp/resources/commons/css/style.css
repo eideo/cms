@@ -2,17 +2,19 @@
 * @Author: zhanganchun
 * @Date:   2016-02-17 10:03:03
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-02-18 11:41:02
+* @Last Modified time: 2016-02-19 11:19:31
 * @ 项目css太混乱，目前先重构这些
 */
 .navWrapper { width: 100%; }
 
+.user-info{width:100px;}
+.user-info li{float: right}
 /* 顶部 */
 @media (max-width:1920px) {
 	.header { font-size: 12px; min-width: 1200px; height: 30px; background: #424242; }
 	.user-nav { line-height: 30px; width: 1200px; height: 30px; margin: 0 auto; }
-	.user-info { line-height: 20px; float: right; height: 20px; margin-top: 5px; }
-	.user-info li { display: inline-block; margin-left: 8px; color: #888; }
+	.user-info { width:100px;line-height: 20px; float: right; height: 20px; margin-top: 5px; }
+	.user-info li { display: inline-block; margin-left: 8px; color: #888; float: right;}
 	.user-info li a { font-family: 'Microsoft YaHei'; color: #ebebeb; }
 	.user-info li a:hover { color: #0a8dff; }
 
@@ -94,14 +96,17 @@
 .paging p .span { display: block; float: left; width: 40px; height: 15px; margin: 0 10px; padding-left: 5px; border: 1px solid #b5b5b5; outline: none; }
 .paging .sure { font-size: 14px; float: right; width: 63px; height: 29px; margin-top: 12px; margin-left: 20px; cursor: pointer; color: #3c3c3c; border: none; background: #e1e1e1; }
 .paging .searchPage {display:inline-block;}
+.paging .searchPage #pageTo{width:40px;}
 .paging .searchPage .page-sum{padding:5px 12px;color:#5e5e5e;font-family:\u5b8b\u4f53,Arial;font-size:14px;}
 .paging .searchPage .page-go{padding:8px 0;color:#5e5e5e;font-family:\u5b8b\u4f53,Arial;font-size:14px;padding:10px 0\9;*padding:6px 0;}
 .paging .searchPage .page-go input{width:21px;height:20px;margin:0 5px;padding-left:5px;border:1px solid #e4e4e4;}
 .paging .searchPage .page-btn{margin:9px 0 5px 5px;padding:2px 5px;background:#47aaff;border-radius:2px;color:#ffffff;font-family:Arial,'Microsoft YaHei';font-size:14px;text-decoration:none;}
 /*标题截取*/
 .cutTitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cutParagraph { overflow: hidden; word-wrap: break-word; word-break: break-all; }
-#gotop { position: fixed; right: 20px; bottom: 100px; display: none; width: 50px; height: 50px; cursor: pointer; z-index: 1030; background: #47aaff; }
+.cutParagraph { overflow: hidden; word-wrap: break-word; word-break: break-all; } 
+#gotop { position: fixed; right: 20px; bottom: 100px; display: none; width: 50px; height: 50px; cursor: pointer; z-index: 1030; background: #47aaff;_position: absolute;
+_bottom: 10%;
+_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0) - 60));}
 #gotop i,
 #gotop span { line-height: 50px; position: absolute; display: block; display: none; width: 100%; height: 100%; text-align: center; color: #fff; }
 #gotop i { display: block; background: url(../images/gotop.png) no-repeat 12px 15px; }
@@ -127,7 +132,7 @@
 .close{transition:.5s;-moz-transition:.5s;-webkit-transition:.5s;-o-transition:.5s;}
 .loginTitle{width:260px;height:40px;line-height:40px;border-bottom:2px solid #e2e2e2;font-size:18px;color:#333;font-weight:bold;margin:10px 0 25px 0;padding-left:10px;letter-spacing:3px;}
 #username,
-#password{width:270px;height:36px;border:1px solid #ebebeb;padding-left:38px;border-radius:3px;color:#888;font-family:'Microsoft YaHei'}
+#password{width:270px;height:36px;line-height:36px;*line-height:36px;_line-height:36px;border:1px solid #ebebeb;padding-left:38px;border-radius:3px;color:#888;font-family:'Microsoft YaHei'}
 .login_box .op_password{margin-bottom:25px;margin-top:20px;}
 #remember{display:inline-block;width:14px;height:14px;border:1px solid #8e8f8f;position:relative;top:2px;}
 .op_password label{margin-right:82px;margin-left:1px;color:#5e5e5e;}
@@ -142,7 +147,7 @@
 .passwordbox{position:relative;margin-top:26px;}
 .passwordbox i{width:20px;height:20px;position:absolute;left:8px;top:9px;background:url(../images/password.png) no-repeat;}
 .passwordbox span{color: red;display: none;position:absolute;left:4px;top:39px;}
-.shadow_all{width:100%;height:100%;background:#000;opacity:0.5;position:fixed;top:0;left:0;display:none;z-index:9999}
+.shadow_all{width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=50);position:fixed;top:0;left:0;display:none;z-index:9999}
 
 /*分页已作废，后续删掉*/
 .pages{width:720px;margin:40px auto 0 auto;}

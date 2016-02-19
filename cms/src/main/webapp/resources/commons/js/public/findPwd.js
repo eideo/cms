@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-02-01 16:39:51
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-18 15:46:17
+ * @Last Modified time: 2016-02-19 08:43:55
  */
 
 'use strict';
@@ -102,13 +102,13 @@ var controlState = function() {
 	var interval = setInterval(function() {
 
 		$('.reSendCode #reSend').html(minitus + '秒后可重发');
-		$('.validBtn').css('background','#cccccc')
+		//$('.validBtn').css('background','#cccccc')
 		minitus --;
 
 		if (minitus === -1) {
 
 			clearInterval(interval)
-			$('.validBtn').css('background','#47aaff')
+			//$('.validBtn').css('background','#47aaff')
 			$('.reSendCode #reSend').html('重新发送')
 		}
 	},1000)
@@ -386,10 +386,10 @@ $(function() {
 
 					$('.tabCon .step2').find('i').removeClass('active').addClass('vaild')
 					$('.tabCon .step3').find('i').addClass('active')
-					/*
+					
 					setTimeout(function() {
 						location.href = casPath;
-					}, 5000000)*/
+					}, 5000)
 				},
 				error: function() {
 

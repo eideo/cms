@@ -146,13 +146,6 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\">\r\n");
       out.write("\t</myCss>\r\n");
-      out.write("\t<!--[if IE 6]>\r\n");
-      out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/css/ie6hack.css?v=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
-      out.write("\t<![endif]-->\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
       out.write("\t<!-- 轮播图 -->\r\n");
@@ -292,11 +285,6 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<script type=\"text/javascript\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/resources/commons/js/paging/page.js?v=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"></script>\r\n");
-      out.write("\t<script type=\"text/javascript\" src=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/resources/commons/js/lib/jquery.pagination.js?v=");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${projectversion}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\"></script>\r\n");
       out.write("\t<script type=\"text/javascript\" src=\"");
@@ -834,17 +822,23 @@ public final class report_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t\t\t<li class=\"cutTitle\"><a href=\"");
+          out.write("\t\t\t\t\t<li class=\"cutTitle\">\r\n");
+          out.write("\t\t\t\t\t\t<a href=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("/reportdetail/");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" title=\"");
+          out.write("\" \r\n");
+          out.write("\t\t\t\t\t\t\ttitle=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" onclick=\"javascript:custBehavior(2, 11506, ");
+          out.write("\" \r\n");
+          out.write("\t\t\t\t\t\t\tonclick=\"javascript:custBehavior(2, 11506, ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write(", 1);\"  target=\"_blank\" >");
+          out.write(", 1);\"  \r\n");
+          out.write("\t\t\t\t\t\t\ttarget=\"_blank\" >");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${reportMainTop.reportTitle}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</a></li>\r\n");
+          out.write("\r\n");
+          out.write("\t\t\t\t\t\t</a>\r\n");
+          out.write("\t\t\t\t\t</li>\r\n");
           out.write("\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_forEach_2.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)

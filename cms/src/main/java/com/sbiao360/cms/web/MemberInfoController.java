@@ -357,12 +357,7 @@ public class MemberInfoController extends BaseController{
   
             }  
         }); 
-        Assertion assertion = AssertionHolder.getAssertion();
-        String nowid = ""; 
-		if(assertion!=null){
-			nowid = (String) assertion.getPrincipal().getAttributes().get("id");
-		}
-        if(object==null||object.equals(nowid)||"".equals(nowid)){
+         if(object==null){
         	 ajaxJson("{status:\"false\"}", response);
         	 return;
         }

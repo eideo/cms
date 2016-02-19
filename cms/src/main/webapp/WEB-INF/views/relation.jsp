@@ -6,10 +6,10 @@
     <title>关系网展示页</title>
     <mycss>
         <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
+        <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/style.css?v=${projectversion}">
         <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/util.css?v=${projectversion}">
         <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/relation.css?v=${projectversion}">
         <link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/intro.css?v=${projectversion}">
-        
     </mycss>
 </head>
 <body>
@@ -117,6 +117,40 @@
 </div>
 
     <myScript>
+        <script type="text/javascript">
+            
+            !function() {
+            var cookie,ua,match;
+            ua = window.navigator.userAgent;
+            match = /;\s*MSIE (\d+).*?;/.exec(ua);
+            if (match && +match[1] < 9) {
+
+                $('body').html('')
+                $('body').append('<h1>你正在使用低版本浏览器，为了更好的服务体验，请升级浏览器</h1>')
+                cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
+                if (cookie && cookie[1]) {
+                    return;
+                }
+                $("body").prepend([
+                    "<div id='compatible' class='compatible-contianer'>",
+                    "<p class='cpt-ct'><i></i>您的浏览器版本过低。为保证最佳浏览体验，<a href='/static/html/browser.html'>请点此更新高版本浏览器</a></p>",
+                    "<div class='cpt-handle'><a href='javascript:;' class='cpt-agin'>以后再说</a><a href='javascript:;' class='cpt-close'><i></i></a>",
+                    "</div>"
+                ].join(""));
+
+                $("#compatible .cpt-agin").click(function() {
+                    var d = new Date();
+                    d.setTime(d.getTime() + 30 * 24 * 3600 * 1000);
+                    document.cookie = "ic=1; expires=" + d.toGMTString() + "; path=/";
+                    $("#compatible").remove();
+                });
+                $("#compatible .cpt-close").click(function() {
+                    $("#compatible").remove();
+                });
+            }
+        }();
+
+        </script>
        <script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
         <script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js?v=${projectversion}"></script>
         <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>

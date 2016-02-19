@@ -66,7 +66,7 @@ function searchHint() {
 	// 按回车键搜索
 	document.onkeydown = function(e) {
 
-		var ev = document.all ? window.event : e;
+		/*var ev = document.all ? window.event : e;
 
 		if (ev.keyCode == 13) {
 
@@ -74,7 +74,7 @@ function searchHint() {
 			$("html, body").scrollTop(0).animate({
 				scrollTop: $(".s_nav").offset().top - 30
 			});
-		}
+		}*/
 	}
 
 	var searchInput = document.getElementById('searchBox');
@@ -252,8 +252,16 @@ function userBehavior() {
 	});
 }
 
+/*轮播图jq版本*/
+function jqSlider() {
+
+	var $box = $('#box'),
+		$oUl = $box.find('ul')
+
+}
+
 // 轮播图
-function imgArr() {
+function slider() {
 
 	var oBox = document.getElementById('box');
 	var oUl = oBox.getElementsByTagName('ul')[0];
@@ -266,10 +274,11 @@ function imgArr() {
 	oUl.innerHTML += oUl.innerHTML;
 	oUl.style.width = aLi.length * aLi[0].offsetWidth + 'px';
 
+
 	var W = oUl.offsetWidth / 2;
 	var iNow = 0;
 	var timer = null;
-
+	
 	oBox.onmouseover = function() {
 
 		clearInterval(timer);
@@ -363,10 +372,11 @@ function imgArr() {
 			left = start + dis * (1 - Math.pow(a, 3));
 			if (left < 0) {
 
-				obj.style.left = left % W + 'px';
+				obj.style.left = (left % W )+ 'px';
+
 			} else {
 
-				obj.style.left = (left % W - W) % W + 'px';
+				obj.style.left = ((left % W - W) % W )+ 'px';
 			}
 			if (n == count) {
 
@@ -600,7 +610,7 @@ $(function() {
 	searchHint();
 
 	// 轮播图
-	imgArr();
+	slider();
 
 	// 关闭登录框
 	closeLoginBox();

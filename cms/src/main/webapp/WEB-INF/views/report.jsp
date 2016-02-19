@@ -7,9 +7,6 @@
 	<myCss>
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/report.css?v=${projectversion}">
 	</myCss>
-	<!--[if IE 6]>
-	<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/ie6hack.css?v=${projectversion}">
-	<![endif]-->
 </head>
 <body>
 	<!-- 轮播图 -->
@@ -133,7 +130,13 @@
 			<h4>热门报告<i></i></h4>
 			<ul class="hot">
 				<c:forEach var="reportMainTop" items="${reportMainListTop10}">
-					<li class="cutTitle"><a href="${appPath}/reportdetail/${reportMainTop.id}" title="${reportMainTop.reportTitle}" onclick="javascript:custBehavior(2, 11506, ${reportMainTop.id}, 1);"  target="_blank" >${reportMainTop.reportTitle}</a></li>
+					<li class="cutTitle">
+						<a href="${appPath}/reportdetail/${reportMainTop.id}" 
+							title="${reportMainTop.reportTitle}" 
+							onclick="javascript:custBehavior(2, 11506, ${reportMainTop.id}, 1);"  
+							target="_blank" >${reportMainTop.reportTitle}
+						</a>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -186,7 +189,6 @@
 <myScript>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/popwin.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
-	<script type="text/javascript" src="${resPath}/resources/commons/js/lib/jquery.pagination.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
 	<script type="text/javascript" src="${resPath}/resources/commons/js/report.js?v=${projectversion}"></script>
 	<script type="text/javascript">

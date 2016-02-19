@@ -2,7 +2,7 @@
  * @Author: zhanganchun
  * @Date:   2016-01-05 09:03:27
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-01-22 17:21:13
+ * @Last Modified time: 2016-02-19 11:39:07
  */
 
 'use strict';
@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 	ChartConfig.leftBarSetting = {
 		selector: '.profile #chart1',
 		series: [],
-		colorset: ['#869aee', '#f094ce', '#e43d35', '#4dc9ed', '#66c5f7', '#f79a84', '#f7a6b2', '#ff8519', '#f7d083', '#aaaffb', '#b497fd', '#d674a6', '#70eae9', '#a4cd7f', '#ece35b'],
+		colorset: ['#fd7497', '#ff4c7a', '#ff503c', '#ff620d', '#ff8a0d', '#ff9829', '#ffb400', '#ffc23e', '#eba602', '#d7c500', '#8ae778', '#7ed9a3', '#46e6ff', '#8cb4ff', '#c0a6ff'],
 		type:"leftBar",
 		xAxisSetting:{
 			scale:'linear',
