@@ -4,34 +4,49 @@ import java.util.Date;
 
 public class KeywordsException {
 	
+	//信息id
 	private String recordId;
 	
+	//用户id
 	private String custId;
 	
+	//登录名
 	private String loginName;
 	
+	//用户名
 	private String custName;
 	
+	//用户ip
 	private Long ip;
 	
+	//用户查询地区
 	private String areaTailId;
 	
+	//用户查询地区
 	private String areaId;
 	
+	//用户查询行业
 	private String industry1Id;
 	
+	//用户查询行业
 	private String industry2Id;
 	
+	//关键字类型
 	private String keywordsType;
 	
+	//关键字
 	private String keywords;
 	
+	//查询语句
 	private String sqlRecord;
 	
+	//查询历时
 	private String queryTime;
 	
+	//异常时间
 	private String exceptionType;
 
+	//提交时间
 	private Date confirmDate;
 
 	public String getRecordId() {

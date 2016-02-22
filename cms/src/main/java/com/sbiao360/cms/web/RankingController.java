@@ -68,7 +68,7 @@ public class RankingController extends BaseController{
 		int totalCompany = 6;
 		String type = request.getParameter("type"); 
 		String circle = request.getParameter("circle"); 
-		circle = circle==null?"1":circle;
+//		circle = circle==null?"1":circle;
 		String industry = request.getParameter("industry");
 		String area = request.getParameter("areaCode");
 		String startDate = request.getParameter("startDate");
@@ -196,6 +196,9 @@ public class RankingController extends BaseController{
 	 */
 	private void setDateParamter(Map<String,Object> map,String circle){
 		Calendar now = Calendar.getInstance();
+		if(circle==null){
+			return;
+		}
 		//今天
 		if(circle.equals("1")){
 			map.put("endDate", DateTime.toDate("yyyy-MM-dd HH:mm:ss", now.getTime()));

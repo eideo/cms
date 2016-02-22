@@ -15,9 +15,13 @@
 			t.KEYWORDS name
 		FROM
 			CMS_CUST_BEHAVIOR t
-		WHERE
-		t.ACTION_DATE&lt;=#{endDate}
-		AND t.ACTION_DATE&gt;=#{startDate}
+		<where>
+		<if test="endDate!=null">
+			AND t.ACTION_DATE&lt;=#{endDate}
+		</if>
+		<if test="startDate!=null">
+			AND t.ACTION_DATE&gt;=#{startDate}
+		</if>
 		AND	t.ACTION_TYPE = 6
 		AND t.COLUMN_LEVEL_ONE = #{type}
 		<if test="areaCode!=null">
@@ -25,6 +29,8 @@
 		</if>
 		AND t.KEYWORDS!=''
 		AND t.KEYWORDS is not null
+		</where>
+		
 		GROUP BY
 			t.KEYWORDS
 		ORDER BY

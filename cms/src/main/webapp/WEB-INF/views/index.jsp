@@ -67,11 +67,12 @@
 		    <img src='${resPath}/resources/commons/images/logoIndex.png' />
 		</a>
 		<ul class="nav clearfix">
-			<li><a href="${appPath }/homepage" class='buttonHover' id="index" target="_blank">首页</a></li>
-			<li><a href="${appPath }/relation" class='buttonHover' target="_blank">关系网</a></li>
-			<li><a href="${appPath }/industry" class='buttonHover' target="_blank">行业指数</a></li>
-			<li><a href="${appPath }/ranking" class='buttonHover' target="_blank">排行榜</a></li>
-			<li><a href="${appPath }/report" class='buttonHover' target="_blank">行业报告</a></li>
+			<li><a href="${appPath }/homepage" class='buttonHover' id="index" >首页</a></li>
+			<li><a href="${appPath }/relation" class='buttonHover' >关系网</a></li>
+			<li><a href="${appPath }/industry" class='buttonHover' >行业指数</a></li>
+			<li><a href="${appPath }/ranking" class='buttonHover' >排行榜</a></li>
+			<li><a href="${appPath }/report" class='buttonHover' >行业报告</a></li>
+			<li><a href="${appPath }/topservice" class='buttonHover' >高端服务</a></li>
 		</ul>
 		<c:if test="${empty username}">
 		<div class="option">

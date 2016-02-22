@@ -29,6 +29,8 @@
 				<li><a href="${appPath }/ranking">排行榜</a></li>
 				<li>|</li>
 				<li><a href="${appPath }/report">行业报告</a></li>
+				<li>|</li>
+				<li><a href="${appPath }/topservice">高端服务</a></li>
 			</ul>
 		</div>
 		

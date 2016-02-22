@@ -211,6 +211,9 @@ public final class commonDecorator_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\t\t\t<li><a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/report\" id=\"report\" class='buttonHover'>行业报告</a></li>\r\n");
+      out.write("\t\t\t<li><a href=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${appPath }", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/topservice\" id=\"topservice\" class='buttonHover'>高端服务</a></li>\r\n");
       out.write("\t\t</ul>\r\n");
       out.write("\t\t");
       if (_jspx_meth_c_if_2(_jspx_page_context))

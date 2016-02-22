@@ -59,6 +59,7 @@
 			<li><a href="${appPath }/industry"  id="industry" class='buttonHover'>行业指数</a></li>
 			<li><a href="${appPath }/ranking"  id="ranking" class='buttonHover'>排行榜</a></li>
 			<li><a href="${appPath }/report" id="report" class='buttonHover'>行业报告</a></li>
+			<li><a href="${appPath }/topservice" id="topservice" class='buttonHover'>高端服务</a></li>
 		</ul>
 		<c:if test="${notSearch==null}">
 			<div class="search">
