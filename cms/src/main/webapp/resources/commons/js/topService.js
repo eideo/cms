@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-02-19 14:48:15
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-02-22 14:24:04
+* @Last Modified time: 2016-02-23 08:38:30
 */
 
 'use strict';
@@ -21,13 +21,13 @@ var maskHide = function() {
 
 $(function() {
 
-	$('.list li').hover(function(){
+	/*$('.list li').hover(function(){
 
-		$(this).find('.hidden').show().stop().slideDown('slow')
+		$(this).find('.hidden').show().stop().slideDown()
 	},function(){
 
 		$(this).find('.hidden').stop().slideUp().hide()
-	})
+	})*/
 /*
 	$('.sList li').hover(function(){
 

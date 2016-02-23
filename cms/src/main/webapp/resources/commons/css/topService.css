@@ -2,7 +2,7 @@
 * @Author: zhanganchun
 * @Date:   2016-02-19 12:01:04
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-02-22 15:50:23
+* @Last Modified time: 2016-02-23 08:47:13
 */
 .search {
 	display: none;
@@ -75,13 +75,25 @@
 .info .list li:nth-child(5){
 	margin-right:0px;
 }
+
+.info .list li:hover .hidden{
+	display: block;
+}
 .info .list li .hidden {
 	width: 100%;
 	height: auto;
 	position: absolute;
 	display: none;
 	top: 0px;
-	z-index: 1003
+	z-index: 1003;
+	-webkit-transition:all 3.0s;
+	-moz-transition:all 3.0s;
+	-o-transition:all 3.0s;
+	transition:all 3.0s;
+	transition-timing-function: ease-in-out;
+	-moz-transition-timing-function: ease-in-out; 
+	-webkit-transition-timing-function: ease-in-out;
+	-o-transition-timing-function: ease-in-out; 
 }
 .info .list li .hidden .text {
 	margin: 20px 17px 0px 17px;

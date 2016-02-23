@@ -55,4 +55,9 @@ public class AboutController {
 		return "topService";
 		
 	}
+	
+	@RequestMapping({"notsupport"})
+	public String notSupport  (HttpServletRequest request,HttpServletResponse response){
+		return "notsupport";
+	}
 }
