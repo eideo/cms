@@ -1,0 +1,572 @@
+/* 
+* @Author: Administrator
+* @Date:   2015-11-18 12:02:30
+* @Last Modified by:   Administrator
+* @Last Modified time: 2015-12-14 16:02:50
+*/
+
+ 
+
+body {
+	width:100%;
+	height:100%;
+ 	background: url(../images/relationBg.png) repeat;
+ }
+
+/*公用部分*/
+
+.mt25{
+	margin-top:25px;
+}
+
+.mt37{
+	margin-top:37px;
+}
+
+.ml42{
+	margin-left:42px;
+}
+.ml30{
+	margin-left:30px;
+}
+
+.ml49{
+	margin-left:49px;
+}
+
+h3{
+	height:16px;
+	line-height:16px;
+	font-size:14px;
+}
+
+/* 顶部 */
+.header{
+	min-width: 1200px;
+	height: 30px;
+	background:#424242;
+	color:#fff;
+	font-size: 12px;
+}
+.user-nav{
+	width:1200px;
+	height: 30px;
+	line-height: 30px;
+
+	margin: 0 auto; 
+}
+.user-info{
+	float: right;
+}
+.user-info li{
+	display: inline-block;
+	margin-left: 8px;
+	color: #fff;
+}
+.user-info li a{
+	color: #fff;
+	font-family: 'Microsoft YaHei';
+}
+
+/*主导航和logo*/
+.navWrapper{
+	width:100%;
+	height:80px;
+	background:#fff;
+}
+.main-nav{
+	width: 1200px;
+	height: 80px;
+	line-height: 80px;
+	margin: 0 auto;
+}
+.logo{
+	width: 118px;
+	height: 30px;
+	background: url(../images/logo.png) no-repeat;
+	text-indent: -9999em;
+	float: left;
+	margin-top: 26px;
+}
+
+.nav{
+	float: left;
+}
+.nav li{
+	display: inline-block;
+	margin-left: 100px;
+	font-size: 16px;
+}
+.nav li a{
+	color:#5e5e5e;
+}
+.nav li a:hover{
+	color: #47aaff;
+}
+
+/*导航下划线*/
+.hr{
+	min-width: 1200px;
+	height: 2px;
+	background: #ebebeb;
+}
+
+.topCon ul {
+	display: inline-block;
+	float: right;
+	margin-right:20px;
+	color: #85b4e2;
+}
+.topCon ul span{
+	display: inline-block;
+	width:10px;
+	height:55px;
+	line-height:55px;
+}
+.topCon ul li{
+	height:55px;
+	line-height:55px;
+	width:50px;
+	float: left;
+	font-size:12px;
+	margin-left: 0px !important;
+	text-align: center;
+}
+.topCon ul li a{
+	color: #85b4e2;
+}
+.topCon .nItem:hover{
+/* 	transform:rotate(360deg);
+-moz-transform:rotate(360deg); 
+-webkit-transform:rotate(360deg); 
+-o-transform:rotate(360deg); */
+	transform:scale(1.2);
+	-moz-transform:scale(1.2); 
+	-webkit-transform:scale(1.2);
+	-o-transform:scale(1.2);
+/* 	transform:translate(-20px);
+-moz-transform:rotate(-20px); 
+-webkit-transform:rotate(-20px); 
+-o-transform:rotate(-20px); */
+}
+.topCon .nItem{
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;	
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+}
+/*第二页*/
+
+.relationWrapper{
+	width:100%;
+	height:680px;
+}
+.relation{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+	overflow:hidden;
+	zoom:1;
+}
+
+.relation .left{
+	width:268px;
+	height:680px;
+	float: left;
+}
+
+.relation .right{
+	position:relative;
+	margin-left:270px;
+	height:680px;
+	width: auto;
+}
+
+
+.relation .right .tree{
+	position: relative;
+	width:100%;
+	height:680px;
+}
+.relation .right .recommend{
+	width:100%;
+	padding-left:30px;
+	height:200px;
+	position: absolute;
+	bottom:0px;
+	left: 0px;
+}
+
+.recommend h3{
+	font-size:14px;
+	height:40px;
+	line-height:40px;
+	color: #67758a;
+}
+.recommend .recomItem{
+	width:49%;
+}
+
+#tableLeft{
+	float: left;
+}
+
+#tableRight{
+	float: right;
+}
+.recommend .recomItem table{
+	width:100%;
+	border-spacing:0px;
+}
+.recommend .recomItem table thead tr{
+	background: #e4e5e7;
+	border-radius: 3px;
+	font-size:12px;
+	height:26px;
+	line-height:26px;
+}
+.recommend .recomItem table tbody tr{
+	height:30px;
+	line-height:30px;
+}
+.recommend .recomItem table tbody tr td{
+	font-size:12px;
+	text-indent:10px;
+}
+.relation .left .searchCon{
+	width:268px;
+	height:148px;
+	margin-top:10px;
+	background: #fff;
+	position: relative;
+/* 	overflow: hidden; */
+	zoom:1;
+	box-shadow: 1px 1px 1px #d3d4d8,
+				2px 2px 1px #e7e8ec;
+}
+.relation .left .searchCon h5{
+	font-size:12px;
+	color:#5e5e5e;
+	height:50px;
+	line-height:50px;
+	padding-left:20px;
+	position: relative;
+}
+
+.relation .left .searchCon .yearCon{
+	width:100%;
+	height:87px;
+	background: #fff;
+}
+
+
+.relation .left .searchCon .year{
+	width:227px;
+	height:20px;
+	position: relative;
+	background:#eeeff4;
+	margin-left:22px;
+}
+.relation .left .searchCon .year .yearValue{
+	height:20px;
+	line-height:20px;
+	color:#47aaff;
+	display: block;
+	position: absolute;
+	left:20px;
+}
+.relation .left .searchCon .cursor{
+	width:79px;
+	height:20px;
+	position: absolute;
+	right:20px;
+	top:0px;
+	cursor: pointer;
+	z-index:5;
+	border-left:3px solid #47aaff;
+	border-right:3px solid #47aaff;
+	background:#eff8ff;
+}
+
+
+.relation .left .searchCon .cursor:before{
+
+}
+
+.relation .left .searchCon .searchBox{
+	position: relative;
+	width:227px;
+	height:32px;
+	border:1px solid #47aaff;
+	border-radius:3px;
+	margin-left:22px;
+	background:#47aaff;
+}
+
+.relation .left .searchCon .searchBox .leftText{
+	width:177px;
+	height:32px;
+	float: left;
+	position:relative;
+	background:#fff;
+}
+.relation .left .searchCon .searchBox .leftText .sText{
+	height:32px;
+	line-height:32px;
+	font-size:12px;
+	background:transparent;
+	border: none;
+	color: #dedede;
+	text-indent:10px;
+}
+
+.relation .left .searchCon .searchBox .right{
+	width:60px;
+	height:32px;
+	position:absolute;
+	right:0px;
+	line-height:32px;
+	font-size:12px;
+	cursor: pointer;
+	float: right;
+	border: none;
+	color: #fff;
+	text-align: center;
+	background: url(../images/icon1214.png) no-repeat -400px -14px;
+}
+
+.relation .left .searchCon .searchBox .searchItem{
+	background:#fff;
+	height:100px;
+	width:177px;
+	position: absolute;
+	top:34px;
+	left:0px;
+	display: none;
+	z-index:1002;
+	box-shadow: 0px 0px 1px #d3d4d8,
+				2px 2px 1px #e7e8ec;
+}
+.searchItem li{
+	height:25px;
+	cursor: pointer;
+	text-indent:10px;
+	line-height:25px;
+ }
+ .searchItem .selected{
+	background:#eff8ff !important;
+	color: #47aaff !important;
+ }
+.relation .left .select{
+	margin-top:20px;
+	background: #fff;
+	height:510px;
+	box-shadow: 0px 0px 1px #d3d4d8,
+				2px 2px 1px #e7e8ec;
+}
+
+
+.relation .left .select .title{
+	height:44px;
+	border-bottom: 1px solid #fff;
+}
+
+.relation .left .select .con{
+	height:460px;
+	/* overflow-y:auto; */
+}
+.relation .left .select .title span{
+	display:inline-block;
+	float: left;
+	width:50%;
+	height: 100%;
+	line-height: 44px;
+	font-size: 14px;
+	color:#000;
+	background: #ffffff;
+	text-align: center;
+	cursor: pointer;
+}
+
+.select .title .selected{
+	background:#eff8ff !important;
+	color: #47aaff !important;
+	border-bottom:1px solid #47aaff;
+	font-weight:600;
+
+}
+.select .title .selected:hover{
+	background:#eff8ff !important;
+	color: #47aaff !important;
+}
+.relation .left .select .con li{
+	height:40px;
+	line-height:40px;
+	background:#fff;
+	cursor: pointer;
+	padding:0px 20px;
+	text-align:left;
+	text-indent:15px;
+	border-bottom:1px dashed #eaf5ff
+}
+
+.relation .left .item:hover{
+	transform:translate(20px);
+	-moz-transform:translate(20px); /* Firefox 4 */
+	-webkit-transform:translate(20px); /* Safari and Chrome */
+	-o-transform:translate(20px)
+}
+
+.relation .left .item {
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;	/* Firefox 4 */
+	-webkit-transition: all 0.5s;	/* Safari 和 Chrome */
+	-o-transition: all 0.5s;
+}
+
+.relation .left .select .con li.selected{
+	background:#eaf5ff
+}
+/*关系网实物*/
+
+.project{
+	position:absolute;
+	width:124px;
+	height:124px;
+	cursor: pointer;
+	background: url(../images/relationIcon.png) no-repeat -7px -8px;
+}
+.company{
+	position:absolute;
+	width:124px;
+	height:124px;
+	cursor: pointer;
+	background: url(../images/relationIcon.png) no-repeat -152px -3px;
+}
+.person{
+	position:absolute;
+	width:124px;
+	height:124px;
+	cursor: pointer;
+	background: url(../images/relationIcon.png) no-repeat -291px -3px;
+}
+
+.minProject{
+	position:absolute;
+	width:60px;
+	height:60px;
+	cursor: pointer;
+	background: url(../images/relationIcon.png) no-repeat -441px -72px;
+}
+
+.minCompany{
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    cursor: pointer;
+    background: url(../images/relationIcon.png) no-repeat -526px -75px;
+}
+.minPerson{
+	position:absolute;
+	width:40px;
+	height:40px;
+	cursor: pointer;
+	background: url(../images/relationIcon.png) no-repeat -600px -83px;
+}
+/* 
+提示框
+.tip{
+	position: absolute;
+	left:0;
+	top:0;
+	width:auto;
+	height:150px;
+	background: #47aaff;
+	border-radius:5px;
+	z-index:1002
+} */
+
+.tip{
+	  width:258px;
+	  height:158px;
+	  padding:5px;
+	  border:1px solid;
+	  border-radius:5px;
+	 -moz-border-radius:5px;
+	 -webkit-border-radius:5px;
+	 -o-border-radius:5px;
+	  position:absolute;
+	  display:block;
+	  top:-130px;
+	  background:#000;
+	  opacity:0.8;
+	  color: #fff;
+	  z-index:1002;
+  }
+ .tip:before{
+  	content:"";
+    width:0;
+    height:0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #000;
+	position:absolute;
+	left:-10px;
+	top:10%;
+}
+
+.tipWrap{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+
+.tipWrap .close{
+	position: absolute;
+	right:0px;
+	top:0px;
+	color:#fff;
+	text-align: center;
+	width:20px;
+	height:20px;
+	cursor: pointer;
+	z-index:5
+}
+.tipTitle{
+	height:30px;
+	line-height:30px;
+	width:100%;
+	position: relative;
+	text-align:center;
+	font-size:14px;
+	color:#fff;
+
+}
+
+.tipCon li{
+
+	height:20px;
+	line-height:20px;
+	color:#fff;
+	font-size:12px;
+	padding:0px 20px;
+}
+
+.tipCon li:last-child{
+	cursor: pointer;
+	color:red;
+}
+
+@media  screen and (max-width: 1024px) {
+	
+	.topCon{
+		width:960px;
+	}
+
+	.relation .right{
+	position:relative;
+	margin-left:330px;
+	width: 668px
+	}
+}
+

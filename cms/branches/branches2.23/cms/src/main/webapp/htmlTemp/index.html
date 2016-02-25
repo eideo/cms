@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="js/index.js"></script>
+	<script src='js/ichart.latest.min.js'></script>
+	<script src="js/echarts-all.js"></script>
+	<script src='js/index_chart.js'></script>
+</head>
+<body>
+<!-- 	顶部导航 -->
+<div class="header">
+	<div class="user-nav clearfix">
+		<ul class="user-info clearfix">
+			<li><a href="login.html">登录</a></li>
+			<li>|</li>
+			<li><a href="register.html">注册</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">个人中心</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 主导航	 -->
+<div class="main-nav clearfix">
+	<h1 class="logo">关系网</h1>
+	<ul class="nav">
+		<li><a href="index.html" style="color:#47aaff">首页</a></li>
+		<li><a href="javascript:;">关系网</a></li>
+		<li><a href="javascript:;">行业指数</a></li>
+		<li><a href="javascript:;">排行榜</a></li>
+		<li><a href="javascript:;">行业报告</a></li>
+	</ul>
+</div>
+<!-- 搜索框 -->
+<div class="search-bg">
+	<div class="bannar">
+		<video  src="images/banner_1.webm" autoplay="autoplay" loop="loop">
+		</video>
+		<div class="search-box">
+			<div class="search clearfix">
+				<form>
+					<input type="text" placeholder="请输入您要搜索的内容">
+					<span></span>
+					<button>搜索</button>
+				</form>
+			</div>
+			<p class="search-words clearfix">
+				<a href="javascript:;" class="hotword">热搜词：</a>
+				<a href="javascript:;">建筑</a>
+				<a href="javascript:;">医疗</a>
+				<a href="javascript:;">万科</a>
+				<a href="javascript:;">电梯</a>
+			</p>
+		</div>	
+	</div>
+	<div class="shadow"></div>
+</div>
+
+<!-- 隐藏搜索框 -->
+<div class="searchhide" id="search2">
+	<div class="search-box2 clearfix">
+		<h2 class="logo">关系网</h2>
+		<div class="s2 clearfix">
+			<input type="text" placeholder="请输入你想搜索的内容" />
+			<button>搜索</button>
+			<span></span>
+		</div>
+	</div>
+</div>
+
+<!-- 行业指数 -->
+<div class="f1">
+	<h2 class="clearfix">
+		<em>|</em>
+		<i>行业指数</i>
+		<span></span>
+	</h2>
+	<div class="chart clearfix">
+		<div class="left-chart">
+			<a href="javascript:;">
+				<div id='chart1'></div>
+			</a>
+			<ul class="clearfix">
+				<li class="icon1"></li>
+				<li>交通</li>
+				<li class="icon2"></li>
+				<li>机电</li>
+				<li class="icon3"></li>
+				<li>建筑</li>
+				<li class="icon4"></li>
+				<li>化工</li>
+				<li class="icon5"></li>
+				<li>能源</li>
+				<li class="icon6"></li>
+				<li>医疗</li>
+			</ul>
+		</div>
+		<div class="right-chart">
+			<div class="diagram">
+				<h3>
+					近一年机电和交通行业
+					<strong>景气指数</strong>&nbsp对比|
+					<a href="javascipt:;">查询详情</a>
+				</h3>
+				<ul>
+					<li class="date">2014-9至2015-9</li>
+					<li class="icon1"></li>
+					<li>交通</li>
+					<li class="icon2"></li>
+					<li>机电</li>
+				</ul>
+				<div id="chart2"></div>
+			</div>
+			<div class="bar-chart">
+				<h3>
+					近一年机电和交通行业
+					<strong>关注指数</strong>&nbsp对比|
+					<a href="javascipt:;">查询详情</a>
+				</h3>
+				<ul>
+					<li class="date">2015-1至2015-12</li>
+					<li class="icon1"></li>
+					<li>交通</li>
+					<li class="icon2"></li>
+					<li>机电</li>
+				</ul>
+				<div id="chart3"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 排行榜 -->
+<div class="f2">
+	<h2 class="clearfix">
+		<em>|</em>
+		<i>排行榜</i>
+		<span></span>
+	</h2>
+	<div class="chart clearfix">
+		<div class="map" id="map">
+		</div>
+		<div class="key-words">
+			<h4 class="clearfix">
+				<a class="a1" href="javascript:;">热词榜</a>
+				<a class="a2" href="javascript:;">查看更多</a>
+			</h4>
+			<div class="words" id="words">
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+				<a href="javascript:;" target="_blank">建筑的材料</a>
+			</div>
+		</div>
+	</div>		
+	<div class="hot clearfix" id="hot">
+		<div class="info">
+			<h4 class="clearfix">
+				<a class="a1" href="javascript:;">信息热度榜</a>
+				<a class="a2" href="javascript:;">查看更多</a>
+			</h4>
+			<div class="info-de">
+				<ul>
+					<li>
+						<i>1</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank" href="javascript:;"></a>
+					</li>
+					<li>
+						<i>2</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank" href="javascript:;"></a>
+					</li>
+					<li>
+						<i>3</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank" href="javascript:;"></a>
+					</li>
+					<li>
+						<i>4</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank" href="javascript:;"></a>
+					</li>
+					<li>
+						<i>5</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank" href="javascript:;"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="company">
+			<h4 class="clearfix">
+				<a class="a1" href="javascript:;">单位热度榜</a>
+				<a class="a2" href="javascript:;">查看更多</a>
+			</h4>
+			<div class="company-de">
+				<ul>
+					<li>
+						<i>1</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank"></a>
+						<em class="star"></em>
+					</li>
+					<li>
+						<i>2</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank"></a>
+						<em class="star"></em>
+					</li>
+					<li>
+						<i>3</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank"></a>
+						<em class="star"></em>
+					</li>
+					<li>
+						<i>4</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank"></a>
+						<em class="star"></em>
+					</li>
+					<li>
+						<i>5</i>
+						<a href="javascript:;" class="title">阜阳市公路管理局国生公路项目</a>
+						<span class="num">1860024</span>
+						<a class="rank"></a>
+						<em class="star"></em>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 行业报告 -->
+<div class="f3">
+	<h2 class="clearfix">
+		<em>|</em>
+		<i>行业报告 </i>
+		<span></span>
+	</h2>
+	<ul class="clearfix">
+		<li>
+			<div>
+				<a href="javascript:;" class="report1"><img src="images/report1.png"></a>
+			</div>
+			<h5><a href="javascript:;">能源行业报告</a></h5>
+			<p><a href="javascript:;">随着科技进步和社会科学生产的发展</a></p>
+		</li>
+		<li>
+			<div>
+				<a href="javascript:;" class="report2"><img src="images/report2.png"></a>
+			</div>
+			<h5><a href="javascript:;">能源行业报告</a></h5>
+			<p><a href="javascript:;">随着科技进步和社会科学生产的发展</a></p>
+		</li>
+		<li>
+			<div>
+				<a href="javascript:;" class="report3"><img src="images/report3.png"></a>
+			</div>
+			<h5><a href="javascript:;">能源行业报告</a></h5>
+			<p><a href="javascript:;">随着科技进步和社会科学生产的发展</a></p>
+		</li>
+		<li class="last">
+			<div>
+				<a href="javascript:;" class="report4"><img src="images/report4.png"></a>
+			</div>
+			<h5><a href="javascript:;">能源行业报告</a></h5>
+			<p><a href="javascript:;">随着科技进步和社会科学生产的发展</a></p>
+		</li>
+	</ul>
+</div>
+
+<!-- 波浪背景 -->
+<div class="bolang"></div>
+
+<!-- 底部信息 -->
+<div class="footer-bg">
+	<div class="footer clearfix">
+		<ul class="clearfix">
+			<li><a href="javascript:;">关于我们</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">网站导航</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">版本所有</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">友情链接</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">联系我们</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">招聘信息</a></li>
+		</ul>
+		<p>Copyright©2001-2015 中国采购与招标网 Rights Reserved 京ICP证070104号 京公网安备 11010802011112号</p>
+	</div>
+</div>
+
+<!-- 回到顶部 -->
+<div id="btn">
+	<div id="feedback"></div>
+	<div id="gotop">
+		<span></span>
+		<a href="javascript:;">返回顶部</a>
+	</div>
+</div>	
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	    http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+		default-autowire="byName" default-lazy-init="true">
+     
+        <description>Spring-service配置</description>
+   
+        <!-- 该配置文件只加载除表现层之外的所有bean，以完成Bean创建和自动依赖注入的功能
+                               通过exclude-filter 把所有 @Service注解的表现层控制器组件排除        -->
+         <context:component-scan base-package="com.sbiao360.cms.service" >
+               <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+         </context:component-scan>
+
+		<context:component-scan base-package="com.sbiao360.sys.performance.service">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		</context:component-scan>
+         
+		<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	        <property name="locations">
+	            <list>
+	                <value>classpath:*.properties</value>
+	            </list>
+	        </property>
+	    </bean>
+	    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+	        <property name="properties" ref="configProperties" />
+	    </bean>
+
+	<!-- 声明JavaMailSenderImpl对象 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 邮件发送服务器 -->
+		<property name="host" value="${mail.host}" />
+		<!-- 邮件发送用户名 -->
+		<property name="username" value="${mail.username}" />
+		<!-- 邮件发送密码 -->
+		<property name="password" value="${mail.password}" />
+		<property name="javaMailProperties">
+			<props>
+				<!-- 设置认证开关 是否需要通过密码验证 -->
+				<prop key="mail.smtp.auth">true</prop>
+				<!-- 启动调试开关 -->
+				<prop key="mail.debug">false</prop>
+				<!-- 设置发送延时 邮件发送延时时间 -->
+				<prop key="mail.smtp.timeout">0</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 声明FreeMarkerConfigurer模板对象 -->
+	<bean id="freeMarkerConfigurer"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
+		p:templateLoaderPath="classpath:mailTemplate">
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">1800</prop>
+				<prop key="default_encoding">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

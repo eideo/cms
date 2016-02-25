@@ -34,6 +34,13 @@
 /*分享按钮*/
 .shareBtn{width:72px;height:28px;position:absolute;top:30px;left:-18px;border-radius:3px;border:1px solid #d5d5d5;display:none;padding-left:10px;z-index:20;}
 
+/*2016-02-23新增日期选择*/
+.searchTerms .timeBox .dataPick div{width:164px;float: left;color: #5e5e5e;
+    font-size: 14px;height:24px;line-height:24px;_line-height:24px;*line-height:24px;}
+.searchTerms .timeBox .dataPick input{
+	text-align: center;
+	width:100px;
+}
 /*日期选择框*/
 .chartCon .time{display:none;}
 @media screen and (min-width:1200px){

@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+/*公用部分*/
+.bg{background:#f6f6f6;padding-top:30px;}
+#report{color:#fff;background:#ff9829;}
+
+/*关注分享收藏*/
+.navBox{float:left;margin-top:6px;color:#888;}
+.navBox div{float:left;}
+.attention{width:18px;height:18px;background:url(../images/icon1229.png) no-repeat -29px -447px;}
+.navBox i.active1{background:url(../images/icon1229.png) no-repeat -29px -491px;}
+.collection{width:18px;height:18px;background:url(../images/icon1229.png) no-repeat -75px -447px;}
+.navBox i.active2{background:url(../images/icon1229.png) no-repeat -75px -491px;}
+.navBox .re{display:none;}
+.navBox span,.navBox i{display:inline-block;cursor:pointer;}
+.navBox i{margin-right:6px;position:relative;top:6px;}
+.navBox .ap{margin-right:26px;cursor:pointer;}
+.navBox .ap:hover{color:#ff5a5a;}
+.navBox .ap:hover i{background:url(../images/icon1229.png) no-repeat -29px -491px;}
+.navBox .cp:hover{color:#ff5a5a;}
+.navBox .cp:hover i{background:url(../images/icon1229.png) no-repeat -75px -491px;}
+.navBox .cp{margin-right:26px;cursor:pointer;}
+.navBox .sp{position:relative;height:40px;}
+.navBox .sp em{position:absolute;width:11px;height:7px;top:24px;left:26px;background:url(../images/icon1229.png) no-repeat -262px -327px #fff;display:none;}
+.navBox .share{width:25px;height:18px;padding-left:20px;position:relative;top:5px;background:url(../images/icon1229.png) no-repeat -119px -447px;color:#888;}
+.navBox  a.reShare{background:url(../images/icon1229.png) no-repeat -119px -492px;color:#ff5a5a;}
+
+/*分享按钮*/
+.shareBtn{width:72px;height:28px;position:absolute;top:30px;left:-18px;border-radius:3px;border:1px solid #d5d5d5;display:none;padding-left:10px;}
+.operation em{position:absolute;width:11px;height:7px;top:24px;left:26px;background:url(../images/icon1229.png) no-repeat -262px -327px #fff;display:none;}
+.operation a.hover3{background:url(../images/share2.png) no-repeat 0 2px;color:#ff5a5a;}
+
+@media screen and (min-width:1200px){
+
+	/*行业报告列表*/
+	.list{width:1100px;margin:0 auto;background:#fff;padding:30px 50px;margin-bottom:60px;}
+	.reportList{width:810px;float:left;}
+	.hotList{width:250px;float:right;}
+	.list h4{font-size:16px;border-bottom:2px solid #ebebeb;padding-bottom:12px;position:relative;font-weight:bold;}
+	.hotList h4 i{width:65px;height:2px;background:#47aaff;position:absolute;left:0;bottom:-2px;}
+	.reportList h4 i{width:65px;height:2px;background:#47aaff;position:absolute;left:0;bottom:-2px;}
+
+	/*报告购买详情*/
+	.reportInfo{width:810px;}
+	.reportInfo .reportImg{width:137px;height:154px;float:left;border:1px solid #ebebeb;}
+	.reportImg img{min-width:100%;}
+	.reportInfo .reportDe{float:right;}
+	.reportDe h5{font-size:22px;color:#333;width:646px;}
+	.reportDe .bookInfo{background:#f6f6f6;height:50px;font-size:14px;margin-top:12px;line-height:50px;padding:0 12px;color:#5e5e5e;}
+	.price{float:left;}
+
+	/*.bookInfo i,.bookInfo span{
+		float: left;
+	}*/
+	.price span{margin-left:10px;font-size:24px;color:#ff5a5a;line-height:31px;position:relative;top:4px;font-family:'Arial';}
+	.industry{float:left;margin-left:20px;}
+	.rePage{float:left;margin-left:22px;}
+	.words{float:left;margin-left:22px;}
+	.trading{margin-top:14px;}
+	.trading .buy{float:left;width:110px;height:36px;line-height:36px;color:#fff;text-align:center;background:#ff5a5a;font-size:14px;font-weight:bold;border-radius:3px;}
+	.trading a.on{background:#ff4949;color:#fff;}
+	.trading .attentions{float:right;font-size:14px;color:#888;margin-top:10px;}
+	.trading .attentions span{padding-left:4px;display:inline-block;font-size:14px;padding:0 6px;}
+
+	/*报告目录*/
+	.catalog{margin-top:36px;color:#333;}
+	.catalog h4{font-weight:bold;}
+	.catalog h5{font-size:18px;margin-top:22px;}
+	.reCatalog .li{display:block;height:60px;line-height:60px;font-size:16px;border-bottom:1px dotted #ebebeb;position:relative;cursor:pointer;}
+	.reCatalog .li a.active{font-weight:bold;}
+	.reCatalog i{width:80px;height:40px;background:#ccc;position:absolute;bottom:10px;right:28px;background:url(../images/report_libtn2.jpg) no-repeat center center;cursor:pointer;}
+	.reCatalog i.active{background:url(../images/report_libtn.jpg) no-repeat center center;}
+	.hidden{padding:10px 0;display:none;background:#f6f6f6;}
+	.hidden p{font-size:14px;line-height:35px;text-indent:2em;}
+
+	/*热门报告*/
+	.hot li{height:60px;line-height:60px;font-size:14px;border-bottom:1px solid #ebebeb;}
+	.hot li a{width:250px;color:#5e5e5e;}
+	.hot li a:hover{color:#0a8dff;}
+
+	/*	.hot li a:visited{
+		color: #ccc;
+	}*/}
+	@media screen and (max-width:1200px){
+
+		/*行业报告列表*/
+		.list{width:960px;margin:0 auto;background:#fff;padding:30px 20px;margin-bottom:60px;}
+		.reportList{width:664px;float:left;}
+		.hotList{width:230px;float:right;}
+		.list h4{font-size:16px;border-bottom:2px solid #ebebeb;padding-bottom:12px;position:relative;font-weight:bold;}
+		.hotList h4 i{width:65px;height:2px;background:#47aaff;position:absolute;left:0;bottom:-2px;}
+		.reportList h4 i{width:65px;height:2px;background:#47aaff;position:absolute;left:0;bottom:-2px;}
+
+		/*报告购买详情*/
+		.reportInfo{width:664px;}
+		.reportInfo .reportImg{width:128px;height:110px;float:left;border:1px solid #ebebeb;}
+		.reportImg img{min-width:100%;}
+		.reportInfo .reportDe{float:right;}
+		.reportDe h5{font-size:16px;color:#333;width:510px;}
+		.reportDe .bookInfo{background:#f6f6f6;height:46px;font-size:12px;margin-top:12px;line-height:46px;padding:0 6px;color:#5e5e5e;}
+		.price{float:left;}
+
+		/*.bookInfo i,.bookInfo span{
+			float: left;
+		}*/
+		.price span{margin-left:8px;font-size:16px;color:#ff5a5a;line-height:31px;position:relative;top:0px;font-family:'Arial';}
+		.industry{float:left;margin-left:4px;}
+		.rePage{float:left;margin-left:9px;}
+		.words{float:left;margin-left:9px;}
+		.trading{margin-top:14px;}
+		.trading .buy{float:left;width:88px;height:36px;line-height:36px;color:#fff;text-align:center;background:#ff5a5a;font-size:14px;font-weight:bold;border-radius:3px;}
+		.trading a.on{background:#ff4949;color:#fff;}
+		.trading .attentions{float:right;font-size:14px;color:#888;margin-top:5px;}
+		.trading .attentions span{padding:0 4px;padding-left:4px;display:inline-block;font-size:14px;}
+
+		/*报告目录*/
+		.catalog{margin-top:22px;color:#333;}
+		.catalog h4{font-weight:bold;}
+		.catalog h5{font-size:18px;margin-top:22px;}
+		.reCatalog .li{display:block;height:60px;line-height:60px;font-size:16px;border-bottom:1px dotted #ebebeb;position:relative;cursor:pointer;}
+		.reCatalog .li a.active{font-weight:bold;}
+		.reCatalog i{width:80px;height:40px;background:#ccc;position:absolute;bottom:10px;right:28px;background:url(../images/report_libtn2.jpg) no-repeat center center;cursor:pointer;}
+		.reCatalog i.active{background:url(../images/report_libtn.jpg) no-repeat center center;}
+		.hidden{padding:10px 0;display:none;background:#f6f6f6;}
+		.hidden p{font-size:14px;line-height:35px;text-indent:2em;}
+
+		/*热门报告*/
+		.hot li{height:60px;line-height:60px;font-size:14px;border-bottom:1px solid #ebebeb;}
+		.hot li a{width:230px;color:#5e5e5e;}
+		.hot li a:hover{color:#0a8dff;}
+
+		/*	.hot li a:visited{
+			color: #ccc;
+		}*/}

@@ -11,15 +11,27 @@
     </mycss>
 </head>
 <body>
-
-<map name="Map">
-	<area shape="rect" coords="289,363,456,410" href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank">
-	<area shape="rect" coords="468,362,572,411" href="http://www.firefox.com.cn/download/" target="_blank" alt="火狐">
-	<area shape="rect" coords="586,361,702,410" href="https://www.google.com/intl/zh-CN/chrome/browser/" target="_blank" alt="谷歌浏览器">
-	<area shape="rect" coords="714,360,811,410" href="http://www.apple.com/cn/safari/" target="_blank">
-</map>
-<myScript>
- <script type="text/javascript" src="${resPath}/resources/commons/js/topService.js?v=${projectversion}"></script>
-</myScript>
+<span id='noLevel'>暂不升级,继续浏览</span>
+<div class="content">
+	<a href="http://down.360safe.com/p/360se_nanaxt10.exe" target="_blank"></a>
+	<a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank"></a>
+	<a href="http://www.apple.com/cn/safari/" target="_blank"></a>
+	<a href="https://www.google.com/intl/zh-CN/chrome/browser/" target="_blank"></a>
+	<a href="http://www.firefox.com.cn/download/" target="_blank" alt="火狐"></a>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#noLevel").on('click',function() {
+	        var d = new Date();
+	        d.setTime(d.getTime() + 24 * 3600 * 1000);
+	        document.cookie = "ic=1; expires=" + d.toGMTString() + "; path=/";
+	        window.location.href= '${resPath}/homepage';
+	    });
+		var cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
+		if (cookie && cookie[1]) {
+	        return;
+	    }
+	})
+</script>
 </body>
 </html>

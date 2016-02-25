@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册</title>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<script type="text/javascript" src="js/move.js"></script>
+	<script type="text/javascript" src="js/register.js"></script>
+</head>
+<body>
+<!-- 	顶部 -->
+<div class="header clearfix">
+	<div class="logo">关系网</div>
+	<h2>填写用户注册信息</h2>
+	<ul class="nav">
+		<li><a href="index.html">首页</a></li>
+		<li><a href="javascript:;">|</a></li>
+		<li><a href="javascript:;">关系网</a></li>
+		<li><a href="javascript:;">|</a></li>
+		<li><a href="javascript:;">行业指数</a></li>
+		<li><a href="javascript:;">|</a></li>
+		<li><a href="javascript:;">排行榜</a></li>
+		<li><a href="javascript:;">|</a></li>
+		<li><a href="javascript:;">行业报告</a></li>
+	</ul>
+</div>
+
+<!-- 主要内容	 -->
+<div class="content-box">
+	<div class="content clearfix">
+		<div class="register-box">
+			<form action="">
+				<h3 class="clearfix" id="h3">
+					<strong>个人用户<em></em></strong>
+					<strong class="company">企业用户</strong>
+					<a href="javajscript:;">体验通道<i></i></a>
+				</h3>
+				<div id="div1">
+					<div class="user-box">
+						<input type="text" class="username" placeholder="邮箱/手机号/用户名" id="user">
+						<span id="u-error">用户名不能少于6个字符！</span>
+					</div>
+					<div class="mcode-box clearfix" id="mobile">
+						<input type="text" class="m-code" placeholder="输入验证码">
+						<a href="javascript:;">获取验证码</a>
+					</div>
+					<div class="password-box">
+						<input type="text" class="password" placeholder="设置登录密码（长度6-16字符）" id="password">
+						<span id="p-error">请输入6-16位数字和字母组合！</span>
+					</div>
+					<div class="r-password-box">
+						<input type="text" class="r-password" placeholder="确认登录密码" id="r-password">
+						<span id="rp-error">两次输入密码不一致!</span>
+					</div>
+					<div class="code-box clearfix" id="code">
+						<input type="text" class="v-code" placeholder="输入验证码">
+						<img src="images/v-code.jpg"/>
+					</div>
+				</div>
+				<div id="div2">
+					<div class="user-box">
+						<input type="text" class="username" placeholder="请输入公司名称" id="company-name">
+						<span id="u-error2">请输入6-20位字符！</span>
+					</div>
+					<div class="password-box">
+						<input type="text" class="password" placeholder="请输入联系人电话" id="user-mobile">
+						<span id="mobile2">请输入正确的手机号格式！</span>
+					</div>
+					<div class="r-password-box">
+						<input type="text" class="r-password" placeholder="请设置登录密码" id="password2">
+						<span id="p-error2">请输入6-16位数字和字母组合！</span>
+					</div>
+					<div class="r-password-box">
+						<input type="text" class="r-password" placeholder="请确认登录密码" id="r-password2">
+						<span id="rp-error2">两次输入密码不一致!</span>
+					</div>
+				</div>
+				<div class="user-protocol clearfix">
+					<input type="checkbox" checked="ture" id="rp" />
+					<label for="rp">我已阅读并同意</label>
+					<a href="javajscript:;">《用户使用协议》</a>
+				</div>
+				<input type="button" value="注册" class="register" id="btn1" />
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 底部信息 -->
+<div class="footer-bg">
+	<div class="footer clearfix">
+		<ul class="clearfix">
+			<li><a href="javascript:;">关于我们</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">网站导航</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">版本所有</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">友情链接</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">联系我们</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">招聘信息</a></li>
+		</ul>
+		<p>Copyright©2001-2015 中国采购与招标网 Rights Reserved 京ICP证070104号 京公网安备 11010802011112号</p>
+	</div>
+</div>
+</body>
+</html>

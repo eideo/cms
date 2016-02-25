@@ -25,6 +25,32 @@
 	<script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
 	<script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.js"></script>
 	<![endif]-->
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js?v=${projectversion}"></script>
+	<script type="text/javascript">
+	// 浏览器版本检测
+$(function(){
+
+	if (window.location.href.split('/')[3] === 'notsupport') {
+
+	} else {
+
+		!function() {
+	        var cookie,
+	            ua,
+	            match;
+	        ua = window.navigator.userAgent;
+	        match = /;\s*MSIE (\d+).*?;/.exec(ua);
+	        if (match && +match[1] < 9) {
+	        	cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
+	        	if (cookie && cookie[1]) {
+	                return;
+	            }
+	            window.location.href= '${resPath}/notsupport';
+	        }
+	    }();
+	}
+})
+	</script>
 </head>
 <body>
 <!--顶部导航 -->
@@ -96,7 +122,6 @@
 	</div>
 </div>
 </c:if>
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/message.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/ajaxCommon.js?v=${projectversion}"></script>
 <sitemesh:write property='myScript'/>

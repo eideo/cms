@@ -1,0 +1,1832 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人中心</title>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width: 1200px)" href="css/user-min.css">
+	<link rel="stylesheet" type="text/css" media="screen and (min-width: 1200px)" href="css/user.css">
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/area.js"></script>
+	<script type="text/javascript" src="js/user.js"></script>
+</head>
+<body>
+<!-- 	顶部导航 -->
+<div class="header">
+	<div class="user-nav clearfix">
+		<ul class="user-info clearfix">
+			<li><a href="login.html">登录</a></li>
+			<li>|</li>
+			<li><a href="register.html">注册</a></li>
+			<li>|</li>
+			<li><a href="javascript:;">个人中心</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 主导航	 -->
+<div class="main-nav clearfix">
+	<h1 class="logo">关系网</h1>
+	<ul class="nav">
+		<li><a href="http://101.200.0.81:8080/cms/homepage" style="color:#47aaff">首页</a></li>
+		<li><a href="http://101.200.0.81:8080/cms/htmlTemp/relation.html">关系网</a></li>
+		<li><a href="http://101.200.0.81:8080/cms/htmlTemp/industry.html">行业指数</a></li>
+		<li><a href="http://101.200.0.81:8080/cms/ranking">排行榜</a></li>
+		<li><a href="http://101.200.0.81:8080/cms/report">行业报告</a></li>
+	</ul>
+	<span id="icon"></span>
+</div>
+<!-- 导航下划线 -->
+<div class="hr"></div>
+<!-- 页面位置 -->
+<div class="message_top">
+	<ul class="clearfix">
+		<li><a href="javascript:;">CMS首页</a></li>
+		<li class="symbol">></li>
+		<li><a href="javascript:;">个人中心</a></li>
+		<li class="symbol">></li>
+		<li><a href="javascript:;" class="location">我的订单</a></li>
+	</ul>
+</div>
+
+<!-- 主要内容 -->
+<div class="main clearfix">
+	<div class="sign">
+		<div class="user_box">
+			<div class="face clearfix">
+				<div class="img">
+					<img src="images/face.png">
+				</div>
+				<div class="user_info">
+					<h3>江左盟盟主···<i></i></h3>
+					<p>
+						<span>我的积分</span>
+						<span>100000</span>
+					</p>
+					<div class="vip_box clearfix">
+						<div class="vip">VIP</div>
+						<div class="rechange">账户充值</div>
+					</div>
+				</div>
+			</div>
+			<div class="safety">
+				<span>安全设置</span>
+				<span class="scale"><i></i></span>
+				<span class="grade">低</span>
+				<a href="javascript:;">提升 ></a>
+			</div>
+		</div>
+		<div class="personal_center">
+			<h4>
+				<i></i>
+				<span>个人中心</span>
+			</h4 >
+			<ul>
+				<li  class="active">我的订单</li>
+				<li>个人信息</li>
+				<li>安全设置</li>
+				<li>我的关注</li>
+				<li>我的收藏</li>
+				<li>我的足迹</li>
+			</ul>
+		</div>
+		<div class="asset_center">
+			<h4>
+				<i></i>
+				<span>个人资产</span>
+			</h4 >
+			<ul>
+				<li>我的积分</li>
+				<li>账户充值</li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="personalBox">
+			<div class="section my_order"  style="display:block;">
+				<h2>我的订单<i></i></h2>
+				<ul class="order_nav clearfix">
+					<li class="active">全部订单</li>
+					<li>完成订单</li>
+					<li>待付款</li>
+					<li>取消订单</li>
+					<div class="search_box clearfix">
+						<input type="text" value="输入项目标题或订单号来搜索">
+						<button>搜索</button>
+					</div>
+				</ul>
+				<div class="order_box">
+					<div class="all_orders part">
+						<div class="select_box clearfix">
+							<span class="select_all">
+								<i></i>
+								全选
+							</span>
+							<span class="remove_all hover">
+								<i></i>
+								删除
+							</span>
+						</div>
+						<div class="screen_box clearfix">
+							<div class="time">
+								<i></i> 
+								近3个月订单 
+							</div>
+							<div class="p_name">
+								<i></i>
+								<span>信息名称</span>
+								<ul class="tab_n title_tab">
+									<b></b>
+									<li class="all_type">信息名称</li>
+									<li class="xiangmu_type">项目</li>
+									<li class="zhaobiao_type">招标</li>
+									<li class="zhongbiao_type">中标</li>
+								</ul>
+							</div>
+							<div class="o_price">
+								金额（元）
+							</div>
+							<div class="o_status">
+								<i></i>
+								<span>交易状态</span>
+								<ul class="tab_s title_tab">
+									<b></b>
+									<li>交易状态</li>
+									<li>交易完成</li>
+									<li>待付款</li>
+									<li>交易关闭</li>
+								</ul>
+							</div>
+							<div class="o_operation">
+								操作
+							</div>
+						</div>
+						<ul class="order_list">
+							<li class="zhaobiao">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127188
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-12</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：槽式太阳能—燃气联合循环（ISCC）发电站工程
+										<b>招标</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">1500.00</div>
+									<div class="status">
+										<a href="javascript:;">交易成功</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share sp">
+											<i></i>
+											<a href="javascript:;" class="share">分享</a>
+											<div class="shareBtn bdsharebuttonbox">
+											<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+											<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+											</div>
+											<em></em>
+										</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							<li class="xiangmu">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127100
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-02</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：占地面积为30000平方米母线槽系统生产建设项目
+										<b>项目</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">6600.00</div>
+									<div class="status">
+										<a href="javascript:;">交易成功</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share sp">
+											<i></i>
+											<a href="javascript:;" class="share">分享</a>
+											<div class="shareBtn bdsharebuttonbox">
+											<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+											<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+											</div>
+											<em></em>
+										</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							<li class="xiangmu">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127188
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-12</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：总建筑面积为33,115平方米海洋声学光电集成系统产研基地项目 
+										<b>项目</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">800.00</div>
+									<div class="status">
+										<a href="javascript:;">待付款</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share sp">
+											<i></i>
+											<a href="javascript:;" class="share">分享</a>
+											<div class="shareBtn bdsharebuttonbox">
+											<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+											<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+											</div>
+											<em></em>
+										</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							<li class="zhaobiao">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127138
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-12</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：6000KW发电机组离子膜烧碱等工程
+										<b>招标</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">2200.00</div>
+									<div class="status">
+										<a href="javascript:;">取消订单</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share sp">
+											<i></i>
+											<a href="javascript:;" class="share">分享</a>
+											<div class="shareBtn bdsharebuttonbox">
+											<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+											<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+											</div>
+											<em></em>
+										</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							<li class="zhongbiao">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127200
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-11</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目
+										<b>中标</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">3200.00</div>
+									<div class="status">
+										<a href="javascript:;">交易成功</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share sp">
+											<i></i>
+											<a href="javascript:;" class="share">分享</a>
+											<div class="shareBtn bdsharebuttonbox">
+											<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+											<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+											</div>
+											<em></em>
+										</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							
+						</ul>
+						<!-- 分页 -->
+						<div class="page_bg">
+							<div class="page">
+								<div class="clearfix">
+									<a href="javascript:;">上一页</a>
+									<a href="javascript:;">1</a>
+									<a href="javascript:;">2</a>
+									<a href="javascript:;">3</a>
+									<a href="javascript:;">4</a>
+									<a href="javascript:;">5</a>
+									<a href="javascript:;">···</a>
+									<a href="javascript:;">999</a>
+									<a href="javascript:;">下一页</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="completed_order part">
+						<div class="select_box clearfix">
+							<span class="select_all">
+								<i></i>
+								全选
+							</span>
+							<span class="remove_all">
+								<i></i>
+								删除
+							</span>
+						</div>
+						<div class="screen_box clearfix">
+							<div class="time">
+								<i></i> 
+								近3个月订单 
+							</div>
+							<div class="p_name">
+								<i></i>
+								<span>信息名称</span>
+								<ul class="tab_n title_tab">
+									<b></b>
+									<li class="all_type">信息名称</li>
+									<li class="xiangmu_type">项目</li>
+									<li class="zhaobiao_type">招标</li>
+									<li class="zhongbiao_type">中标</li>
+								</ul>
+							</div>
+							<div class="o_price">
+								金额（元）
+							</div>
+							<div class="o_status">
+								<i></i>
+								<span>交易状态</span>
+								<ul class="tab_s title_tab">
+									<b></b>
+									<li>交易状态</li>
+									<li>交易完成</li>
+									<li>待付款</li>
+									<li>交易关闭</li>
+								</ul>
+							</div>
+							<div class="o_operation">
+								操作
+							</div>
+						</div>
+						<ul class="order_list">
+							<li class="zhaobiao">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127188
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-12</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：槽式太阳能—燃气联合循环（ISCC）发电站工程
+										<b>招标</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">1500.00</div>
+									<div class="status">
+										<a href="javascript:;">交易成功</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share"><i></i>分享</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							<li class="xiangmu">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127100
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-02</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：占地面积为30000平方米母线槽系统生产建设项目
+										<b>项目</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">6600.00</div>
+									<div class="status">
+										<a href="javascript:;">交易成功</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share"><i></i>分享</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+							<li class="zhongbiao">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127200
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-11</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目
+										<b>中标</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">3200.00</div>
+									<div class="status">
+										<a href="javascript:;">交易成功</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share"><i></i>分享</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+						</ul>
+					</div>
+					<div class="obligation part">
+						<div class="select_box clearfix">
+							<span class="select_all">
+								<i></i>
+								全选
+							</span>
+							<span class="remove_all">
+								<i></i>
+								删除
+							</span>
+						</div>
+						<div class="screen_box clearfix">
+							<div class="time">
+								<i></i> 
+								近3个月订单 
+							</div>
+							<div class="p_name">
+								<i></i>
+								<span>信息名称</span>
+								<ul class="tab_n title_tab">
+									<b></b>
+									<li class="all_type">信息名称</li>
+									<li class="xiangmu_type">项目</li>
+									<li class="zhaobiao_type">招标</li>
+									<li class="zhongbiao_type">中标</li>
+								</ul>
+							</div>
+							<div class="o_price">
+								金额（元）
+							</div>
+							<div class="o_status">
+								<i></i>
+								<span>交易状态</span>
+								<ul class="tab_s title_tab">
+									<b></b>
+									<li>交易状态</li>
+									<li>交易完成</li>
+									<li>待付款</li>
+									<li>交易关闭</li>
+								</ul>
+							</div>
+							<div class="o_operation">
+								操作
+							</div>
+						</div>
+						<ul class="order_list">
+							<li class="xiangmu">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127188
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-12</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：总建筑面积为33,115平方米海洋声学光电集成系统产研基地项目 
+										<b>项目</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">800.00</div>
+									<div class="status">
+										<a href="javascript:;">待付款</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share"><i></i>分享</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+						</ul>
+
+					</div>
+					<div class="cancel_order part">
+						<div class="select_box clearfix">
+							<span class="select_all">
+								<i></i>
+								全选
+							</span>
+							<span class="remove_all">
+								<i></i>
+								删除
+							</span>
+						</div>
+						<div class="screen_box clearfix">
+							<div class="time">
+								<i></i> 
+								近3个月订单 
+							</div>
+							<div class="p_name">
+								<i></i>
+								<span>信息名称</span>
+								<ul class="tab_n title_tab">
+									<b></b>
+									<li class="all_type">信息名称</li>
+									<li class="xiangmu_type">项目</li>
+									<li class="zhaobiao_type">招标</li>
+									<li class="zhongbiao_type">中标</li>
+								</ul>
+							</div>
+							<div class="o_price">
+								金额（元）
+							</div>
+							<div class="o_status">
+								<i></i>
+								<span>交易状态</span>
+								<ul class="tab_s title_tab">
+									<b></b>
+									<li>交易状态</li>
+									<li>交易完成</li>
+									<li>待付款</li>
+									<li>交易关闭</li>
+								</ul>
+							</div>
+							<div class="o_operation">
+								操作
+							</div>
+						</div>
+						<ul class="order_list">
+							<li class="zhaobiao">
+								<div class="li_title">
+									<div class="select_order">
+										<i></i>
+										订单编号：201511127138
+									</div>
+									<div class="li_remove">
+									</div>
+									<div class="timing">交易时间：<span>2015-11-12</span></div>
+								</div>
+								<div class="detail clearfix">
+									<a href="javascript:;" class="o_name">信息名称：6000KW发电机组离子膜烧碱等工程
+										<b>招标</b>
+									</a>
+									<div class="stage">
+										进展阶段：<span>施工阶段</span>
+									</div>
+									<div class="o_price">2200.00</div>
+									<div class="status">
+										<a href="javascript:;">取消订单</a>
+										<a href="javascript:;">交易详情</a>
+									</div>
+									<div class="op">
+										<div class="share"><i></i>分享</div>
+										<div class="comment"><i></i>评论</div>
+										<div class="collection">
+											<i></i><span>已</span>收藏
+										</div>
+									</div>
+								</div>
+								<div class="comment_box">
+									<div class="star">
+										<span>评分：</span>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+										<a href="javascript:;"></a>
+									</div>
+									<div class="rating">
+										<span>评级：</span>
+										<a href="javascript:;">非常满意</a>
+										<a href="javascript:;">满意</a>
+										<a href="javascript:;">一般</a>
+									</div>
+									<div class="comment_val clearfix">
+										<span>评论：</span>
+										<textarea>信息是否给力？快分享你的购买心得吧·····</textarea>
+									</div>
+									<div class="c_btn">
+										<span>评论并继续</span>
+										<b><i></i>匿名评论</b>
+									</div>
+								</div>	
+							</li>
+						</ul>
+						<!-- 分页 -->
+					</div>
+				</div>
+			</div>
+			<div class="section my_info">
+				<h2>个人信息<i></i></h2>
+				<div class="my_info_box clearfix">
+					<div class="face">
+						<img src="images/face2.png">
+					</div>
+					<div class="info_box">
+						<div class="username_box">
+							<span class="master">用&nbsp&nbsp户&nbsp&nbsp名：</span>
+							<span class="nickname">江左盟盟主</span>
+						</div>
+						<div class="sex_box">
+							<span class="master import">性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</span>
+							<input type="radio" name="sex"  checked="checked" id="male">
+							<label>男</label>
+							<input type="radio" name="sex" id="female">
+							<label>女</label>
+							<input type="radio" name="sex" id="secrecy">
+							<label>保密</label>
+						</div>
+						<div class="mobile_box">
+							<span class="master import">手机号码：</span>
+							<input class="phone_number" value="135******145">
+							<a href="javascript:;" class="change">修改</a>
+							<span class="test">已验证</span>
+						</div>
+						<div class="email_box">
+							<span class="master import">邮&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp箱：</span>
+							<input class="email" value="jzuo***@163.com">
+							<a href="javascript:;" class="change">修改</a>
+							<span class="test">已验证</span>
+						</div>
+						<div class="name_box">
+							<label for="email" class="master import">姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名：</label>
+							<input type="text" id="name">
+						</div>
+						<div class="address_box clearfix">
+							<label for="email" class="master">地&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp址：</label>
+							<div class="area clearfix">
+					            <div class="province_box">
+					                  <input onclick="hidep('province_input')" type="text" value="请选择" id="province" readonly="" />
+					                  <div id="province_input" style="display:none " class="select_content"></div>
+					            </div>
+					            <div class="city_box">
+					                  <input onclick="hidec('city_input')" type="text" value="请选择" id="city" readonly=""/>
+					                  <div id="city_input" style="display:none " class="select_content"></div>
+					            </div>
+					        </div>
+						    <p><input type="text" id="address" value="填写详细地址"></p>
+						</div>
+						<div class="company_box">
+							<label for="company" class="master import">公司名称：</label>
+							<input type="text" id="company">
+						</div>
+						<div class="btn_box">
+							<input type="submit" value="保存" class="submit">
+							<input type="reset"  value="取消">
+						</div>
+					</div>
+				</div>
+				<div class="keywords">
+					<p>请选择您感兴趣的信息，方便为你提供最精准的信息</p>
+					<ul class="clearfix">
+						<li>项目信息</li>
+						<li>招标信息</li>
+						<li>轻工</li>
+						<li>网络通讯计算机</li>
+						<li>机械电子</li>
+					</ul>
+					<a href="javascript:;">添加新的标签</a>
+				</div>	
+			</div>
+			<div class="section">
+				<h2>安全设置<i></i></h2>
+				<ul class="setting_list">
+					<li>
+						<div class="re_box clearfix">
+							<span class="option">登录密码</span>
+							<span class="op_value color_red">保障账户安全，建议您定期修改密码</span>
+							<span class="setting_status">已认证</span>
+							<a href="javascript:;" class="update_btn">修改</a>
+						</div>
+						<div class="update_box">
+							<div class="password_box">
+								<span>输入原始密码</span>
+								<input type="password">
+							</div>
+							<div class="mobile_code">
+								<span>输入验证码</span>
+								<input type="text">
+								<button>获取验证码</button>
+								<a href="javascript:;">邮箱验证码</a>
+							</div>
+							<div class="new_password">
+								<span>输入新密码</span>
+								<input type="password">
+							</div>
+							<div class="re_password">
+								<span>重新输入新密码</span>
+								<input type="password">
+							</div>
+							<div class="btn_box">
+								<button>确认提交</button>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="re_box clearfix">
+							<span class="option">手机认证</span>
+							<span class="op_value">13******005</span>
+							<span class="setting_status">已认证</span>
+							<a href="javascript:;" class="update_btn">修改</a>
+						</div>
+						<div class="update_box update_mobile1">
+							<div class="password_box">
+								<span>输入原手机号</span>
+								<input type="password">
+							</div>
+							<div class="mobile_code">
+								<span>输入验证码</span>
+								<input type="text">
+								<button>获取验证码</button>
+							</div>
+							<div class="btn_box">
+								<button>下一步</button>
+							</div>
+						</div>
+						<div class="update_box update_mobile2">
+							<div class="password_box">
+								<span>输入新手机号</span>
+								<input type="password">
+							</div>
+							<div class="mobile_code">
+								<span>输入验证码</span>
+								<input type="text">
+								<button>获取验证码</button>
+							</div>
+							<div class="btn_box">
+								<button>确认提交</button>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="re_box clearfix">
+							<span class="option">邮箱认证</span>
+							<span class="op_value">dema***xi@163.com</span>
+							<span class="setting_status">已认证</span>
+							<a href="javascript:;" class="update_btn">修改</a>
+						</div>
+						<div class="update_box update_mobile1">
+							<div class="password_box">
+								<span>已验证邮箱</span>
+								<input type="password">
+							</div>
+							<div class="mobile_code">
+								<span>输入箱验证码</span>
+								<input type="text">
+								<button>获取验证码</button>
+							</div>
+							<div class="btn_box">
+								<button>下一步</button>
+							</div>
+						</div>
+						<div class="update_box update_email2">
+							<div class="password_box">
+								<span>输入新邮箱</span>
+								<input type="password">
+							</div>
+							<div class="btn_box">
+								<button>确认提交</button>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="re_box clearfix">
+							<span class="option">支付密码</span>
+							<span class="op_value pay_password"></span>
+							<span class="setting_status unverified">未设置</span>
+							<a  href="javascript:;"class="update_btn">设置</a>
+						</div>
+						<div class="update_box pay_box">
+							<div class="password_box">
+								<span>输入新密码</span>
+								<input type="password">
+							</div>
+							<div class="password_box">
+								<span>重新输入新密码</span>
+								<input type="password">
+							</div>
+							<div class="btn_box">
+								<button>确认提交</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="section my_attention common_operation">
+				<h2>我的关注<i></i></h2>
+				<div class="title clearfix">
+					<span class="selectall"><i></i>全选</span>
+					<span class="project">
+						<i></i>
+						<span>信息名称</span>
+						<ul class="tab_n title_tab">
+							<b></b>
+							<li class="all_type">信息名称</li>
+							<li class="xiangmu_type">项目</li>
+							<li class="zhaobiao_type">招标</li>
+							<li class="zhongbiao_type">中标</li>
+						</ul>
+					</span>
+					<span class="operation">操作</span>
+				</div>
+				<ul class="collection_list cart_list">
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：槽式太阳能—燃气联合循环（ISCC）发电站工程</a>
+							<b>招标</b>
+							<br>
+							<span>巩义市小关镇大山村2015年度扶贫搬迁项目施工招标公告。现邀请全国供应商参与投标，有意向的有意...</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix failure_info zhaobiao">
+						<span class="name">
+							<em>失效</em>
+							<a href="javascript:;">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目</a>
+							<b>招标</b>
+							<br>
+							<span>福苑小区工矿棚户区改造项目电梯设备采购结果公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：总建筑面积为33,115平方米海洋声学光电集成系统产研基地项目</a>
+							<b>招标</b>
+							<br>
+							<span>财经大学历下大学生创业园电梯采购及安装成交公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhongbiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：6000KW发电机组离子膜烧碱等工程</a>
+							<b>中标</b>
+							<br>
+							<span>先锋村城中村改造住宅安置楼-安防工程（Ⅰ标段）中标公告。现邀请全国供应商参与投标，有意向的有意...</span>
+						</span>
+						<div class="operation optional">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional xiangmu">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目</a>
+							<b>项目</b>
+							<br>
+							<span>雁鸣墅语电梯设备采购和安装（二）招标公告</span>
+						</span>
+						<div class="operation">
+	
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：年产23万吨高端宽幅柔性PVC压延膜生产投资建设项目</a>
+							<b>招标</b>
+							<br>
+							<span>标准化厂房一期工程1#、2#、3#、7#、8#、9#楼电梯工程废标公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional xiangmu">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：总建筑面积34，292平方米在线监测系统产业化项目</a>
+							<b>项目</b>
+							<br>
+							<span>紧凑回流式扑翼飞行器大开口低紊流风洞测量环境招标公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：占地面积为30000平方米母线槽系统生产建设项目</a>
+							<b>招标</b>
+							<br>
+							<span>占地面积约为80040平方米医院项目</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+				</ul>
+				<!-- 分页 -->
+				<div class="page_bg">
+					<div class="page">
+						<div class="clearfix">
+							<a href="javascript:;">上一页</a>
+							<a href="javascript:;">1</a>
+							<a href="javascript:;">2</a>
+							<a href="javascript:;">3</a>
+							<a href="javascript:;">4</a>
+							<a href="javascript:;">5</a>
+							<a href="javascript:;">···</a>
+							<a href="javascript:;">999</a>
+							<a href="javascript:;">下一页</a>
+						</div>
+					</div>
+				</div>
+				<!-- 	结算 -->
+				<div class="balance clearfix">
+					<div class="balance_select">
+						<span class="selectall"><i></i>全选</span>
+						<span class="removeall hover">删除</span>
+						<span class="remove_Invalid hover">删除失效信息</span>
+					</div>
+				</div>
+			</div>
+			<div class="section my_collection common_operation">
+				<h2>我的收藏<i></i></h2>
+				<div class="title clearfix">
+					<span class="selectall"><i></i>全选</span>
+					<span class="project">
+						<i></i>
+						<span>信息名称</span>
+						<ul class="tab_n title_tab">
+							<b></b>
+							<li class="all_type">信息名称</li>
+							<li class="xiangmu_type">项目</li>
+							<li class="zhaobiao_type">招标</li>
+							<li class="zhongbiao_type">中标</li>
+						</ul>
+					</span>
+					<span class="operation">操作</span>
+				</div>
+				<ul class="collection_list cart_list">
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：槽式太阳能—燃气联合循环（ISCC）发电站工程</a>
+							<b>招标</b>
+							<br>
+							<span>巩义市小关镇大山村2015年度扶贫搬迁项目施工招标公告。现邀请全国供应商参与投标，有意向的有意...</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目</a>
+							<b>招标</b>
+							<br>
+							<span>福苑小区工矿棚户区改造项目电梯设备采购结果公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix failure_info zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<em>失效</em>
+							<a href="javascript:;">信息名称：总建筑面积为33,115平方米海洋声学光电集成系统产研基地项目</a>
+							<b>招标</b>
+							<br>
+							<span>财经大学历下大学生创业园电梯采购及安装成交公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhongbiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：6000KW发电机组离子膜烧碱等工程</a>
+							<b>中标</b>
+							<br>
+							<span>先锋村城中村改造住宅安置楼-安防工程（Ⅰ标段）中标公告。现邀请全国供应商参与投标，有意向的有意...</span>
+						</span>
+						<div class="operation optional">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional xiangmu">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目</a>
+							<b>项目</b>
+							<br>
+							<span>雁鸣墅语电梯设备采购和安装（二）招标公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：年产23万吨高端宽幅柔性PVC压延膜生产投资建设项目</a>
+							<b>招标</b>
+							<br>
+							<span>标准化厂房一期工程1#、2#、3#、7#、8#、9#楼电梯工程废标公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional xiangmu">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：总建筑面积34，292平方米在线监测系统产业化项目</a>
+							<b>项目</b>
+							<br>
+							<span>紧凑回流式扑翼飞行器大开口低紊流风洞测量环境招标公告</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+					<li class="clearfix optional zhaobiao">
+						<i class="border"></i>
+						<span class="name">
+							<i class="check"></i>
+							<a href="javascript:;">信息名称：占地面积为30000平方米母线槽系统生产建设项目</a>
+							<b>招标</b>
+							<br>
+							<span>占地面积约为80040平方米医院项目</span>
+						</span>
+						<div class="operation">
+							<a href="javascript:;" class="remove"><i></i>删除</a>
+						</div>	
+					</li>
+				</ul>
+				<!-- 分页 -->
+				<div class="page_bg">
+					<div class="page">
+						<div class="clearfix">
+							<a href="javascript:;">上一页</a>
+							<a href="javascript:;">1</a>
+							<a href="javascript:;">2</a>
+							<a href="javascript:;">3</a>
+							<a href="javascript:;">4</a>
+							<a href="javascript:;">5</a>
+							<a href="javascript:;">···</a>
+							<a href="javascript:;">999</a>
+							<a href="javascript:;">下一页</a>
+						</div>
+					</div>
+				</div>
+				<!-- 	结算 -->
+				<div class="balance clearfix">
+					<div class="balance_select">
+						<span class="selectall"><i></i>全选</span>
+						<span class="removeall hover">删除</span>
+						<span class="remove_Invalid hover">删除失效信息</span>
+					</div>
+				</div>
+			</div>
+			<div class="section my_foot">
+				<h2>
+					我的足迹<i></i>
+					<div class="searchBox clearfix">
+						<input type="text" placeholder="输入项目标题或订单号进行搜索">
+						<button>搜索</button>
+					</div>
+				</h2>
+				<div class="screening clearfix">
+					<span>信息类型:</span>
+					<a href="javascript:;" class="active" id="unlimited">不限</a>
+					<a href="javascript:;" id="item">项目信息</a>
+					<a href="javascript:;" id="attract">招标信息</a>
+					<a href="javascript:;" id="bidding">中标信息</a>
+				</div>
+				<div class="foot_list">
+					<i class="last_icon"></i>
+					<ol>
+						<li>
+							<div class="trade_time">
+								<span class="time">2015-11-18</span>
+								<i></i>
+								<b></b>
+							</div>
+							<ul class="message_list">
+								<li class="zhaobiao">
+									<i class="f_border"></i>
+									<i class="f_remove"></i>
+									<div class="f_title">
+										<a href="javascript:;" class="name">项目名称：项目名称:槽式太阳能—燃气联合循环（ISCC）发电站工程
+										</a>
+										<span>化工</span>
+										<p>
+											巩义市小关镇大山村2015年度扶贫搬迁项目施工招标公告。现邀请全国供应商参与投标，有意向的有意···
+										</p>
+									</div>
+									<div class="clearfix">
+										<div class="navBox clearfix">
+											<div class="ap" actiontype="3" infotype="11506" infoid="${reportMain.id}" >
+												<i class="attention"></i>
+												<span>关注</span>
+												<span class="re">已关注</span>
+											</div>
+											<div class="cp" actiontype="4" infotype="11506" infoid="${reportMain.id}" >
+												<i class="collection"></i>
+												<span>收藏</span>
+												<span class="re">已收藏</span>
+											</div>
+											<div class="sp">
+												<a href="javascript:;" class="share">分享</a>
+												<div class="shareBtn bdsharebuttonbox">
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, 'QQ空间');" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '新浪微博');" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '微信');" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+												</div>
+												<em></em>
+											</div>
+										</div>
+									</div>
+										
+								</li>
+								<li class="xiangmu failure_info">
+									<i class="f_remove"></i>
+									<div class="f_title">
+										<a href="javascript:;" class="name">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目
+										</a>
+										<span>化工</span>
+										<span class="failure_icon">失效</span>
+										<p>
+											福苑小区工矿棚户区改造项目电梯设备采购结果公告
+										</p>
+									</div>	
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div class="trade_time">
+								<span class="time">2015-10-28</span>
+								<i></i>
+								<b></b>
+							</div>
+							<ul class="message_list">
+								<li class="zhaobiao">
+									<i class="f_border"></i>
+									<i class="f_remove"></i>
+									<div class="f_title">
+										<a href="javascript:;" class="name">信息名称：总建筑面积为33,115平方米海洋声学光电集成系统产研基地项目
+										</a>
+										<span>房地产建筑</span>
+										<p>
+											财经大学历下大学生创业园电梯采购及安装成交公告
+										</p>
+									</div>
+									<div class="clearfix">
+										<div class="navBox clearfix">
+											<div class="ap" actiontype="3" infotype="11506" infoid="${reportMain.id}" >
+												<i class="attention"></i>
+												<span>关注</span>
+												<span class="re">已关注</span>
+											</div>
+											<div class="cp" actiontype="4" infotype="11506" infoid="${reportMain.id}" >
+												<i class="collection"></i>
+												<span>收藏</span>
+												<span class="re">已收藏</span>
+											</div>
+											<div class="sp">
+												<a href="javascript:;" class="share">分享</a>
+												<div class="shareBtn bdsharebuttonbox">
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, 'QQ空间');" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '新浪微博');" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '微信');" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+												</div>
+												<em></em>
+											</div>
+										</div>
+									</div>	
+								</li>
+								<li class="zhongbiao">
+									<i class="f_border"></i>
+									<i class="f_remove"></i>
+									<div class="f_title">
+										<a href="javascript:;" class="name">信息名称：6000KW发电机组离子膜烧碱等工程
+										</a>
+										<span>机电</span>
+										<p>
+											先锋村城中村改造住宅安置楼-安防工程（Ⅰ标段）中标公告。现邀请全国供应商参与投标，有意向的有意...
+										</p>
+									</div>
+									<div class="clearfix">
+										<div class="navBox clearfix">
+											<div class="ap" actiontype="3" infotype="11506" infoid="${reportMain.id}" >
+												<i class="attention"></i>
+												<span>关注</span>
+												<span class="re">已关注</span>
+											</div>
+											<div class="cp" actiontype="4" infotype="11506" infoid="${reportMain.id}" >
+												<i class="collection"></i>
+												<span>收藏</span>
+												<span class="re">已收藏</span>
+											</div>
+											<div class="sp">
+												<a href="javascript:;" class="share">分享</a>
+												<div class="shareBtn bdsharebuttonbox">
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, 'QQ空间');" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '新浪微博');" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '微信');" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+												</div>
+												<em></em>
+											</div>
+										</div>
+									</div>	
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div class="trade_time">
+								<span class="time">2015-10-26</span>
+								<i></i>
+								<b></b>
+							</div>
+							<ul class="message_list">
+								<li class="zhaobiao">
+									<i class="f_border"></i>
+									<i class="f_remove"></i>
+									<div class="f_title">
+										<a href="javascript:;" class="name">信息名称：总建筑面积约10000平方米原料药和外用制剂生产线项目
+										</a>
+										<span>化工</span>
+										<p>
+											雁鸣墅语电梯设备采购和安装（二）招标公告
+										</p>
+									</div>
+									<div class="clearfix">
+										<div class="navBox clearfix">
+											<div class="ap" actiontype="3" infotype="11506" infoid="${reportMain.id}" >
+												<i class="attention"></i>
+												<span>关注</span>
+												<span class="re">已关注</span>
+											</div>
+											<div class="cp" actiontype="4" infotype="11506" infoid="${reportMain.id}" >
+												<i class="collection"></i>
+												<span>收藏</span>
+												<span class="re">已收藏</span>
+											</div>
+											<div class="sp">
+												<a href="javascript:;" class="share">分享</a>
+												<div class="shareBtn bdsharebuttonbox">
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, 'QQ空间');" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '新浪微博');" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '微信');" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+												</div>
+												<em></em>
+											</div>
+										</div>
+									</div>	
+								</li>
+								<li class="xiangmu">
+									<i class="f_border"></i>
+									<i class="f_remove"></i>
+									<div class="f_title">
+										<a href="javascript:;" class="name">信息名称：年产23万吨高端宽幅柔性PVC压延膜生产投资建设项目
+										</a>
+										<span>能源</span>
+										<p>
+											标准化厂房一期工程1#、2#、3#、7#、8#、9#楼电梯工程废标公告
+										</p>
+									</div>
+									<div class="clearfix">
+										<div class="navBox clearfix">
+											<div class="ap" actiontype="3" infotype="11506" infoid="${reportMain.id}" >
+												<i class="attention"></i>
+												<span>关注</span>
+												<span class="re">已关注</span>
+											</div>
+											<div class="cp" actiontype="4" infotype="11506" infoid="${reportMain.id}" >
+												<i class="collection"></i>
+												<span>收藏</span>
+												<span class="re">已收藏</span>
+											</div>
+											<div class="sp">
+												<a href="javascript:;" class="share">分享</a>
+												<div class="shareBtn bdsharebuttonbox">
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, 'QQ空间');" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '新浪微博');" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+													<a href="#" onclick="javascript:custBehaviorShare(5, 11506, ${reportMain.id}, '微信');" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+												</div>
+												<em></em>
+											</div>
+										</div>
+									</div>	
+								</li>
+							</ul>
+						</li>
+					</ol>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="assetBox">
+			<div class="section">
+				<h2>我的积分<i></i></h2>
+			</div>
+			<div class="section">
+				<div class="record">
+					<h2>充值记录<i></i></h2>
+					<div class="wallet_box clearfix">
+						<div class="available">可以用余额：<span>2300000.00</span>元</div>
+						<div class="consumption">消费总额：<span>0.00</span>元</div>
+						<div class="rechange_box">
+							<a href="javascript:;" id="cztz">账户充值</a>
+						</div>
+					</div>
+					<div class="time_type">
+						近3个月
+						<i></i>
+					</div>
+					<table cellspacing="0" cellpadding="0">
+						  <tr>
+						    <th>流水号</th>
+						    <th>金额</th>
+						    <th>余额</th>
+						    <th>描述</th>
+						    <th>时间</th>
+						  </tr>
+						  <tr>
+						    <td class="serial_number">20151107233</td>
+						    <td class="money">300000.00</td>
+						    <td class="remain_money">5000.00</td>
+						    <td class="money_info">支付宝充值<span>2000.00</span>元</td>
+						    <td class="p_time">2015-11-19 10:20:00</td>
+						  </tr>
+						  <tr>
+						    <td class="serial_number">20151107234</td>
+						    <td class="money">300000.00</td>
+						    <td class="remain_money">5000.00</td>
+						    <td class="money_info">支付宝充值<span>2000.00</span>元</td>
+						    <td class="p_time">2015-11-18 06.36:00</td>
+						  </tr>
+						  <tr>
+						    <td class="serial_number">20151108231</td>
+						    <td class="money">300000.00</td>
+						    <td class="remain_money">5000.00</td>
+						    <td class="money_info">支付宝充值<span>2000.00</span>元</td>
+						    <td class="p_time">2015-11-17 09:30:00</td>
+						  </tr>
+						  <tr>
+						    <td class="serial_number">20151107238</td>
+						    <td class="money">300000.00</td>
+						    <td class="remain_money">5000.00</td>
+						    <td class="money_info">支付宝充值<span>2000.00</span>元</td>
+						    <td class="p_time">2015-11-16 16:20:00</td>
+						  </tr>
+						  <tr>
+						    <td class="serial_number">20151107237</td>
+						    <td class="money">300000.00</td>
+						    <td class="remain_money">5000.00</td>
+						    <td class="money_info">支付宝充值<span>2000.00</span>元</td>
+						    <td class="p_time">2015-11-12 08:40:00</td>
+						  </tr>
+						  <tr>
+						    <td class="serial_number">20151107239</td>
+						    <td class="money">300000.00</td>
+						    <td class="remain_money">5000.00</td>
+						    <td class="money_info">支付宝充值<span>2000.00</span>元</td>
+						    <td class="p_time">2015-11-01 16:40:00</td>
+						  </tr>
+						</table>
+				</div>
+				<div class="change_money">
+					<h2>账户充值<i></i></h2>
+					<ul class="payment_method clearfix">
+						<li class="method1 active">支付宝&nbsp/&nbsp财付通&nbsp/&nbsp微信支付</li>
+						<li class="method2">储蓄卡</li>
+						<li class="method3">信用卡</li>
+					</ul>
+					<div class="method_box">
+						<div class="method_box1 method">
+							<ul class="bank_select clearfix">
+								<li class="bank1"><span><i></i></span></li>
+								<li class="bank2"><span><i></i></span></li>
+								<li class="bank3"><span><i></i></span></li>
+							</ul>
+							<div class="keyong">
+								可用余额：<span>0.00</span>元
+							</div>
+							<div class="chongzhi">
+								充值金额：<input type="text">元
+							</div>
+							<div class="chong_btn">
+								<button>确认充值</button>
+							</div>
+						</div>
+						<div class="method_box2 method">
+							<ul class="bank_select clearfix">
+								<li class="bank1"><span><i></i></span></li>
+								<li class="bank2"><span><i></i></span></li>
+								<li class="bank3"><span><i></i></span></li>
+								<li class="bank4"><span><i></i></span></li>
+								<li class="bank5"><span><i></i></span></li>
+								<li class="bank6"><span><i></i></span></li>
+								<li class="bank7"><span><i></i></span></li>
+								<li class="bank8"><span><i></i></span></li>
+								<li class="bank9"><span><i></i></span></li>
+								<li class="bank10"><span><i></i></span></li>
+							</ul>
+							<div class="keyong">
+								可用余额：<span>0.00</span>元
+							</div>
+							<div class="chongzhi">
+								充值金额：<input type="text">元
+							</div>
+							<div class="chong_btn">
+								<button>确认充值</button>
+							</div>
+						</div>
+						<div class="method_box2 method">
+							<ul class="bank_select clearfix">
+								<li class="bank1"><span><i></i></span></li>
+								<li class="bank2"><span><i></i></span></li>
+								<li class="bank3"><span><i></i></span></li>
+								<li class="bank4"><span><i></i></span></li>
+								<li class="bank5"><span><i></i></span></li>
+								<li class="bank6"><span><i></i></span></li>
+								<li class="bank7"><span><i></i></span></li>
+								<li class="bank8"><span><i></i></span></li>
+								<li class="bank9"><span><i></i></span></li>
+								<li class="bank10"><span><i></i></span></li>
+							</ul>
+							<div class="keyong">
+								可用余额：<span>0.00</span>元
+							</div>
+							<div class="chongzhi">
+								充值金额：<input type="text">元
+							</div>
+							<div class="chong_btn">
+								<button>确认充值</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<!-- 底部信息 -->
+<div class="footer-bg">
+		<div class="footer clearfix">
+			<ul class="clearfix">
+				<li><a href="http://101.200.0.81:8080/cms/htmlTemp/nav.html#about" target="_blank">关于我们</a></li>
+				<li>|</li>
+				<li><a href="http://101.200.0.81:8080/cms/htmlTemp/nav.html#nav" target="_blank">网站导航</a></li>
+				<li>|</li>
+				<li><a href="http://101.200.0.81:8080/cms/htmlTemp/nav.html#copyright" target="_blank">版权所有</a></li>
+				<li>|</li>
+				<li><a href="http://101.200.0.81:8080/cms/htmlTemp/nav.html#link" target="_blank">友情链接</a></li>
+				<li>|</li>
+				<li><a href="http://101.200.0.81:8080/cms/htmlTemp/nav.html#contact" target="_blank">联系我们</a></li>
+				<li>|</li>
+				<li><a href="http://101.200.0.81:8080/cms/htmlTemp/nav.html#zhaopin" target="_blank">招聘信息</a></li>
+			</ul>
+			<p>Copyright©2001-2015 中国采购与招标网 京ICP证070104号</p>
+		</div>
+	</div>
+
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

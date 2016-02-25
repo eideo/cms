@@ -100,30 +100,32 @@ public final class detail_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("\r\n");
       out.write("<script type=\"text/javascript\">\r\n");
-      out.write("\tvar path = \"");
+      out.write("    var path = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${resPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
-      out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage\");\r\n");
-      out.write("\t//var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage\");\r\n");
-      out.write("\tvar casPath =encodeURI(\"");
+      out.write("    //var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://101.200.0.81/cms/homepage\");\r\n");
+      out.write("    //var casPath =encodeURI(\"http://101.200.0.81/cas/login?service=http://192.168.8.129:8080/homepage\");\r\n");
+      out.write("    var casPath = encodeURI(\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\");\r\n");
-      out.write("\tvar casBase = \"");
+      out.write("    var casBase = \"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${casBase}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\";\r\n");
-      out.write("\tfunction logout(){\r\n");
-      out.write("\t\t$.ajax({\r\n");
-      out.write("\t\t\ttype:\"post\",\r\n");
-      out.write("\t\t\tasync:true,\r\n");
-      out.write("\t\t\turl:casBase+'/ajaxlogout',\tdataType:\"jsonp\",\r\n");
-      out.write("\t\t\tjsonp:'jsoncallback',\r\n");
-      out.write("\t\t\tsuccess:function(a){\r\n");
-      out.write("\t\t\t\tif(a.result){\r\n");
-      out.write("\t\t\t\t\tlocation.href = location.href;\r\n");
-      out.write("\t\t\t\t}\r\n");
-      out.write("\t\t\t}\r\n");
-      out.write("\t\t});\r\n");
-      out.write("\t}\r\n");
+      out.write("\r\n");
+      out.write("    function logout() {\r\n");
+      out.write("        $.ajax({\r\n");
+      out.write("            type: \"post\",\r\n");
+      out.write("            async: true,\r\n");
+      out.write("            url: casBase + '/ajaxlogout',\r\n");
+      out.write("            dataType: \"jsonp\",\r\n");
+      out.write("            jsonp: 'jsoncallback',\r\n");
+      out.write("            success: function(a) {\r\n");
+      out.write("                if (a.result) {\r\n");
+      out.write("                    location.href = location.href;\r\n");
+      out.write("                }\r\n");
+      out.write("            }\r\n");
+      out.write("        });\r\n");
+      out.write("    }\r\n");
       out.write("</script>\r\n");
       out.write("\r\n");
       out.write("     \r\n");
@@ -431,7 +433,7 @@ public final class detail_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_set_3.setPageContext(_jspx_page_context);
     _jspx_th_c_set_3.setParent(null);
     _jspx_th_c_set_3.setVar("casPath");
-    _jspx_th_c_set_3.setValue(new String("http://192.168.8.241/cas/login?service=http://192.168.8.122:8080/homepage"));
+    _jspx_th_c_set_3.setValue(new String("http://www.cms.org/cas/login?service=http://192.168.8.122:8080/homepage"));
     int _jspx_eval_c_set_3 = _jspx_th_c_set_3.doStartTag();
     if (_jspx_th_c_set_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
@@ -450,7 +452,7 @@ public final class detail_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_set_4.setPageContext(_jspx_page_context);
     _jspx_th_c_set_4.setParent(null);
     _jspx_th_c_set_4.setVar("casBase");
-    _jspx_th_c_set_4.setValue(new String("http://192.168.8.241/cas"));
+    _jspx_th_c_set_4.setValue(new String("http://www.cms.org/cas"));
     int _jspx_eval_c_set_4 = _jspx_th_c_set_4.doStartTag();
     if (_jspx_th_c_set_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_4);
@@ -469,7 +471,7 @@ public final class detail_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_c_set_5.setPageContext(_jspx_page_context);
     _jspx_th_c_set_5.setParent(null);
     _jspx_th_c_set_5.setVar("imgPath");
-    _jspx_th_c_set_5.setValue(new String("http://192.168.8.241"));
+    _jspx_th_c_set_5.setValue(new String("http://www.cms.org"));
     int _jspx_eval_c_set_5 = _jspx_th_c_set_5.doStartTag();
     if (_jspx_th_c_set_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_5);

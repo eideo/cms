@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="keywordsDictMapper">
+  
+ 	 <resultMap id="KeywordsDictResult" type="keywordsDict" >
+	    <result column="record_id" property="recordId" jdbcType="VARCHAR" />
+	    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+	    <result column="click_Count" property="clickCount" jdbcType="INTEGER" />
+	 </resultMap>
+	 
+	 <insert id="insertKeyWordsDic" parameterType="keywordsDict">
+	 		insert into CMS_CUSTOMER_KEYWORDS_DICT (keywords,click_Count) 
+	 		values (#{keywords,jdbcType=VARCHAR},#{clickCount,jdbcType=INTEGER});
+	 </insert>
+	 <update id="updateKeyWordsDicAddCount" parameterType="String">
+	 		update CMS_CUSTOMER_KEYWORDS_DICT set click_Count=click_Count+1 where keywords=#{keywords}
+	 </update>
+	 <select id="selectLikeKeywordsDic" resultMap="KeywordsDictResult" parameterType="String">
+	 		select t.keywords from CMS_CUSTOMER_KEYWORDS_DICT t
+		 	<if test="keywords!=null">
+			 where t.keywords like  CONCAT('%',#{keywords},'%' ) 
+			</if>
+			<if test="keywords==null">
+			 where LENGTH(t.keywords)&gt;=#{minLength} AND  LENGTH(t.keywords)&lt;=#{maxLength}
+			</if>
+		 	order by t.click_Count desc
+	 </select>
+	 <select id="getKeywordsDicCount" resultType="int" parameterType="String">
+	 		select count(*) from CMS_CUSTOMER_KEYWORDS_DICT t
+		 	where t.keywords=#{keywords}
+	 </select>
+</mapper>

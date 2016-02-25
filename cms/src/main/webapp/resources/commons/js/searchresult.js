@@ -2,20 +2,22 @@
  * @Author: zhanganchun
  * @Date:   2016-01-04 15:01:07
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-18 12:01:58
+ * @Last Modified time: 2016-02-23 17:20:37
  */
 
 "use strict";
 define(function(require, exports, module) {
 
-/*	var $ = require('jquery')
-    var createPage = require('./lib/page');*/
+
     var Close = require('./lib/common');
+
     var ajax = require('./public/ajax');
+
     var SearchChart = require('./chart/searchChart');
+
     var Tool = require('./util/tool')
 
-    function toTop() {
+    var toTop = function() {
 
         var h = $(window).height();
         var t = $(document).scrollTop();
@@ -25,6 +27,11 @@ define(function(require, exports, module) {
             $('#gotop').hide();
         }
     }
+
+    var timeChoose = {
+        startDate:'',
+        endDate:''
+    };
 
     function searchHint() {
 
@@ -318,6 +325,7 @@ define(function(require, exports, module) {
         //获取搜索条件、
         var time = $("#Checktime span").attr('circle');
 
+        console.log('----------------------------321',time)
         var type = "";
         $("#term1 span").each(function() {
 
@@ -346,7 +354,9 @@ define(function(require, exports, module) {
         }
 
         data.keyword = $('.searchBox').val();
-        data.circle = time;
+     /*   data.circle = time;*/
+        data.startDate = '20150201';
+        data.endDate = '20160201';
         data.area = area;
         data.industry = trade;
         data.type = type;
@@ -936,6 +946,7 @@ define(function(require, exports, module) {
 
             var compare = $(this).text();
             var circle = $(this).attr('circle');
+            $('#zdjDate').removeClass('active');
             if ($(this).hasClass("active")) {
 
                 $(this).removeClass("active");
@@ -1285,6 +1296,27 @@ define(function(require, exports, module) {
         })
     }
 
+    function showDataPicker() {
+
+        $('#startDate').datepicker({
+            onSelect: function(dateText,inst){
+                alert("您选择的日期是："+dateText)
+            }
+        });
+
+        $('#endDate').datepicker({
+            onSelect: function(dateText,inst){
+                alert("您选择的日期是："+dateText)
+            }
+        });
+
+        $('#zdjDate').on('click',function(){
+
+            $(this).addClass('active')
+            $('#opTime li').removeClass('active')
+        })
+    }
+
     $(function() {
 
         ajaxSearch();
@@ -1306,8 +1338,8 @@ define(function(require, exports, module) {
         //	搜索框交互
         searchHint();
 
-        // 获取图表数据
-        // getData();
+        /*日期选择*/
+        showDataPicker()
 
         // url传递默认条件
         urlOption();

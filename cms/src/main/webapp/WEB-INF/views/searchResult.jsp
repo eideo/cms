@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/basic.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/style.css?v=${projectversion}">
 		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/searchresult.css?v=${projectversion}">
+		<link rel="stylesheet" type="text/css" href="${resPath}/resources/commons/css/jquery-ui.css?v=${projectversion}">
 	</myCss>
 
 </head>
@@ -22,9 +23,19 @@
 			<div class="strong">时 间:</div>
 			<i class="unlimited active" id="anyTime" circle="">不限</i>
 			<ul class="clearfix" id="opTime">
-				<li circle="1">今天</li>
-				<li circle="2">最近一周</li>
-				<li circle="3">最近一月</li>
+				<li circle="1">一年内</li>
+				<li circle="2">一年以上</li>
+			</ul>
+			<ul class="dataPick clearfix">
+				<li circle="3" id='zdjDate'>自定义</li>
+				<div class='timeCon'>
+					<span>起始时间</span>
+					<input type='text' id='startDate'/>
+				</div>
+				<div class='timeCon'>
+					<span>终止时间</span>
+					<input type='text' id='endDate'/>
+				</div>
 			</ul>
 		</div>
 		<div class="typeBox clearfix" id="typeBox">
@@ -1039,7 +1050,7 @@
 	 		<div class="searchPage">
 				<span class="page-sum">共<strong class="allPage">2</strong>页</span>
 				<span class="page-go">跳转到<input type="text" id="pageTo">页</span>
-				<a href="javascript:;" class="page-btn">GO</a>
+				<a href="javascript:;" class="page-btn">确定</a>
 			</div>
 		</div>
 	</form>
@@ -1106,6 +1117,8 @@
 <script src="//cdn.bootcss.com/d3/3.5.12/d3.js"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/custBehavior.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/paging/page.js?v=${projectversion}"></script>
+<script type="text/javascript" src="${resPath}/resources/commons/js/lib/jquery-ui-datepicker.js"></script>
+<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/sea.js?v=${projectversion}"></script>
 <script type="text/javascript" src="${resPath}/resources/commons/js/lib/seajs/config.js?v=${projectversion}"></script>
 <script type="text/javascript">

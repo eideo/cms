@@ -119,7 +119,7 @@
 								<div class="searchPage">
 									<span class="page-sum">共<strong class="allPage">2</strong>页</span>
 									<span class="page-go">跳转到<input type="text" id="pageTo">页</span>
-									<a href="javascript:;" class="page-btn">GO</a>
+									<a href="javascript:;" class="page-btn">确定</a>
 								</div>
 							</div>
 						</form>

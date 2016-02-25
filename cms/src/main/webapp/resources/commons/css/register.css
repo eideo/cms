@@ -12,9 +12,9 @@ input{
 	background:#fff;
 }
 .header .logo{
-	width: 170px;
+	width: 258px;
 	height: 45px;
-	background: url(../images/logo.png);
+	background: url(../images/logo.png) no-repeat;
 	float: left;
 	text-indent: -9999em;
 	margin: 20px 18px 0 0;

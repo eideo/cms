@@ -2,6 +2,32 @@
 * @Author: zhanganchun
 * @Date:   2016-02-23 09:59:31
 * @Last Modified by:   zhanganchun
-* @Last Modified time: 2016-02-23 10:03:59
+* @Last Modified time: 2016-02-23 11:26:24
 */
 .search{display: none;}
+.nav{display: none;}
+.content {
+    display: block;
+    width:470px;
+    height:120px;
+    padding-left:250px;
+    padding-top:130px;
+    margin: 150px auto;
+    z-index:9999;
+    background: url(../images/notsupport.png) no-repeat;
+}
+.content a{
+	width:78px;
+	height:78px;
+	display:block;
+	float: left;
+	margin-left:10px;
+}
+#noLevel{
+	position: absolute;
+	top:60px;
+	right:20%;
+	font-size: 14px;
+    color: #000;
+    cursor: pointer;
+}

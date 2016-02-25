@@ -29,20 +29,20 @@
 				</h3>
 				<div id="div1">
 					<div class="user-box">
-						<input type="text" class="username" placeholder="邮箱/手机号" id="username" name="username">
+						<input type="text" class="username" placeholder="邮箱/手机号" id="username" name="username" style="width:340px;">
 						<span class="nullmsg">请输入账号</span>
 						<span class="errormsg">账号格式不正确</span>
 						<span id="s-name">该用户名已注册，请重新输入</span>
 						<span id="d-name">恭喜您，该用户名可以注册</span>
 					</div>
 					<div class="mcode-box clearfix" id="mobile">
-						<input type="text" class="m-code" placeholder="输入验证码" id="m-code" name="m-code">
+						<input type="text" class="m-code" placeholder="输入验证码" id="m-code" name="m-code" >
 						<a href="javascript:getPhoneCode();" id="mBtn">获取验证码</a>
 						<a id="relaunch">重新获取<b>60</b>s</a>
 						<span id="m-error">验证码输入不正确，请刷新验证码</span>
 					</div>
 					<div class="password-box">
-						<input type="password" class="password" placeholder="设置登录密码（数字和字母组合，长度6-16字符）" id="password" name="password">
+						<input type="password" class="password" placeholder="设置登录密码（数字和字母组合，长度6-16字符）" id="password" name="password" style="width:340px;">
 						<span id="p-error">密码格式不正确</span>
 					</div>
 					<div class="r-password-box">
@@ -64,7 +64,7 @@
 						<span id="u-error2null">请输入公司名</span>
 					</div>
 					<div class="password-box">
-						<input type="text" class="password" placeholder="请输入联系人电话" id="user-mobile" name="user-mobile">
+						<input type="text" class="password" placeholder="请输入联系人电话" id="user-mobile" name="user-mobile" >
 						<span id="mobile2">请输入正确的手机号格式！</span>
 						<span id="mobile3">手机号已注册！</span>
 					</div>

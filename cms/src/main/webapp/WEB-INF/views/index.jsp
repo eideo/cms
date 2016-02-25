@@ -21,7 +21,7 @@
 <div class="imgBox">
 	<ul class="imgArr clearfix">
 		<li style="display:block;">
-			<a href="${resPath }/relation" target="_blank" class="imgRelation img"></a>
+			<a href="javascript:void(0)"  class="imgRelation img"></a>
 			<div class="imgInfo">
 				<h3><a href="${appPath}/relation" target="_blank">关系网</a></h3>
 				<h4><a href="${appPath}/relation" target="_blank">BIDING RELATIONSHIP</a></h4>
@@ -29,7 +29,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="${resPath }/industry" target="_blank" class="imgIndustry img"></a>
+			<a href="javascript:void(0)"  class="imgIndustry img"></a>
 			<div class="imgInfo">
 				<h3><a href="${appPath}/industry" target="_blank">行业指数</a></h3>
 				<h4><a href="${appPath}/industry" target="_blank">INDUSTRY INDEX</a></h4>
@@ -37,7 +37,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="${appPath }/ranking" target="_blank" class="imgRanking img"></a>
+			<a href="javascript:void(0)"  class="imgRanking img"></a>
 			<div class="imgInfo">
 				<h3><a href="${appPath}/ranking" target="_blank">排行榜</a></h3>
 				<h4><a href="${appPath}/ranking" target="_blank">INDUSTRY DATE LIST</a></h4>
@@ -45,7 +45,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="${appPath }/report" target="_blank" class="imgReport img"></a>
+			<a href="javascript:void(0)"  class="imgReport img"></a>
 			<div class="imgInfo">
 			    <h3><a href="${appPath}/report" target="_blank">行业报告</a></h3>
 				<h4><a href="${appPath}/report" target="_blank">INDUSTRY REPORT</a></h4>

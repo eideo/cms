@@ -1,0 +1,479 @@
+@charset "utf-8";
+body{
+	background: #f3f3f3;
+}
+.navWrapper{
+	background: #fff;
+}
+.content{
+	width: 1200px;
+	height: 430px;
+	margin:0 auto;
+	margin-top:74px;
+	margin-bottom:74px;
+	background: #fff;
+}
+
+/*tab*/
+
+.tabWrapper{
+	
+	width:100%;
+	height:80px;
+	border-bottom:1px solid #ebebeb;
+	position: relative;
+}
+
+.tabCon{
+	width:570px;
+	height:80px;
+	margin:0 auto;
+	position: relative;
+}
+
+.tabWrapper #login{
+	position: absolute;
+	right:10px;
+	top:-30px;
+	font-size:14px;
+}
+.tabWrapper #login a{
+	color:#47aaff;
+}
+.tabCon .step{
+	width:190px;
+	margin-top:43px;
+	height:36px;
+	float:left;
+	font-size:16px;
+	text-align: center;
+	line-height:36px;
+	*line-height:36px;
+	_line-height:36px;
+	position: relative;
+	color: #cccccc;
+}
+
+.tabCon .dVaild{
+	border-bottom:2px solid #add7ff;
+	color: #add7ff
+}
+.tabCon .step1 i.active{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -17px no-repeat;
+}
+
+.tabCon .step1 i.vaild{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -77px no-repeat;
+}
+
+.tabCon .step2 i{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -57px -17px no-repeat;
+}
+
+.tabCon .step2 i.active{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -47px no-repeat;
+}
+.tabCon .step2 i.vaild{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -52px -77px no-repeat;
+}
+.tabCon .step3 i{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -97px -17px no-repeat;
+}
+
+.tabCon .step3 i.active{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -55px -47px no-repeat;
+}
+.tabCon .step3 i.vaild{
+	position: absolute;
+	display:inline-block;
+	width:18px;
+	height:18px;
+	top:9px;
+	left:40px;
+	background:url(../images/resetPw.png) -17px -77px no-repeat;
+}
+.tabCon .selected{
+	font-size:16px;
+	color:#47aaff;
+	border-bottom:2px solid #47aaff;
+}
+
+
+/*flagCon*/
+
+.flagCon{
+	width:450px;
+	margin:0 auto;
+	position: relative;
+	zoom:1;
+}
+
+.flagCon #phoneTab{
+	margin-top:30px;
+	font-size:14px;
+	height:26px;
+	line-height:26px;
+	position: relative;
+	padding-left:20px;
+	cursor: pointer;
+}
+.flagCon #phoneTab #phoneCheck{
+	position: absolute;
+	left:0px;
+	top:6px;
+	width:14px;
+	height:14px;
+}
+
+.flagCon #emailTab{
+	margin-top:12px;
+	font-size:14px;
+	height:26px;
+	line-height:26px;
+	position: relative;
+	padding-left:20px;
+	cursor: pointer;
+}
+
+.flagCon #emailTab #emailCheck{
+	position: absolute;
+	left:0px;
+	top:6px;
+	width:14px;
+	height:14px;
+}
+
+/*phoneBox*/
+
+.phoneBox{
+	margin-top:20px;
+	position: relative;
+}
+.phoneBox #phone{
+	
+	width:318px;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	float: left;
+}
+
+.phoneBox .sendBtn{
+	width:110px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	float: right;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+	display: inline-block;
+}
+
+.emailBox .flagState,.phoneBox .flagState{
+	position: absolute;
+	width:16px;
+	height:16px;
+	top:14px;
+	right:140px;
+	background: url(../images/resetPw.png) -161px -121px no-repeat;
+	display: none;
+}
+
+.phoneBox .error,.emailBox .error{
+	position: absolute;
+	left:0px;
+	top:46px;
+	color: #ff5a5a;
+	padding-left:20px;
+	background:url(../images/pswError.png) no-repeat;
+	background-size:16px 16px;
+	display: none;
+}
+.emailBox{
+	margin-top:20px;
+	position: relative;
+}
+.emailBox #email{
+	
+	width:318px;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	float: left;
+}
+
+.emailBox .sendBtn{
+	width:110px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	float: right;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+}
+
+.validBox{
+	margin-top:20px;
+	position: relative;
+}
+.validBox #phoneCode{
+	
+	width:318px;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	float: left;
+}
+
+.validBox .validBtn{
+	width:110px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	float: right;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+}
+
+.reSendCode{
+	margin-top:20px;
+
+}
+.reSendCode #reSend{
+	color: #47aaff;
+	cursor: pointer;
+}
+/*resetCon*/
+.resetCon{
+	width:450px;
+	margin:0 auto;
+}
+
+.resetTitle{
+	font-size:14px;
+	font-weight: bold;
+	height: 70px;
+	line-height:70px;
+	*line-height:70px;
+	_line-height:70px;
+}
+.pswBox{
+	position: relative;
+}
+.rePswBox{
+	margin-top:30px;
+	position: relative;
+}
+.pswBox #psw,.rePswBox #rePsw{
+	
+	width:100%;
+	height:42px;
+	border:1px solid #d7d7d7;
+	border-radius:2px;
+	padding-left:10px;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+}
+
+.submitBox{
+	margin-top:30px;
+}
+
+.submitBox #changeBtn{
+	
+	width:150px;
+	height:42px;
+	background:#47aaff;
+	font-size:14px;
+	color: #fff;
+	border:none;
+	border-radius:2px;
+	text-align: center;
+	line-height:42px;
+	*line-height:42px;
+	_line-height:42px;
+	cursor:pointer;
+}
+.resetCon .error{
+	position: absolute;
+	left:0px;
+	top:46px;
+	color: #ff5a5a;
+	padding-left:20px;
+	background:url(../images/pswError.png) no-repeat;
+	background-size:16px 16px;
+	display:none;
+}
+.resetCon .flagState{
+	position: absolute;
+	width:16px;
+	height:16px;
+	top:14px;
+	right:10px;
+	background: url(../images/resetPw.png) -161px -121px no-repeat;
+	display: none;
+}
+
+
+/*stateCon*/
+.stateCon{
+	width:450px;
+	margin:0 auto;
+}
+
+.stateBox{
+	margin:96px 0px 0px 100px;
+	position: relative;
+}
+.stateBox p{
+	font-size:20px;
+	font-weight: bold;
+}
+.stateBox i{
+	position: absolute;
+	width:35px;
+	height:35px;
+	background: url(../images/resetPw.png) -11px -111px no-repeat;
+	left: -47px;
+    top: -3px;
+}
+
+/*failCon*/
+.failCon{
+	width:450px;
+	margin:0 auto;
+}
+.failCon .other{
+	margin-top:60px;
+}
+.failCon .other #reload{
+	color: #47aaff;
+	cursor: pointer;
+}
+.failBox{
+	margin:96px 0px 0px 100px;
+	position: relative;
+}
+.failBox p{
+	font-size:20px;
+	font-weight: bold;
+}
+.failBox i{
+	position: absolute;
+	width:35px;
+	height:35px;
+	background: url(../images/resetPw.png) -71px -111px no-repeat;
+	left: -47px;
+    top: -3px;
+}
+
+/*successCon*/
+.successCon{
+	width:450px;
+	margin:0 auto;
+}
+.successCon .other{
+	margin-top:60px;
+}
+.successCon .other #reload{
+	color: #47aaff;
+	cursor: pointer;
+}
+.successBox{
+	margin:96px 0px 0px 100px;
+	position: relative;
+}
+.successBox p{
+	font-size:20px;
+	font-weight: bold;
+}
+.successBox i{
+	position: absolute;
+	width:35px;
+	height:35px;
+	background: url(../images/resetPw.png) -11px -111px no-repeat;
+	left: -47px;
+    top: -3px;
+}
+@media  screen and (max-width: 1900px){
+
+   .content{
+		width:1200px;
+	}
+}
+
+@media  screen and (max-width: 1024px){
+	.content{
+		width:960px;
+	}
+}

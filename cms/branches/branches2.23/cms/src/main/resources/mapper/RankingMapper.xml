@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ranking">
+	<resultMap id="RankingData" type="rankingData" >
+	  <result column="id" property="id" jdbcType="VARCHAR" />
+	  <result column="countNow" property="countNow" jdbcType="VARCHAR" />
+	  <result column="countIncre" property="countIncre" jdbcType="VARCHAR" />
+	  <result column="name" property="name" jdbcType="VARCHAR" />
+	  <result column="industry" property="industry" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 搜索关键词排行榜和关系网关键词排行榜 -->
+	<select id="selectKeywordsRanking" parameterType="Map" resultMap="RankingData">
+		SELECT
+			(COUNT(1)*797) countNow,
+			t.KEYWORDS name
+		FROM
+			CMS_CUST_BEHAVIOR t
+		<where>
+		<if test="endDate!=null">
+			AND t.ACTION_DATE&lt;=#{endDate}
+		</if>
+		<if test="startDate!=null">
+			AND t.ACTION_DATE&gt;=#{startDate}
+		</if>
+		AND	t.ACTION_TYPE = 6
+		AND t.COLUMN_LEVEL_ONE = #{type}
+		<if test="areaCode!=null">
+			AND t.AREA_CODE =#{areaCode}
+		</if>
+		AND t.KEYWORDS!=''
+		AND t.KEYWORDS is not null
+		</where>
+		
+		GROUP BY
+			t.KEYWORDS
+		ORDER BY
+			countNow DESC
+		LIMIT 0,100
+	</select>
+	<select id="selectHisKeyWordsRanking" parameterType="Map" resultType="Integer">
+		select pm from (SELECT aa.*,@rownum:=@rownum+1 pm FROM (SELECT
+			COUNT(1) countNow,
+			t.KEYWORDS name
+		FROM
+			CMS_CUST_BEHAVIOR t
+		WHERE
+		t.ACTION_DATE&lt;=#{endDate}
+		AND t.ACTION_DATE&gt;=#{startDate}
+		AND	t.ACTION_TYPE = 6
+		AND t.COLUMN_LEVEL_ONE = #{type}
+		<if test="areaCode">
+			AND t.AREA_CODE =#{areaCode}
+		</if>
+		GROUP BY
+			t.KEYWORDS
+		ORDER BY
+			countNow DESC) aa,(SELECT @rownum:=0) r) cc where cc.name=#{keywords}
+	</select>
+	<sql id="sumSql">(SUM(
+					CASE
+					WHEN t.ACTION_TYPE = 2 THEN
+						1
+					ELSE
+						0 END
+				) * 2 + SUM(
+					CASE
+					WHEN t.ACTION_TYPE = 3 THEN
+						1
+					ELSE
+						0 END
+				) * 3 + SUM(
+					CASE
+					WHEN t.ACTION_TYPE = 4 THEN
+						1
+					ELSE
+						0 END
+				) * 3 + SUM(
+					CASE
+					WHEN t.ACTION_TYPE = 5 THEN
+						1
+					ELSE
+						0 END
+				) * 2)*797</sql>
+	<!-- 信息 -->
+	<select id="selectInfoRanking" parameterType="Map" resultMap="RankingData">
+		SELECT
+			(
+				<include refid="sumSql"></include>
+			) countNow,
+			p.PROJECT_NAME name,
+			t.INFO_ID id,
+			max(p.industry1_id) industry
+		FROM
+			CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
+		WHERE
+		t.ACTION_DATE&lt;=#{endDate}
+		AND t.ACTION_DATE&gt;=#{startDate}
+		<if test="industry!=null">
+		AND p.industry1_id like CONCAT('%',#{industry},'%')
+		</if>
+		<if test="areaCode!=null">
+		AND p.area_tail_id like CONCAT('%',#{areaCode},'%')
+		</if>
+		AND	t.ACTION_TYPE IN (2, 3, 4, 5)
+		AND t.COLUMN_LEVEL_ONE = '搜索'
+		GROUP BY
+			p.PROJECT_NAME,t.INFO_ID
+		ORDER BY
+			countNow DESC
+		LIMIT 0,100
+	</select>
+	<select id="selectHisInfoRanking" parameterType="Map" resultType="Integer">
+		SELECT pm FROM (SELECT aa.*, @rownum:=@rownum+1 pm from (SELECT
+			(
+				<include refid="sumSql"></include>
+			) countNow,
+			t.INFO_ID id,
+			max(p.industry1_id) industry
+		FROM
+			CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
+		WHERE
+		t.ACTION_DATE&lt;=#{endDate}
+		AND t.ACTION_DATE&gt;=#{startDate}
+		AND	t.ACTION_TYPE IN (2, 3, 4, 5)
+		<if test="industry!=null">
+		AND p.industry1_id like CONCAT('%',#{industry},'%')
+		</if>
+		<if test="areaCode!=null">
+		AND p.area_tail_id like CONCAT('%',#{areaCode},'%')
+		</if>
+		AND t.COLUMN_LEVEL_ONE = '搜索'
+		GROUP BY
+			t.INFO_NAME,t.INFO_ID
+		ORDER BY
+			countNow DESC) aa,(SELECT @rownum:=0) r) cc where cc.id=#{infoId}
+	</select>
+	<!-- 单位 -->
+	<select id="selectCompanyRanking" parameterType="Map" resultMap="RankingData">
+		select c.COMPANY_NAME name,sum(b.countNow) countNow,c.COMPANY_ID id,max(b.industry)
+			from CMS_COMPANY_PROJECT c 
+			join (SELECT
+				(
+				<include refid="sumSql"></include>
+			) countNow,
+				p.id,
+			max(p.industry1_id) industry
+			FROM
+				CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
+			WHERE
+				t.ACTION_DATE&lt;=#{endDate}
+			AND t.ACTION_DATE&gt;=#{startDate}
+			AND	t.ACTION_TYPE IN (2, 3, 4, 5)
+			AND t.COLUMN_LEVEL_ONE = '搜索'
+			<if test="industry!=null">
+			AND p.industry1_id like CONCAT('%',#{industry},'%')
+			</if>
+			<if test="areaCode!=null">
+			AND p.area_tail_id like CONCAT('%',#{areaCode},'%')
+			</if>
+			GROUP BY
+				t.INFO_ID) b 
+			on c.PROJECT_ID= b.id
+			where c.COMPANY_NAME is null and c.COMPANY_NAME !=''
+			 GROUP BY c.COMPANY_NAME ORDER BY countNow DESC 
+			<choose>
+				<when test="num != null and num != ''">
+					limit 0,${num} 
+				</when>
+				<otherwise>
+					limit 0,100
+				</otherwise>
+			</choose>
+	</select>
+	
+	<select id="selectHisCompanyRanking" parameterType="Map" resultType="Integer">
+		select pm from (select aa.*,@rownum:=@rownum+1 pm FROM (select c.COMPANY_NAME name,sum(b.countNow) nowCount,c.COMPANY_ID id
+			from CMS_COMPANY_PROJECT c 
+			join (SELECT
+				(
+				<include refid="sumSql"></include>
+			) countNow,
+				p.id
+			FROM
+				CMS_CUST_BEHAVIOR t join CMS_PROJECT p on t.info_ID = p.PROJECT_SOURCE_ID
+			WHERE
+				t.ACTION_DATE&lt;=#{endDate}
+			AND t.ACTION_DATE&gt;=#{startDate}
+			AND	t.ACTION_TYPE IN (2, 3, 4, 5)
+			AND t.COLUMN_LEVEL_ONE = '搜索'
+			<if test="industry!=null">
+			AND p.industry1_id like CONCAT('%',#{industry},'%')
+			</if>
+			<if test="areaCode!=null">
+			AND p.area_tail_id like CONCAT('%',#{areaCode},'%')
+			</if>
+			GROUP BY
+				t.INFO_ID) b 
+			on c.PROJECT_ID= b.id
+			 GROUP BY c.COMPANY_NAME,c.COMPANY_ID  ORDER BY nowCount DESC) aa,(SELECT @rownum:=0) r) cc where cc.id=#{infoId}
+	</select>
+	<!-- 报告 -->
+	<select id="selectReportRanking" parameterType="Map" resultMap="RankingData">
+		SELECT
+			(
+				<include refid="sumSql"></include>
+			) countNow,
+			t.INFO_ID id, 
+			re.REPORT_TITLE name,
+			code.id code,
+			max(re.id) industryId,
+			max(re.report_induxtry) industry
+		FROM
+			CMS_CODE code,CMS_CUST_BEHAVIOR t join CMS_REPORT_MAIN re on re.id=t.info_id 
+		WHERE
+			t.ACTION_DATE&lt;=#{endDate}
+			<if test="industry!=null">
+				AND re.report_induxtry =#{industry}
+			</if>
+		AND re.report_induxtry = code.id
+		AND t.ACTION_DATE&gt;=#{startDate}
+		AND	t.ACTION_TYPE IN (2, 3, 4, 5)
+		AND t.COLUMN_LEVEL_ONE = '行业报告'
+		GROUP BY
+			t.INFO_ID, re.REPORT_TITLE
+		ORDER BY
+			countNow DESC
+		LIMIT 0,
+		<if test="num!=null">
+		#{num}
+		</if>
+		<if test="num==null">
+		100
+		</if>
+	</select>
+	<select id="selectHisReportRanking" parameterType="Map" resultType="Integer">
+	select pm from(select aa.*, 
+			@rownum:=@rownum+1 pm from (SELECT
+			(
+				<include refid="sumSql"></include>
+			) countNow,
+			t.INFO_NAME,
+			t.INFO_ID
+		FROM
+			CMS_CUST_BEHAVIOR t join CMS_REPORT_MAIN re on re.id=t.info_id 
+		WHERE
+			t.ACTION_DATE&lt;=#{endDate}
+		<if test="industry!=null">
+			AND re.report_induxtry =#{industry}
+		</if>
+		AND t.ACTION_DATE&gt;=#{startDate}
+		AND	t.ACTION_TYPE IN (2, 3, 4, 5)
+		AND t.COLUMN_LEVEL_ONE = '行业报告'
+		GROUP BY
+			t.INFO_ID,t.INFO_NAME
+		ORDER BY
+			countNow DESC),(SELECT @rownum:=0) r) cc where cc.INFO_ID=#{infoId}
+		
+	</select>
+	<select id="getKeywords">
+		select t.keyword ,LENGTH(t.keyword),count(1) cc from keywords_logs1 t where LENGTH(t.keyword)>3 GROUP BY t.keyword ORDER BY cc desc limit 0,15
+	</select>
+	
+	<select id="selectKeywordsRankingDefault" resultMap="RankingData">
+			select z.name, z.id, z.countNow ,z.industry
+			from 
+			(select 
+			y.PROJECT_NAME as name, x.PROJECT_ID as id,y.industry1_id industry, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
+			from 
+			(select 
+			(@row_number :=@row_number + 1) as ROW_INDEX,
+			a.PROJECT_ID as PROJECT_ID, a.NUM as NUM
+			from 
+			(SELECT
+				PROJECT_ID,
+				count(CONTACTS_ID) as NUM
+			FROM
+				CMS_CONTACTS_PROJECT
+			WHERE
+				PROJECT_NAME IS NOT NULL
+			GROUP BY
+				PROJECT_ID
+			ORDER BY
+				NUM DESC, PROJECT_ID ASC
+			limit 0, 100) a, (SELECT @row_number := 0) as t) x
+			join CMS_PROJECT y on y.ID = x.PROJECT_ID where y.PUBLISH_DATE&lt;=#{endDate}
+			AND y.PUBLISH_DATE&gt;=#{startDate}
+			<if test="industry!=null">
+			AND y.industry1_id like CONCAT('%',#{industry},'%')
+			</if>
+			<if test="areaCode!=null">
+			AND y.area_tail_id like CONCAT('%',#{areaCode},'%')
+			</if>
+			union 
+			select 
+			y.COMPANY_NAME as name, x.COMPANY_ID as id,'' industry, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
+			from 
+			(select 
+			(@row_number :=@row_number + 1) as ROW_INDEX,
+			a.COMPANY_ID as COMPANY_ID, a.NUM as NUM
+			from 
+			(SELECT
+				cp.COMPANY_ID,
+				count(1) as NUM
+			FROM
+				CMS_COMPANY_PROJECT cp,CMS_PROJECT PR WHERE PR.ID=cp.PROJECT_ID
+				<if test="industry!=null">
+				AND PR.industry1_id like CONCAT('%',#{industry},'%')
+				</if>
+				<if test="areaCode!=null">
+				AND PR.area_tail_id like CONCAT('%',#{areaCode},'%')
+				</if>
+				AND cp.COMPANY_NAME IS NOT NULL
+			GROUP BY
+				cp.COMPANY_ID
+			ORDER BY
+				NUM DESC, cp.COMPANY_ID ASC
+			limit 0, 100) a, (SELECT @row_number := 0) as t) x
+			join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
+			order by z.countNow desc limit 0, 100 
+	</select>
+	
+	<select id="selectInfoRankingDefault" resultMap="RankingData">
+			select z.name, z.id, z.countNow ,z.industry1_id industry
+			from 
+			(select 
+			y.PROJECT_NAME as name, x.PROJECT_ID as id, x.NUM * 403 + (100 - x.ROW_INDEX) as countNow,y.industry1_id
+			from 
+			(select 
+			(@row_number :=@row_number + 1) as ROW_INDEX,
+			a.PROJECT_ID as PROJECT_ID, a.NUM as NUM
+			from 
+			(SELECT
+				PROJECT_ID,
+				count(CONTACTS_ID) as NUM
+			FROM
+				CMS_CONTACTS_PROJECT
+			WHERE
+				PROJECT_NAME IS NOT NULL
+			GROUP BY
+				PROJECT_ID
+			ORDER BY
+				NUM DESC, PROJECT_ID ASC
+			limit 0, 100) a, (SELECT @row_number := 0) as t) x
+			join CMS_PROJECT y on y.ID = x.PROJECT_ID where 1=1
+			<if test="industry!=null">
+			AND y.industry1_id like CONCAT('%',#{industry},'%')
+			</if>
+			<if test="areaCode!=null">
+			AND y.area_tail_id like CONCAT('%',#{areaCode},'%')
+			</if>) z
+			order by z.countNow desc limit 0, 100 
+	</select>
+	
+	<select id="selectCompanyRankingDefault" parameterType="java.util.Map" resultMap="RankingData">
+		<choose>
+			<when test="num != null and num != ''">
+					select z.name, z.id, z.countNow ,(select max(p.industry1_id) from CMS_PROJECT p,CMS_COMPANY_PROJECT cp WHERE cp.project_id=p.id and cp.company_id=z.id) industry
+					from 
+					(select 
+					y.COMPANY_NAME as name, x.COMPANY_ID as id, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
+					from 
+					(select 
+					(@row_number :=@row_number + 1) as ROW_INDEX,
+					a.COMPANY_ID as COMPANY_ID, a.NUM as NUM
+					from 
+					(SELECT
+						cp.COMPANY_ID,
+						count(1) as NUM
+					FROM
+						CMS_COMPANY_PROJECT cp,CMS_PROJECT PR WHERE PR.ID=cp.PROJECT_ID
+						<if test="industry!=null">
+						AND PR.industry1_id like CONCAT('%',#{industry},'%')
+						</if>
+						<if test="areaCode!=null">
+						AND PR.area_tail_id like CONCAT('%',#{areaCode},'%')
+						</if>
+						AND cp.COMPANY_NAME IS NOT NULL
+					GROUP BY
+						cp.COMPANY_ID
+					ORDER BY
+						NUM DESC, cp.COMPANY_ID ASC
+					limit 0, ${num}) a, (SELECT @row_number := 0) as t) x
+					join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
+					order by z.countNow desc limit 0, ${num} 
+			</when>
+			<otherwise>
+					select z.name, z.id, z.countNow ,(select max(p.industry1_id) from CMS_PROJECT p,CMS_COMPANY_PROJECT cp WHERE cp.project_id=p.id and cp.company_id=z.id) industry
+					from 
+					(select 
+					y.COMPANY_NAME as name, x.COMPANY_ID as id, x.NUM * 621 + (100 - x.ROW_INDEX) as countNow
+					from 
+					(select 
+					(@row_number :=@row_number + 1) as ROW_INDEX,
+					a.COMPANY_ID as COMPANY_ID, a.NUM as NUM
+					from 
+					(SELECT
+						cp.COMPANY_ID,
+						count(1) as NUM
+					FROM
+						CMS_COMPANY_PROJECT cp,CMS_PROJECT PR WHERE PR.ID=cp.PROJECT_ID
+						<if test="industry!=null">
+						AND PR.industry1_id like CONCAT('%',#{industry},'%')
+						</if>
+						<if test="areaCode!=null">
+						AND PR.area_tail_id like CONCAT('%',#{areaCode},'%')
+						</if>
+						AND cp.COMPANY_NAME IS NOT NULL
+					GROUP BY
+						cp.COMPANY_ID
+					ORDER BY
+						NUM DESC, cp.COMPANY_ID ASC
+					limit 0, 100) a, (SELECT @row_number := 0) as t) x
+					join CMS_COMPANY y on y.ID = x.COMPANY_ID) z
+					order by z.countNow desc limit 0, 100 
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectReportRankingDefault" resultMap="RankingData">
+			select z.name, z.id, z.countNow,z.industry
+			from 
+			(select 
+			REPORT_TITLE as name, ID as id, REPORT_WORDS as countNow,report_induxtry industry
+			from CMS_REPORT_MAIN where 1=1
+			<if test="industry!=null">
+				AND report_induxtry =#{industry}
+			</if>
+			order by REPORT_WORDS desc, ID asc 
+			limit 0, 100 
+			) z
+	</select>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="publishInfo">
+	<resultMap id="PublishInfo" type="publishInfo" >
+	  <result column="id" property="id" jdbcType="VARCHAR" />
+	  <result column="title" property="title" jdbcType="VARCHAR" />
+	  <result column="description" property="description" jdbcType="VARCHAR" />
+	  <result column="html_id" property="htmlId" jdbcType="VARCHAR" />
+	  <result column="table_name" property="tableName" jdbcType="VARCHAR" />
+	  <result column="publish_date" property="publishDate" jdbcType="DATE" />
+	  <result column="info_type" property="infoType" jdbcType="VARCHAR" />
+	  <result column="project_Name" property="projectName" jdbcType="VARCHAR" />
+	  <result column="category" property="industryName" jdbcType="VARCHAR" />
+	  <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+	</resultMap>
+	  
+	<select id="selectByPrimaryKey" parameterType="String" resultMap="PublishInfo">
+		select a.id,a.title,a.table_name,b.description,b.html_id,a.publish_date, '11501' as info_type,c.project_Name,category,area_name from CMS_V_PUBLISH_INFO a,CMS_V_PUBLISH_CONTENT b,CMS_PROJECT c where a.id=b.id and a.id=#{id} and c.PROJECT_SOURCE_ID=a.id limit 0,1
+	</select>
+	<select id="selectByProjectKey" parameterType="String" resultMap="PublishInfo">
+		select a.id,a.title,a.table_name,b.description,b.html_id,a.publish_date, '11501' as info_type,c.project_Name,category,area_name from CMS_V_PUBLISH_INFO a,CMS_V_PUBLISH_CONTENT b,CMS_PROJECT c where a.id=b.id and c.id=#{id} and c.PROJECT_SOURCE_ID=a.id limit 0,1
+	</select>
+	<select id="selectByZBGGPrimaryKey" parameterType="String" resultMap="PublishInfo">
+		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11502' as info_type,category,area_name from CMS_ZBGG_M a where a.record_id=#{id} limit 0,1
+	</select>
+	<select id="selectByZBGSPrimaryKey" parameterType="String" resultMap="PublishInfo">
+		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11503' as info_type,category,area_name from CMS_ZBGS_M a where a.record_id=#{id} limit 0,1
+	</select>
+	<select id="selectByCGXXPrimaryKey" parameterType="String" resultMap="PublishInfo">
+		select a.record_id id,a.title,a.table_name,a.description,a.html_id,a.publish_date, '11503' as info_type,category,area_name from CMS_CGXX_M a where a.record_id=#{id} limit 0,1
+	</select>
+	
+	<sql id="groupWhere">
+		where a.id=b.id 
+		<if test="areaName!=null">
+			and a.area_name in 
+			<foreach item="item" collection="areaName" separator="," open="(" close=")" index=""> 
+			 	#{item}
+		    </foreach>
+		</if>
+		<if test="keyword!=null">
+			 and (a.title like CONCAT('%',#{keyword},'%') or b.description like CONCAT('%',#{keyword},'%'))
+		</if>
+		<if test="industry!=null">
+			 and 
+			 <foreach item="item" collection="industry" separator="OR" open="(" close=")" index=""> 
+			 	a.category like CONCAT('%',#{item},'%')
+		    </foreach>
+		</if>
+		<if test="type!=null">
+			and 
+			<foreach item="item" collection="type" separator="OR" open="(" close=")" index=""> 
+				<!-- 项目 --> 
+				<if test="item==1">
+					(a.table_name='XMXX')
+				</if>
+				<!-- 招标 -->
+				<if test="item==2">
+					(a.table_name='ZBXX' and a.table_name2!='ZBGS')
+				</if>
+				<!-- 中标 -->
+				<if test="item==3">
+					(a.table_name='ZBXX' and a.table_name2='ZBGS')
+				</if>
+		    </foreach>
+		</if>
+		<if test="startDate!=null">
+			and a.publish_date &gt;= #{startDate}
+		</if>
+		<if test="endDate!=null">
+			and a.publish_date &lt; #{endDate}
+		</if>
+	</sql>
+	<select id="selectGroupByArea" parameterType="Map" resultType="java.util.HashMap">
+		select count(a.area_id) as nums,a.area_name as area  from
+		 CMS_V_PUBLISH_INFO a,CMS_V_PUBLISH_CONTENT b 
+		<include refid="groupWhere"></include>
+		GROUP BY a.area_name
+		order by nums desc
+	</select>
+	<select id="selectGroupByIndustry" parameterType="Map" resultType="java.util.HashMap">
+		select * from (select count(t.ID) as nums,
+		substring_index(substring_index(t.category,',',c.help_topic_id+1),',',-1) as industry
+		<!-- ,substring_index(substring_index(t.category_id,',',c.help_topic_id+3),',',-1) as categoryid -->
+		from 
+		(
+			SELECT
+				a.*
+			FROM
+				CMS_V_PUBLISH_CONTENT b,
+				CMS_V_PUBLISH_INFO a
+			<include refid="groupWhere"></include>
+		) t
+		join
+		mysql.help_topic c 
+		on c.help_topic_id &lt; (length(t.category) - length(replace(t.category,',',''))+1)
+			GROUP BY industry
+		order by nums desc) aa
+		<if test="industry!=null">
+			where aa.industry in
+			<foreach item="item" collection="industry" separator="," open="(" close=")" index=""> 
+			 	#{item}
+		    </foreach>
+		</if>
+	</select>
+	<select id="selectGroupByTypeAndTime" parameterType="Map" resultType="java.util.HashMap">
+		select (CASE when a.table_name='XMXX' THEN '项目' 
+			WHEN a.table_name='ZBXX' and a.table_name2='ZBGS' THEN '中标' 
+			WHEN a.table_name='ZBXX' and a.table_name2!='ZBGS' THEN '招标' END) as type ,
+			count(a.id) as countinfo,
+			year(a.publish_date) as countyear 
+			from 
+			CMS_V_PUBLISH_CONTENT b,CMS_V_PUBLISH_INFO a
+		<include refid="groupWhere"></include>
+		group by type,countyear
+		order by countinfo desc
+	</select>
+	<select id="selectGroupByMonth" parameterType="Map" resultType="java.util.HashMap">
+		select sum(CASE when a.table_name='XMXX' 
+			 THEN 1 ELSE 0 END) as project ,
+sum(CASE when a.table_name='ZBXX' and a.table_name2='ZBGS'
+			 THEN 1 ELSE 0 END) as bid ,
+	sum(CASE when a.table_name='ZBXX' and a.table_name2!='ZBGS' 
+			 THEN 1 ELSE 0 END) as tender ,
+			CONCAT(year(a.publish_date),"-",
+			LPAD(month(a.publish_date),2,0)) time
+			from 
+			CMS_V_PUBLISH_CONTENT b,CMS_V_PUBLISH_INFO a
+		<include refid="groupWhere"></include>
+		group by time
+		order by time asc
+	</select>
+	<select id="selectCountOfYear" parameterType="Map" resultType="java.util.HashMap">
+		select count(a.id) as countinfo,
+			year(a.publish_date) as year 
+			from 
+			CMS_V_PUBLISH_CONTENT b,CMS_V_PUBLISH_INFO a
+		<include refid="groupWhere"></include>
+		group by year
+		order by year desc
+	</select>
+</mapper>

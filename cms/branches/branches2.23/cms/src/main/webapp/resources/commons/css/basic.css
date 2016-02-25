@@ -1,0 +1,39 @@
+@charset 'utf-8';
+
+/* CSS Document */
+* { margin: 0; padding: 0; }
+body { font-family: 'Microsoft YaHei'; font-size: 12px; }
+.cha { font-family: Arial; }
+a { text-decoration: none; color: #333; }
+a:hover { color: #0a8dff; }
+ul, ol { list-style: none; }
+h1, h2, h3, h4, h5, h6 { font-size: 12px; font-weight: normal; }
+b, strong { font-weight: normal; }
+i, em { font-style: normal; }
+input, button { font-family: 'Microsoft YaHei'; box-sizing: border-box; outline: none; }
+img { display: block; max-width: 100%; border: 0; }
+
+/*下面是清除浮动*/
+.clearfix:after { display: block; clear: both; content: ''; }
+.clearfix { zoom: 1; }
+.block { display: block; }
+.none { display: none; }
+.axis path, .axis line { fill: none; stroke: #e2e2e4; shape-rendering: crispEdges; shape-rendering: crispEdges; }
+text { font-family: 'Microsoft YaHei', Arial; font-size: 11px; fill: #888; }
+
+/*.xAxis text {
+    transform: translate(0, 5px);
+    -webkit-transform: translate(0, 5px);
+
+            }
+.yAxis text {
+    transform: translate(5px, 0);
+    -webkit-transform: translate(5px, 0);
+}*/
+.hidden text { display: none; }
+
+/* .xAxis .tick line,.yAxis .tick line {
+    fill: none;
+    stroke: #F3F3F4;
+    stroke-width: 1;
+} */

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CodeMapper">
+	<resultMap id="CodeResultMap" type="Code">
+		<result column="id" property="code" jdbcType="BIGINT" />
+		<result column="code_name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getCodeList" parameterType="Map" resultMap="CodeResultMap">
+		select t.id,t.code_name from CMS_CODE t 
+		<where>
+			<if test="type!=null">
+				and  t.code_type=#{type} 
+			</if>
+			<if test="parentCode">
+				and t.code_value1=#{parentCode}
+			</if>
+		</where>
+		 order by t.id asc
+	</select>
+	<select id="getCodeName" parameterType="String" resultType="String">
+		select t.code_name from CMS_CODE t where t.id=#{id} order by t.id asc
+	</select>
+</mapper>

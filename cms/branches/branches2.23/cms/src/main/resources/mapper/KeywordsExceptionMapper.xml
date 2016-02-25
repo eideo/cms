@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="keywordsExceptionMapper">
+  
+ 	 <resultMap id="KeywordsExceptionResult" type="keywordsException" >
+	    <result column="record_id" property="recordId" jdbcType="VARCHAR" />
+	    <result column="cust_id" property="custId" jdbcType="INTEGER" />
+	    <result column="login_Name" property="loginName" jdbcType="VARCHAR" />
+	    <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+	    <result column="keywords_type" property="keywordsType" jdbcType="VARCHAR" />
+	    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+	    <result column="confirm_date" property="confirmDate" jdbcType="TIMESTAMP" />
+	    <result column="ip" property="ip" jdbcType="INTEGER" />
+	    <result column="area_Tail_Id" property="areaTailId" jdbcType="VARCHAR" />
+	    <result column="area_Id" property="areaId" jdbcType="VARCHAR" />
+	    <result column="industry1_Id" property="industry1Id" jdbcType="VARCHAR" />
+	    <result column="industry2_Id" property="industry2Id" jdbcType="VARCHAR" />
+	    <result column="sql_Record" property="sqlRecord" jdbcType="VARCHAR" />
+	    <result column="query_Time" property="queryTime" jdbcType="DECIMAL" />
+	    <result column="exception_Type" property="exceptionType" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	  <sql id="keywordsExceptionColumns">
+	 	 record_id,cust_id,login_Name,cust_name,keywords_type,keywords,confirm_date,ip,area_Tail_Id,area_Id,industry1_Id,industry2_Id,sql_Record,query_Time,exception_Type
+	  </sql>
+	  
+	  <insert id="insertKeywordsException" parameterType="keywordsException">
+	  insert into CMS_CUSTOMER_KEYWORDS_EXCEPTION (<include refid="keywordsExceptionColumns"></include>)
+	  values (#{recordId,jdbcType=VARCHAR},
+	  		#{custId,jdbcType=INTEGER},
+	  		#{loginName,jdbcType=VARCHAR},
+	  		#{custName,jdbcType=VARCHAR},
+	  		#{keywordsType,jdbcType=VARCHAR},
+	  		#{keywords,jdbcType=VARCHAR},
+	  		#{confirmDate,jdbcType=TIMESTAMP},
+	  		#{ip,jdbcType=VARCHAR},
+	  		#{areaTailId,jdbcType=VARCHAR},
+	  		#{areaId,jdbcType=VARCHAR},
+	  		#{industry1Id,jdbcType=VARCHAR},
+	  		#{industry2Id,jdbcType=VARCHAR},
+	  		#{sqlRecord,jdbcType=VARCHAR},
+	  		#{queryTime,jdbcType=DECIMAL},
+	  		#{exceptionType,jdbcType=VARCHAR}
+	  )
+	  </insert>
+	  
+</mapper>

@@ -55,7 +55,7 @@ public class PersonalController extends BaseController {
 			HttpServletResponse response) {
 		doCustBehaviorPage(request, 3);
 
-		return "perAttention";
+		return "personal/perAttention";
 	}
 
 	@RequestMapping(value = "/collection", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class PersonalController extends BaseController {
 			HttpServletResponse response) {
 		doCustBehaviorPage(request, 4);
 
-		return "perCollection";
+		return "personal/perCollection";
 	}
 
 	@RequestMapping(value = "/footprint", method = RequestMethod.GET)
@@ -97,9 +97,19 @@ public class PersonalController extends BaseController {
 		request.setAttribute("activeFlag", 0);
 		request.setAttribute("notSearch", "true");
 
-		return "perFootprint";
+		return "personal/perFootprint";
 	}
 
+	@RequestMapping(value = "/perSecurity", method = RequestMethod.GET)
+	public String securityPage(HttpServletRequest request,
+			HttpServletResponse response){
+		return "personal/perSecurity";
+	}
+	@RequestMapping(value = "/perOrder", method = RequestMethod.GET)
+	public String orderPage(HttpServletRequest request,
+			HttpServletResponse response){
+		return "personal/perOrder";
+	}
 	@RequestMapping(value = "/information", method = RequestMethod.GET)
 	public String informationPage(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -127,7 +137,7 @@ public class PersonalController extends BaseController {
 		request.setAttribute("memberinfo", memberInfo);
 		request.setAttribute("notSearch", "true");
 
-		return "perInformation";
+		return "personal/perInformation";
 	}
 
 	@RequestMapping(value = "/footprint/{infotype}", method = RequestMethod.GET)

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>关系网展示页</title>
+        <link rel="stylesheet" type="text/css" href="css/basic.css">
+        <link rel="stylesheet" type="text/css" href="css/relation.css">
+    </head>
+    <body>
+
+<!--    顶部导航 -->
+<div class="header">
+    <div class="user-nav clearfix">
+        <ul class="user-info clearfix">
+            <li><a href="http://101.200.0.81:8080/cas/login?service=http://101.200.0.81:8080/cms/homepage">登录</a></li>
+            <li>|</li>
+            <li><a href="http://101.200.0.81:8080/cms/register">注册</a></li>
+            <li>|</li>
+            <li><a href="javascript:;">客户中心</a></li>
+            <li>|</li>
+            <li><a href="javascript:;">个人中心</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- 主导航     -->
+<div class='navWrapper'>
+    <div class="main-nav clearfix">
+            <h1 class="logo">关系网</h1>
+            <ul class="nav">
+                <li><a href="http://101.200.0.81:8080/cms/homepage">首页</a></li>
+                <li><a href="http://101.200.0.81:8080/cms/htmlTemp/relation.html">关系网</a></li>
+                <li><a href="http://101.200.0.81:8080/cms/htmlTemp/industry.html" style="color:#47aaff">行业指数</a></li>
+                <li><a href="http://101.200.0.81:8080/cms/ranking" >排行榜</a></li>
+                <li><a href="http://101.200.0.81:8080/cms/report" >行业报告</a></li>
+            </ul>
+        <span id="icon"></span>
+    </div>
+</div>
+<!-- 导航下划线 -->
+<div class="hr"></div>
+
+<div class='relationWrapper'>
+    	<div class='relation clearfix'>
+            <div class='left'>
+                 <div class='searchCon'>
+                    <div class='yearCon'>
+                        <h5>时段选择</h5>
+                        <div class='year' id='year'>
+                            <span class='yearValue'>2006</span>
+                            <div class='cursor' id='cursor'></div>
+                        </div>
+                    </div>
+                    <div class='searchBox'>
+                        <div class='leftText'>
+                            <input type='text' class='sText' value='项目/单位'/>
+                        </div>
+                        <input type='button' class='right'/>
+                        <div class='searchItem'>
+                            <ul>
+                                <li class="rItem">混凝土项目</li>
+                                <li class="rItem">北京混凝土</li>
+                                <li class="rItem">上海混凝土专业标</li>
+                                <li class="rItem">混凝土公司</li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class ='select'>
+                     <div class='title'>
+                         <span class='selected'>单位角色</span>
+                         <span>联系人角色</span>
+                     </div>
+                     <div class='con'>
+                        <div class='con1'>
+                            <ul class="list">
+                                <li class="item selected">业主</li>
+                                <li class="item">设计院</li>
+                                <li class="item">承建商</li>
+                                <li class="item">供应商</li>
+                                <li class="item">招标代理</li>
+                                
+                            </ul>
+                        </div>
+                        <div class='con2'> 
+                            <ul class="list">
+                                <li class="item selected">总工程师</li>
+                                <li class="item">规划师</li>
+                                <li class="item">项目负责人</li>
+                                <li class="item">前期负责人</li>
+                                <li class="item">现场负责人</li>
+                                <li class="item">项目经理</li>
+                                <li class="item">采矿工程师</li>
+                                <li class="item">道桥工程师</li>
+                                <li class="item">地质勘查工程师</li>
+                                <li class="item">电气工程师</li>
+                                <li class="item">动力工程师</li>
+                                <li class="item">副总工程师</li>
+                                <li class="item">钢结构工程师</li>
+                                <li class="item">给排水工程师</li>
+                                <li class="item">工艺工程师</li>
+                                <li class="item">光伏工程师</li>
+                                <li class="item">轨道工程师</li>
+                                <li class="item">化工工程师</li>
+                                <li class="item">机电工程师</li>
+                                <li class="item">建筑工程师</li>
+                                <li class="item">建筑设计师</li>
+                                <li class="item">结构工程师</li>
+                                <li class="item">景观设计师</li>
+                                <li class="item">幕墙设计师</li>
+                                <li class="item">暖通工程师</li>
+                                <li class="item">弱电工程师</li>
+                                <li class="item">设备工程师</li>
+                                <li class="item">室内设计师</li>
+                                <li class="item">通信工程师</li>
+                                <li class="item">项目知情人</li>
+                                <li class="item">消防工程师</li>
+                                <li class="item">信号工程师</li>
+                                <li class="item">园林设计师</li>
+                                <li class="item">装饰设计师</li>
+                                <li class="item">项目参与人</li>
+                                <li class="item">其他</li>
+                            </ul>
+                        </div>
+                     </div>
+                 </div>
+            </div>
+            <div class='right'>
+                <div class='tree'>
+                </div>
+                <div class="recommend">
+                    <h3>以下内容你可能感兴趣</h3>
+                    <div class='recomItem' id='tableLeft'>
+                        <table >  
+                            <thead>
+                                <tr>
+                                    <th>单位</th>
+                                    <th>联系人</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>上海机电设备投标有限公司</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                                <tr>
+                                    <td>大连船舶集团</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                                <tr>
+                                    <td>北京镇楼集团</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                                <tr>
+                                    <td>上海机电设备投标有限公司</td>
+                                    <td>张小姐     137***5031</td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='recomItem' id='tableRight'>
+                        <table >  
+                            <thead>
+                                <th>单位</th>
+                                <th>联系人</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>上海机电设备投标有限公司</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                                <tr>
+                                    <td>上海机电设备投标有限公司</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                                <tr>
+                                    <td>上海机电设备投标有限公司</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                                <tr>
+                                    <td>上海机电设备投标有限公司</td>
+                                    <td>张小姐 137***5031</td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    	</div>
+
+</div>
+    	<script src="../resources/commons/js/lib/jquery-1.7.2.min.js"></script>
+        <script src="../resources/commons/js/lib/d3.v3.js"></script>
+         <script src="../resources/commons/js/lib/cola.js"></script>
+        <script src="../resources/commons/js/lib/slider.js"></script>
+        <script src="../resources/commons/js/jquery.nicescroll.js"></script>
+		 <script src="../resources/commons/js/chart/forceChart.js"></script>
+		 <script src="../resources/commons/js/relation.js"></script>
+        <script src="../resources/commons/js/public/relation/newRelation.js"></script>
+    </body>
+</html>

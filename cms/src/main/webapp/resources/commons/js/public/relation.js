@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2015-11-18 15:50:00
  * @Last Modified by:   zhanganchun
- * @Last Modified time: 2016-02-17 16:10:22
+ * @Last Modified time: 2016-02-23 14:00:24
  */
 
 'use strict';
@@ -579,37 +579,6 @@ define(function(require, exports, module) {
             AjaxObj.startDate = parm[0]
             AjaxObj.endDate = parm[1]
         })
-
-        // 浏览器版本检测
-        ! function() {
-            var cookie,
-                ua,
-                match;
-            ua = window.navigator.userAgent;
-            match = /;\s*MSIE (\d+).*?;/.exec(ua);
-            if (match && +match[1] < 9) {
-                cookie = document.cookie.match(/(?:^|;)\s*ic=(\d)/);
-                if (cookie && cookie[1]) {
-                    return;
-                }
-                $("body").prepend([
-                    "<div id='compatible' class='compatible-contianer'>",
-                    "<p class='cpt-ct'><i></i>您的浏览器版本过低。为保证最佳浏览体验，<a href='/static/html/browser.html'>请点此更新高版本浏览器</a></p>",
-                    "<div class='cpt-handle'><a href='javascript:;' class='cpt-agin'>以后再说</a><a href='javascript:;' class='cpt-close'><i></i></a>",
-                    "</div>"
-                ].join(""));
-
-                $("#compatible .cpt-agin").click(function() {
-                    var d = new Date();
-                    d.setTime(d.getTime() + 30 * 24 * 3600 * 1000);
-                    document.cookie = "ic=1; expires=" + d.toGMTString() + "; path=/";
-                    $("#compatible").remove();
-                });
-                $("#compatible .cpt-close").click(function() {
-                    $("#compatible").remove();
-                });
-            }
-        }();
     })
 
     module.exports = 'relation'

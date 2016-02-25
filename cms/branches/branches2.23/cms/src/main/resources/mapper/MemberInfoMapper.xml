@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberInfoMapper">
+  
+ 	 <resultMap id="MemberInfoResult" type="memberInfo" >
+ 	 	<result column="id" property="id" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_id" property="custId" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_Province" property="custProvince" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_City" property="custCity" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_Birthday" property="custBirthday" jdbcType="VARCHAR"/>
+ 	 	<result column="lostpass_Question" property="lostpassQuestion" jdbcType="VARCHAR"/>
+ 	 	<result column="lostpass_Answer" property="lostpassAnswer" jdbcType="VARCHAR"/>
+ 	 	<result column="login_Id" property="loginId" jdbcType="VARCHAR"/>
+ 	 	<result column="login_Passwd" property="loginPassword" jdbcType="VARCHAR"/>
+ 	 	<result column="sex" property="sex" jdbcType="VARCHAR"/>
+ 	 	<result column="company_Name" property="companyName" jdbcType="VARCHAR"/>
+ 	 	<result column="address" property="address" jdbcType="VARCHAR"/>
+ 	 	<result column="zip_code" property="zipcode" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_Email" property="custEmail" jdbcType="VARCHAR"/>
+ 	 	<result column="phone" property="phone" jdbcType="VARCHAR"/>
+ 	 	<result column="fax" property="fax" jdbcType="VARCHAR"/>
+ 	 	<result column="register_Date" property="registerDate" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_Name" property="custName" jdbcType="VARCHAR"/>
+ 	 	<result column="cust_Status" property="custStatus" jdbcType="VARCHAR"/>
+ 	 	<result column="mobile_Phone" property="mobilePhone" jdbcType="VARCHAR"/>
+ 	 	<result column="isAdmin" property="isAdmin" jdbcType="INTEGER"/>
+ 	 	<result column="belong" property="belong" jdbcType="INTEGER"/>
+ 	 	<result column="dept_Id" property="deptId" jdbcType="VARCHAR"/>
+ 	 	<result column="user_Type" property="userType" jdbcType="INTEGER"/>
+ 	 	<result column="AVATAR_PATH" property="avatarPath" jdbcType="VARCHAR"/>
+	 </resultMap>
+	 
+	 <sql id="columns">cust_id,cust_Province,cust_City,cust_Birthday,lostpass_Question,lostpass_Answer,login_Id,login_Passwd,sex,company_Name,address,zip_code,cust_Email,phone,fax,register_Date,cust_Name,cust_Status,mobile_Phone,isAdmin,belong,dept_id,user_Type,AVATAR_PATH</sql>
+	 <insert id="insertMemberInfo" parameterType="memberInfo">
+	 	insert into CMS_MEMBER_INFO (<include refid="columns"></include>)
+	 	 values (
+	 	 #{custId,jdbcType=VARCHAR},
+	 	 #{custProvince,jdbcType=VARCHAR},
+	 	 #{custCity,jdbcType=VARCHAR},
+	 	 #{custBirthday,jdbcType=VARCHAR},
+	 	 #{lostpassQuestion,jdbcType=VARCHAR},
+	 	 #{lostpassAnswer,jdbcType=VARCHAR},
+	 	 #{loginId,jdbcType=VARCHAR},
+	 	 #{loginPassword,jdbcType=VARCHAR},
+	 	 #{sex,jdbcType=VARCHAR},
+	 	 #{companyName,jdbcType=VARCHAR},
+	 	 #{address,jdbcType=VARCHAR},
+	 	 #{zipcode,jdbcType=VARCHAR},
+	 	 #{custEmail,jdbcType=VARCHAR},
+	 	 #{phone,jdbcType=VARCHAR},
+	 	 #{fax,jdbcType=VARCHAR},
+	 	 #{registerDate,jdbcType=TIMESTAMP},
+	 	 #{custName,jdbcType=VARCHAR},
+	 	 #{custStatus,jdbcType=VARCHAR},
+	 	 #{mobilePhone,jdbcType=VARCHAR},
+	 	 #{isAdmin,jdbcType=INTEGER},
+	 	 #{belong,jdbcType=INTEGER},
+	 	 #{deptId,jdbcType=VARCHAR},
+	 	 #{userType,jdbcType=INTEGER},
+	 	 #{avatarPath,jdbcType=VARCHAR}
+	 	 );
+	 </insert>
+	 <select id="checkMember" resultMap="MemberInfoResult" parameterType="memberInfo">
+	 	select id,<include refid="columns"></include> from CMS_MEMBER_INFO 
+	 	<where>
+	 		<if test="loginId!=null"> or login_Id=#{loginId}</if>
+	 		<if test="mobilePhone!=null"> or mobile_Phone=#{mobilePhone}</if>
+	 		<if test="custEmail!=null"> or cust_Email=#{custEmail}</if>
+	 		<if test="companyName!=null">  or company_Name=#{companyName}</if>
+	 	</where>
+	 </select>
+
+	<select id="getByPrimaryKey" resultMap="MemberInfoResult" parameterType="java.lang.Long">
+		select 
+		id,<include refid="columns" />
+		from CMS_MEMBER_INFO 
+		where ID = #{id,jdbcType=BIGINT} 
+	</select>
+
+	<update id="update" parameterType="memberInfo">
+		update CMS_MEMBER_INFO
+		set
+		SEX = #{sex,jdbcType=VARCHAR},
+		MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+		CUST_EMAIL = #{custEmail,jdbcType=VARCHAR},
+		CUST_NAME = #{custName,jdbcType=VARCHAR},
+		CUST_PROVINCE = #{custProvince,jdbcType=VARCHAR},
+	 	CUST_CITY = #{custCity,jdbcType=VARCHAR},
+		ADDRESS = #{address,jdbcType=VARCHAR},
+		COMPANY_NAME = #{companyName,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="updateAvatar" parameterType="java.util.Map">
+		update CMS_MEMBER_INFO 
+		set 
+		AVATAR_PATH = #{avatarPath,jdbcType=VARCHAR} 
+		where ID = #{id,jdbcType=BIGINT} 
+	</update>
+	<update id="updatePass" parameterType="memberInfo">
+		update CMS_MEMBER_INFO 
+		set LOGIN_PASSWD=#{loginPassword,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT} 
+	</update>
+</mapper>

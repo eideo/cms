@@ -1,0 +1,507 @@
+/* 
+* @Author: zhanganchun
+* @Date:   2016-01-22 15:24:16
+* @Last Modified by:   zhanganchun
+* @Last Modified time: 2016-02-01 09:34:39
+*/
+.search{
+	display: none
+}
+.con
+{
+    position: absolute;
+	
+    width: 100%;
+    height:    -moz-calc(100% - 120px);
+    height: -webkit-calc(100% - 120px);
+    height:         calc(100% - 120px);
+
+    background: #fff;
+}
+
+.conWrapper
+{
+    position: relative;
+	overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    background: #f3f4e6 url(../images/constructBack.png) no-repeat center top;
+}
+
+.moveCar
+{
+    position: absolute;
+    z-index: 1002;
+   /*  top: 307px;
+    right: 100px;
+
+    width: 95px;
+    height: 70px; */
+    
+    top:276px;
+    right:67px;
+    width:680px;
+    height:130px;
+    background: url(../images/moveCar.gif) no-repeat;
+}
+
+.roadCon
+{
+    position: absolute;
+    top: 377px;
+    left: 0;
+
+    width: 100%;
+    height: 105px;
+
+    background: url(../images/road_03.png) repeat;
+}
+
+.text
+{
+    position: absolute;
+    top: 160px;
+    left: 45%;
+
+    width: 366px;
+    height: 44px;
+    margin-left: -183px;
+
+    background: url(../images/constructText.png) no-repeat;
+}
+.road
+{
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+.carCon
+{
+    position: absolute;
+    top: -15px;
+    left: 200px;
+
+    width: 175px;
+    height: 110px;
+    z-index: 1002;
+    
+    -webkit-animation: carmove 15s linear .1s infinite;
+       -moz-animation: carmove 15s linear .1s infinite;
+         -o-animation: carmove 15s linear .1s infinite;
+            animation: carmove 15s linear .1s infinite;
+}
+.car
+{
+    position: relative;
+
+    width: 175px;
+    height: 110px;
+
+    background: url(../images/car1.png) no-repeat;
+}
+
+.carCon .lunleft
+{
+    position: absolute;
+    top: 78px;
+    left: 58px;
+
+    width: 37px;
+    height: 37px;
+
+    -webkit-animation: carLun 3s linear .1s infinite;
+       -moz-animation: carLun 3s linear .1s infinite;
+         -o-animation: carLun 3s linear .1s infinite;
+            animation: carLun 3s linear .1s infinite;
+
+    background: url(../images/carLun.png) no-repeat;
+}
+.carCon .lunright
+{
+    position: absolute;
+    top: 78px;
+    left: 120px;
+
+    width: 37px;
+    height: 37px;
+
+    -webkit-animation: carLun 3s linear .1s infinite;
+       -moz-animation: carLun 3s linear .1s infinite;
+         -o-animation: carLun 3s linear .1s infinite;
+            animation: carLun 3s linear .1s infinite;
+
+    background: url(../images/carLun.png) no-repeat;
+}
+
+@keyframes carmove
+{
+    0%
+    {
+        left: 0;
+    }
+    25%
+    {
+        left: 25%;
+    }
+    50%
+    {
+        left: 50%;
+    }
+    75%
+    {
+        left: 75%;
+    }
+    100%
+    {
+        left: 100%;
+    }
+}
+
+@-moz-keyframes carmove
+{
+   0%
+    {
+        left: 0;
+    }
+    25%
+    {
+        left: 25%;
+    }
+    50%
+    {
+        left: 50%;
+    }
+    75%
+    {
+        left: 75%;
+    }
+    100%
+    {
+        left: 100%;
+    }
+}
+
+@-webkit-keyframes carmove
+{
+   0%
+    {
+        left: 0;
+    }
+    25%
+    {
+        left: 25%;
+    }
+    50%
+    {
+        left: 50%;
+    }
+    75%
+    {
+        left: 75%;
+    }
+    100%
+    {
+        left: 100%;
+    }
+}
+
+@-o-keyframes carmove
+{
+    0%
+    {
+        left: 0;
+    }
+    25%
+    {
+        left: 25%;
+    }
+    50%
+    {
+        left: 50%;
+    }
+    75%
+    {
+        left: 75%;
+    }
+    100%
+    {
+        left: 100%;
+    }
+}
+
+
+@keyframes secondCar
+{
+    0%
+    {
+        right: 0;
+    }
+    25%
+    {
+        right: 15%;
+    }
+    50%
+    {
+        right: 22%;
+    }
+    75%
+    {
+        right: 27%;
+    }
+    100%
+    {
+        right: 32%;
+    }
+}
+
+@-moz-keyframes secondCar
+{
+    0%
+    {
+        right: 0;
+    }
+    25%
+    {
+        right: 15%;
+    }
+    50%
+    {
+        right: 22%;
+    }
+    75%
+    {
+        right: 27%;
+    }
+    100%
+    {
+        right: 32%;
+    }
+}
+
+@-webkit-keyframes secondCar
+{
+    0%
+    {
+        right: 0;
+    }
+    25%
+    {
+        right: 15%;
+    }
+    50%
+    {
+        right: 22%;
+    }
+    75%
+    {
+        right: 27%;
+    }
+    100%
+    {
+        right: 32%;
+    }
+}
+
+@-o-keyframes secondCar
+{
+    0%
+    {
+        right: 0;
+    }
+    25%
+    {
+        right: 15%;
+    }
+    50%
+    {
+        right: 22%;
+    }
+    75%
+    {
+        right: 27%;
+    }
+    100%
+    {
+        right: 32%;
+    }
+}
+
+
+@keyframes carLun
+{
+    0%
+    {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    25%
+    {
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+    50%
+    {
+        -webkit-transform: rotate(180deg);
+           -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+             -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+    }
+    75%
+    {
+        -webkit-transform: rotate(270deg);
+           -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+             -o-transform: rotate(270deg);
+                transform: rotate(270deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+           -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes carLun
+{
+       0%
+    {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    25%
+    {
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+    50%
+    {
+        -webkit-transform: rotate(180deg);
+           -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+             -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+    }
+    75%
+    {
+        -webkit-transform: rotate(270deg);
+           -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+             -o-transform: rotate(270deg);
+                transform: rotate(270deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+           -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes carLun
+{
+        0%
+    {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    25%
+    {
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+    50%
+    {
+        -webkit-transform: rotate(180deg);
+           -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+             -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+    }
+    75%
+    {
+        -webkit-transform: rotate(270deg);
+           -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+             -o-transform: rotate(270deg);
+                transform: rotate(270deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+           -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes carLun
+{
+        0%
+    {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    25%
+    {
+        -webkit-transform: rotate(90deg);
+           -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+             -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+    }
+    50%
+    {
+        -webkit-transform: rotate(180deg);
+           -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+             -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+    }
+    75%
+    {
+        -webkit-transform: rotate(270deg);
+           -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+             -o-transform: rotate(270deg);
+                transform: rotate(270deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+           -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
